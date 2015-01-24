@@ -17,3 +17,60 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
+
+
+/*Unauthenticated group*/
+
+Route::group(array("before" => "guest"), function() {
+
+	/*CSRF protection group*/
+	Route::group(array("before" => "csrf"), function() {
+
+		Route::post("/login", array(
+			'as' => 'login-post',
+			'uses' => 'AccountController@postLogin'
+		));
+
+		/*Register*/
+		Route::post("/register", array(
+			'as' => 'register-post',
+			'uses' => 'AccountController@postRegister'
+		));
+
+	});
+
+	/*Login*/
+	Route::get("/login", array(
+		'as' => 'login',
+		'uses' => 'AccountController@getLogin'
+	));
+
+	/*Register*/
+	Route::get("/register", array(
+		'as' => 'register',
+		'uses' => 'AccountController@getRegister'
+	));
+
+	/*Activate*/
+	Route::get("/activate/{code}", array(
+		'as' => 'activate',
+		'uses' => 'AccountController@activate'
+	));
+
+});
+
+/*Authenticated group*/
+
+Route::group(array("before"=>"auth"), function() {
+
+	/*CSRF protection*/
+	Route::group(array("before" => "csrf"), function() {
+
+	});
+
+	Route::get("/logout", array(
+		'as' => 'logout',
+		'uses' => 'AccountController@logout'
+	));
+
+});
