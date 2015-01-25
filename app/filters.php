@@ -48,6 +48,26 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('owner', function(){
+    if(Auth::guest()){
+        return Redirect::route('login');
+    }else{
+        if(Auth::user()->usertype != "2"){
+            return Redirect::route('/');
+        }
+    }
+});
+
+Route::filter('admin', function(){
+    if(Auth::guest()){
+        return Redirect::route('login');
+    }else{
+        if(Auth::user()->usertype != "3"){
+            return Redirect::route('home');
+        }
+    }
+});
+
 
 Route::filter('auth.basic', function()
 {
