@@ -19,8 +19,16 @@ class AccountController extends BaseController {
 				$remember
 			);
 		if($auth){
-				//Redirect to intented page
-				return Redirect::intended('/');
+				if(Auth::user()->usertype == "3"){
+					return Redirect::route('admin', Auth::user()->username);
+				}
+				elseif(Auth::user()->usertype == "2"){
+					return Redirect::route('owner');
+				}
+				else{
+					//Redirect to intented page
+					return Redirect::intended('/');
+				}
 			}
 
 		return Redirect::route('login')->with('danger', "Username/Password does not mathch or account not activated.");

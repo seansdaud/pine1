@@ -68,9 +68,16 @@ Route::group(array("before"=>"auth"), function() {
 
 	});
 
+	/*Logout*/
 	Route::get("/logout", array(
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
+	));
+
+	/*Admin*/
+	Route::get("/a/{admin}", array(
+		'as' => 'admin',
+		'uses' => 'admin@index'
 	));
 
 });
