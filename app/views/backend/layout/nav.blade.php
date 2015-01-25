@@ -12,7 +12,12 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
+             <li class="sub-menu">
+                <a  href="{{ URL::route('createschedule') }}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Create Schedular</span>
+                </a>
+            </li>
             <li class="sub-menu">
                 <a href="javascript:;" >
                     <i class="fa fa-desktop"></i>
