@@ -53,7 +53,7 @@ Route::filter('owner', function(){
         return Redirect::route('login');
     }else{
         if(Auth::user()->usertype != "2"){
-            return Redirect::route('/');
+            return Redirect::route('home');
         }
     }
 });
