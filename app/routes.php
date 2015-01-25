@@ -65,22 +65,8 @@ Route::group(array("before"=>"auth"), function() {
 
 	/*CSRF protection*/
 	Route::group(array("before" => "csrf"), function() {
-		/*	Add schedule*/
-		Route::post("/addSchedule", array(
-			'as' => 'addSchedule',
-			'uses' => 'ScheduleController@addSchedule'
-		));
-
-	});
-
-	Route::group(array("before"=>"admin"), function() {
-
-		/*Admin*/
-		Route::get("/a/{admin}", array(
-			'as' => 'admin',
-			'uses' => 'admin@index'
-		));
 		
+
 	});
 
 	/*Logout*/
@@ -89,16 +75,40 @@ Route::group(array("before"=>"auth"), function() {
 		'uses' => 'AccountController@logout'
 	));
 
+	
+
+});
+
+Route::group(array("before"=>"admin"), function() {
+
 	/*Admin*/
 	Route::get("/a/{admin}", array(
 		'as' => 'admin',
 		'uses' => 'admin@index'
 	));
+	
+});
 
+Route::group(array("before"=>"owner"), function() {
+	/*CSRF protection*/
+
+	Route::group(array("before" => "csrf"), function() {
+		/*	Add schedule*/
+		Route::post("/addSchedule", array(
+			'as' => 'addSchedule',
+			'uses' => 'ScheduleController@addSchedule'
+		));
+
+	});
+	// owner
+	Route::get("/o/{owner}", array(
+		'as' => 'owner',
+		'uses' => 'owner@index'
+	));
 	/*create Schedular*/
 		Route::get("/createschedule", array(
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
-	));
+	));	
 
 });
