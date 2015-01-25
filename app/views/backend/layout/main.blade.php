@@ -8,6 +8,7 @@
 	{{ HTML::style('assets/lineicons/style.css') }}
 	{{ HTML::style('assets/css/style.css') }}
 	{{ HTML::style('assets/css/style-responsive.css') }}
+	{{ HTML::style('assets/css/jquery.timepicker.css') }}
 	{{ HTML::style('assets/css/table-responsive.css') }}
 </head>
 <body>
@@ -42,7 +43,8 @@
 	{{ HTML::script('assets/js/gritter/js/jquery.gritter.js') }}
 	{{ HTML::script('assets/js/gritter-conf.js') }}
 	{{ HTML::script('assets/js/sparkline-chart.js.js') }}
-
+	{{ HTML::script('assets/js/jquery.timepicker.js') }}
+	{{ HTML::script('assets/js/customs.js') }}
 		
 </body>
 </html>

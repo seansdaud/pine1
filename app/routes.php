@@ -65,6 +65,11 @@ Route::group(array("before"=>"auth"), function() {
 
 	/*CSRF protection*/
 	Route::group(array("before" => "csrf"), function() {
+		/*	Add schedule*/
+		Route::post("/addSchedule", array(
+			'as' => 'addSchedule',
+			'uses' => 'ScheduleController@addSchedule'
+		));
 
 	});
 
@@ -82,6 +87,18 @@ Route::group(array("before"=>"auth"), function() {
 	Route::get("/logout", array(
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
+	));
+
+	/*Admin*/
+	Route::get("/a/{admin}", array(
+		'as' => 'admin',
+		'uses' => 'admin@index'
+	));
+
+	/*create Schedular*/
+		Route::get("/createschedule", array(
+		'as' => 'createschedule',
+		'uses' => 'ScheduleController@createSchedule'
 	));
 
 });
