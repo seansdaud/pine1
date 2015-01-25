@@ -73,6 +73,16 @@ Route::group(array("before"=>"auth"), function() {
 
 	});
 
+	Route::group(array("before"=>"admin"), function() {
+
+		/*Admin*/
+		Route::get("/a/{admin}", array(
+			'as' => 'admin',
+			'uses' => 'admin@index'
+		));
+		
+	});
+
 	/*Logout*/
 	Route::get("/logout", array(
 		'as' => 'logout',
@@ -90,8 +100,5 @@ Route::group(array("before"=>"auth"), function() {
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
 	));
-
-
-		
 
 });
