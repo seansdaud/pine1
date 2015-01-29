@@ -5,19 +5,46 @@
         
         	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
         	  <h5 class="centered">{{ Auth::user()->name }}</h5>
-        	  	
-            <li class="mt">
-                <a class="active" href="{{ URL::route('admin', Auth::user()->username) }}">
-                    <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+
+        	<!-- Nav Menu for admin -->
+            @if(Auth::user()->usertype == 3)
+                <li class="mt">
+                    <a class="active" href="{{ URL::route('admin', Auth::user()->username) }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a class="active" href="{{ URL::route('owners') }}">
+                        <i class="fa fa-users"></i>
+                        <span>Owners</span>
+                    </a>
+                </li>
+            @endif
+
+            <!-- Nav Menu for owners -->
+            @if(Auth::user()->usertyoe == 2)
+                 <li class="sub-menu">
+                    <a  href="{{ URL::route('createschedule') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Create Schedular</span>
+                    </a>
+                </li>
+            @endif
+
+            <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-desktop"></i>
+                    <span>UI Elements</span>
                 </a>
+                <ul class="sub">
+                    <li><a  href="general.html">General</a></li>
+                    <li><a  href="buttons.html">Buttons</a></li>
+                    <li><a  href="panels.html">Panels</a></li>
+                </ul>
             </li>
-             <li class="sub-menu">
-                <a  href="{{ URL::route('createschedule') }}">
-                    <i class="fa fa-dashboard"></i>
-                    <span>Create Schedular</span>
-                </a>
-            </li>
+
             <li class="sub-menu">
                 <a href="javascript:;" >
                     <i class="fa fa-desktop"></i>
