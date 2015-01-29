@@ -10,9 +10,7 @@ class ScheduleController extends BaseController {
 	public function addSchedule(){
 		
 		$adminid = Auth::id();
-
-		// $this->work_model->delete_schedule($adminid);
-		// $reserve = new Reserves;
+		Schedule::where('admin_id', $adminid )->delete();
 		$diff=Input::get('diff');
 		$j=-1;
 		$result = array();
@@ -40,5 +38,6 @@ class ScheduleController extends BaseController {
 		else{
 			// print_r("error");
 		}
+		return View::make("backend.admin.Schedule")->with("title", "Create Schedule");
 	}
 }
