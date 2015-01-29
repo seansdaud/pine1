@@ -81,6 +81,18 @@ Route::group(array("before"=>"auth"), function() {
 
 Route::group(array("before"=>"admin"), function() {
 
+	/*CSRF Protection*/
+	Route::group(array("before" => "csrf"), function() {
+
+
+
+	});
+
+	Route::get("/a/owners", array(
+		'as' => 'owners',
+		'uses' => 'admin@getOwners'
+	));
+
 	/*Admin*/
 	Route::get("/a/{admin}", array(
 		'as' => 'admin',
