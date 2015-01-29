@@ -195,7 +195,7 @@ function update_ajax(){
 		var form_data = $("#myform1").serialize();
 		$.ajax({
      		type: "POST",
-          	url: base_url+'admin/update_schedular',
+          	url: base_url+'/postupdatePrice',
           	data: form_data,
           	dataType: 'json',
           	  success:function(data){ 
@@ -212,12 +212,12 @@ function update_ajax(){
           	}, 2000);
      		  },
      		   beforeSend : function (){
-                 $('#id').html("<div class='loading'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
+                 $('#id').html("<div class='loading'><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
 
             },
           	    error: function(jqXHR, textStatus, errorThrown){ 
-      // alert( jqXHR.responseText);
-               
+     /* alert( jqXHR.responseText);
+               console.log(jqXHR.responseText);*/
           }
           	});
 
@@ -285,7 +285,7 @@ $("#searchmem").keyup(function(){
 
      		  },
      		   beforeSend : function (){
-                 $('.id').html("<div class='loading-ser'><img src='"+url+"assets/images/ajax_load.gif'></div>");
+                 $('#id').html("<div class='loading'><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
 
             },
 				 error: function(jqXHR, textStatus, errorThrown){ 

@@ -110,6 +110,11 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'addSchedule',
 			'uses' => 'ScheduleController@addSchedule'
 		));
+			
+		Route::post("/postupdatePrice", array(
+			'as' => 'postupdatePrice',
+			'uses' => 'ScheduleController@postupdatePrice'
+		));
 
 	});
 	// owner
@@ -122,5 +127,20 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
 	));	
+			Route::get("/updatePrice", array(
+		'as' => 'updatePrice',
+		'uses' => 'ScheduleController@updatePrice'
+	));	
+	/*		update price*/
+	
+			Route::get("/showSchedule", array(
+		'as' => 'showSchedule',
+		'uses' => 'ScheduleController@showSchedule'
+	));	
+		Route::get("/booknow/{id}", array(
+		'as' => 'booknow',
+		'uses' => 'ScheduleController@bookSchedule'
+	));	
+	
 
 });
