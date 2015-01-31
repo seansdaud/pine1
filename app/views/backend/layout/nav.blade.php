@@ -3,13 +3,15 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
         
-        	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-        	  <h5 class="centered">{{ Auth::user()->name }}</h5>
+        	<p class="centered"><a href="{{ URL::route('admin-profile', Auth::user()->username) }}">
+                <img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" class="img-circle" width="60" height="60">
+            </a></p>
+        	<h5 class="centered">{{ Auth::user()->name }}</h5>
 
         	<!-- Nav Menu for admin -->
             @if(Auth::user()->usertype == 3)
                 <li class="mt">
-                    <a class="active" href="{{ URL::route('admin', Auth::user()->username) }}">
+                    <a class="active" href="{{ URL::route('admin-dashboard') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -32,18 +34,6 @@
                     </a>
                 </li>
             @endif
-
-            <li class="sub-menu">
-                <a href="javascript:;" >
-                    <i class="fa fa-desktop"></i>
-                    <span>UI Elements</span>
-                </a>
-                <ul class="sub">
-                    <li><a  href="general.html">General</a></li>
-                    <li><a  href="buttons.html">Buttons</a></li>
-                    <li><a  href="panels.html">Panels</a></li>
-                </ul>
-            </li>
 
             <li class="sub-menu">
                 <a href="javascript:;" >

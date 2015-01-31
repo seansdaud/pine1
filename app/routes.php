@@ -84,19 +84,44 @@ Route::group(array("before"=>"admin"), function() {
 	/*CSRF Protection*/
 	Route::group(array("before" => "csrf"), function() {
 
+		Route::post("/a/change-profile-pic", array(
+			'as' => 'change-admin-profile-picture',
+			'uses' => 'admin@postProfilePic'
+		));
 
+		Route::post("/a/change-username", array(
+			'as' => 'change-admin-username',
+			'uses' => 'admin@postAdminUsername'
+		));
+
+		Route::post("/a/change-email", array(
+			'as' => 'change-admin-email',
+			'uses' => 'admin@postAdminEmail'
+		));
+
+		Route::post("/a/change-name", array(
+			'as' => 'change-admin-name',
+			'uses' => 'admin@postAdminName'
+		));
 
 	});
 
+	/* Available Owners */
 	Route::get("/a/owners", array(
 		'as' => 'owners',
 		'uses' => 'admin@getOwners'
 	));
 
-	/*Admin*/
-	Route::get("/a/{admin}", array(
-		'as' => 'admin',
+	/* Dashboard */
+	Route::get("/a/dashboard", array(
+		'as' => 'admin-dashboard',
 		'uses' => 'admin@index'
+	));
+
+	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */
+	Route::get("/a/{admin}", array(
+		'as' => 'admin-profile',
+		'uses' => 'admin@profile'
 	));
 	
 });

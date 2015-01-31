@@ -2240,4 +2240,22 @@ label {
     min-height: 900px;
 }
 
+.change {
+    cursor: pointer;
+    float: right;
+    display: block;
+}
 
+.choose {
+    overflow: hidden;
+    height: 20px;
+    width: 58%;
+}
+
+.choose>input[type='file'] {
+    position: relative;
+    top: -20px;
+    opacity: 0;
+    cursor: pointer;
+    left: -110px;
+}

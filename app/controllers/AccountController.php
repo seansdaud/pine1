@@ -20,7 +20,7 @@ class AccountController extends BaseController {
 			);
 		if($auth){
 				if(Auth::user()->usertype == "3"){
-					return Redirect::route('admin', Auth::user()->username);
+					return Redirect::route('admin-dashboard');
 				}
 				elseif(Auth::user()->usertype == "2"){
 					return Redirect::route('owner', Auth::user()->username);
