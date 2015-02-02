@@ -1,22 +1,36 @@
-<aside>
+<aside id="{{ $id }}">
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
         
-        	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-        	  <h5 class="centered">{{ Auth::user()->name }}</h5>
+        	<p class="centered">
+            @if(Auth::user()->usertype == 3)
+                <?php $route = "admin-profile"; ?>
+            @endif
+            @if(Auth::user()->usertype == 2)
+                <?php $route = "owner-profile"; ?>
+            @endif
+                <a href="{{ URL::route($route, Auth::user()->username) }}">
+                    @if(Auth::user()->image != ""):
+                        <img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" class="img-circle" width="60" height="60">
+                    @else
+                        <img src="{{ asset('assets/img/friends/fr-05.jpg') }}" class="img-circle" width="60" height="60">
+                    @endif
+                </a>
+            </p>
+        	<h5 class="centered">{{ Auth::user()->name }}</h5>
 
         	<!-- Nav Menu for admin -->
             @if(Auth::user()->usertype == 3)
                 <li class="mt">
-                    <a class="active" href="{{ URL::route('admin', Auth::user()->username) }}">
+                    <a href="{{ URL::route('admin-dashboard') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a class="active" href="{{ URL::route('owners') }}">
+                    <a href="{{ URL::route('owners') }}">
                         <i class="fa fa-users"></i>
                         <span>Owners</span>
                     </a>
@@ -24,7 +38,14 @@
             @endif
 
             <!-- Nav Menu for owners -->
-            @if(Auth::user()->usertyoe == 2)
+            @if(Auth::user()->usertype == 2)
+                <li class="mt">
+                    <a href="{{ URL::route('owner-dashboard') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
                  <li class="sub-menu">
                     <a  href="{{ URL::route('createschedule') }}">
                         <i class="fa fa-dashboard"></i>
@@ -32,18 +53,6 @@
                     </a>
                 </li>
             @endif
-
-            <li class="sub-menu">
-                <a href="javascript:;" >
-                    <i class="fa fa-desktop"></i>
-                    <span>UI Elements</span>
-                </a>
-                <ul class="sub">
-                    <li><a  href="general.html">General</a></li>
-                    <li><a  href="buttons.html">Buttons</a></li>
-                    <li><a  href="panels.html">Panels</a></li>
-                </ul>
-            </li>
 
             <li class="sub-menu">
                 <a href="javascript:;" >
