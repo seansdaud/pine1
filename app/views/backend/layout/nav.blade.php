@@ -1,4 +1,4 @@
-<aside>
+<aside id="{{ $id }}">
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
@@ -11,14 +11,14 @@
         	<!-- Nav Menu for admin -->
             @if(Auth::user()->usertype == 3)
                 <li class="mt">
-                    <a class="active" href="{{ URL::route('admin-dashboard') }}">
+                    <a href="{{ URL::route('admin-dashboard') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a class="active" href="{{ URL::route('owners') }}">
+                    <a href="{{ URL::route('owners') }}">
                         <i class="fa fa-users"></i>
                         <span>Owners</span>
                     </a>
@@ -26,7 +26,14 @@
             @endif
 
             <!-- Nav Menu for owners -->
-            @if(Auth::user()->usertyoe == 2)
+            @if(Auth::user()->usertype == 2)
+                <li class="mt">
+                    <a href="{{ URL::route('owner-dashboard') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
                  <li class="sub-menu">
                     <a  href="{{ URL::route('createschedule') }}">
                         <i class="fa fa-dashboard"></i>

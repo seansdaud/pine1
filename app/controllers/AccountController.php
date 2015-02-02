@@ -23,7 +23,7 @@ class AccountController extends BaseController {
 					return Redirect::route('admin-dashboard');
 				}
 				elseif(Auth::user()->usertype == "2"){
-					return Redirect::route('owner', Auth::user()->username);
+					return Redirect::route('owner-dashboard', Auth::user()->username);
 				}
 				else{
 					//Redirect to intented page

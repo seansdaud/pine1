@@ -10,7 +10,11 @@ class Owner extends BaseController {
 	 */
 	public function index()
 	{
-		return View::make("backend.admin.home")->with("title", "Dashboard");
+		$data = array(
+			'title' => 'dashboard',
+			'id' => 'dashboard'
+		);
+		return View::make("backend.owners.home", $data);
 	}
 
 	/**

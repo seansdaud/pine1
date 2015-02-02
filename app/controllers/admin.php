@@ -3,20 +3,20 @@
 class Admin extends BaseController {
 
 	public function index(){
-		return View::make("backend.admin.home")->with("title", "Dashboard");
+		$data = array(
+			'id' => 'dashboard',
+			'title' => 'dashboard',
+			'owners' => User::where("usertype", "=", "2")->get()
+		);
+		return View::make("backend.admin.home", $data);
 	}
 
 	public function profile(){
-		return View::make("backend.admin.profile")->with("title", Auth::user()->username);
-	}
-
-	public function getOwners(){
-		$user = User::where('usertype', '=', "2")->get();
 		$data = array(
-			'title' => 'availabel owners',
-			'owners' => $user
+			'id' => 'admin-profile',
+			'title' => Auth::user()->username
 		);
-		return View::make("backend.admin.owners", $data);
+		return View::make("backend.admin.profile", $data);
 	}
 
 	public function postProfilePic(){
@@ -103,6 +103,64 @@ class Admin extends BaseController {
 		else{
 			echo "Error occurred. Please try again.";
 		}
+	}
+
+	public function getOwners(){
+		$user = User::where('usertype', '=', "2")->get();
+		$data = array(
+			'id' => 'owners',
+			'title' => 'availabel owners',
+			'owners' => $user
+		);
+		return View::make("backend.admin.owners", $data);
+	}
+
+	public function getNewOwner(){
+		$data = array(
+			'id' => 'owners',
+			'title' => 'create new owner',
+		);
+		return View::make("backend.admin.create_new_owner", $data);
+	}
+
+	public function checkOwners(){
+		$check = Input::get("check");
+		$value = Input::get("value");
+		if(User::where($check, "=", $value)->first()){
+			echo "duplicate";
+		}
+	}
+
+	public function postNewOwner(){
+		$password = str_random(10);
+		$create = User::create(
+			array(
+				'name' => Input::get("name"),
+				'username' => Input::get("username"),
+				'email' => Input::get("email"),
+				'password' => Hash::make($password),
+				'password_temp' => $password,
+				'active' => 1,
+				'usertype' => 2
+			)
+		);
+
+		if($create){
+			return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
+		}
+		else{
+			return Redirect::route("create-new-owner")->with("danger", "Something went wrong. Please try again.")->withInput();
+		}
+	}
+
+	public function getOwnerProfile($username){
+		$owner = User::where("username", "=", $username)->firstOrFail();
+		$data = array(
+			'id' => 'owners',
+			'title' => $owner->username,
+			'owner' => $owner
+		);
+		return View::make("backend.admin.owner_profile", $data);
 	}
 
 }

@@ -5,12 +5,13 @@
 		<div class="showback">
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-					<img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" style="height:150px; width:auto;">
+					<img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" style="max-width: 100%; height: auto;">
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0px;">
 					{{ Form::open(array('route' => 'change-admin-profile-picture', 'files' => true, 'id'=>'change-admin-profile-pic')) }}
 						<a class="choose change">
-							Change
+							<span class="change-text">Change</span>
+							<span class="change-icon"><i class="fa fa-pencil"></i></span>
 							<input type="file" name="image" id="change-profile-pic" accept="image/gif, image/jpeg, image/png" required/>
 						</a>
 					{{ Form::close() }}

@@ -1,3 +1,12 @@
+/*For active nav*/
+//Admin
+ $("#dashboard .sidebar-menu li a:contains('Dashboard')").addClass('active');
+ $("#owners .sidebar-menu li a:contains('Owners')").addClass('active');
+
+ //Owners
+ $("#schedular .sidebar-menu li a:contains('Create Schedular')").addClass('active');
+
+/*Admin profile info change*/
 $(".form-inline").hide();
 $(document).ready(function() {
 
@@ -7,7 +16,7 @@ $(document).ready(function() {
 		$("#change-admin-profile-pic").submit();
 	});
 
-	// To change the username
+	// To change admin info
 	$(".change").on("click", function() {
 		var that = $(this).parent();
 		that.find("#to-be-changed").hide();
@@ -22,7 +31,7 @@ $(document).ready(function() {
 		that.find("form .form-group").removeClass("has-error");
 	});
 
-	// Code to change the username 
+	// Code to change admin info
 	$(".form-inline").on("submit", function(e) {
 		e.preventDefault();
 		var url = $(this).attr("action");
@@ -65,3 +74,27 @@ function triggerChange(url, value, token, changeType, id){
 		$(id).find(".danger").html(changeType + " field empty");
 	}
 }
+
+/* To check duplicate username and email while creating new owners. */
+$(document).ready(function() {
+	$("#check-duplicate [data-check='true']").on("blur", function() {
+		$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
+		var value = $(this).val();
+		var check = $(this).attr("name");
+		var that = "input[name='"+ $(this).attr("name") +"']";
+		var url = $("#check-duplicate").attr("check-url");
+		if(value.trim() != ""){
+			$.post(url, {value: value, check: check}, function(response) {
+				if(response == "duplicate"){
+					$("#check-duplicate").find(that).closest(".form-group").addClass("has-error");
+					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<ul class='list-unstyled'><li>" + check + " already exist.</li></ul>");
+				}
+				else{
+					$("#check-duplicate").find(that).closest(".form-group").addClass("has-success");
+					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("");
+					$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
+				}
+			});
+		}
+	});
+});

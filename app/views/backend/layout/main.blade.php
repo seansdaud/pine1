@@ -23,9 +23,7 @@
 		<section id="main-content">
           	<section class="wrapper site-min-height">
           		@include("backend.layout.errors")
-      			<div class="row mt">
-					@yield('content')
-				</div>
+				@yield('content')
 			</section>
 		</section>
 
@@ -38,6 +36,7 @@
 
 	{{ HTML::script('assets/js/jquery.js') }}
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
+	{{ HTML::script('assets/js/validator.min.js') }}
 	{{ HTML::script('assets/js/jquery.dcjqaccordion.2.7.js') }}
 	{{ HTML::script('assets/js/jquery.scrollTo.min.js') }}
 	{{ HTML::script('assets/js/jquery.nicescroll.js') }}
