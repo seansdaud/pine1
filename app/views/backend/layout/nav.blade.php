@@ -3,9 +3,21 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
         
-        	<p class="centered"><a href="{{ URL::route('admin-profile', Auth::user()->username) }}">
-                <img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" class="img-circle" width="60" height="60">
-            </a></p>
+        	<p class="centered">
+            @if(Auth::user()->usertype == 3)
+                <?php $route = "admin-profile"; ?>
+            @endif
+            @if(Auth::user()->usertype == 2)
+                <?php $route = "owner-profile"; ?>
+            @endif
+                <a href="{{ URL::route($route, Auth::user()->username) }}">
+                    @if(Auth::user()->image != ""):
+                        <img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" class="img-circle" width="60" height="60">
+                    @else
+                        <img src="{{ asset('assets/img/friends/fr-05.jpg') }}" class="img-circle" width="60" height="60">
+                    @endif
+                </a>
+            </p>
         	<h5 class="centered">{{ Auth::user()->name }}</h5>
 
         	<!-- Nav Menu for admin -->

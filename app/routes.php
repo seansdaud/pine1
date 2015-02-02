@@ -168,10 +168,16 @@ Route::group(array("before"=>"owner"), function() {
 		'uses' => 'ScheduleController@createSchedule'
 	));	
 
-	// owner (keep it at the last)
+	// owner dashboard
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',
 		'uses' => 'owner@index'
+	));
+
+	// Owner Profile (Keep it at last !!important...............)
+	Route::get("o/{owner}", array(
+		'as' => 'owner-profile',
+		'uses' => 'owner@getProfile'
 	));
 
 });
