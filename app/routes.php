@@ -104,10 +104,21 @@ Route::group(array("before"=>"admin"), function() {
 			'uses' => 'admin@postAdminName'
 		));
 
+		Route::post("/a/change-password", array(
+			'as' => 'change-admin-password',
+			'uses' => 'admin@postAdminPassword'
+		));
+
 		/*Add New Owner view*/
 		Route::post("/a/new-owner-post", array(
 			'as' => 'create-new-owner-post',
 			'uses' => 'admin@postNewOwner'
+		));
+
+		/* Add tasks */
+		Route::post("/a/add-task", array(
+			'as' => 'add-task',
+			'uses' => 'TasksController@addNewTask'
 		));
 
 	});
@@ -140,6 +151,12 @@ Route::group(array("before"=>"admin"), function() {
 	Route::get("/a/owner/{owner}", array(
 		'as' => 'admin-owner-profile',
 		'uses' => 'admin@getOwnerProfile'
+	));
+
+	/* Tasks */
+	Route::get("/a/tasks", array(
+		'as' => 'admin-tasks',
+		'uses' => 'TasksController@getTasks'
 	));
 
 	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */

@@ -105,6 +105,17 @@ class Admin extends BaseController {
 		}
 	}
 
+	public function postAdminPassword(){
+		$user = User::where("username", "=", Auth::user()->username)->first();
+		$user->password = Hash::make(Input::get("newpass"));
+		if($user->save()){
+			echo "true";
+		}
+		else{
+			echo "Error occurred. Please try again.";
+		}
+	}
+
 	public function getOwners(){
 		$user = User::where('usertype', '=', "2")->get();
 		$data = array(

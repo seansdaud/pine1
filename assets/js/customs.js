@@ -362,12 +362,58 @@ var now=parseInt(today) ;
 
 /*Admin profile info change*/
 $(".form-inline").hide();
+$("#change-admin-password-form").hide();
 $(document).ready(function() {
 
 	$("a").tooltip();
 
 	$("#change-profile-pic").on("change", function() {		
 		$("#change-admin-profile-pic").submit();
+	});
+
+	$(".cancel-change-password").on("click", function() {
+		var that = $(this).parent().parent();
+		$("#change-admin-password-form").hide();
+		that.find("#to-be-changed").show();
+		that.find(".danger").html("");
+		$("#change-admin-password-form .form-group").removeClass("has-error");
+	});
+
+	$("#change-admin-password-form").on("submit", function(e) {
+		e.preventDefault();
+		var url = $(this).attr("action");
+		var token = $(this).find("input[name='_token']").val();
+		var new_password = $("#new-password").val();
+		var new_password_again = $("#new-password-again").val();
+		if(new_password == new_password_again){
+			$("#new-password").parent().removeClass("has-error");
+			$("#new-password-again").parent().removeClass("has-error");
+			$.post(url, {newpass: new_password, _token: token}, function(response) {
+				if(response == "true"){
+					$.gritter.add({
+			            // (string | mandatory) the heading of the notification
+			            title: 'Password Changed.',
+			            // (string | mandatory) the text inside the notification
+			            text: 'Your password has been successfully changed.',
+			            // Fade out time
+			            time: 5000
+			        });
+			        document.getElementById("new-password").value = "";
+			        document.getElementById("new-password-again").value = "";
+			        $("#change-admin-password-form").hide();
+			        $("#change-admin-password-form").parent().find("#to-be-changed").show();
+				}
+				else{
+					$("#old-password").parent().addClass("has-error");
+					$("#change-admin-password-form").parent().find(".danger").html(response);
+				}
+			});
+		}
+		else{
+			$(this).find(".danger").html("New Passwords do not match");
+			$("#new-password").parent().addClass("has-error");
+			$("#new-password-again").parent().addClass("has-error");
+		}
 	});
 
 	// To change admin info
@@ -386,7 +432,7 @@ $(document).ready(function() {
 	});
 
 	// Code to change admin info
-	$(".form-inline").on("submit", function(e) {
+	$(".admin-profile-form").on("submit", function(e) {
 		e.preventDefault();
 		var url = $(this).attr("action");
 		var id = $(this).attr("id");
@@ -451,4 +497,39 @@ $(document).ready(function() {
 			});
 		}
 	});
+});
+
+
+/*To Add tasks*/
+$(document).ready(function() {
+
+	$("#add-task-form").on("submit", function(e) {
+		e.preventDefault();
+		var task = $(this).find("textarea[name='task']").val();
+		var imp = $(this).find("input[name='important']").is(":checked");
+		var token = $(this).find("input[name='_token']").val();
+		var url = $(this).attr("action");
+		if(task.trim() != ""){
+			$.ajax(url, {
+				type:"post",
+				dataType : "json",
+				data: {task:task, important:imp, _token:token},
+				success: function(result) {
+					var imp = $("#add-task-form").find("input[name='important']").is(":checked");
+					if(result){
+						if(imp){
+					        $('#tasks-tab a[href="#important-tasks"]').tab('show')
+						}
+						else{
+							$('#tasks-tab li:first a').tab('show')
+						}
+					}
+				},
+				error: function(xhr,status,error){
+					alert(xhr.responseText);
+				}
+			});
+		}
+	});
+
 });
