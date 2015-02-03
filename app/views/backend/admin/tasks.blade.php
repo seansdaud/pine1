@@ -2,9 +2,10 @@
 
 @section("content")
 	<div class="row mt">
+		<a href="{{ URL::route('get-tasks') }}" data-toggle="get-tasks"></a>
 		<div class="col-lg-12 ds todos">
 			<ul class="nav nav-tabs" id="tasks-tab" role="tablist">
-				  <li role="presentation" class="active"><a href="#all-tasks" role="tab" data-toggle="tab" aria-controls="tasks">All</a></li>
+				  <li role="presentation" class="active"><a href="#all-tasks" role="tab" data-toggle="tab" aria-controls="all-tasks">All</a></li>
 				  <li role="presentation"><a href="#important-tasks" role="tab" data-toggle="tab" aria-controls="important-tasks">Important</a></li>
 				  <li role="presentation"><a href="#completed-tasks" role="tab" data-toggle="tab" aria-controls="completed-tasks">Completed</a></li>
 				  <li role="presentation"><a href="#add-task" role="tab" data-toggle="tab" aria-controls="add-task">Add New</a></li>
@@ -13,63 +14,36 @@
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane fade in active" id="all-tasks" aria-labelledBy="all-tasks">
 					@foreach($tasks as $task)
-						<div class="desc">
-							<div class="thumb">
-								<span class="badge"><i class="fa fa-arrow-right"></i></span>
+						@if($task->completed == 0)
+							<div class="desc" id="<?php echo $task->id; ?>">
+								<div class="thumb">
+									<span class="badge"><i class="fa fa-arrow-right"></i></span>
+								</div>
+								<div class="details">
+									<p>
+										<muted>{{ date("d M Y", strtotime($task->created_at)) }}</muted>
+											<div class="btn dropdown" style="float: right;top: -30px;">
+											<span class="glyphicon glyphicon-chevron-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></span>
+											<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL::route('delete-task', $task->id); ?>" id="delete-task">Delete</a></li>
+											    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL::route('mark-completed', $task->id); ?>" id="mark-completed">Mark Completed</a></li>
+											</ul>
+											</div>
+										<br>
+										{{ $task->task }}
+									</p>
+								</div>
 							</div>
-							<div class="details">
-								<p>
-									<muted>{{ date("d M Y", strtotime($task->created_at)) }}</muted><br>
-									{{ $task->task }}
-								</p>
-							</div>
-							<div style="float:right;font-size: 15px;right: 10%;position: absolute;">
-								<a href="" data-toggle="tooltip" title="Mark Completed"><i class="fa fa-check"></i></a>
-							</div>
-						</div>
+							@endif
 					@endforeach
 				</div>
 
 				<div role="tabpanel" class="tab-pane fade" id="important-tasks" aria-labelledBy="important-tasks">
-					@foreach($tasks as $task)
-						@if($task->important == "1")
-							<div class="desc">
-								<div class="thumb">
-									<span class="badge"><i class="fa fa-arrow-right"></i></span>
-								</div>
-								<div class="details">
-									<p>
-										<muted>{{ date("d M Y", strtotime($task->created_at)) }}</muted><br>
-										{{ $task->task }}
-									</p>
-								</div>
-								<div style="float:right;font-size: 15px;right: 10%;position: absolute;">
-									<i class="fa fa-check"></i>						
-								</div>
-							</div>
-						@endif
-					@endforeach
+					
 				</div>
 
 				<div role="tabpanel" class="tab-pane fade" id="completed-tasks" aria-labelledBy="completed-tasks">
-					@foreach($tasks as $task)
-						@if($task->completed == "1")
-							<div class="desc">
-								<div class="thumb">
-									<span class="badge"><i class="fa fa-arrow-right"></i></span>
-								</div>
-								<div class="details">
-									<p>
-										<muted>26 Jan. 2015</muted><br>
-										Enjoy Life comp.
-									</p>
-								</div>
-								<div style="float:right;font-size: 15px;right: 10%;position: absolute;">
-									<i class="fa fa-check"></i>						
-								</div>
-							</div>
-						@endif
-					@endforeach
+					
 				</div>
 
 				<div role="tabpanel" class="tab-pane fade" id="add-task" aria-labelledBy="add-task">

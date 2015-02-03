@@ -365,6 +365,7 @@ $(".form-inline").hide();
 $("#change-admin-password-form").hide();
 $(document).ready(function() {
 
+	$(".tab-content a").tooltip();
 	$("a").tooltip();
 
 	$("#change-profile-pic").on("change", function() {		
@@ -503,6 +504,69 @@ $(document).ready(function() {
 /*To Add tasks*/
 $(document).ready(function() {
 
+	$('#tasks-tab a').on("show.bs.tab", function() {
+		var url = $("a[data-toggle='get-tasks']").attr("href");
+		var type = $(this).attr("aria-controls");
+		if(type != "add-task"){
+			$.post(url, {type: type}, function(response) {
+				$("#"+type).html(response);
+			});
+		}
+	});
+
+	$(".todos a#delete-task").on("click", function(e) {
+		e.preventDefault();
+		var url = $(this).attr("href");
+		var idArray = url.split("/");
+		var id = idArray[idArray.length - 1];
+		var tab = $(this).closest(".tab-pane").attr("id");
+		$.post(url, {id: id}, function(response) {
+			if(response == "deleted"){
+				$("#"+id).fadeOut( "slow" );
+				$('#tasks-tab a[href="#'+tab+'"]').tab('show');
+			}
+			else{
+				$.gritter.add({
+		            // (string | mandatory) the heading of the notification
+		            title: 'Error',
+		            // (string | mandatory) the text inside the notification
+		            text: 'Something went wrong. Please try again.',
+		            // Fade out time
+		            time: 5000
+		        });
+			}
+		});
+	});
+
+	$(".todos a#mark-completed").on("click", function(e) {
+		e.preventDefault();
+		var url = $(this).attr("href");
+		var id = url.split("/")[url.split("/").length - 1];
+		$.post(url, {id: id}, function(response) {
+			if(response == 'success'){
+				$.gritter.add({
+		            // (string | mandatory) the heading of the notification
+		            title: 'Success',
+		            // (string | mandatory) the text inside the notification
+		            text: 'Task successfully marked as completed.',
+		            // Fade out time
+		            time: 5000
+		        });
+		        $("#"+id).fadeOut("slow");
+			}
+			else{
+				$.gritter.add({
+		            // (string | mandatory) the heading of the notification
+		            title: 'Error',
+		            // (string | mandatory) the text inside the notification
+		            text: 'Something went wrong. Please try again.',
+		            // Fade out time
+		            time: 5000
+		        });
+			}
+		});
+	});
+
 	$("#add-task-form").on("submit", function(e) {
 		e.preventDefault();
 		var task = $(this).find("textarea[name='task']").val();
@@ -518,10 +582,10 @@ $(document).ready(function() {
 					var imp = $("#add-task-form").find("input[name='important']").is(":checked");
 					if(result){
 						if(imp){
-					        $('#tasks-tab a[href="#important-tasks"]').tab('show')
+					        $('#tasks-tab a[href="#important-tasks"]').tab('show');
 						}
 						else{
-							$('#tasks-tab li:first a').tab('show')
+							$('#tasks-tab li:first a').tab('show');
 						}
 					}
 				},

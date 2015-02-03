@@ -159,6 +159,22 @@ Route::group(array("before"=>"admin"), function() {
 		'uses' => 'TasksController@getTasks'
 	));
 
+	/* Get Tasks */
+	Route::post("/a/get-tasks", array(
+		'as' => 'get-tasks',
+		'uses' => 'TasksController@getAjasTasks'
+	));
+
+	Route::post("/a/delete-task/{id}", array(
+		'as' => 'delete-task',
+		'uses' => 'TasksController@deleteTask'
+	));
+
+	Route::post("/a/mark-complete/{id}", array(
+		'as' => 'mark-completed',
+		'uses' => 'TasksController@completeTask'
+	));
+
 	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */
 	Route::get("/a/{admin}", array(
 		'as' => 'admin-profile',
