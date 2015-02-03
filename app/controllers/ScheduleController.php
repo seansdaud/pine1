@@ -82,6 +82,9 @@ class ScheduleController extends BaseController {
 			
 				}
 	}
+	public function searchuser(){
+		
+	}
 	public function showSchedule(){
 			$adminid = Auth::id();
 			$data = array(

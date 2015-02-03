@@ -141,6 +141,9 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'booknow',
 		'uses' => 'ScheduleController@bookSchedule'
 	));	
-	
+			Route::get("/searchuser", array(
+		'as' => 'searchuser',
+		'uses' => 'ScheduleController@searchuser'
+	));	
 
 });

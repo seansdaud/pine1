@@ -230,7 +230,7 @@ $("#searchmem").keyup(function(){
 
 			$.ajax({
 				type:'POST',
-					url: url+'admin/searchuser',
+					url: url+'/searchuser',
 				data:{
 					mem:mem
 				},
