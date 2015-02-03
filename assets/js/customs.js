@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	$("#checked").hide();
 
@@ -351,4 +350,186 @@ $(document).ready(function() {
 var today = $("#today").val();
 var now=parseInt(today) ;
 	$(" ."+now).addClass("active");
+});
+
+/*For active nav*/
+//Admin
+ $("#dashboard .sidebar-menu li a:contains('Dashboard')").addClass('active');
+ $("#owners .sidebar-menu li a:contains('Owners')").addClass('active');
+
+ //Owners
+ $("#schedular .sidebar-menu li a:contains('Create Schedular')").addClass('active');
+
+/*Admin profile info change*/
+$(".form-inline").hide();
+$("#change-admin-password-form").hide();
+$(document).ready(function() {
+
+	$("a").tooltip();
+
+	$("#change-profile-pic").on("change", function() {		
+		$("#change-admin-profile-pic").submit();
+	});
+
+	$(".cancel-change-password").on("click", function() {
+		var that = $(this).parent().parent();
+		$("#change-admin-password-form").hide();
+		that.find("#to-be-changed").show();
+		that.find(".danger").html("");
+		$("#change-admin-password-form .form-group").removeClass("has-error");
+	});
+
+	$("#change-admin-password-form").on("submit", function(e) {
+		e.preventDefault();
+		var url = $(this).attr("action");
+		var token = $(this).find("input[name='_token']").val();
+		var new_password = $("#new-password").val();
+		var new_password_again = $("#new-password-again").val();
+		if(new_password == new_password_again){
+			$("#new-password").parent().removeClass("has-error");
+			$("#new-password-again").parent().removeClass("has-error");
+			$.post(url, {newpass: new_password, _token: token}, function(response) {
+				if(response == "true"){
+					$.gritter.add({
+			            // (string | mandatory) the heading of the notification
+			            title: 'Password Changed.',
+			            // (string | mandatory) the text inside the notification
+			            text: 'Your password has been successfully changed.',
+			            // Fade out time
+			            time: 5000
+			        });
+			        document.getElementById("new-password").value = "";
+			        document.getElementById("new-password-again").value = "";
+			        $("#change-admin-password-form").hide();
+			        $("#change-admin-password-form").parent().find("#to-be-changed").show();
+				}
+				else{
+					$("#old-password").parent().addClass("has-error");
+					$("#change-admin-password-form").parent().find(".danger").html(response);
+				}
+			});
+		}
+		else{
+			$(this).find(".danger").html("New Passwords do not match");
+			$("#new-password").parent().addClass("has-error");
+			$("#new-password-again").parent().addClass("has-error");
+		}
+	});
+
+	// To change admin info
+	$(".change").on("click", function() {
+		var that = $(this).parent();
+		that.find("#to-be-changed").hide();
+		that.find("form").show();
+	});
+
+	$(".cancel").on("click", function() {
+		var that = $(this).parent().parent();
+		that.find("form").hide();
+		that.find("#to-be-changed").show();
+		that.find(".danger").html("");
+		that.find("form .form-group").removeClass("has-error");
+	});
+
+	// Code to change admin info
+	$(".admin-profile-form").on("submit", function(e) {
+		e.preventDefault();
+		var url = $(this).attr("action");
+		var id = $(this).attr("id");
+		var username = $(this).find("#new-value").val();
+		var token = $(this).find("input[name='_token']").val();
+		var change = $(this).find(".form-group input").attr("change");
+		triggerChange(url, username, token, change, id);
+	});
+
+});
+
+function triggerChange(url, value, token, changeType, id){
+	var id = "#"+id;
+	var that = $(id).parent();
+	if(value.trim() != ""){
+		$.post(url, {value: value, _token: token}, function(data) {
+			if(data === "true"){
+				$.gritter.add({
+		            // (string | mandatory) the heading of the notification
+		            title: changeType + ' Changed.',
+		            // (string | mandatory) the text inside the notification
+		            text: 'Your '+ changeType +' has been successfully changed to <strong>'+ value +'</strong>.',
+		            // Fade out time
+		            time: 5000
+		        });
+		        that.find("#to-be-changed").html(value);
+				$(id).hide();
+				that.find("#to-be-changed").show();
+				$(id).find(".form-group").removeClass("has-error");
+			}
+			else{
+				$(id).find(".danger").html(data);
+				$(id).find(".form-group").addClass("has-error");
+			}
+		});
+	}
+	else{
+		$(id).find(".form-group").addClass("has-error");
+		$(id).find(".danger").html(changeType + " field empty");
+	}
+}
+
+/* To check duplicate username and email while creating new owners. */
+$(document).ready(function() {
+	$("#check-duplicate [data-check='true']").on("blur", function() {
+		$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
+		var value = $(this).val();
+		var check = $(this).attr("name");
+		var that = "input[name='"+ $(this).attr("name") +"']";
+		var url = $("#check-duplicate").attr("check-url");
+		if(value.trim() != ""){
+			$.post(url, {value: value, check: check}, function(response) {
+				if(response == "duplicate"){
+					$("#check-duplicate").find(that).closest(".form-group").addClass("has-error");
+					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<ul class='list-unstyled'><li>" + check + " already exist.</li></ul>");
+				}
+				else{
+					$("#check-duplicate").find(that).closest(".form-group").addClass("has-success");
+					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("");
+					$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
+				}
+			});
+		}
+	});
+});
+
+
+/*To Add tasks*/
+$(document).ready(function() {
+
+	$("#add-task-form").on("submit", function(e) {
+		e.preventDefault();
+		var task = $(this).find("textarea[name='task']").val();
+		var imp = $(this).find("input[name='important']").is(":checked");
+		var token = $(this).find("input[name='_token']").val();
+		var url = $(this).attr("action");
+		if(task.trim() != ""){
+			$.ajax(url, {
+				type:"post",
+				dataType : "json",
+				data: {task:task, important:imp, _token:token},
+				success: function(result) {
+					var imp = $("#add-task-form").find("input[name='important']").is(":checked");
+					if(result){
+						if(imp){
+					        $('#tasks-tab a[href="#important-tasks"]').tab('show')
+						}
+						else{
+							$('#tasks-tab li:first a').tab('show')
+						}
+					}
+				},
+				error: function(xhr,status,error){
+					alert(xhr.responseText);
+				}
+			});
+		}
+	});
+
 });

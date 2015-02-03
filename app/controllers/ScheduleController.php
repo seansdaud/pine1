@@ -5,7 +5,11 @@ class ScheduleController extends BaseController {
 
 
 	public function createSchedule(){
-		return View::make("backend.admin.Schedule")->with("title", "Create Schedule");
+		$data = array(
+			'title' => 'create schedule',
+			'id' => 'schedular'
+		);
+		return View::make("backend.admin.Schedule", $data);
 	}
 	public function addSchedule(){
 		

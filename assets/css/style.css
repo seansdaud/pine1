@@ -29,7 +29,7 @@ a, a:hover, a:focus {
 }
 ::selection {
 
-    background: #68dff0;
+    background: #5A6061;
     color: #fff;
 }
 ::-moz-selection {
@@ -413,8 +413,8 @@ ul.sidebar-menu li a.active i {
 }
 
 .black-bg {
-    background: #ffd777;
-    border-bottom: 1px solid #c9aa5f;
+    background: #FFFFFF;
+    border-bottom: 1px solid #616161;
 }
 
 .wrapper {
@@ -429,7 +429,7 @@ ul.sidebar-menu li a.active i {
 
 a.logo {
     font-size: 20px;
-    color: #ffffff;
+    color: #567376;
     float: left;
     margin-top: 15px;
     text-transform: uppercase;
@@ -818,7 +818,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .ds p > muted {
-	font-size: 9px;
+	font-size: 10px;
 	text-transform: uppercase;
 	font-style: italic;
 	color: #666666
@@ -985,7 +985,7 @@ PANELS CONFIGURATIONS
 /*Panel Size*/
 
 .pn {
-	height: 250px;
+	min-height: 250px;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -1079,19 +1079,20 @@ PANELS CONFIGURATIONS
 .white-panel {
 	text-align: center;
 	background: #ffffff;
-	color: #ccd1d9;
+	color: #8C8D8E;
 }
 
 .white-panel p {
 	margin-top: 5px;
 	font-weight: 700;
 	margin-left: 15px;
+    word-break: break-word;
 }
 .white-panel .white-header {
 	background: #f4f4f4;
 	padding: 3px;
 	margin-bottom: 15px;
-	color: #c6c6c6;
+	color: #8C8D8E;
 }
 .white-panel .small {
 	font-size: 10px;
@@ -2216,9 +2217,10 @@ label {
 
 /*footer*/
 .site-footer {
-    background: #68dff0;
-    color: #fff;
+    background: #FFFFFF;
+    color: #567376;
     padding: 10px 0;
+    border-top: 1px solid #162A3D;
 }
 
 
@@ -2244,4 +2246,60 @@ label {
 position: fixed;
 }
 
+.change {
+    cursor: pointer;
+    float: right;
+    display: block;
+}
 
+.change-icon {
+    display: none;
+}
+
+.choose {
+    overflow: hidden;
+    height: 20px;
+    width: 58%;
+}
+
+.choose>input[type='file'] {
+    position: relative;
+    top: -20px;
+    opacity: 0;
+    cursor: pointer;
+    left: -110px;
+}
+
+@media (max-width: 768px) {
+
+    .change-icon {
+        display: block;
+    }
+
+    .change-text {
+        display: none;
+    }
+}
+
+@media(max-width: 480px){
+    .logo {
+        display: none;
+    }
+}
+
+.todos > .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    border: none !important;
+}
+
+.todos > .nav-tabs > li > a {
+    border-radius: 0px !important;
+}
+
+.todos > .nav-tabs > li > a:hover {
+    border-radius: 0px !important;
+    border-color: none !important;
+}
+
+.todos > .nav-tabs {
+    border: none !important;
+}

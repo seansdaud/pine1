@@ -53,7 +53,12 @@ Route::filter('owner', function(){
         return Redirect::route('login');
     }else{
         if(Auth::user()->usertype != "2"){
-            return Redirect::route('home');
+        	if(Auth::user()->usertype == "3"){
+        		return Redirect::route("admin-dashboard");
+        	}
+        	else{
+        		return Redirect::route("home");
+        	}
         }
     }
 });
@@ -63,7 +68,12 @@ Route::filter('admin', function(){
         return Redirect::route('login');
     }else{
         if(Auth::user()->usertype != "3"){
-            return Redirect::route('home');
+        	if(Auth::user()->usertype == "2"){
+        		return Redirect::route("owner");
+        	}
+        	else{
+            	return Redirect::route('home');
+            }
         }
     }
 });

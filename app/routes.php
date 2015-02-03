@@ -84,19 +84,85 @@ Route::group(array("before"=>"admin"), function() {
 	/*CSRF Protection*/
 	Route::group(array("before" => "csrf"), function() {
 
+		Route::post("/a/change-profile-pic", array(
+			'as' => 'change-admin-profile-picture',
+			'uses' => 'admin@postProfilePic'
+		));
 
+		Route::post("/a/change-username", array(
+			'as' => 'change-admin-username',
+			'uses' => 'admin@postAdminUsername'
+		));
+
+		Route::post("/a/change-email", array(
+			'as' => 'change-admin-email',
+			'uses' => 'admin@postAdminEmail'
+		));
+
+		Route::post("/a/change-name", array(
+			'as' => 'change-admin-name',
+			'uses' => 'admin@postAdminName'
+		));
+
+		Route::post("/a/change-password", array(
+			'as' => 'change-admin-password',
+			'uses' => 'admin@postAdminPassword'
+		));
+
+		/*Add New Owner view*/
+		Route::post("/a/new-owner-post", array(
+			'as' => 'create-new-owner-post',
+			'uses' => 'admin@postNewOwner'
+		));
+
+		/* Add tasks */
+		Route::post("/a/add-task", array(
+			'as' => 'add-task',
+			'uses' => 'TasksController@addNewTask'
+		));
 
 	});
 
+	/* Check duplicate username & email while creating owners. */
+	Route::post("/a/check-duplicate-owners", array(
+		'as' => 'check-duplicate-owners',
+		'uses' => 'admin@checkOwners'
+	));
+
+	/* Dashboard */
+	Route::get("/a/dashboard", array(
+		'as' => 'admin-dashboard',
+		'uses' => 'admin@index'
+	));
+
+	/* Available Owners */
 	Route::get("/a/owners", array(
 		'as' => 'owners',
 		'uses' => 'admin@getOwners'
 	));
 
-	/*Admin*/
+	/*Add New Owner view*/
+	Route::get("/a/new-owner", array(
+		'as' => 'create-new-owner',
+		'uses' => 'admin@getNewOwner'
+	));
+
+	/*Owner Profile*/
+	Route::get("/a/owner/{owner}", array(
+		'as' => 'admin-owner-profile',
+		'uses' => 'admin@getOwnerProfile'
+	));
+
+	/* Tasks */
+	Route::get("/a/tasks", array(
+		'as' => 'admin-tasks',
+		'uses' => 'TasksController@getTasks'
+	));
+
+	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */
 	Route::get("/a/{admin}", array(
-		'as' => 'admin',
-		'uses' => 'admin@index'
+		'as' => 'admin-profile',
+		'uses' => 'admin@profile'
 	));
 	
 });
@@ -106,7 +172,7 @@ Route::group(array("before"=>"owner"), function() {
 
 	Route::group(array("before" => "csrf"), function() {
 		/*	Add schedule*/
-		Route::post("/addSchedule", array(
+		Route::post("/o/addSchedule", array(
 			'as' => 'addSchedule',
 			'uses' => 'ScheduleController@addSchedule'
 		));
@@ -117,13 +183,9 @@ Route::group(array("before"=>"owner"), function() {
 		));
 
 	});
-	// owner
-	Route::get("/o/{owner}", array(
-		'as' => 'owner',
-		'uses' => 'owner@index'
-	));
+	
 	/*create Schedular*/
-		Route::get("/createschedule", array(
+		Route::get("/o/createschedule", array(
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
 	));	
@@ -145,5 +207,17 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'searchuser',
 		'uses' => 'ScheduleController@searchuser'
 	));	
+
+	// owner dashboard
+	Route::get("/o/dashboard", array(
+		'as' => 'owner-dashboard',
+		'uses' => 'owner@index'
+	));
+
+	// Owner Profile (Keep it at last !!important...............)
+	Route::get("o/{owner}", array(
+		'as' => 'owner-profile',
+		'uses' => 'owner@getProfile'
+	));
 
 });

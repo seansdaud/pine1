@@ -10,7 +10,11 @@ class Owner extends BaseController {
 	 */
 	public function index()
 	{
-		return View::make("backend.admin.home")->with("title", "Dashboard");
+		$data = array(
+			'title' => 'dashboard',
+			'id' => 'dashboard'
+		);
+		return View::make("backend.owners.home", $data);
 	}
 
 	/**
@@ -81,6 +85,17 @@ class Owner extends BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function getProfile($owner){
+		$user = User::where("username", "=", $owner)->first();
+		$data = array(
+			'title' => $user->username,
+			'id' => 'ownerProfile',
+			'owner' => $user
+		);
+
+		return View::make("backend.owners.profile", $data);
 	}
 
 }
