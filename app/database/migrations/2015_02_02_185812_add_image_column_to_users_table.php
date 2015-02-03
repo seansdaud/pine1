@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodoTable extends Migration {
+class AddImageColumnToUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,9 @@ class CreateTodoTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create("todos", function($table) {
-			$table -> increments('id');
-			$table -> text('task');
-			$table -> boolean('important');
-			$table -> boolean('completed');
-			$table -> timestamps();
+		Schema::table('users', function($table)
+		{
+			$table->string('image', 20);
 		});
 	}
 
@@ -28,7 +25,7 @@ class CreateTodoTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop("todos");
+		//
 	}
 
 }
