@@ -167,10 +167,30 @@ class ScheduleController extends BaseController {
 					  $book->booking_date=Input::get('date');
 					  $book->arena_id=$adminid;
 					  $book->save(); 
+						  $client = Schedule::findOrFail(Input::get('key_id'));
+
+						$client->book_status=$book->id;
+						$client->push();
+						 $bookin = Booking::findOrFail($book->id);
+
+						$bookin->status=$book->id;
+						$bookin->push();
 			}
 			else{
+				 $book = new Booking;
+					 $book->schedule_id=Input::get('key_id');
+					  $book->user_id=Input::get('user_id');
+					  $book->booking_date=Input::get('date');
+					  $book->arena_id=$adminid;
+					  $book->save(); 
+					   $bookin = Booking::findOrFail($book->id);
+
+						$bookin->status=$datename[0]->book_status;
+						$bookin->push();
+
 
 			}
+			 return Redirect::to('/showSchedule');
 		
 	}
 }

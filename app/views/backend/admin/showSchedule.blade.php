@@ -62,7 +62,11 @@
 
 										
 										@if($key->book_status>0 && !empty($bookin))
-												<?php	$user= User::where('id',$bookin[0]->user_id)->get();		
+												<?php	
+												// print_r($bookin);
+
+												// die();		
+												$user= User::where('id',$bookin[0]->user_id)->get();
 										?>
 										<td>
 												<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->name; ?>" >
