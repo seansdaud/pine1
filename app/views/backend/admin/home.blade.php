@@ -2,7 +2,10 @@
 
 @section("content")
 	<div class="row" style="margin-top:-15px;">
-		<div class="col-lg-9 main-chart">
+		<div class="col-lg-12 main-chart">
+			<ol class="breadcrumb">
+			    <li class="active">Dashboard</li>
+			</ol>
 			@foreach($owners as $owner)
 
 				<div class="col-lg-4 col-md-4 mb">
@@ -51,11 +54,6 @@
 				</div>
 
 			@endforeach
-		</div>
-
-		<div class="col-lg-3 ds">
-			<h3><a href="{{ URL::route('admin-tasks') }}">TASKS</a></h3>
-			@include("backend.admin.todo")
 		</div>
 	</div>
 	

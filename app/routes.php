@@ -115,10 +115,40 @@ Route::group(array("before"=>"admin"), function() {
 			'uses' => 'admin@postNewOwner'
 		));
 
-		/* Add tasks */
-		Route::post("/a/add-task", array(
-			'as' => 'add-task',
-			'uses' => 'TasksController@addNewTask'
+		/* Add New Arena */
+		Route::post("/a/add-new-arena", array(
+			'as' => 'add-new-arena-post',
+			'uses' => 'admin@postAddNewArena'
+		));
+
+		/*Delete Owner*/
+		Route::post("/a/delete-owner", array(
+			'as' => 'delete-owner',
+			'uses' => 'admin@deleteOwner'
+		));
+
+		/*Restore Owner*/
+		Route::post("/a/restore-owner", array(
+			'as' => 'restore-owner',
+			'uses' => 'admin@restoreOwner'
+		));
+
+		/*Disable Owner*/
+		Route::post("/a/disable-owner", array(
+			'as' => 'disable-owner',
+			'uses' => 'admin@disableOwner'
+		));
+
+		/*Enable Owner*/
+		Route::post("/a/enable-owner", array(
+			'as' => 'enable-owner',
+			'uses' => 'admin@enableOwner'
+		));
+
+		/*Remove Owner*/
+		Route::post("/a/remove-owner", array(
+			'as' => 'remove-owner',
+			'uses' => 'admin@removeOwner'
 		));
 
 	});
@@ -153,10 +183,14 @@ Route::group(array("before"=>"admin"), function() {
 		'uses' => 'admin@getOwnerProfile'
 	));
 
-	/* Tasks */
-	Route::get("/a/tasks", array(
-		'as' => 'admin-tasks',
-		'uses' => 'TasksController@getTasks'
+	Route::get("/a/arenas", array(
+		'as' => 'admin-arenas',
+		'uses' => 'admin@getArenas'
+	));
+
+	Route::get("/a/add-new-arena", array(
+		'as' => 'add-new-arena',
+		'uses' => 'admin@getAddNewArena'
 	));
 
 	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */

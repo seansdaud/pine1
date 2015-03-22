@@ -117,11 +117,15 @@ class Admin extends BaseController {
 	}
 
 	public function getOwners(){
-		$user = User::where('usertype', '=', "2")->get();
+		$active = User::where('usertype', '=', "2")->where("active", "=", "1")->get();
+		$disabled = User::where('usertype', '=', "2")->where("active", "=", "0")->get();
+		$trashed = User::onlyTrashed()->where("usertype",2)->get();
 		$data = array(
 			'id' => 'owners',
 			'title' => 'availabel owners',
-			'owners' => $user
+			'active' => $active,
+			'disabled' => $disabled,
+			'trashed' => $trashed
 		);
 		return View::make("backend.admin.owners", $data);
 	}
@@ -172,6 +176,123 @@ class Admin extends BaseController {
 			'owner' => $owner
 		);
 		return View::make("backend.admin.owner_profile", $data);
+	}
+
+	public function getArenas(){
+		$data = array(
+			'title' => 'available arenas',
+			'id' => 'arenas',
+			'arenas' => Arena::all()
+		);
+
+		return View::make("backend.admin.arenas", $data);
+	}
+
+	public function getAddNewArena(){
+		$data = array(
+			'title' => 'add new arena',
+			'id' => 'arenas'
+		);
+
+		return View::make("backend.admin.arena_new", $data);
+	}
+
+	function deleteOwner(){
+		$owners = Input::get("id");
+		$count = 0;
+		foreach($owners as $id){
+			$owner = User::where("id", "=", $id);
+			$user = $owner->first();
+			if($owner->delete()){
+				$count++;
+				continue;
+			}
+			else{
+				return Redirect::route("owners")->with("danger", "Something went wrong. Please try again.");
+			}
+		}
+		if($count == 1){
+			return Redirect::route("owners")->with("success", "<a href=".URL::route('admin-owner-profile', $user->username).">".$user->username."</a> successfully deleted.");	
+		}
+		return Redirect::route("owners")->with("success", $count." owners successfully deleted.");
+	}
+
+	function restoreOwner(){
+		$owners = Input::get("id");
+		$count = 0;
+		foreach($owners as $id){
+			$owner = User::where("id", "=", $id);
+			if($owner->restore()){
+				$user = $owner->first();
+				$count++;
+				continue;
+			}
+			else{
+				return Redirect::route("owners")->with("danger", "Something went wrong. Please try again.");
+			}
+		}
+		if($count == 1){
+			return Redirect::route("owners")->with("success", "<a href=".URL::route('admin-owner-profile', $user->username).">".$user->username."</a> successfully restored.");	
+		}
+		return Redirect::route("owners")->with("success", $count." owners successfully restored.");
+	}
+
+	function disableOwner(){
+		$owners = Input::get("id");
+		$count = 0;
+		foreach($owners as $id){
+			$owner = User::where("id", "=", $id)->firstOrFail();
+			$owner->active = 0;
+			if($owner->save()){
+				$count++;
+				continue;
+			}
+			else{
+				return Redirect::route("owners")->with("danger", "Something went wrong. Please try again.");
+			}
+		}
+		if($count == 1){
+			return Redirect::route("owners")->with("success", "<a href=".URL::route('admin-owner-profile', $owner->username).">".$owner->username."</a> successfully disabled.");	
+		}
+		return Redirect::route("owners")->with("success", $count." owners successfully disabled.");
+	}
+
+	function enableOwner(){
+		$owners = Input::get("id");
+		$count = 0;
+		foreach($owners as $id){
+			$owner = User::where("id", "=", $id)->firstOrFail();
+			$owner->active = 1;
+			if($owner->save()){
+				$count++;
+				continue;
+			}
+			else{
+				return Redirect::route("owners")->with("danger", "Something went wrong. Please try again.");
+			}
+		}
+		if($count == 1){
+			return Redirect::route("owners")->with("success", "<a href=".URL::route('admin-owner-profile', $owner->username).">".$owner->username."</a> successfully enabled.");	
+		}
+		return Redirect::route("owners")->with("success", $count." owners successfully enabled.");
+	}
+
+	function removeOwner(){
+		$owners = Input::get("id");
+		$count = 0;
+		foreach($owners as $id){
+			if(User::where("id", "=", $id)->withTrashed()->forceDelete()){
+				$count++;
+				continue;
+			}
+			else{
+				return Redirect::route("owners")->with("danger", "Something went wrong. Please try again.");
+			}
+		}
+		if($count == 1){
+			return Redirect::route("owners")->with("success", "Owner Deleted Permanently");
+		}
+		return Redirect::route("owners")->with("success", $count." Owner Deleted Permanently");
 	}
 
 }

@@ -356,6 +356,7 @@ var now=parseInt(today) ;
 //Admin
  $("#dashboard .sidebar-menu li a:contains('Dashboard')").addClass('active');
  $("#owners .sidebar-menu li a:contains('Owners')").addClass('active');
+ $("#arenas .sidebar-menu li a:contains('Arenas')").addClass('active');
 
  //Owners
  $("#schedular .sidebar-menu li a:contains('Create Schedular')").addClass('active');
@@ -365,6 +366,7 @@ $(".form-inline").hide();
 $("#change-admin-password-form").hide();
 $(document).ready(function() {
 
+	$(".tab-content a").tooltip();
 	$("a").tooltip();
 
 	$("#change-profile-pic").on("change", function() {		
@@ -477,8 +479,7 @@ function triggerChange(url, value, token, changeType, id){
 
 /* To check duplicate username and email while creating new owners. */
 $(document).ready(function() {
-	$("#check-duplicate [data-check='true']").on("blur", function() {
-		$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
+	$("#check-duplicate [data-check='true']").on("keyup blur", function() {
 		var value = $(this).val();
 		var check = $(this).attr("name");
 		var that = "input[name='"+ $(this).attr("name") +"']";
@@ -488,48 +489,58 @@ $(document).ready(function() {
 				if(response == "duplicate"){
 					$("#check-duplicate").find(that).closest(".form-group").addClass("has-error");
 					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<ul class='list-unstyled'><li>" + check + " already exist.</li></ul>");
+					$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
 				}
 				else{
 					$("#check-duplicate").find(that).closest(".form-group").addClass("has-success");
 					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("");
-					$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
 				}
 			});
+
+			var error = $("#check-duplicate").find(".form-group").hasClass("has-error");
+			if(!error){
+				$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
+			}
 		}
 	});
 });
 
+$(document).ready(function(){ 
+    $('.all').click(function() {
+        var $checkboxes = $(this).parent().parent().parent().find('input[type=checkbox]');
+        $checkboxes.prop('checked', $(this).is(':checked'));
+    });
 
-/*To Add tasks*/
-$(document).ready(function() {
+    $(".check input[type='checkbox']").on("click", function(){
+    	var checked = $(".check").find("input[type=checkbox]").is(":checked");
+	    if(checked){
+	    	$(".action-buttons").css("margin-bottom", "6px");
+	    	var tab  = $(this).closest(".tab-pane").attr("id");
+	    	if(tab == "active"){
+	    		showActionButton("delete", "disable");
+	    	}
+	    	else if(tab == "disabled"){
+	    		showActionButton("delete", "enable");
+	    	}
+	    	else{
+	    		showActionButton("restore", "deletef");
+	    	}
+	    }
+	    else{
+	    	$(".action-buttons").find("a").css("display", "none");
+	    	$(".action-buttons").css("margin-bottom", "46px");
+	    }
+    });
 
-	$("#add-task-form").on("submit", function(e) {
-		e.preventDefault();
-		var task = $(this).find("textarea[name='task']").val();
-		var imp = $(this).find("input[name='important']").is(":checked");
-		var token = $(this).find("input[name='_token']").val();
-		var url = $(this).attr("action");
-		if(task.trim() != ""){
-			$.ajax(url, {
-				type:"post",
-				dataType : "json",
-				data: {task:task, important:imp, _token:token},
-				success: function(result) {
-					var imp = $("#add-task-form").find("input[name='important']").is(":checked");
-					if(result){
-						if(imp){
-					        $('#tasks-tab a[href="#important-tasks"]').tab('show')
-						}
-						else{
-							$('#tasks-tab li:first a').tab('show')
-						}
-					}
-				},
-				error: function(xhr,status,error){
-					alert(xhr.responseText);
-				}
-			});
-		}
-	});
+    function showActionButton(btn1, btn2){
+    	$(".action-buttons").find("a[name=" + btn1 + "]").css("display", "inline");
+    	$(".action-buttons").find("a[name=" + btn2 + "]").css("display", "inline");
+    }
 
-});
+    $(".action-buttons a").on("click", function(e) {
+    	e.preventDefault();
+    	var action = $(this).attr("href");
+    	$("form[name='owners']").attr("action", action);
+    	$("form[name='owners']").submit();
+    });
+}); 
