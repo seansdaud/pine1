@@ -225,7 +225,7 @@ function update_ajax(){
 $("#searchmem").keyup(function(){
 	$('#btn_book').prop('disabled',true);
 		var mem = $(this).val();	
-		var url = $('#base_url1').val();
+		var url = $('#base_url').val();
 
 			$.ajax({
 				type:'POST',
@@ -236,7 +236,7 @@ $("#searchmem").keyup(function(){
 				dataType: 'json',
 				success:function(data)
 				{
-				
+
 					if(data[0].uname=='emptysetfound'){
 						$('#display').html("");	
 						$('#display').html("No Username Found");
@@ -284,11 +284,11 @@ $("#searchmem").keyup(function(){
 
      		  },
      		   beforeSend : function (){
-                 $('#id').html("<div class='loading'><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
+                 $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
 
             },
 				 error: function(jqXHR, textStatus, errorThrown){ 
-				 		$('.id').html("");
+				 		 $('.id').html("");
 				 	if (jqXHR.responseText) {
 				 			$('.id').html("");
 				 								 	alert(jqXHR.responseText);
