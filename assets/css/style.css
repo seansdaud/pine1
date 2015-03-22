@@ -2308,3 +2308,11 @@ position: fixed;
 .todos > .nav-tabs {
     border: none !important;
 }
+
+.action-buttons {
+    margin-bottom: 46px;
+}
+
+.action-buttons a{
+    display: none;
+}
