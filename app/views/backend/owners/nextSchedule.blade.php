@@ -1,24 +1,19 @@
-@extends('backend.layout.main')
 
-@section("content")
-<div class="ajax">
-	<?php
-			date_default_timezone_set("Asia/Katmandu"); 
-			$day=date('w') +1; 
+<?php
+		
 			echo "<input type='hidden' id='today' value='".$day."' >";
-			$date=date("Y-m-d"); 
 			echo "<div class='today'>Today's Date : <span class='dateto'>".$date."</div></span></br>";
 			echo " <input type='hidden' id='date' value='".$date."' >";
 	?>
-	<input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
-	<input type="hidden" id='for' value="show">
+		<input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
+		<input type="hidden" id='for' value="show">
 	<div class="arrows-prev">
 		<img src="{{ asset('assets/img/prev.png') }}">
 	</div>
 	<div class="arrows-next">
 		<img src="{{ asset('assets/img/next.png') }}">
 	</div>
-<div class="id"></div>
+	<div class="id"></div>
 	<div class="panel-body tabbody">
 							<table name='table'  class='table detailtable  table-striped table-hover' border="3" width="100%">
 
@@ -34,11 +29,10 @@
 												{{
 							$adminid = Auth::id();
 							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->get();
-							}}
+														}}
 							@foreach ($schedular as $key)
 								<?php  
 								$bookin=Booking::where('status', $key->book_status)->where('booking_date', $date )->get();
-
 							$bookintime=Booking::where('arena_id', $adminid)->where('booking_date', $date )->get();
 									$flag=0;
 									foreach ($bookintime as $key1 ) {
@@ -52,7 +46,7 @@
 										}
 									}
 								?>
-								<tr class="danger">
+							<tr class="danger">
 										<td name='time'>
 											<?php echo $key->start_time; ?>--<?php echo $key->end_time; ?>
 										</td>
@@ -103,5 +97,3 @@
 							@endforeach 
 						</table>
 	</div>
-</div>
-@stop

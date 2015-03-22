@@ -544,3 +544,75 @@ $(document).ready(function(){
     	$("form[name='owners']").submit();
     });
 }); 
+
+$(document).ready(function(){ 
+	$(document).on('click', ".arrows-next", function(e) {
+    	var url = $('#base_url').val();
+    	var day = $('#today').val();
+    	var date = $('#date').val();
+    	var forwho = $('#for').val();
+			$.ajax({
+				type:'GET',
+					url: url+'/nextdate',
+				data:{
+					day:day,
+					date:date,
+					forwho:forwho
+				},
+		success:function(data)
+				{
+					  $(".ajax").html(data);
+					   $('.id').html("");
+				 },
+				  beforeSend : function (){
+                 $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
+
+          	  },
+				error: function(jqXHR, textStatus, errorThrown){ 
+				 	 $('.id').html("");
+				 	if (jqXHR.responseText) {
+				 			$('.id').html("");
+				 			console.log(errorThrown);
+				 								 	alert(jqXHR.responseText);
+
+				 	};
+				 }
+				  });
+    });
+    $(document).on('click', ".arrows-prev", function(e) {
+    	var url = $('#base_url').val();
+    	var day = $('#today').val();
+    	var date = $('#date').val();
+var forwho = $('#for').val();
+			$.ajax({
+				type:'GET',
+					url: url+'/prevdate',
+				data:{
+					day:day,
+					date:date,
+					forwho:forwho
+				},
+		success:function(data)
+				{
+					  $(".ajax").html(data);
+					   $('.id').html("");
+				 },
+				  beforeSend : function (){
+                 $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
+
+          	  },
+				error: function(jqXHR, textStatus, errorThrown){ 
+				 	 $('.id').html("");
+				 	if (jqXHR.responseText) {
+				 			$('.id').html("");
+				 			console.log(errorThrown);
+				 								 	alert(jqXHR.responseText);
+
+				 	};
+				 }
+				  });
+    });
+
+
+
+});

@@ -2316,3 +2316,12 @@ position: fixed;
 .action-buttons a{
     display: none;
 }
+.dateto{
+   font-size: 99px;
+font-family:'Ruda', sans-serif;
+margin-left: 17%;
+}
+.arrows-next{
+margin-left: 95%;
+margin-top: -5%;
+}
