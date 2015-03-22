@@ -60,7 +60,7 @@
 										</td>
 										@endif
 
-										
+
 										@if($key->book_status>0 && !empty($bookin))
 												<?php	$user= User::where('id',$bookin[0]->user_id)->get();		
 										?>
@@ -75,7 +75,13 @@
 										</td>
 										@else
 										<td>
-											<input  type="button"  class="btn btn-danger"  value="Not Booked" >
+										{{ Form::open(array('route' => 'postbookschedule','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
+										<?php $usersid= User::where('username',$usersname)->get(); ?>
+																<input type="hidden" name="key_id" value="<?php echo $key->id; ?>">
+																<input type="hidden" name="user_id" value="<?php echo $usersid[0]->id; ?>">
+																<input type='hidden' name='date' value='<?php echo $date; ?>'>
+																<input  type="submit"  class="btn btn-success"  value="Book" >
+										{{ Form::close() }}
 										</td>
 										@endif
 									<td>

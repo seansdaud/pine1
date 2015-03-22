@@ -181,9 +181,25 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'postupdatePrice',
 			'uses' => 'ScheduleController@postupdatePrice'
 		));
+			/*	Book Schedular*/
+		Route::post("/prebookschedule", array(
+			'as' => 'prebookschedule',
+			'uses' => 'ScheduleController@prebookschedule'
+		));	
+				/*	Post Book Schedular*/
+			Route::post("/postbookschedule", array(
+			'as' => 'postbookschedule',
+			'uses' => 'ScheduleController@postbookschedule'
+		));	
 
 	});
-	
+	/*Search via Username*/
+		Route::post("/searchuser", array(
+		'as' => 'searchuser',
+		'uses' => 'ScheduleController@searchuser'
+	));	
+
+
 	/*create Schedular*/
 		Route::get("/o/createschedule", array(
 		'as' => 'createschedule',
@@ -203,10 +219,7 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'booknow',
 		'uses' => 'ScheduleController@bookSchedule'
 	));	
-			Route::get("/searchuser", array(
-		'as' => 'searchuser',
-		'uses' => 'ScheduleController@searchuser'
-	));	
+		
 
 	// owner dashboard
 	Route::get("/o/dashboard", array(

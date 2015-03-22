@@ -42,11 +42,12 @@ class ScheduleController extends BaseController {
 		else{
 			// print_r("error");
 		}
-		return View::make("backend.admin.Schedule")->with("title", "Create Schedule");
+		return Redirect::route("updatePrice")->with("danger", "Schedule Created!!");
 	}
 	public function  updatePrice(){
 		$adminid = Auth::id();
 			$data = array(
+				'id' => 'schedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
 		return View::make("backend.admin.updatePrice", $data)->with("title", "Update Price");
@@ -87,11 +88,46 @@ class ScheduleController extends BaseController {
 				}
 	}
 	public function searchuser(){
-		
+		$search_content=Input::get('mem');
+				if ($search_content!=null) {
+
+				 $result = User::where('username', 'LIKE', '%'.$search_content.'%')->get();
+			 $result_count = User::where('username', 'LIKE', '%'.$search_content.'%')->count();
+				if($result_count!=null){
+				$suffix=($result_count != 1 )?'s':'';
+				$res= array();
+				foreach ($result as $key ) {
+					$data = array(
+					'id'=>$key->id,
+					'uname'=> $key->username,
+					);
+					array_push($res, $data);
+				}
+				print_r(json_encode($res));
+				}
+				else{
+					$res= array();
+					$data = array(
+					'uname'=> 'emptysetfound',
+					);
+					array_push($res, $data);
+						print_r(json_encode($res));
+				}
+				}
+				else{
+						$res= array();
+					$data = array(
+					'uname'=> 'emptysetfound',
+					);
+					array_push($res, $data);
+						print_r(json_encode($res));
+				}
+
 	}
 	public function showSchedule(){
 			$adminid = Auth::id();
 			$data = array(
+				'id' => 'schedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
 		return View::make("backend.admin.showSchedule", $data)->with("title", "See Schedule");
@@ -100,8 +136,41 @@ class ScheduleController extends BaseController {
 			$adminid = Auth::id();
 			$data = array(
 				'nos'=>$id,
+				'id' => 'schedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
 		return View::make("backend.admin.bookSchedule", $data)->with("title", "Book Schedule");
+	}
+	public function prebookschedule(){
+		if (empty(Input::get('which'))) {
+			
+		}
+		$type=Input::get('which');
+
+		if($type=="1"){
+		$user=Input::get('user');
+		$adminid = Auth::id();
+		$data = array(
+				'id' => 'schedular',
+				'usersname' => $user
+		);
+		}
+		return View::make("backend.admin.prebookSchedule", $data)->with("title", "Book Schedule");
+	}
+	public function postbookschedule(){
+			$adminid = Auth::id();
+			$datename=Schedule::where('id', Input::get('key_id'))->get();
+			if($datename[0]->book_status==0){
+				 $book = new Booking;
+					 $book->schedule_id=Input::get('key_id');
+					  $book->user_id=Input::get('user_id');
+					  $book->booking_date=Input::get('date');
+					  $book->arena_id=$adminid;
+					  $book->save(); 
+			}
+			else{
+
+			}
+		
 	}
 }
