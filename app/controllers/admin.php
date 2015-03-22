@@ -178,25 +178,6 @@ class Admin extends BaseController {
 		return View::make("backend.admin.owner_profile", $data);
 	}
 
-	public function getArenas(){
-		$data = array(
-			'title' => 'available arenas',
-			'id' => 'arenas',
-			'arenas' => Arena::all()
-		);
-
-		return View::make("backend.admin.arenas", $data);
-	}
-
-	public function getAddNewArena(){
-		$data = array(
-			'title' => 'add new arena',
-			'id' => 'arenas'
-		);
-
-		return View::make("backend.admin.arena_new", $data);
-	}
-
 	function deleteOwner(){
 		$owners = Input::get("id");
 		$count = 0;
@@ -293,6 +274,33 @@ class Admin extends BaseController {
 			return Redirect::route("owners")->with("success", "Owner Deleted Permanently");
 		}
 		return Redirect::route("owners")->with("success", $count." Owner Deleted Permanently");
+	}
+
+	public function getArenas(){
+		$data = array(
+			'title' => 'available arenas',
+			'id' => 'arenas',
+			'arenas' => Arena::all()
+		);
+
+		return View::make("backend.admin.arenas", $data);
+	}
+
+	public function getAddNewArena(){
+		$data = array(
+			'title' => 'add new arena',
+			'id' => 'arenas'
+		);
+
+		return View::make("backend.admin.arena_new", $data);
+	}
+
+	public function checkArenas(){
+		$check = Input::get("check");
+		$value = Input::get("value");
+		if(Arena::where($check, "=", $value)->first()){
+			echo "duplicate";
+		}
 	}
 
 }
