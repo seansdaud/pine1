@@ -15,6 +15,7 @@
 	{{ HTML::style('assets/css/style-responsive.css') }}
 	{{ HTML::style('assets/css/jquery.timepicker.css') }}
 	{{ HTML::style('assets/css/table-responsive.css') }}
+	{{ HTML::script('assets/ckeditor/ckeditor.js') }}
 </head>
 <body>
 	<section id="container">

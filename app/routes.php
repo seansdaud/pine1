@@ -159,6 +159,11 @@ Route::group(array("before"=>"admin"), function() {
 		'uses' => 'admin@checkOwners'
 	));
 
+	Route::post("/a/check-duplicate-arenas", array(
+		'as' => 'check-duplicate-arenas',
+		'uses' => 'admin@checkArenas'
+	));
+
 	/* Dashboard */
 	Route::get("/a/dashboard", array(
 		'as' => 'admin-dashboard',
