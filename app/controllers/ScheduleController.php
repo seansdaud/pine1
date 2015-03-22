@@ -141,20 +141,22 @@ class ScheduleController extends BaseController {
 		);
 		return View::make("backend.admin.bookSchedule", $data)->with("title", "Book Schedule");
 	}
-	public function prebookschedule(){
-		if (empty(Input::get('which'))) {
-			
+	public function prebookschedule($id){
+		$emp=Input::get('user');
+		if (empty($emp)) {
+			$user=Session::get('usersname');
 		}
-		$type=Input::get('which');
-
-		if($type=="1"){
-		$user=Input::get('user');
+		else{
+				$user=Input::get('user');
+		}
+		if($id=="1"){
+	
 		$adminid = Auth::id();
 		$data = array(
 				'id' => 'schedular',
-				'usersname' => $user
 		);
 		}
+		Session::put('usersname',  $user);
 		return View::make("backend.admin.prebookSchedule", $data)->with("title", "Book Schedule");
 	}
 	public function postbookschedule(){
@@ -167,10 +169,83 @@ class ScheduleController extends BaseController {
 					  $book->booking_date=Input::get('date');
 					  $book->arena_id=$adminid;
 					  $book->save(); 
+						  $client = Schedule::findOrFail(Input::get('key_id'));
+
+						$client->book_status=$book->id;
+						$client->push();
+						 $bookin = Booking::findOrFail($book->id);
+
+						$bookin->status=$book->id;
+						$bookin->push();
 			}
 			else{
+				 $book = new Booking;
+					 $book->schedule_id=Input::get('key_id');
+					  $book->user_id=Input::get('user_id');
+					  $book->booking_date=Input::get('date');
+					  $book->arena_id=$adminid;
+					  $book->save(); 
+					   $bookin = Booking::findOrFail($book->id);
+
+						$bookin->status=$datename[0]->book_status;
+						$bookin->push();
+
 
 			}
+			 return Redirect::to('/showSchedule');
 		
 	}
+	public function nextdate(){
+		$day=Input::get('day');
+		$date=Input::get('date');
+		$parts = explode('-', $date);
+								$datePlusFive = date(
+								    'Y-m-d', 
+								    mktime(0, 0, 0, $parts[1], $parts[2]+1 , $parts[0])
+								    //              ^ Month    ^ Day + 5      ^ Year
+								);	
+		$day=$day+1;
+		if ($day == 8) {
+			$day=1;
+			}	
+
+			$data = array(
+				'date'=>$datePlusFive,
+			'day' => $day
+		);
+		if (Input::get('forwho')=="show") {
+			return View::make("backend.owners.nextSchedule", $data);
+		}
+		else{
+				return View::make("backend.owners.nextSchedulebook", $data);
+		}
+	
+	}
+	public function prevdate(){
+	$day=Input::get('day');
+		$date=Input::get('date');
+		$parts = explode('-', $date);
+								$datePlusFive = date(
+								    'Y-m-d', 
+								    mktime(0, 0, 0, $parts[1], $parts[2]-1 , $parts[0])
+								    //              ^ Month    ^ Day + 5      ^ Year
+								);	
+		$day=$day-1;
+		if ($day == 0) {
+			$day=7;
+			}	
+
+			$data = array(
+				'date'=>$datePlusFive,
+			'day' => $day
+		);
+
+			if (Input::get('forwho')=="show") {
+				return View::make("backend.owners.nextSchedule", $data);
+			}
+			else{
+					return View::make("backend.owners.nextSchedulebook", $data);
+			}
+	}
+
 }
