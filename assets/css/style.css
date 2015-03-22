@@ -2241,6 +2241,10 @@ label {
 .site-min-height {
     min-height: 900px;
 }
+.loading img{
+    left: 43%;
+position: fixed;
+}
 
 .change {
     cursor: pointer;

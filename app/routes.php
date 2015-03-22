@@ -176,6 +176,11 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'addSchedule',
 			'uses' => 'ScheduleController@addSchedule'
 		));
+			
+		Route::post("/postupdatePrice", array(
+			'as' => 'postupdatePrice',
+			'uses' => 'ScheduleController@postupdatePrice'
+		));
 
 	});
 	
@@ -183,6 +188,24 @@ Route::group(array("before"=>"owner"), function() {
 		Route::get("/o/createschedule", array(
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
+	));	
+			Route::get("/updatePrice", array(
+		'as' => 'updatePrice',
+		'uses' => 'ScheduleController@updatePrice'
+	));	
+	/*		update price*/
+	
+			Route::get("/showSchedule", array(
+		'as' => 'showSchedule',
+		'uses' => 'ScheduleController@showSchedule'
+	));	
+		Route::get("/booknow/{id}", array(
+		'as' => 'booknow',
+		'uses' => 'ScheduleController@bookSchedule'
+	));	
+			Route::get("/searchuser", array(
+		'as' => 'searchuser',
+		'uses' => 'ScheduleController@searchuser'
 	));	
 
 	// owner dashboard
