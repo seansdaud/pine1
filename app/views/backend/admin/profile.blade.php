@@ -1,6 +1,10 @@
 @extends('backend.layout.main')
 
 @section("content")
+	<ol class="breadcrumb">
+	    <li><a href="{{ URL::route('admin-dashboard') }}">Dashboard</a></li>
+	    <li>Profile</li>
+	</ol>
 	<div class="col-lg-4 col-md-4 col-sm-4">
 		<div class="showback">
 			<div class="row">

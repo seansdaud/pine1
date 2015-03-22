@@ -356,6 +356,7 @@ var now=parseInt(today) ;
 //Admin
  $("#dashboard .sidebar-menu li a:contains('Dashboard')").addClass('active');
  $("#owners .sidebar-menu li a:contains('Owners')").addClass('active');
+ $("#arenas .sidebar-menu li a:contains('Arenas')").addClass('active');
 
  //Owners
  $("#schedular .sidebar-menu li a:contains('Create Schedular')").addClass('active');
@@ -478,8 +479,7 @@ function triggerChange(url, value, token, changeType, id){
 
 /* To check duplicate username and email while creating new owners. */
 $(document).ready(function() {
-	$("#check-duplicate [data-check='true']").on("blur", function() {
-		$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
+	$("#check-duplicate [data-check='true']").on("keyup blur", function() {
 		var value = $(this).val();
 		var check = $(this).attr("name");
 		var that = "input[name='"+ $(this).attr("name") +"']";
@@ -489,13 +489,18 @@ $(document).ready(function() {
 				if(response == "duplicate"){
 					$("#check-duplicate").find(that).closest(".form-group").addClass("has-error");
 					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<ul class='list-unstyled'><li>" + check + " already exist.</li></ul>");
+					$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
 				}
 				else{
 					$("#check-duplicate").find(that).closest(".form-group").addClass("has-success");
 					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("");
-					$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
 				}
 			});
+
+			var error = $("#check-duplicate").find(".form-group").hasClass("has-error");
+			if(!error){
+				$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
+			}
 		}
 	});
 });
@@ -504,55 +509,38 @@ $(document).ready(function() {
 /*To Add tasks*/
 $(document).ready(function() {
 
+	$("#tasks-tab a").on("click", function(){
+		var url = $(location).attr("href").split("#")[0];
+		var id = $(this).attr("href").split("-")[0];
+		$(location).attr("href", url+id);
+		showTab();
+	});
+
+	function showTab(){
+		var url = $(location).attr("href");
+		var tab = url.split("#").pop();
+		var id = tab.split("?")[0];
+		$('#tasks-tab a[href="#'+ id +'-tasks"]').tab('show');
+	}
+
 	$('#tasks-tab a').on("show.bs.tab", function() {
 		var url = $("a[data-toggle='get-tasks']").attr("href");
 		var type = $(this).attr("aria-controls");
-		if(type != "add-task"){
+		if(type != "add-tasks"){
 			$.post(url, {type: type}, function(response) {
 				$("#"+type).html(response);
 			});
 		}
 	});
 
-	$(".todos a#delete-task").on("click", function(e) {
+	$(".todos").on("click", "a#move-to", function(e) {
 		e.preventDefault();
 		var url = $(this).attr("href");
 		var idArray = url.split("/");
 		var id = idArray[idArray.length - 1];
-		var tab = $(this).closest(".tab-pane").attr("id");
 		$.post(url, {id: id}, function(response) {
-			if(response == "deleted"){
+			if(response == "success"){
 				$("#"+id).fadeOut( "slow" );
-				$('#tasks-tab a[href="#'+tab+'"]').tab('show');
-			}
-			else{
-				$.gritter.add({
-		            // (string | mandatory) the heading of the notification
-		            title: 'Error',
-		            // (string | mandatory) the text inside the notification
-		            text: 'Something went wrong. Please try again.',
-		            // Fade out time
-		            time: 5000
-		        });
-			}
-		});
-	});
-
-	$(".todos a#mark-completed").on("click", function(e) {
-		e.preventDefault();
-		var url = $(this).attr("href");
-		var id = url.split("/")[url.split("/").length - 1];
-		$.post(url, {id: id}, function(response) {
-			if(response == 'success'){
-				$.gritter.add({
-		            // (string | mandatory) the heading of the notification
-		            title: 'Success',
-		            // (string | mandatory) the text inside the notification
-		            text: 'Task successfully marked as completed.',
-		            // Fade out time
-		            time: 5000
-		        });
-		        $("#"+id).fadeOut("slow");
 			}
 			else{
 				$.gritter.add({
@@ -579,6 +567,7 @@ $(document).ready(function() {
 				dataType : "json",
 				data: {task:task, important:imp, _token:token},
 				success: function(result) {
+					$("#add-task-form").find("textarea[name='task']").val("");
 					var imp = $("#add-task-form").find("input[name='important']").is(":checked");
 					if(result){
 						if(imp){
@@ -597,3 +586,43 @@ $(document).ready(function() {
 	});
 
 });
+
+$(document).ready(function(){ 
+    $('.all').click(function() {
+        var $checkboxes = $(this).parent().parent().parent().find('input[type=checkbox]');
+        $checkboxes.prop('checked', $(this).is(':checked'));
+    });
+
+    $(".check input[type='checkbox']").on("click", function(){
+    	var checked = $(".check").find("input[type=checkbox]").is(":checked");
+	    if(checked){
+	    	$(".action-buttons").css("margin-bottom", "6px");
+	    	var tab  = $(this).closest(".tab-pane").attr("id");
+	    	if(tab == "active"){
+	    		showActionButton("delete", "disable");
+	    	}
+	    	else if(tab == "disabled"){
+	    		showActionButton("delete", "enable");
+	    	}
+	    	else{
+	    		showActionButton("restore", "deletef");
+	    	}
+	    }
+	    else{
+	    	$(".action-buttons").find("a").css("display", "none");
+	    	$(".action-buttons").css("margin-bottom", "46px");
+	    }
+    });
+
+    function showActionButton(btn1, btn2){
+    	$(".action-buttons").find("a[name=" + btn1 + "]").css("display", "inline");
+    	$(".action-buttons").find("a[name=" + btn2 + "]").css("display", "inline");
+    }
+
+    $(".action-buttons a").on("click", function(e) {
+    	e.preventDefault();
+    	var action = $(this).attr("href");
+    	$("form[name='owners']").attr("action", action);
+    	$("form[name='owners']").submit();
+    });
+}); 
