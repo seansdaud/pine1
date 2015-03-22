@@ -221,17 +221,35 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@postupdatePrice'
 		));
 			/*	Book Schedular*/
-		Route::post("/prebookschedule", array(
+		Route::post("/prebookschedule/{id}", array(
 			'as' => 'prebookschedule',
 			'uses' => 'ScheduleController@prebookschedule'
 		));	
-				/*	Post Book Schedular*/
+		/*	Post Book Schedular*/
 			Route::post("/postbookschedule", array(
 			'as' => 'postbookschedule',
 			'uses' => 'ScheduleController@postbookschedule'
 		));	
-
 	});
+		Route::get("/prebookschedule/{id}", array(
+			'as' => 'prebookschedule',
+			'uses' => 'ScheduleController@prebookschedule'
+		));	
+			
+	/*
+	Next date Show*/
+			Route::get("/nextdate", array(
+		'as' => 'nextdate',
+		'uses' => 'ScheduleController@nextdate'
+	));	
+			/*
+	Prev date Show*/
+			Route::get("/prevdate", array(
+		'as' => 'prevdate',
+		'uses' => 'ScheduleController@prevdate'
+	));	
+
+
 	/*Search via Username*/
 		Route::post("/searchuser", array(
 		'as' => 'searchuser',

@@ -1,6 +1,8 @@
 @extends('backend.layout.main')
 
 @section("content")
+
+<div class="ajax">
 <?php
 		date_default_timezone_set("Asia/Katmandu"); 
 		$day=date('w') +1; 
@@ -9,7 +11,17 @@
 		echo "<div class='today'>Today's Date : <span class='dateto'>".$date."</div></span></br>";
 		echo " <input type='hidden' id='date' value='".$date."' >";
 ?>
-
+<input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
+<input type="hidden" id='for' value="book">
+	<div class="arrows-prev">
+		<img src="{{ asset('assets/img/prev.png') }}">
+	</div>
+	<div class="arrows-next">
+		<img src="{{ asset('assets/img/next.png') }}">
+	</div>
+<div class="id"></div>
+<div class="bookname"<div class="bookname" style=" font-size: 266%; color: maroon; margin-top: -3%; margin-left: 34%;">
+Booking for<?php echo Session::get('usersname'); ?></div>
 <div class="panel-body tabbody">
 						<table name='table'  class='table detailtable  table-striped table-hover' border="3" width="100%">
 
@@ -46,11 +58,7 @@
 									<td name='time'>
 										<?php echo $key->start_time; ?>--<?php echo $key->end_time; ?>
 									</td>
-										@if($key->book_status>0 && !empty($bookin))
-										<td>
-											<input  type="button"  class="btn btn-primary"  value="Booked" >
-										</td>
-										@elseif($flag==1) 
+										@if($flag==1) 
 										<td>
 											<input  type="button"  class="btn btn-primary"  value="Booked" >
 										</td>
@@ -61,13 +69,7 @@
 										@endif
 
 
-										@if($key->book_status>0 && !empty($bookin))
-												<?php	$user= User::where('id',$bookin[0]->user_id)->get();		
-										?>
-										<td>
-												<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->name; ?>" >
-										</td>
-										@elseif($flag==1) 
+										@if($flag==1) 
 											<?php	$user= User::where('id',$getuser)->get();		
 										?>
 										<td>
@@ -76,7 +78,9 @@
 										@else
 										<td>
 										{{ Form::open(array('route' => 'postbookschedule','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
-										<?php $usersid= User::where('username',$usersname)->get(); ?>
+										<?php 
+										$usersname = Session::get('usersname');
+										$usersid= User::where('username',$usersname)->get(); ?>
 																<input type="hidden" name="key_id" value="<?php echo $key->id; ?>">
 																<input type="hidden" name="user_id" value="<?php echo $usersid[0]->id; ?>">
 																<input type='hidden' name='date' value='<?php echo $date; ?>'>
@@ -87,19 +91,7 @@
 									<td>
 										Rs.<?php echo $key->price; ?>
 									</td>
-									@if($key->book_status>0 && !empty($bookin))
-												<?php	$user= User::where('id',$bookin[0]->user_id)->get();		
-										?>
-												@if(!empty($user[0]->contactno))
-												<td>
-														<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->contactno; ?>" >
-												</td>
-												@else
-												<td>
-													<input  type="button"  class="btn btn-danger"  value="None" >
-												</td>
-												@endif
-										@elseif($flag==1) 
+									@if($flag==1) 
 											<?php	$user= User::where('id',$getuser)->get();		
 										?>
 												@if(!empty($user[0]->contactno))
@@ -121,5 +113,5 @@
 						@endforeach 
 					</table>
 </div>
-
+</div>
 @stop
