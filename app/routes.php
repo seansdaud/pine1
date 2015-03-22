@@ -210,14 +210,50 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'addSchedule',
 			'uses' => 'ScheduleController@addSchedule'
 		));
+			
+		Route::post("/postupdatePrice", array(
+			'as' => 'postupdatePrice',
+			'uses' => 'ScheduleController@postupdatePrice'
+		));
+			/*	Book Schedular*/
+		Route::post("/prebookschedule", array(
+			'as' => 'prebookschedule',
+			'uses' => 'ScheduleController@prebookschedule'
+		));	
+				/*	Post Book Schedular*/
+			Route::post("/postbookschedule", array(
+			'as' => 'postbookschedule',
+			'uses' => 'ScheduleController@postbookschedule'
+		));	
 
 	});
-	
+	/*Search via Username*/
+		Route::post("/searchuser", array(
+		'as' => 'searchuser',
+		'uses' => 'ScheduleController@searchuser'
+	));	
+
+
 	/*create Schedular*/
 		Route::get("/o/createschedule", array(
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
 	));	
+			Route::get("/updatePrice", array(
+		'as' => 'updatePrice',
+		'uses' => 'ScheduleController@updatePrice'
+	));	
+	/*		update price*/
+	
+			Route::get("/showSchedule", array(
+		'as' => 'showSchedule',
+		'uses' => 'ScheduleController@showSchedule'
+	));	
+		Route::get("/booknow/{id}", array(
+		'as' => 'booknow',
+		'uses' => 'ScheduleController@bookSchedule'
+	));	
+		
 
 	// owner dashboard
 	Route::get("/o/dashboard", array(

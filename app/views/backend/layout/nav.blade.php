@@ -52,7 +52,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-
                  <li class="sub-menu">
                     <a  href="{{ URL::route('createschedule') }}">
                         <i class="fa fa-dashboard"></i>
@@ -60,7 +59,34 @@
                     </a>
                 </li>
             @endif
-
+               @if(Auth::user()->usertype == 2)
+                 <li class="sub-menu">
+                    <a  href="{{ URL::route('updatePrice') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Update Price</span>
+                    </a>
+                </li>
+            @endif
+              @if(Auth::user()->usertype == 2)
+                 <li class="sub-menu">
+                    <a  href="{{ URL::route('showSchedule') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>See Schedule</span>
+                    </a>
+                </li>
+            @endif
+             @if(Auth::user()->usertype == 2)
+                 <li class="sub-menu">
+                <a href="javascript:;" >
+                    <i class="fa fa-desktop"></i>
+                    <span>Book Now</span>
+                </a>
+                <ul class="sub">
+                    <li><a  href="{{ URL::route('booknow',1) }}">Via Usenamer</a></li>
+                    <li><a  href="{{ URL::route('booknow', 2) }}">Via New Name</a></li>
+                </ul>
+            </li>
+            @endif
             <li class="sub-menu">
                 <a href="javascript:;" >
                     <i class="fa fa-desktop"></i>
