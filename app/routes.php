@@ -224,8 +224,20 @@ Route::group(array("before"=>"owner"), function() {
 			Route::post("/postbookschedule", array(
 			'as' => 'postbookschedule',
 			'uses' => 'ScheduleController@postbookschedule'
+		));
+				/*	Edit Schedular*/
+			Route::post("/addscheduledown", array(
+			'as' => 'addscheduledown',
+			'uses' => 'ScheduleController@addscheduledown'
 		));	
+				Route::post("/delscheduledown", array(
+			'as' => 'delscheduledown',
+			'uses' => 'ScheduleController@delscheduledown'
+		));	
+
 	});
+
+	/*	Pre Book Schedular*/
 		Route::get("/prebookschedule/{id}", array(
 			'as' => 'prebookschedule',
 			'uses' => 'ScheduleController@prebookschedule'
