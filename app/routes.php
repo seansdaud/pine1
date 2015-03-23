@@ -154,7 +154,7 @@ Route::group(array("before"=>"admin"), function() {
 	});
 
 	/* Check duplicate username & email while creating owners. */
-	Route::post("/a/check-duplicate-owners", array(
+	Route::get("/a/check-duplicate-owners", array(
 		'as' => 'check-duplicate-owners',
 		'uses' => 'admin@checkOwners'
 	));
