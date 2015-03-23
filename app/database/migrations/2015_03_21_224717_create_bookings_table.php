@@ -20,6 +20,7 @@ class CreateBookingsTable extends Migration {
 						$table->date('booking_date');
 							$table->integer('status');
 			$table->integer('arena_id');
+				$table->decimal('booked_price', 10, 10);
 			$table->timestamps();
 		});
 	}

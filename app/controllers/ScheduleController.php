@@ -9,7 +9,7 @@ class ScheduleController extends BaseController {
 			'title' => 'create schedule',
 			'id' => 'schedular'
 		);
-		return View::make("backend.admin.Schedule", $data);
+		return View::make("backend.owners.Schedule", $data);
 	}
 	public function addSchedule(){
 		
@@ -50,7 +50,7 @@ class ScheduleController extends BaseController {
 				'id' => 'schedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
-		return View::make("backend.admin.updatePrice", $data)->with("title", "Update Price");
+		return View::make("backend.owners.updatePrice", $data)->with("title", "Update Price");
 	}
 	public function postupdatePrice(){
 			$adminid = Auth::id();
@@ -130,7 +130,7 @@ class ScheduleController extends BaseController {
 				'id' => 'schedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
-		return View::make("backend.admin.showSchedule", $data)->with("title", "See Schedule");
+		return View::make("backend.owners.showSchedule", $data)->with("title", "See Schedule");
 	}
 	public function bookSchedule($id){
 			$adminid = Auth::id();
@@ -139,7 +139,7 @@ class ScheduleController extends BaseController {
 				'id' => 'schedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
-		return View::make("backend.admin.bookSchedule", $data)->with("title", "Book Schedule");
+		return View::make("backend.owners.bookSchedule", $data)->with("title", "Book Schedule");
 	}
 	public function prebookschedule($id){
 		$emp=Input::get('user');
@@ -157,7 +157,7 @@ class ScheduleController extends BaseController {
 		);
 		}
 		Session::put('usersname',  $user);
-		return View::make("backend.admin.prebookSchedule", $data)->with("title", "Book Schedule");
+		return View::make("backend.owners.prebookSchedule", $data)->with("title", "Book Schedule");
 	}
 	public function postbookschedule(){
 			$adminid = Auth::id();
@@ -167,6 +167,7 @@ class ScheduleController extends BaseController {
 					 $book->schedule_id=Input::get('key_id');
 					  $book->user_id=Input::get('user_id');
 					  $book->booking_date=Input::get('date');
+					   $book->booked_price=Input::get('price');
 					  $book->arena_id=$adminid;
 					  $book->save(); 
 						  $client = Schedule::findOrFail(Input::get('key_id'));
@@ -183,6 +184,7 @@ class ScheduleController extends BaseController {
 					 $book->schedule_id=Input::get('key_id');
 					  $book->user_id=Input::get('user_id');
 					  $book->booking_date=Input::get('date');
+					     $book->booked_price=Input::get('price');
 					  $book->arena_id=$adminid;
 					  $book->save(); 
 					   $bookin = Booking::findOrFail($book->id);
@@ -192,7 +194,7 @@ class ScheduleController extends BaseController {
 
 
 			}
-			 return Redirect::to('/showSchedule');
+			 return Redirect::to('/showSchedule')->with("danger", "Schedule Booked!!");
 		
 	}
 	public function nextdate(){
@@ -246,6 +248,50 @@ class ScheduleController extends BaseController {
 			else{
 					return View::make("backend.owners.nextSchedulebook", $data);
 			}
+	}
+	public function addscheduledown(){
+			$start=Input::get('start_timedown');
+		$end=Input::get('end_timedown');
+		$parts = explode(':', $start);
+		$hour=$parts[0]+1;
+		$hourend=$parts[1];
+		if ($hour==13) {
+			$hour=1;
+
+		}
+		if ($hour==12) {
+			$hourend="00pm";
+		}
+		$parts1 = explode(':', $end);
+		$hour1=$parts1[0]+1;
+		$hourend1=$parts1[1];
+		if ($hour1==13) {
+			$hour1=1;
+
+		}
+		if ($hour1==12) {
+			$hourend1="00pm";
+		}
+		$newstart=$hour.":".$hourend;
+		$newend=$hour1.":".$hourend1;
+		$adminid = Auth::id();
+			for ($j=1; $j < 8; $j++) { 
+					
+						 $schedule = new Schedule;
+					 $schedule->admin_id=$adminid;
+					$schedule->time_diff=Input::get('diff');
+					$schedule->start_time= $newstart;
+					$schedule->end_time =$newend;
+					$schedule->price = 0000;
+					$schedule->day=$j;
+					 $schedule->save(); 
+			}
+			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Booked!!");
+
+	}
+	public function delscheduledown(){
+		$start=Input::get('start_timedown');
+		$end=Input::get('end_timedown');
 	}
 
 }
