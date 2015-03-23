@@ -194,6 +194,14 @@ class ScheduleController extends BaseController {
 
 
 			}
+				 $schedule = new Scheduleinfo;
+					$schedule->start_time=$datename[0]->start_time;
+					$schedule->end_time =$datename[0]->end_time;
+					$schedule->price = $datename[0]->price;
+					$schedule->day=$datename[0]->day;
+					$schedule->bookings_id=$book->id;
+					 $schedule->save(); 
+
 			 return Redirect::to('/showSchedule')->with("danger", "Schedule Booked!!");
 		
 	}
@@ -292,6 +300,13 @@ class ScheduleController extends BaseController {
 	public function delscheduledown(){
 		$start=Input::get('start_timedown');
 		$end=Input::get('end_timedown');
+			$adminid = Auth::id();
+		$variable=Schedule::where('admin_id', $adminid )->where('start_time', $start)->where('end_time', $end)->get();
+	
+	foreach ($variable as $key ) {
+		Schedule::where('id', $key->id )->delete();
+	}
+		 return Redirect::to('/o/createschedule')->with("danger", "Schedule Deleted!");
 	}
 
 }

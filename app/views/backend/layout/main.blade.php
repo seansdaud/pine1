@@ -30,7 +30,7 @@
 
 		<footer class="site-footer">
 			<div class="text-center">
-			  2014 - Alvarez.is
+			 PineSofts
 			</div>
 		</footer>
 	</section>
