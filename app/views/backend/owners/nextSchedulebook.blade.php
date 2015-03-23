@@ -30,10 +30,10 @@ Booking for<?php echo Session::get('usersname'); ?></div>
 														
 												</tr>
 												
-												{{
+												<?php  
 							$adminid = Auth::id();
 							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->get();
-														}}
+									?>
 							@foreach ($schedular as $key)
 								<?php  
 								$bookin=Booking::where('status', $key->book_status)->where('booking_date', $date )->get();
@@ -78,6 +78,7 @@ Booking for<?php echo Session::get('usersname'); ?></div>
 										$usersname = Session::get('usersname');
 										 $usersid= User::where('username',$usersname)->get(); ?>
 																<input type="hidden" name="key_id" value="<?php echo $key->id; ?>">
+																<input type="hidden" name="price" value="<?php echo $key->price; ?>">
 																<input type="hidden" name="user_id" value="<?php echo $usersid[0]->id; ?>">
 																<input type='hidden' name='date' value='<?php echo $date; ?>'>
 																<input  type="submit"  class="btn btn-success"  value="Book" >

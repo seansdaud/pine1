@@ -31,10 +31,10 @@
 														
 												</tr>
 												
-												{{
+													<?php
 							$adminid = Auth::id();
 							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->get();
-							}}
+							?>
 							@foreach ($schedular as $key)
 								<?php  
 								$bookin=Booking::where('status', $key->book_status)->where('booking_date', $date )->get();
