@@ -235,9 +235,17 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'addscheduledown',
 			'uses' => 'ScheduleController@addscheduledown'
 		));	
+			Route::post("/addscheduleup", array(
+			'as' => 'addscheduleup',
+			'uses' => 'ScheduleController@addscheduleup'
+		));	
 				Route::post("/delscheduledown", array(
 			'as' => 'delscheduledown',
 			'uses' => 'ScheduleController@delscheduledown'
+		));	
+				Route::post("/deleteallschedule", array(
+			'as' => 'deleteallschedule',
+			'uses' => 'ScheduleController@deleteallschedule'
 		));	
 
 	});
@@ -247,7 +255,6 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'prebookschedule',
 			'uses' => 'ScheduleController@prebookschedule'
 		));	
-			
 	/*
 	Next date Show*/
 			Route::get("/nextdate", array(

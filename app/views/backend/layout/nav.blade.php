@@ -53,7 +53,15 @@
                  <li class="sub-menu">
                     <a  href="{{ URL::route('createschedule') }}">
                         <i class="fa fa-dashboard"></i>
+                        <?php   
+                            $adminid = Auth::id();
+                        $schedular=Schedule::where('admin_id', $adminid )->orderBy('booking', 'asc')->get();
+                         ?>
+                        @if($schedular->isEmpty())
                         <span>Create Schedular</span>
+                        @else
+                         <span>Edit Schedular</span>
+                        @endif
                     </a>
                 </li>
             @endif
