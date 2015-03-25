@@ -32,7 +32,7 @@ Booking for<?php echo Session::get('usersname'); ?></div>
 												
 												<?php  
 							$adminid = Auth::id();
-							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->get();
+							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
 									?>
 							@foreach ($schedular as $key)
 								<?php  
@@ -41,7 +41,7 @@ Booking for<?php echo Session::get('usersname'); ?></div>
 									$flag=0;
 									foreach ($bookintime as $key1 ) {
 										$sc=Schedule::where('id',$key1->schedule_id)->get();
-										if (!empty($sc)) {
+										if (!($sc->isEmpty())) {
 											if ($sc[0]->start_time==$key->start_time && $sc[0]->end_time==$key ->end_time) {
 
 												$flag=1;	

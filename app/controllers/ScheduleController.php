@@ -11,6 +11,11 @@ class ScheduleController extends BaseController {
 		);
 		return View::make("backend.owners.Schedule", $data);
 	}
+	public function 	deleteallschedule(){
+			$adminid = Auth::id();
+		Schedule::where('admin_id', $adminid )->delete();
+			return Redirect::route("createschedule")->with("danger", "Schedule Removed!!");
+	}
 	public function addSchedule(){
 		
 		$adminid = Auth::id();
@@ -28,6 +33,7 @@ class ScheduleController extends BaseController {
 					$schedule->end_time =Input::get('end_time'.$i);
 					$schedule->price = Input::get($j.$i);
 					$schedule->day=$j;
+					$schedule->booking=$i;
 					 $schedule->save(); 
 			}
 			
@@ -48,7 +54,7 @@ class ScheduleController extends BaseController {
 		$adminid = Auth::id();
 			$data = array(
 				'id' => 'schedular',
-			'schedular' => Schedule::where('admin_id', $adminid )->get()
+			'schedular' => Schedule::where('admin_id', $adminid )->orderBy('booking', 'asc')->get()
 		);
 		return View::make("backend.owners.updatePrice", $data)->with("title", "Update Price");
 	}
@@ -69,7 +75,7 @@ class ScheduleController extends BaseController {
 					'start_time' => Input::get('start_time'.$c),
 					'end_time' => Input::get('end_time'.$c),
 					'price' => Input::get($j.$i),
-					'day'=>$j
+					'day'=>$j,
 				);
 					$id=Input::get('id'.$c);
 					if(Schedule::where('id', $id)->update($data)){
@@ -259,7 +265,8 @@ class ScheduleController extends BaseController {
 	}
 	public function addscheduledown(){
 			$start=Input::get('start_timedown');
-		$end=Input::get('end_timedown');
+			$end=Input::get('end_timedown');
+		$numbering=Input::get('downbook');
 		$parts = explode(':', $start);
 		$hour=$parts[0]+1;
 		$hourend=$parts[1];
@@ -267,9 +274,13 @@ class ScheduleController extends BaseController {
 			$hour=1;
 
 		}
-		if ($hour==12) {
+		if ($hour==12 && $parts[1]=="00am") {
 			$hourend="00pm";
 		}
+		if ($hour==12 && $parts[1]=="00pm") {
+			$hourend="00am";
+		}
+
 		$parts1 = explode(':', $end);
 		$hour1=$parts1[0]+1;
 		$hourend1=$parts1[1];
@@ -277,9 +288,13 @@ class ScheduleController extends BaseController {
 			$hour1=1;
 
 		}
-		if ($hour1==12) {
+		if ($hour1==12 && $parts1[1]=="00am") {
 			$hourend1="00pm";
 		}
+		if ($hour1==12 && $parts1[1]=="00pm") {
+			$hourend1="00am";
+		}
+
 		$newstart=$hour.":".$hourend;
 		$newend=$hour1.":".$hourend1;
 		$adminid = Auth::id();
@@ -292,11 +307,13 @@ class ScheduleController extends BaseController {
 					$schedule->end_time =$newend;
 					$schedule->price = 0000;
 					$schedule->day=$j;
+						$schedule->booking=$numbering+1;
 					 $schedule->save(); 
 			}
-			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Booked!!");
+			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Added!!");
 
 	}
+
 	public function delscheduledown(){
 		$start=Input::get('start_timedown');
 		$end=Input::get('end_timedown');
@@ -307,6 +324,56 @@ class ScheduleController extends BaseController {
 		Schedule::where('id', $key->id )->delete();
 	}
 		 return Redirect::to('/o/createschedule')->with("danger", "Schedule Deleted!");
+	}
+	public function addscheduleup(){
+		$numbering=Input::get('downbook');
+			$start=Input::get('start_timedown');
+		$end=Input::get('end_timedown');
+		$parts = explode(':', $start);
+		$hour=$parts[0]-1;
+		$hourend=$parts[1];
+		if ($hour==0) {
+			$hour=12;
+
+		}
+		if ($hour==11 && $parts[1]=="00am") {
+			$hourend="00pm";
+		}
+		if ($hour==11 && $parts[1]=="00pm") {
+			$hourend="00am";
+		}
+
+		$parts1 = explode(':', $end);
+		$hour1=$parts1[0]-1;
+		$hourend1=$parts1[1];
+		if ($hour1==0) {
+			$hour1=12;
+
+		}
+		if ($hour1==11 && $parts1[1]=="00am") {
+			$hourend1="00pm";
+		}
+		if ($hour1==11 && $parts1[1]=="00pm") {
+			$hourend1="00am";
+		}
+
+		$newstart=$hour.":".$hourend;
+		$newend=$hour1.":".$hourend1;
+		$adminid = Auth::id();
+			for ($j=1; $j < 8; $j++) { 
+					
+						 $schedule = new Schedule;
+					 $schedule->admin_id=$adminid;
+					$schedule->time_diff=Input::get('diff');
+					$schedule->start_time= $newstart;
+					$schedule->end_time =$newend;
+					$schedule->price = 0000;
+					$schedule->day=$j;
+						$schedule->booking=$numbering-1;
+					 $schedule->save(); 
+			}
+			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Added!!");
+
 	}
 
 }
