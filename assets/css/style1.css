@@ -132,7 +132,7 @@ body {
   position: relative;
 }
 
-input[type="text"] {
+#wrap > form> input[type="text"] {
   height: 30px;
   font-size: 15px;
   display: inline-block;
@@ -153,17 +153,17 @@ input[type="text"] {
   cursor: pointer;
 }
 
-input[type="text"]:focus:hover {
+#wrap > form> input[type="text"]:focus:hover {
   border-bottom: 1px solid #BBB;
 }
 
-input[type="text"]:focus {
+#wrap > form> input[type="text"]:focus {
   width: 250px;
   z-index: 1;
   border-bottom: 1px solid #BBB;
   cursor: text;
 }
-input[type="submit"] {
+#wrap > form> input[type="submit"] {
   height: 35px;
   width: 43px;
   display: inline-block;
@@ -182,7 +182,7 @@ input[type="submit"] {
   transition: opacity .4s ease;
 }
 
-input[type="submit"]:hover {
+#wrap > form> input[type="submit"]:hover {
   opacity: 0.8;
 }
 
