@@ -373,7 +373,13 @@ input[type="submit"]:hover {
   background: rgb(93, 175, 244);
   padding: 2px 13px;
 }
-.layer:hover ~ .text-over {
-    background: red;
-}
 
+.layer:hover{
+  background-color:rgba(140, 137, 134, 0.53);
+}
+.origin{
+  color: white;
+}
+.origin:hover{
+  color: rgb(249, 98, 63);
+}

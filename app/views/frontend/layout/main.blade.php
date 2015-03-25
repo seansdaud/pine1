@@ -11,6 +11,8 @@
 		@include('frontend.layout.nav')
 		@yield('content')
 	</div>
-
+	{{ HTML::script('assets/js/jquery.js') }}
+	{{ HTML::script('assets/js/bootstrap.min.js') }}
+	{{ HTML::script('assets/js/validator.min.js') }}
 </body>
 </html>
