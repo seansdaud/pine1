@@ -21,7 +21,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="username">Username</label>
 						<div class="col-sm-6">
-							<input type="text" name="username" data-check="true" placeholder="Enter Username" class="form-control" data-minlength="5" data-remote="{{ URL::route('check-duplicate-owners') }}" required>
+							<input type="text" id="username" name="username" data-check="true" placeholder="Enter Username" class="form-control" data-minlength="5" data-remote="{{ URL::route('check-duplicate-owners') }}" required>
 						</div>
 						<div class="col-sm-4 help-block with-errors"></div>
 					</div>

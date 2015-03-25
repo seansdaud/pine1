@@ -30,18 +30,16 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{{ URL::route('owners') }}">
-                        <i class="fa fa-users"></i>
-                        <span>Owners</span>
+                    <a href="javascript:;" >
+                        <i class="fa fa-plus"></i>
+                        <span>Add</span>
                     </a>
+                    <ul class="sub">
+                        <li><a href="{{ URL::route('owners') }}">Owners</a></li>
+                        <li><a href="{{ URL::route('admin-arenas') }}">Arenas</a></li>
+                    </ul>
                 </li>
-
-                <li class="sub-menu">
-                    <a href="{{ URL::route('admin-arenas') }}">
-                        <i class="fa fa-flag"></i>
-                        <span>Arenas</span>
-                    </a>
-                </li>
+                
             @endif
 
             <!-- Nav Menu for owners -->
@@ -87,17 +85,6 @@
                 </ul>
             </li>
             @endif
-            <li class="sub-menu">
-                <a href="javascript:;" >
-                    <i class="fa fa-desktop"></i>
-                    <span>UI Elements</span>
-                </a>
-                <ul class="sub">
-                    <li><a  href="general.html">General</a></li>
-                    <li><a  href="buttons.html">Buttons</a></li>
-                    <li><a  href="panels.html">Panels</a></li>
-                </ul>
-            </li>
 
         </ul>
         <!-- sidebar menu end-->

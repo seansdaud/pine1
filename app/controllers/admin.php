@@ -141,11 +141,13 @@ class Admin extends BaseController {
 	public function checkOwners(){
 		$check = array_keys($_GET);
 		$value = Input::get($check[0]);
+		echo $check[0]."<br>".$value;
+		exit();
 		if(User::where($check[0], "=", $value)->first()){
-			echo "4xx";
+			return header("HTTP/1.0 400 ".ucfirst($check[0])." already exists.");
 		}
 		else{
-			echo "200 OK";
+			return header("HTTP/1.0 200 OK");
 		}
 	}
 

@@ -355,8 +355,10 @@ var now=parseInt(today) ;
 /*For active nav*/
 //Admin
  $("#dashboard .sidebar-menu li a:contains('Dashboard')").addClass('active');
- $("#owners .sidebar-menu li a:contains('Owners')").addClass('active');
- $("#arenas .sidebar-menu li a:contains('Arenas')").addClass('active');
+ $("#owners .sidebar-menu li a:contains('Add')").addClass('active');
+ $("#owners .sidebar-menu li:contains('Owners')").addClass('active');
+ $("#arenas .sidebar-menu li a:contains('Add')").addClass('active');
+ $("#arenas .sidebar-menu li:contains('Arenas')").addClass('active');
 
  //Owners
  $("#schedular .sidebar-menu li a:contains('Create Schedular')").addClass('active');
