@@ -9,22 +9,24 @@
               <div id="loginContainer">
                 <a href="#" id="loginButton"><span class="khoj">Login</span></a>
                 <div style="clear:both"></div>
-                <div id="loginBox">                
-                    <form id="loginForm">
+                <div id="loginBox">
+                    {{ Form::open(array('route' => 'login-post', 'id' => 'loginForm', 'class' => 'form-horizontal', 'data-toggle' => 'validator')) }}
                         <fieldset id="body">
-                            <fieldset>
-                                <label for="email">Email Address</label>
-                                <input type="text" name="email" id="email" />
-                            </fieldset>
-                            <fieldset>
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" />
-                            </fieldset>
+                            <div class="form-group">
+                                <input type="text" name="username" id="username" placeholder="Username" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" placeholder="Password" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+
                             <input type="submit" id="login" value="Sign in" />
-                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+                            <label for="checkbox"><input type="checkbox" id="checkbox" name="remember">Remember me</label>
                         </fieldset>
                         <span><a href="#">Forgot your password?</a></span>
-                    </form>
+                    {{ Form::close() }}
                 </div>
             </div>
 
