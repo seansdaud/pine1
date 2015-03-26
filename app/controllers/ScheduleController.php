@@ -375,5 +375,54 @@ class ScheduleController extends BaseController {
 			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Added!!");
 
 	}
+	public function viewLog(){
+		$adminid = Auth::id();
+		$layout = new \Illuminate\Database\Eloquent\Collection;
+			$data = array(
+				'id' => 'log',
+					'history'=> $layout		);
+		return View::make("backend.owners.showLog", $data)->with("title", "See Log");
+	}
+	public function getLog(){
+		$adminid = Auth::id();
+				$from=Input::get('getdate1');
+				$to=Input::get('getdate2');
+				if (empty($from) && empty($to)) {
+				return Redirect::to('/viewLog')->with("danger", "Select a Date!!");
+					}
+					elseif (empty($to)) {
+							$data= array(
+						'title' => 'History',
+					
+						'id' => 'log',
+							'posts'=>1,
+						'history'=>Booking::where('arena_id',$adminid)->where('booking_date','>=',''.$from)->orderBy('booking_date', 'desc')->get(),
+						'from'=>$from,
+						'to'=>$to
+					);
+					}
+					elseif (empty($from)) {
+							$data= array(
+						'title' => 'History',
+						'id' => 'log',
+							'posts'=>1,
+							'history'=>Booking::where('arena_id',$adminid)->where('booking_date','<=',''.$to)->orderBy('booking_date', 'desc')->get(),
+				
+						'from'=>$from,
+						'to'=>$to
+					);
+					}
+					else{
+				$data= array(
+						'title' => 'History',
+						'id' => 'log',
+							'posts'=>1,
+							'history'=>Booking::where('arena_id',$adminid)->where('booking_date','>=',''.$from)->where('booking_date','<=',''.$to)->orderBy('booking_date', 'desc')->get(),
+						'from'=>$from,
+						'to'=>$to
+					);
+			}
+					return View::make("backend.owners.showLog", $data)->with("title", "View Log");
+	}
 
 }
