@@ -9,8 +9,15 @@
 <body>
 	<div class="container-fluid" style="padding-left:0; padding-right:0;">
 		@include('frontend.layout.nav')
-		@yield('content')
+		<div class="container">
+			@yield('content')
+		</div>
 	</div>
+
+	{{ HTML::script('assets/js/jquery.js') }}
+	{{ HTML::script('assets/js/bootstrap.min.js') }}
+	{{ HTML::script('assets/js/validator.min.js') }}
+	{{ HTML::script('assets/js/frontend.js') }}
 
 </body>
 </html>
