@@ -26,7 +26,7 @@
 			<td name='saturday'><span class="day">Saturday</span></td>
 		</tr>
 
-		<?php if (!empty($schedular)): ?>
+		<?php if (!($schedular->isEmpty())): ?>
 			<?php $time=$schedular[0]->time_diff; ?>
 			<input type='hidden' name='diff' value='<?php echo $time; ?>'>
 		<?php endif; ?>

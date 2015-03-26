@@ -5,7 +5,7 @@
 @section("content")
 <?php 	
 	$adminid = Auth::id();
-$schedular=Schedule::where('admin_id', $adminid )->get();
+$schedular=Schedule::where('admin_id', $adminid )->orderBy('booking', 'asc')->get();
  ?>
 @if($schedular->isEmpty())
 	<div class="panel-body"> 
@@ -63,10 +63,24 @@ $schedular=Schedule::where('admin_id', $adminid )->get();
 			<td name='friday'><span class="day">Friday</span></td>
 			<td name='saturday'><span class="day">Saturday</span></td>
 		</tr>
-	
-	<div class="up">
+	<tr>
+		<td colspan="8" >
+		{{ Form::open(array( 'route' => 'addscheduleup','class'=>'form-horizontal row-fluid', 'method'=>'post')) }}
+			<input type='hidden' name='diff' value='<?php echo $schedular[0]->time_diff; ?>'>
+			<input type='hidden' name='start_timedown' value='<?php echo $schedular[0]->start_time; ?>'>
+			<input type='hidden' name='end_timedown' value='<?php echo $schedular[0]->end_time; ?>'>
+			<input type='hidden' name='downbook' value='<?php echo $schedular[0]->booking; ?>'>
+				<button type="submit" style="margin-left:45%" class="btn btn-round btn-theme02 btn-primary"><i class="fa fa-plus-square "></i></button>
 		
-	</div>
+		{{ Form::close() }}
+		{{ Form::open(array( 'route' => 'delscheduledown','class'=>'form-horizontal row-fluid', 'method'=>'post')) }}
+			<input type='hidden' name='start_timedown' value='<?php echo $schedular[0]->start_time; ?>'>
+			<input type='hidden' name='end_timedown' value='<?php echo $schedular[0]->end_time; ?>'>
+				<button type="submit" style="margin-left: 50%;
+margin-top: -4.5%;" class="btn btn-round btn-theme01 btn-danger"><i class="fa fa-minus-square "></i> </button>
+		{{ Form::close() }}
+		</td>
+	</tr>
 		<?php if (!empty($schedular)): ?>
 			<?php $time=$schedular[0]->time_diff; ?>
 			<input type='hidden' name='diff' value='<?php echo $time; ?>'>
@@ -105,25 +119,34 @@ $schedular=Schedule::where('admin_id', $adminid )->get();
 			
 			<?php endif; ?>
 		<?php endforeach; ?>
+		<br/>
 	<tr>
 		<td colspan="8" >
 		{{ Form::open(array( 'route' => 'addscheduledown','class'=>'form-horizontal row-fluid', 'method'=>'post')) }}
 			<input type='hidden' name='diff' value='<?php echo $time; ?>'>
+				<input type='hidden' name='downbook' value='<?php echo $key->booking; ?>'>
 			<input type='hidden' name='start_timedown' value='<?php echo $key->start_time; ?>'>
 			<input type='hidden' name='end_timedown' value='<?php echo $key->end_time; ?>'>
-				<button type="submit" class="btn btn-theme02 btn-primary"><i class="fa fa-cog"></i>Add</button>
+				<button type="submit" style="margin-left:45%" class="btn btn-round btn-theme02 btn-primary"><i class="fa fa-plus-square "></i></button>
 		
 		{{ Form::close() }}
 		{{ Form::open(array( 'route' => 'delscheduledown','class'=>'form-horizontal row-fluid', 'method'=>'post')) }}
 			<input type='hidden' name='start_timedown' value='<?php echo $key->start_time; ?>'>
 			<input type='hidden' name='end_timedown' value='<?php echo $key->end_time; ?>'>
-				<button type="submit" class="btn btn-theme01 btn-danger"><i class="fa fa-check"></i> Delete</button>
+				<button type="submit" style="margin-left: 50%;
+margin-top: -4.5%;" class="btn btn-round btn-theme01 btn-danger"><i class="fa fa-minus-square "></i> </button>
 		{{ Form::close() }}
 		</td>
 	</tr>
 	</table>
 </div>
-
+<div class="deleteall">
+{{ Form::open(array( 'route' => 'deleteallschedule','class'=>'form-horizontal row-fluid', 'method'=>'post')) }}
+			
+				<button type="submit" style="margin-left: 45%;" class="btn btn-round btn-theme01 "><i class="fa fa-exclamation-triangle ">Delete all Schedule</i> </button>
+{{ Form::close() }}
+	
+</div>
 </div>
 @endif
 @stop
