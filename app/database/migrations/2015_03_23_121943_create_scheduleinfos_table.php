@@ -17,7 +17,7 @@ class CreateScheduleinfosTable extends Migration {
 			$table->increments('id');
 			$table->string('start_time');
 			$table->string('end_time');
-			$table->integer('bookings_id');
+			$table->integer('booking_id');
 			$table->integer('day');
 			$table->decimal('price', 10, 10);
 			$table->timestamps();
