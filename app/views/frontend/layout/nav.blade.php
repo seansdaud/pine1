@@ -5,7 +5,29 @@
 				@if(Auth::check())
 					<a href="{{ URL::route('logout') }}"><span class="khoj">Logout</span></a>
 				@else
-					<a href="{{ URL::route('login') }}"><span class="khoj">Login</span></a>
+            
+              <div id="loginContainer">
+                <a href="#" id="loginButton"><span class="khoj">Login</span></a>
+                <div style="clear:both"></div>
+                <div id="loginBox">                
+                    <form id="loginForm">
+                        <fieldset id="body">
+                            <fieldset>
+                                <label for="email">Email Address</label>
+                                <input type="text" name="email" id="email" />
+                            </fieldset>
+                            <fieldset>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" />
+                            </fieldset>
+                            <input type="submit" id="login" value="Sign in" />
+                            <label for="checkbox"><input type="checkbox" id="checkbox" />Remember me</label>
+                        </fieldset>
+                        <span><a href="#">Forgot your password?</a></span>
+                    </form>
+                </div>
+            </div>
+
 					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
 				@endif
 				<span id="wrap">

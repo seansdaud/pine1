@@ -14,5 +14,10 @@
 		</div>
 	</div>
 
+	{{ HTML::script('assets/js/jquery.js') }}
+	{{ HTML::script('assets/js/bootstrap.min.js') }}
+	{{ HTML::script('assets/js/validator.min.js') }}
+	{{ HTML::script('assets/js/frontend.js') }}
+
 </body>
 </html>
