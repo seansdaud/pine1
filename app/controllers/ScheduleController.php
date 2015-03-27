@@ -205,7 +205,7 @@ class ScheduleController extends BaseController {
 					$schedule->end_time =$datename[0]->end_time;
 					$schedule->price = $datename[0]->price;
 					$schedule->day=$datename[0]->day;
-					$schedule->bookings_id=$book->id;
+					$schedule->booking_id=$book->id;
 					 $schedule->save(); 
 
 			 return Redirect::to('/showSchedule')->with("danger", "Schedule Booked!!");
