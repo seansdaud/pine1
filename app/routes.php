@@ -154,7 +154,7 @@ Route::group(array("before"=>"admin"), function() {
 	});
 
 	/* Check duplicate username & email while creating owners. */
-	Route::post("/a/check-duplicate-owners", array(
+	Route::get("/a/check-duplicate-owners", array(
 		'as' => 'check-duplicate-owners',
 		'uses' => 'admin@checkOwners'
 	));
@@ -248,8 +248,22 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@deleteallschedule'
 		));	
 
-	});
+			
 
+	});
+	/*	view Log*/
+				Route::get("/viewLog", array(
+			'as' => 'viewLog',
+			'uses' => 'ScheduleController@viewLog'
+		));	
+						Route::post("/getLog", array(
+			'as' => 'getLog',
+			'uses' => 'ScheduleController@getLog'
+		));	
+							Route::get("/getLog", array(
+			'as' => 'getLog',
+			'uses' => 'ScheduleController@viewLog'
+		));	
 	/*	Pre Book Schedular*/
 		Route::get("/prebookschedule/{id}", array(
 			'as' => 'prebookschedule',
