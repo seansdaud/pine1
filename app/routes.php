@@ -251,6 +251,15 @@ Route::group(array("before"=>"owner"), function() {
 			
 
 	});
+/*	Locator*/
+				Route::get("/getCurrent", array(
+			'as' => 'getCurrent',
+			'uses' => 'ScheduleController@getCurrent'
+		));	
+						Route::get("/locator", array(
+			'as' => 'locator',
+			'uses' => 'ScheduleController@locator'
+		));	
 	/*	view Log*/
 				Route::get("/viewLog", array(
 			'as' => 'viewLog',
