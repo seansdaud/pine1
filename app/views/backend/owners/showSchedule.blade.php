@@ -33,7 +33,7 @@
 												
 													<?php
 							$adminid = Auth::id();
-							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->get();
+							$schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
 							?>
 							@foreach ($schedular as $key)
 								<?php  

@@ -93,6 +93,14 @@
                 </ul>
             </li>
             @endif
+               @if(Auth::user()->usertype == 2)
+                 <li class="sub-menu">
+                    <a  href="{{ URL::route('viewLog') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>View Log</span>
+                    </a>
+                </li>
+            @endif
 
         </ul>
         <!-- sidebar menu end-->

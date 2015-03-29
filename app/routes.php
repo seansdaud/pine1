@@ -248,8 +248,31 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@deleteallschedule'
 		));	
 
-	});
+			
 
+	});
+/*	Locator*/
+				Route::get("/getCurrent", array(
+			'as' => 'getCurrent',
+			'uses' => 'ScheduleController@getCurrent'
+		));	
+						Route::get("/locator", array(
+			'as' => 'locator',
+			'uses' => 'ScheduleController@locator'
+		));	
+	/*	view Log*/
+				Route::get("/viewLog", array(
+			'as' => 'viewLog',
+			'uses' => 'ScheduleController@viewLog'
+		));	
+						Route::post("/getLog", array(
+			'as' => 'getLog',
+			'uses' => 'ScheduleController@getLog'
+		));	
+							Route::get("/getLog", array(
+			'as' => 'getLog',
+			'uses' => 'ScheduleController@viewLog'
+		));	
 	/*	Pre Book Schedular*/
 		Route::get("/prebookschedule/{id}", array(
 			'as' => 'prebookschedule',
