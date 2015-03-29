@@ -3,6 +3,7 @@
 		<div class="row">
 			<div class="col-md-offset-7 col-md-5">
 				@if(Auth::check())
+          <a href="{{ URL::route('user-profile', Auth::user()->username) }}"><span class="khoj">{{ Auth::user()->username }}</span></a>
 					<a href="{{ URL::route('logout') }}"><span class="khoj">Logout</span></a>
 				@else
             
