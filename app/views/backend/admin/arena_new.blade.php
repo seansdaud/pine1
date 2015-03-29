@@ -17,6 +17,33 @@
 		</div>
 
 		<div class="form-group">
+			<label class="col-sm-2 control-label">Address</label>
+			<div class="col-sm-6">
+				<input type="text" name="address" placeholder="Address of Arena" class="form-control" required>
+			</div>
+			<div class="col-sm-4 help-block with-errors"></div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Phone</label>
+			<div class="col-sm-6">
+				<input type="number" name="phone" data-check="true" placeholder="Contact Number" class="form-control" required>
+			</div>
+			<div class="col-sm-4 help-block with-errors"></div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Owner</label>
+			<div class="col-sm-6">
+				<select class="form-control select-owner" multiple="multiple" name="owner" data-placeholder="Select Owners">
+					@foreach($owners as $owner)
+						<option value="{{ $owner->id }}"><b>{{ $owner->username }}</b> {{ ucfirst($owner->name) }}</option>
+					@endforeach
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<label class="col-sm-2 control-label">About</label>
 			<div class="col-sm-10">
 				<textarea name="about" id="about"></textarea>

@@ -115,6 +115,12 @@ Route::group(array("before"=>"admin"), function() {
 			'uses' => 'admin@postNewOwner'
 		));
 
+		/* Check duplicate username & email while creating owners. */
+		Route::post("/a/check-duplicate-owners", array(
+			'as' => 'check-duplicate-owners',
+			'uses' => 'admin@checkOwners'
+		));
+
 		/* Add New Arena */
 		Route::post("/a/add-new-arena", array(
 			'as' => 'add-new-arena-post',
@@ -152,12 +158,6 @@ Route::group(array("before"=>"admin"), function() {
 		));
 
 	});
-
-	/* Check duplicate username & email while creating owners. */
-	Route::get("/a/check-duplicate-owners", array(
-		'as' => 'check-duplicate-owners',
-		'uses' => 'admin@checkOwners'
-	));
 
 	Route::post("/a/check-duplicate-arenas", array(
 		'as' => 'check-duplicate-arenas',
