@@ -424,5 +424,30 @@ class ScheduleController extends BaseController {
 			}
 					return View::make("backend.owners.showLog", $data)->with("title", "View Log");
 	}
+	public function locator(){
+		$data = array('id' => 'locator' );
+		return View::make("backend.owners.locator",$data)->with("title", "locator");
+	}
+	public function getCurrent(){
+		$lat = $_GET["lat"];
+	$lng = $_GET["lng"];
+	$radius = Input::get('radius');
+	// $result = Marker::select(
+ //                DB::raw("*,
+ //                            ( 3959 * acos( cos( radians('%s') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('%s') ) + sin( radians('%s') ) * sin( radians( lat ) ) ) )
+ //                            AS distances"))
+ //                ->having("distances", "<",$radius)
+ //            ->orderBy("distances")
+ //                ->setBindings([$lat, $lng, $lat])
+
+ //                ->get();
+$result = Marker::select(
+                DB::raw("*, ( 3959 * acos( cos( radians('".$lat."') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('".$lng."') ) + sin( radians('".$lat."') ) * sin( radians( lat ) ) ) ) AS distances"))
+                ->having("distances", "<",$radius)
+           ->orderBy("distances")
+           
+                ->get();
+	print_r(	json_encode($result));
+	}
 
 }
