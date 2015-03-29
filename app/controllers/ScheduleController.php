@@ -205,7 +205,7 @@ class ScheduleController extends BaseController {
 					$schedule->end_time =$datename[0]->end_time;
 					$schedule->price = $datename[0]->price;
 					$schedule->day=$datename[0]->day;
-					$schedule->bookings_id=$book->id;
+					$schedule->booking_id=$book->id;
 					 $schedule->save(); 
 
 			 return Redirect::to('/showSchedule')->with("danger", "Schedule Booked!!");
@@ -423,6 +423,31 @@ class ScheduleController extends BaseController {
 					);
 			}
 					return View::make("backend.owners.showLog", $data)->with("title", "View Log");
+	}
+	public function locator(){
+		$data = array('id' => 'locator' );
+		return View::make("backend.owners.locator",$data)->with("title", "locator");
+	}
+	public function getCurrent(){
+		$lat = $_GET["lat"];
+	$lng = $_GET["lng"];
+	$radius = Input::get('radius');
+	// $result = Marker::select(
+ //                DB::raw("*,
+ //                            ( 3959 * acos( cos( radians('%s') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('%s') ) + sin( radians('%s') ) * sin( radians( lat ) ) ) )
+ //                            AS distances"))
+ //                ->having("distances", "<",$radius)
+ //            ->orderBy("distances")
+ //                ->setBindings([$lat, $lng, $lat])
+
+ //                ->get();
+$result = Marker::select(
+                DB::raw("*, ( 3959 * acos( cos( radians('".$lat."') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('".$lng."') ) + sin( radians('".$lat."') ) * sin( radians( lat ) ) ) ) AS distances"))
+                ->having("distances", "<",$radius)
+           ->orderBy("distances")
+           
+                ->get();
+	print_r(	json_encode($result));
 	}
 
 }
