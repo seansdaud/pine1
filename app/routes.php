@@ -248,7 +248,10 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@deleteallschedule'
 		));	
 
-			
+		Route::post("/o/addingArena", array(
+			'as' => 'add-arena-post',
+			'uses' => 'Owner@addingArena'
+		));	
 
 	});
 	/*	view Log*/
@@ -256,7 +259,7 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'viewLog',
 			'uses' => 'ScheduleController@viewLog'
 		));	
-						Route::post("/getLog", array(
+				Route::post("/getLog", array(
 			'as' => 'getLog',
 			'uses' => 'ScheduleController@getLog'
 		));	
@@ -309,8 +312,11 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'booknow',
 		'uses' => 'ScheduleController@bookSchedule'
 	));	
-		
-
+	//add arena	
+		Route::get("/o/add-arena-info", array(
+		'as' => 'add-arena-info',
+		'uses' => 'Owner@addArena'
+	));	
 	// owner dashboard
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',

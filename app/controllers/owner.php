@@ -98,4 +98,15 @@ class Owner extends BaseController {
 		return View::make("backend.owners.profile", $data);
 	}
 
+	public function addArena(){
+		$data = array(
+			'title' => 'add-arena-info',
+			'id' => 'add-arena-info'
+		);
+		return View::make("backend.owners.add_arena",$data);
+	}
+	public function addingArena(){
+		echo "adding arena";
+	}
+
 }
