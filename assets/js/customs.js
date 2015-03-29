@@ -486,23 +486,31 @@ $(document).ready(function() {
 		var check = $(this).attr("name");
 		var that = "input[name='"+ $(this).attr("name") +"']";
 		var url = $("#check-duplicate").attr("check-url");
+		var token = $("#check-duplicate input[name='_token']").val();
 		if(value.trim() != ""){
-			$.post(url, {value: value, check: check}, function(response) {
-				if(response == "duplicate"){
+			$.ajax({
+				method: "POST",
+				url: url,
+				data: {value: value, check: check, _token: token}
+			})
+
+			.done  (function(data)        { 
+				if(data == "duplicate"){
 					$("#check-duplicate").find(that).closest(".form-group").addClass("has-error");
 					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<ul class='list-unstyled'><li>" + check + " already exist.</li></ul>");
 					$("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
 				}
 				else{
-					$("#check-duplicate").find(that).closest(".form-group").addClass("has-success");
+					$("#check-duplicate").find(that).closest(".form-group").removeClass("has-error");
 					$("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("");
+					var error = $("#check-duplicate").find(".form-group").hasClass("has-error");
+					if(!error){
+						$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
+					}
 				}
-			});
+			})
 
-			var error = $("#check-duplicate").find(".form-group").hasClass("has-error");
-			if(!error){
-				$("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
-			}
+		    .fail  (function(jqXHR, textStatus, errorThrown) { console.log(errorThrown) });
 		}
 	});
 });
@@ -619,4 +627,6 @@ var forwho = $('#for').val();
 
 });
 
-
+$(".select-owner").select2({
+	allowClear : true
+});

@@ -140,7 +140,7 @@ body {
   font-weight: 100;
   border: none;
   outline: none;
-  color: #555;
+  color: #fff;
   padding: 3px;
   padding-right: 60px;
   width: 0px;
@@ -521,4 +521,20 @@ fieldset#body {
 
 input:focus {
     outline:none;
+}
+
+/*Login Loading*/
+.loading {
+  display: none;
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  background: rgba(153, 130, 125, 0.33);
+}
+
+.loading img{
+  position: relative;
+  margin: 20% auto;
+  display: block;
+  width: 40%;
 }

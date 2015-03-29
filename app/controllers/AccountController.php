@@ -20,18 +20,19 @@ class AccountController extends BaseController {
 			);
 		if($auth){
 				if(Auth::user()->usertype == "3"){
-					return Redirect::route('admin-dashboard');
+					echo route('admin-dashboard');
 				}
 				elseif(Auth::user()->usertype == "2"){
-					return Redirect::route('owner-dashboard');
+					echo route('owner-dashboard');
 				}
 				else{
 					//Redirect to intented page
-					return Redirect::intended('/');
+					echo Redirect::intended("/")->getTargetUrl();
 				}
 			}
-
-		return Redirect::route('login')->with('danger', "Username/Password does not mathch or account not activated.");
+		else{
+			echo "Invalid";
+		}
 	}
 
 	public function logout(){

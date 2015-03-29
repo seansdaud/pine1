@@ -139,15 +139,10 @@ class Admin extends BaseController {
 	}
 
 	public function checkOwners(){
-		$check = array_keys($_GET);
-		$value = Input::get($check[0]);
-		echo $check[0]."<br>".$value;
-		exit();
-		if(User::where($check[0], "=", $value)->first()){
-			return header("HTTP/1.0 400 ".ucfirst($check[0])." already exists.");
-		}
-		else{
-			return header("HTTP/1.0 200 OK");
+		$check = Input::get("check");
+		$value = Input::get("value");
+		if(User::where($check, "=", $value)->first()){
+			echo "duplicate";
 		}
 	}
 
@@ -294,10 +289,30 @@ class Admin extends BaseController {
 	public function getAddNewArena(){
 		$data = array(
 			'title' => 'add new arena',
-			'id' => 'arenas'
+			'id' => 'arenas',
+			'owners' => User::where("usertype", "=", "2")->get()
 		);
 
 		return View::make("backend.admin.arena_new", $data);
+	}
+
+	public function postAddNewArena(){
+		$create = Arena::create(
+			array(
+				'name' => Input::get("name"),
+				'address' => Input::get("address"),
+				'phone' => Input::get("phone"),
+				'owner_id' => Input::get("owner"),
+				'about' => Input::get("about")
+			)
+		);
+
+		if($create){
+			return Redirect::route("admin-arenas")->with("success", "Arena Successfully Created.");
+		}
+		else{
+			return Redirect::route("admin-arenas")->with("danger", "Something went wrong. Please try again.")->withInput();
+		}
 	}
 
 	public function checkArenas(){

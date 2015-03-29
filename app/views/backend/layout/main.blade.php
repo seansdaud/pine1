@@ -15,6 +15,7 @@
 	{{ HTML::style('assets/css/style-responsive.css') }}
 	{{ HTML::style('assets/css/jquery.timepicker.css') }}
 	{{ HTML::style('assets/css/table-responsive.css') }}
+	{{ HTML::style('assets/css/select2.min.css') }}
 	{{ HTML::script('assets/ckeditor/ckeditor.js') }}
 </head>
 <body>
@@ -46,6 +47,7 @@
 	{{ HTML::script('assets/js/gritter/js/jquery.gritter.js') }}
 	{{ HTML::script('assets/js/sparkline-chart.js') }}
 	{{ HTML::script('assets/js/jquery.timepicker.js') }}
+	{{ HTML::script('assets/js/select2.min.js') }}
 	{{ HTML::script('assets/js/customs.js') }}
 		
 </body>
