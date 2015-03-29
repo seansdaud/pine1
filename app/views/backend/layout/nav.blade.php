@@ -93,7 +93,15 @@
                 </ul>
             </li>
             @endif
-               @if(Auth::user()->usertype == 2)
+            @if(Auth::user()->usertype == 2)
+                 <li class="sub-menu">
+                    <a  href="{{ URL::route('add-arena-info') }}">
+                        <i class="fa fa-futbol-o"></i>
+                        <span>Add Arena</span>
+                    </a>
+                </li>
+            @endif
+            @if(Auth::user()->usertype == 2)
                  <li class="sub-menu">
                     <a  href="{{ URL::route('viewLog') }}">
                         <i class="fa fa-dashboard"></i>
