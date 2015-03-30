@@ -2,7 +2,8 @@
 
 class Arena extends Eloquent {
 	protected $table = 'arenas';
-	protected $fillable = [];
+
+	protected $fillable = ['name','address','phone','user_id','about'];
 
 	public function owner(){
 		return $this->belongsTo("User");

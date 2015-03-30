@@ -253,7 +253,16 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => "EventsController@postOwnerEvents"
 		));
 
-			
+		Route::post("/o/addingArena", array(
+			'as' => 'add-arena-post',
+			'uses' => 'Owner@addingArena'
+		));	
+
+		/*arena info edited*/
+		Route::post("/o/arenaInfoEdited", array(
+			'as' => 'arena-info-edited',
+			'uses' => 'Owner@arenaInfoEdited'
+		));
 
 	});
 /*	Locator*/
@@ -270,7 +279,8 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'viewLog',
 			'uses' => 'ScheduleController@viewLog'
 		));	
-						Route::post("/o/getLog", array(
+
+				Route::post("/o/getLog", array(
 			'as' => 'getLog',
 			'uses' => 'ScheduleController@getLog'
 		));	
@@ -324,7 +334,6 @@ Route::group(array("before"=>"owner"), function() {
 		'uses' => 'ScheduleController@bookSchedule'
 	));	
 
-
 	/* Get Events */
 	Route::get("/o/events", array(
 		'as' => "owner-events",
@@ -336,11 +345,21 @@ Route::group(array("before"=>"owner"), function() {
 		'uses' => 'EventsController@createNewEvent'
 	));
 		
-
+	//add arena	
+		Route::get("/o/add-arena-info", array(
+		'as' => 'add-arena-info',
+		'uses' => 'Owner@addArena'
+	));	
+		
 	// owner dashboard
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',
 		'uses' => 'owner@index'
+	));
+
+	Route::get("o/arena-edit/{arena}", array(
+		'as' => 'edit-arena-info',
+		'uses' => 'Owner@editArena'
 	));
 
 	// Owner Profile (Keep it at last !!important...............)
