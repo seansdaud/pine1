@@ -1,6 +1,7 @@
 <?php
 
 class Arena extends Eloquent {
-	protected $table = 'scheduleinfos';
-	protected $fillable = [];
+	protected $table = 'arenas';
+	protected $fillable = ['name','address','phone','user_id','about'];
+
 }
