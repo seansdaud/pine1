@@ -15,6 +15,7 @@
 	{{ HTML::style('assets/css/style-responsive.css') }}
 	{{ HTML::style('assets/css/jquery.timepicker.css') }}
 	{{ HTML::style('assets/css/table-responsive.css') }}
+	{{ HTML::style('assets/css/select2.min.css') }}
 	{{ HTML::script('assets/ckeditor/ckeditor.js') }}
 </head>
 <body>
@@ -46,7 +47,54 @@
 	{{ HTML::script('assets/js/gritter/js/jquery.gritter.js') }}
 	{{ HTML::script('assets/js/sparkline-chart.js') }}
 	{{ HTML::script('assets/js/jquery.timepicker.js') }}
+	{{ HTML::script('assets/js/select2.min.js') }}
 	{{ HTML::script('assets/js/customs.js') }}
+	<script type="text/javascript">
+
+
+
+var x = document.getElementById("demo");
+
+
+
+function showPosition(position) {
+	var base_url= $('#base_url').val();
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;  
+
+    	$.ajax({
+     		type: "GET",
+          	url: base_url+'/getCurrent',
+          	data: {
+          		lat:position.coords.latitude,
+          		lng:position.coords.longitude,
+          		radius:200
+
+          	},
+          	  success:function(data){ 
+          	  // $('#id').html("");
+          	   x.innerHTML = "data: "+ data;
+
+          	  	console.log(data);
+     		  },
+     		   beforeSend : function (){
+                 // $('#id').html("<div class='loading'><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
+
+            },
+          	    error: function(jqXHR, textStatus, errorThrown){ 
+      alert( jqXHR.responseText);
+               console.log(jqXHR.responseText);
+          }
+          	});
+}
+ if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+	</script>
+	
 		
 </body>
 </html>

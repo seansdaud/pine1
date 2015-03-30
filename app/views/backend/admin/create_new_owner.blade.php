@@ -8,7 +8,7 @@
 	<div class="row mt">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="form-panel">
-				{{ Form::open(array('route' => 'create-new-owner-post', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id' => 'check-duplicate', 'check-url' => URL::route('check-duplicate-owners'))) }}
+				{{ Form::open(array('route' => 'create-new-owner-post', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'check-url' => URL::route('check-duplicate-owners'), 'id' => 'check-duplicate')) }}
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="name">Name</label>

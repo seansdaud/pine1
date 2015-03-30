@@ -205,7 +205,7 @@ class ScheduleController extends BaseController {
 					$schedule->end_time =$datename[0]->end_time;
 					$schedule->price = $datename[0]->price;
 					$schedule->day=$datename[0]->day;
-					$schedule->bookings_id=$book->id;
+					$schedule->booking_id=$book->id;
 					 $schedule->save(); 
 
 			 return Redirect::to('/showSchedule')->with("danger", "Schedule Booked!!");
@@ -374,6 +374,80 @@ class ScheduleController extends BaseController {
 			}
 			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Added!!");
 
+	}
+	public function viewLog(){
+		$adminid = Auth::id();
+		$layout = new \Illuminate\Database\Eloquent\Collection;
+			$data = array(
+				'id' => 'log',
+					'history'=> $layout		);
+		return View::make("backend.owners.showLog", $data)->with("title", "See Log");
+	}
+	public function getLog(){
+		$adminid = Auth::id();
+				$from=Input::get('getdate1');
+				$to=Input::get('getdate2');
+				if (empty($from) && empty($to)) {
+				return Redirect::to('/viewLog')->with("danger", "Select a Date!!");
+					}
+					elseif (empty($to)) {
+							$data= array(
+						'title' => 'History',
+					
+						'id' => 'log',
+							'posts'=>1,
+						'history'=>Booking::where('arena_id',$adminid)->where('booking_date','>=',''.$from)->orderBy('booking_date', 'desc')->get(),
+						'from'=>$from,
+						'to'=>$to
+					);
+					}
+					elseif (empty($from)) {
+							$data= array(
+						'title' => 'History',
+						'id' => 'log',
+							'posts'=>1,
+							'history'=>Booking::where('arena_id',$adminid)->where('booking_date','<=',''.$to)->orderBy('booking_date', 'desc')->get(),
+				
+						'from'=>$from,
+						'to'=>$to
+					);
+					}
+					else{
+				$data= array(
+						'title' => 'History',
+						'id' => 'log',
+							'posts'=>1,
+							'history'=>Booking::where('arena_id',$adminid)->where('booking_date','>=',''.$from)->where('booking_date','<=',''.$to)->orderBy('booking_date', 'desc')->get(),
+						'from'=>$from,
+						'to'=>$to
+					);
+			}
+					return View::make("backend.owners.showLog", $data)->with("title", "View Log");
+	}
+	public function locator(){
+		$data = array('id' => 'locator' );
+		return View::make("backend.owners.locator",$data)->with("title", "locator");
+	}
+	public function getCurrent(){
+		$lat = $_GET["lat"];
+	$lng = $_GET["lng"];
+	$radius = Input::get('radius');
+	// $result = Marker::select(
+ //                DB::raw("*,
+ //                            ( 3959 * acos( cos( radians('%s') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('%s') ) + sin( radians('%s') ) * sin( radians( lat ) ) ) )
+ //                            AS distances"))
+ //                ->having("distances", "<",$radius)
+ //            ->orderBy("distances")
+ //                ->setBindings([$lat, $lng, $lat])
+
+ //                ->get();
+$result = Marker::select(
+                DB::raw("*, ( 3959 * acos( cos( radians('".$lat."') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('".$lng."') ) + sin( radians('".$lat."') ) * sin( radians( lat ) ) ) ) AS distances"))
+                ->having("distances", "<",$radius)
+           ->orderBy("distances")
+           
+                ->get();
+	print_r(	json_encode($result));
 	}
 
 }
