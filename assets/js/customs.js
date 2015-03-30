@@ -630,3 +630,6 @@ var forwho = $('#for').val();
 $(".select-owner").select2({
 	allowClear : true
 });
+
+$(".select-arena").select2({allowClear: true});
+$(".select-master").select2({allowClear: true});

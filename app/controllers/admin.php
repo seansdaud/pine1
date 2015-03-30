@@ -22,19 +22,18 @@ class Admin extends BaseController {
 	public function postProfilePic(){
 		$file = Input::file('image');
 		$ext = $extension = Input::file('image')->getClientOriginalExtension();
-		$name = uniqid();
-		$upload = Input::file('image')->move("assets/img/profile", $name.'.'.$ext);
-		$img = Image::make('assets/img/profile/'.$name.".".$ext);
+		$name = uniqid().".".$ext;
+		$upload = Input::file('image')->move("assets/img/profile", $name);
+		$img = Image::make('assets/img/profile/'.$name);
 		$img->resize(300, null, function ($constraint) {
 		    $constraint->aspectRatio();
-		})->save("assets/img/profile/".$name."_thumb.".$ext);
+		})->save("assets/img/profile/thumb/".$name);
 
 		if($upload){
 			$user = User::where("username", "=", Auth::user()->username)->first();
 			File::delete("assets/img/profile/".$user->image);
-			$ext1 = last(explode(".", $user->image));
-			File::delete("assets/img/profile/".head(explode(".", $user->image))."_thumb".".".$ext1);
-			$user->image = $name.".".$ext;
+			File::delete("assets/img/profile/thumb/".$user->image);
+			$user->image = $name;
 			if($user->save()){
 				return Redirect::route("admin-profile", Auth::user()->username)->with("success", "Profile pic changed.");
 			}
