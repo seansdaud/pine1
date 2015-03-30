@@ -43,14 +43,14 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('home');
 		}
 	}
 });
 
 Route::filter('owner', function(){
     if(Auth::guest()){
-        return Redirect::route('login');
+        return Redirect::route('home');
     }else{
         if(Auth::user()->usertype != "2"){
         	if(Auth::user()->usertype == "3"){
@@ -65,7 +65,7 @@ Route::filter('owner', function(){
 
 Route::filter('admin', function(){
     if(Auth::guest()){
-        return Redirect::route('login');
+        return Redirect::route('home');
     }else{
         if(Auth::user()->usertype != "3"){
         	if(Auth::user()->usertype == "2"){

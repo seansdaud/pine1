@@ -49,6 +49,8 @@
 	{{ HTML::script('assets/js/jquery.timepicker.js') }}
 	{{ HTML::script('assets/js/select2.min.js') }}
 	{{ HTML::script('assets/js/customs.js') }}
+
+
 	<script type="text/javascript">
 
 
@@ -94,6 +96,7 @@ function showPosition(position) {
     }
 
 	</script>
+	
 		
 </body>
 </html>

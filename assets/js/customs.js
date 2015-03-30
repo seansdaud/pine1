@@ -630,3 +630,21 @@ var forwho = $('#for').val();
 $(".select-owner").select2({
 	allowClear : true
 });
+
+$(".select-arena").select2({allowClear: true});
+$(".select-master").select2({allowClear: true});
+
+$("#add-arena-form").hide();
+$("#add-arena-form-close").hide();
+$("#add-arena-form-open").on("click", function(e){
+	e.preventDefault();
+	$("#add-arena-form").slideDown();
+	$("#add-arena-form-open").hide();
+	$("#add-arena-form-close").show();
+});
+$("#add-arena-form-close").on("click", function(e){
+	e.preventDefault();
+	$("#add-arena-form").slideUp();
+	$("#add-arena-form-open").show();
+	$("#add-arena-form-close").hide();
+});

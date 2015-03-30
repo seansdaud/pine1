@@ -117,7 +117,7 @@
 @import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
 
 body {
-	background: #DDD;
+	background: #111620;
 	font-family: 'Ropa Sans', sans-serif;
 	font-size: 16px;
 	
@@ -322,7 +322,7 @@ body {
 }
 
 .layer {
-    background-color: rgba(1, 1, 1, 0.72);
+    background-color: rgba(74, 81, 95, 0.67);
     position: absolute;
     top: 0;
     left: 0;
@@ -373,8 +373,15 @@ body {
   background: rgb(93, 175, 244);
   padding: 2px 13px;
 }
-.layer:hover ~ .text-over {
-    background: red;
+
+.layer:hover{
+  background-color:rgba(140, 137, 134, 0.53);
+}
+.origin{
+  color: white;
+}
+.origin:hover{
+  color: rgb(249, 98, 63);
 }
 
 /* Login Container (default to float:right) */
@@ -429,9 +436,6 @@ body {
 /* Login Form */
 #loginForm {
     width:248px; 
-    border:1px solid #899caa;
-    border-radius:3px 0 3px 3px;
-    -moz-border-radius:3px 0 3px 3px;
     margin-top:-1px;
     background:#d2e0ea;
     padding:6px;
@@ -445,8 +449,7 @@ body {
 }
 
 fieldset#body {
-    background:#fff;
-    border-radius:3px;
+    background:#263043;
     -moz-border-radius:3px;
     padding:10px 13px;
     margin:0;
@@ -462,7 +465,7 @@ fieldset#body {
 }
 
 #body label {
-    color:#3a454d;
+    color:#BDC0C2;
     margin:9px 0 0 0;
     display:block;
     float:left;
@@ -537,4 +540,31 @@ input:focus {
   margin: 20% auto;
   display: block;
   width: 40%;
+}
+.live .loginContainer:not{
+  background-color: #ddd;
+}
+.error-costum>ul>li{
+  color: #D79C9B !important;
+}
+.form-wrapper{
+  padding: 14px;
+  background: rgb(187, 194, 197);
+}
+label{
+  font-weight: normal !important;
+}
+.personal-info{
+  background: rgb(244, 60, 18);
+  padding: 9px;
+  color: white;
+  font-size: 20px;
+  display: inline-block;
+}
+.reg{
+  background: rgb(105, 109, 123);
+  color: white;
+  padding: 7px;
+  text-transform: uppercase;
+  font-size: 18px
 }
