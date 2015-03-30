@@ -20,8 +20,9 @@
 			<label class="col-sm-2 control-label">Arena</label>
 			<div class="col-sm-6">
 				<select class="form-control select-arena" name="arena" data-placeholder="Select Arena for the event" required>
+				<option></option>
 					@foreach($arenas->arenas as $arena)
-						<option value="{{$arenas->arenas->id}}">{{$arenas->arenas->name}}</option>
+						<option value="{{$arena->id}}">{{$arena->name}}</option>
 					@endforeach
 				</select>
 			</div>
