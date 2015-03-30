@@ -252,6 +252,12 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'Owner@addingArena'
 		));	
 
+		/*arena info edited*/
+		Route::post("/o/arenaInfoEdited", array(
+			'as' => 'arena-info-edited',
+			'uses' => 'Owner@arenaInfoEdited'
+		));
+
 	});
 /*	Locator*/
 				Route::get("/o/getCurrent", array(
@@ -330,6 +336,11 @@ Route::group(array("before"=>"owner"), function() {
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',
 		'uses' => 'owner@index'
+	));
+
+	Route::get("o/arena-edit/{arena}", array(
+		'as' => 'edit-arena-info',
+		'uses' => 'Owner@editArena'
 	));
 
 	// Owner Profile (Keep it at last !!important...............)
