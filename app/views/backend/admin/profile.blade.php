@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 					@if(Auth::user()->image != "")
-						<img src="{{ asset('assets/img/profile/'.head(explode('.', Auth::user()->image)).'_thumb.'.last(explode('.', Auth::user()->image))) }}" style="max-width: 100%; height: auto;">
+						<img src="{{ asset('assets/img/profile/thumb/'.Auth::user()->image) }}" style="max-width: 100%; height: auto;">
 					@else
 						<img src="{{ asset('assets/img/friends/fr-05.jpg') }}" style="max-width: 100%; height=auto; ">
 					@endif
