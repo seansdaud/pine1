@@ -4,7 +4,7 @@
 @extends("backend.layout.main")
 
 @section("content")
-	{{ Form::open(array('url' => 'getLog','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
+	{{ Form::open(array('url' => '/o/getLog','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
 
 <div class="panel-body">
 	<div class="row">

@@ -35,15 +35,13 @@
 							$bookintime=Booking::where('arena_id', $adminid)->where('booking_date', $date )->get();
 									$flag=0;
 									foreach ($bookintime as $key1 ) {
-										$sc=Schedule::where('id',$key1->schedule_id)->get();
-										if (!($sc->isEmpty())) {
-											if ($sc[0]->start_time==$key->start_time && $sc[0]->end_time==$key ->end_time) {
+											if ($key1->scheduleinfo->start_time==$key->start_time && $key1->scheduleinfo->end_time==$key->end_time) {
 
 												$flag=1;	
 												$getuser=$key1->user_id;
+												$price=$key1->scheduleinfo->price;
 											}
 										}
-									}
 								?>
 							<tr class="danger">
 										<td name='time'>
@@ -72,7 +70,11 @@
 											</td>
 											@endif
 										<td>
+												@if($flag==1) 
+										Rs.<?php echo $price; ?>
+											@else
 											Rs.<?php echo $key->price; ?>
+										@endif	
 										</td>
 										@if($flag==1) 
 												<?php	$user= User::where('id',$getuser)->get();		
