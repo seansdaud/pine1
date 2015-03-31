@@ -17,7 +17,11 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
-
+	// getLatestMap
+		Route::get("/getCurrent", array(
+			'as' => 'getCurrenthome',
+			'uses' => 'SiteController@getCurrent'
+		));	
 
 /*Unauthenticated group*/
 
@@ -37,8 +41,11 @@ Route::group(array("before" => "guest"), function() {
 			"as" => "login-post",
 			"uses" => 'AccountController@postLogin'
 		));
+	
 
 	});
+	
+		
 
 	/*Register*/
 	Route::get("/register", array(
@@ -266,6 +273,15 @@ Route::group(array("before"=>"owner"), function() {
 
 	});
 /*	Locator*/
+
+Route::get("/o/marker-update", array(
+			'as' => 'marker-update',
+			'uses' => 'owner@markerUpdate'
+		));	
+Route::post("/o/createMaps", array(
+			'as' => 'createMaps',
+			'uses' => 'owner@createMaps'
+		));	
 				Route::get("/o/getCurrent", array(
 			'as' => 'getCurrent',
 			'uses' => 'ScheduleController@getCurrent'

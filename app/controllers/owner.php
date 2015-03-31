@@ -175,5 +175,39 @@ class Owner extends BaseController {
 				}
 			}
 	}
+		public function markerUpdate(){
+
+			$adminid = Auth::id();
+			$data = array(
+			'title' => 'Update Maps',
+			'id' => 'maps',
+			'info' =>Marker::where("admin_id", $adminid)->get()
+		);
+		return View::make("backend.owners.updatemarker",$data)->with("title", "Edit Maps");
+
+	}
+	public function createMaps(){
+			$adminid = Auth::id();
+		$get=Marker::where("admin_id", "=", $adminid)->get();
+		if ($get->isEmpty()) {
+			$mark= new Marker;
+			$mark->lat=Input::get("lat");
+			$mark->lng=Input::get("lng");
+			$mark->map=Input::get("iframe");
+			$mark->admin_id=$adminid;
+			if($mark->save()){
+					return Redirect::route('marker-update')->with('warning','Updated Map');
+				}
+		}
+		else{
+				$data = array(
+			'lat'=>Input::get("lat"),
+			'lng'=>Input::get("lng"),
+			'map'=>Input::get("iframe")
+					);
+						Marker::where('admin_id', Auth::id())->update($data);
+		}
+		return Redirect::route('marker-update')->with('warning','Updated Map');
+	}
 
 }
