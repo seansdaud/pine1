@@ -378,6 +378,7 @@ Route::post("/o/createMaps", array(
 		'as' => 'add-arena-info',
 		'uses' => 'Owner@addArena'
 	));	
+
 		
 	// owner dashboard
 	Route::get("/o/dashboard", array(
