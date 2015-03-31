@@ -59,10 +59,10 @@
 					</div>
 					<div class="row">
 						  <div class="col-xs-6">
-						    <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+						    <input type="text" class="form-control"  placeholder="Enter Password" required>
 						  </div>
 						  <div class="col-xs-6">
-						    <input type="password" class="form-control" name="password-again" placeholder="Password Again" required>
+						    <input type="text" class="form-control" placeholder="Password Again" required>
 						  </div>
 					</div>
 					<div class="form-group" style="margin-right:0; margin-left:0;">
