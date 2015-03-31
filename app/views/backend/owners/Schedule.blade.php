@@ -143,7 +143,7 @@ margin-top: -4.5%;" class="btn btn-round btn-theme01 btn-danger"><i class="fa fa
 <div class="deleteall">
 {{ Form::open(array( 'route' => 'deleteallschedule','class'=>'form-horizontal row-fluid', 'method'=>'post')) }}
 			
-				<button type="submit" style="margin-left: 45%;" class="btn btn-round btn-theme01 "><i class="fa fa-exclamation-triangle ">Delete all Schedule</i> </button>
+				<button type="submit" style="margin-left: 42%;" class="btn btn-round btn-theme01 "><i class="fa fa-exclamation-triangle ">Delete all Schedule</i> </button>
 {{ Form::close() }}
 	
 </div>
