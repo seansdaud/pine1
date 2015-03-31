@@ -15,14 +15,15 @@ class CreateEventsTable extends Migration {
 		Schema::create("events", function($table){
 			$table->increments("id");
 			$table->text("name");
-			$table->integer('arena_id')->unsigned();
-			$table->foreign("arena_id")->references("id")->on("arenas");
+			$table->integer('owner_id')->unsigned();
+			$table -> foreign('owner_id')->references('id')->on('users');
 			$table->dateTime('start');
 			$table->dateTime("end");
 			$table->text("image");
 			$table->text("detail");
 			$table->integer('user_id')->unsigned();
-			$table->foreign("user_id")->references("id")->on("users");
+			$table -> foreign('user_id')->references('id')->on('users');
+			$table->timestamps();
 		});
 	}
 
