@@ -17,7 +17,7 @@
               	<div class="col-md-8">
                   	<div class="row">
                   		<div class="col-md-3">
-                  			<div class="schedule">Scheduler</div>
+                  			<div class="schedule">Schedules</div>
                   		</div>
                   	</div>
 

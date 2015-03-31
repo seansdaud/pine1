@@ -98,4 +98,82 @@ class Owner extends BaseController {
 		return View::make("backend.owners.profile", $data);
 	}
 
+	public function addArena(){
+		$data = array(
+			'title' => 'add-arena-info',
+			'id' => 'add-arena-info',
+			'info' => Arena::where("user_id", "=", Auth::user()->id)->get()
+		);
+		return View::make("backend.owners.add_arena",$data);
+	}
+	public function addingArena(){
+		$validator=Validator::make(Input::all(),
+			array(
+				'name'=>'required',
+				'address'=>'required',
+				'phone'=>'required'
+				)
+			);
+		if($validator->fails()){
+			return Redirect::route('add-arena-info')
+				->withErrors($validator);
+		}
+		else{
+				$name=Input::get('name');
+				$address=Input::get('address');
+				$phone=Input::get('phone');
+				$user= Auth::user()->id;
+				$about=Input::get('about');
+				$create=Arena::create(array(
+						'name'=>$name,
+						'address'=>$address,
+						'phone'=>$phone,
+						'about'=>$about,
+						'user_id'=>$user
+					));
+				if($create){
+					return Redirect::route('add-arena-info')
+						->with('global','arena-added');
+				}
+			}
+	}
+
+	public function editArena($arena){
+		$data = array(
+			'title' => 'edit-arena-info',
+			'id' => 'edit-arena-info',
+			'info' => Arena::where("id", "=", $arena)->firstOrFail()
+		);
+		return View::make("backend.owners.edit_arena", $data);
+	}
+
+	public function arenaInfoEdited(){
+		$validator=Validator::make(Input::all(),
+			array(
+				'name'=>'required',
+				'address'=>'required',
+				'phone'=>'required'
+				)
+			);
+		if($validator->fails()){
+			return Redirect::route('edit-arena-info',Input::get('arena_id'))
+				->withErrors($validator);
+		}
+		else{
+				$arena = Arena::where("id", "=", Input::get('arena_id'))->first();
+				$arena->name = Input::get("name");
+				$arena->address = Input::get("address");
+				$arena->phone = Input::get("phone");
+				$arena->about = Input::get("about");
+				if($arena->save()){
+					return Redirect::route('add-arena-info')
+				->with('success','edited successfully');
+				}
+				else{
+					return Redirect::route('edit-arena-info',Input::get('arena_id'))
+				->with('warning','Error!! Try again');
+				}
+			}
+	}
+
 }

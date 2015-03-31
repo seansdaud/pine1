@@ -26,24 +26,19 @@ Route::group(array("before" => "guest"), function() {
 	/*CSRF protection group*/
 	Route::group(array("before" => "csrf"), function() {
 
-		Route::post("/login", array(
-			'as' => 'login-post',
-			'uses' => 'AccountController@postLogin'
-		));
-
 		/*Register*/
 		Route::post("/register", array(
 			'as' => 'register-post',
 			'uses' => 'AccountController@postRegister'
 		));
 
-	});
+		/*Login*/
+		Route::post("/login", array(
+			"as" => "login-post",
+			"uses" => 'AccountController@postLogin'
+		));
 
-	/*Login*/
-	Route::get("/login", array(
-		'as' => 'login',
-		'uses' => 'AccountController@getLogin'
-	));
+	});
 
 	/*Register*/
 	Route::get("/register", array(
@@ -75,7 +70,11 @@ Route::group(array("before"=>"auth"), function() {
 		'uses' => 'AccountController@logout'
 	));
 
-	
+	/*User Profile (Keep this route at the end of this group)*/
+	Route::get("/{username}", array(
+		'as' => 'user-profile',
+		'uses' => 'UserController@getProfile'
+	));
 
 });
 
@@ -248,15 +247,30 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@deleteallschedule'
 		));	
 
-			
+		/* Post Events */
+		Route::post("/o/events", array(
+			'as' => "owner-events-post",
+			'uses' => "EventsController@postOwnerEvents"
+		));
+
+		Route::post("/o/addingArena", array(
+			'as' => 'add-arena-post',
+			'uses' => 'Owner@addingArena'
+		));	
+
+		/*arena info edited*/
+		Route::post("/o/arenaInfoEdited", array(
+			'as' => 'arena-info-edited',
+			'uses' => 'Owner@arenaInfoEdited'
+		));
 
 	});
 /*	Locator*/
-				Route::get("/getCurrent", array(
+				Route::get("/o/getCurrent", array(
 			'as' => 'getCurrent',
 			'uses' => 'ScheduleController@getCurrent'
 		));	
-						Route::get("/locator", array(
+						Route::get("/o/locator", array(
 			'as' => 'locator',
 			'uses' => 'ScheduleController@locator'
 		));	
@@ -265,11 +279,11 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'viewLog',
 			'uses' => 'ScheduleController@viewLog'
 		));	
-						Route::post("/o/getLog", array(
+				Route::post("/o/getLog", array(
 			'as' => 'getLog',
 			'uses' => 'ScheduleController@getLog'
 		));	
-							Route::get("/getLog", array(
+							Route::get("/o/getLog", array(
 			'as' => 'getLog',
 			'uses' => 'ScheduleController@viewLog'
 		));	
@@ -280,20 +294,20 @@ Route::group(array("before"=>"owner"), function() {
 		));	
 	/*
 	Next date Show*/
-			Route::get("/nextdate", array(
+			Route::get("/o/nextdate", array(
 		'as' => 'nextdate',
 		'uses' => 'ScheduleController@nextdate'
 	));	
 			/*
 	Prev date Show*/
-			Route::get("/prevdate", array(
+			Route::get("/o/prevdate", array(
 		'as' => 'prevdate',
 		'uses' => 'ScheduleController@prevdate'
 	));	
 
 
 	/*Search via Username*/
-		Route::post("/searchuser", array(
+		Route::post("/o/searchuser", array(
 		'as' => 'searchuser',
 		'uses' => 'ScheduleController@searchuser'
 	));	
@@ -314,16 +328,37 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'showSchedule',
 		'uses' => 'ScheduleController@showSchedule'
 	));	
-		Route::get("/booknow/{id}", array(
+		Route::get("/o/booknow/{id}", array(
 		'as' => 'booknow',
 		'uses' => 'ScheduleController@bookSchedule'
 	));	
-		
 
+	/* Get Events */
+	Route::get("/o/events", array(
+		'as' => "owner-events",
+		'uses' => "EventsController@getOwnerEvents"
+	));
+
+	Route::get("/o/new-event", array(
+		'as' => 'owner-event-new',
+		'uses' => 'EventsController@createNewEvent'
+	));
+		
+	//add arena	
+		Route::get("/o/add-arena-info", array(
+		'as' => 'add-arena-info',
+		'uses' => 'Owner@addArena'
+	));	
+		
 	// owner dashboard
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',
 		'uses' => 'owner@index'
+	));
+
+	Route::get("o/arena-edit/{arena}", array(
+		'as' => 'edit-arena-info',
+		'uses' => 'Owner@editArena'
 	));
 
 	// Owner Profile (Keep it at last !!important...............)

@@ -3,25 +3,26 @@
 		<div class="row">
 			<div class="col-md-offset-7 col-md-5">
 				@if(Auth::check())
+          <a href="{{ URL::route('user-profile', Auth::user()->username) }}"><span class="khoj">{{ Auth::user()->username }}</span></a>
 					<a href="{{ URL::route('logout') }}"><span class="khoj">Logout</span></a>
 				@else
             
               <div id="loginContainer">
-                <a href="#" id="loginButton"><span class="khoj">Login</span></a>
+                <a href="#" id="loginButton"><span class="khoj" style="color:white;">Login</span></a>
                 <div style="clear:both"></div>
                 <div id="loginBox">
                     {{ Form::open(array('route' => 'login-post', 'id' => 'loginForm', 'class' => 'form-horizontal', 'data-toggle' => 'validator')) }}
                         <div class="invalid"></div>
                         <div class="loading"><img src="{{ asset('assets/img/load.gif') }}"></div>
                         <fieldset id="body">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-left: 0px;">
                                 <input type="text" name="username" id="username" placeholder="Username" required autofocus>
-                                <div class="help-block with-errors"></div>
+                                <div class="help-block with-errors error-costum"></div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="margin-left: 0px;">
                                 <input type="password" name="password" id="password" placeholder="Password" required>
-                                <div class="help-block with-errors"></div>
+                                <div class="help-block with-errors error-costum"></div>
                             </div>
 
                             <input type="submit" id="login" value="Sign in" />
@@ -32,7 +33,7 @@
                 </div>
             </div>
 
-					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
+					<a href="{{ URL::route('register') }}"><span class="khoj" style="color:white;">Register</span></a>
 				@endif
 				<span id="wrap">
 				  <form action="" autocomplete="on">
