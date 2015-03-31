@@ -216,34 +216,34 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@addSchedule'
 		));
 			
-		Route::post("/postupdatePrice", array(
+		Route::post("/o/postupdatePrice", array(
 			'as' => 'postupdatePrice',
 			'uses' => 'ScheduleController@postupdatePrice'
 		));
 			/*	Book Schedular*/
-		Route::post("/prebookschedule/{id}", array(
+		Route::post("/o/prebookschedule/{id}", array(
 			'as' => 'prebookschedule',
 			'uses' => 'ScheduleController@prebookschedule'
 		));	
 		/*	Post Book Schedular*/
-			Route::post("/postbookschedule", array(
+			Route::post("/o/postbookschedule", array(
 			'as' => 'postbookschedule',
 			'uses' => 'ScheduleController@postbookschedule'
 		));
 				/*	Edit Schedular*/
-			Route::post("/addscheduledown", array(
+			Route::post("/o/addscheduledown", array(
 			'as' => 'addscheduledown',
 			'uses' => 'ScheduleController@addscheduledown'
 		));	
-			Route::post("/addscheduleup", array(
+			Route::post("/o/addscheduleup", array(
 			'as' => 'addscheduleup',
 			'uses' => 'ScheduleController@addscheduleup'
 		));	
-				Route::post("/delscheduledown", array(
+				Route::post("/o/delscheduledown", array(
 			'as' => 'delscheduledown',
 			'uses' => 'ScheduleController@delscheduledown'
 		));	
-				Route::post("/deleteallschedule", array(
+				Route::post("/o/deleteallschedule", array(
 			'as' => 'deleteallschedule',
 			'uses' => 'ScheduleController@deleteallschedule'
 		));	
@@ -261,11 +261,11 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@locator'
 		));	
 	/*	view Log*/
-				Route::get("/viewLog", array(
+				Route::get("/o/viewLog", array(
 			'as' => 'viewLog',
 			'uses' => 'ScheduleController@viewLog'
 		));	
-						Route::post("/getLog", array(
+						Route::post("/o/getLog", array(
 			'as' => 'getLog',
 			'uses' => 'ScheduleController@getLog'
 		));	
@@ -274,7 +274,7 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => 'ScheduleController@viewLog'
 		));	
 	/*	Pre Book Schedular*/
-		Route::get("/prebookschedule/{id}", array(
+		Route::get("/o/prebookschedule/{id}", array(
 			'as' => 'prebookschedule',
 			'uses' => 'ScheduleController@prebookschedule'
 		));	
@@ -304,13 +304,13 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'createschedule',
 		'uses' => 'ScheduleController@createSchedule'
 	));	
-			Route::get("/updatePrice", array(
+			Route::get("/o/updatePrice", array(
 		'as' => 'updatePrice',
 		'uses' => 'ScheduleController@updatePrice'
 	));	
 	/*		update price*/
 	
-			Route::get("/showSchedule", array(
+			Route::get("/o/showSchedule", array(
 		'as' => 'showSchedule',
 		'uses' => 'ScheduleController@showSchedule'
 	));	

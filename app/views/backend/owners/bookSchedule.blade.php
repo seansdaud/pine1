@@ -5,7 +5,7 @@
  @if($nos == 1)
  <h1 class="heading">Choose Username For Booking</h1>
 <div class="panel-body">
-	{{ Form::open(array('url' => 'prebookschedule/1','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
+	{{ Form::open(array('url' => '/o/prebookschedule/1','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
 		<div class="form-group ">
 			<label for="username">Provide valid Username:</label>
 		</div>

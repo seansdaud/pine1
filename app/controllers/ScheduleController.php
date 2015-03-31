@@ -97,8 +97,8 @@ class ScheduleController extends BaseController {
 		$search_content=Input::get('mem');
 				if ($search_content!=null) {
 
-				 $result = User::where('username', 'LIKE', '%'.$search_content.'%')->get();
-			 $result_count = User::where('username', 'LIKE', '%'.$search_content.'%')->count();
+				 $result = User::where('username', 'LIKE', '%'.$search_content.'%')->where('usertype', 1)->get();
+			 $result_count = User::where('username', 'LIKE', '%'.$search_content.'%')->where('usertype', 1)->count();
 				if($result_count!=null){
 				$suffix=($result_count != 1 )?'s':'';
 				$res= array();
@@ -208,7 +208,7 @@ class ScheduleController extends BaseController {
 					$schedule->booking_id=$book->id;
 					 $schedule->save(); 
 
-			 return Redirect::to('/showSchedule')->with("danger", "Schedule Booked!!");
+			 return Redirect::to('/o/showSchedule')->with("danger", "Schedule Booked!!");
 		
 	}
 	public function nextdate(){
@@ -302,14 +302,22 @@ class ScheduleController extends BaseController {
 					
 						 $schedule = new Schedule;
 					 $schedule->admin_id=$adminid;
-					$schedule->time_diff=Input::get('diff');
+					$schedule->time_diff=Input::get('diff')+1;
 					$schedule->start_time= $newstart;
 					$schedule->end_time =$newend;
 					$schedule->price = 0000;
 					$schedule->day=$j;
 						$schedule->booking=$numbering+1;
 					 $schedule->save(); 
+					
 			}
+			$variable= DB::table('schedules')->get();
+					  foreach ($variable as $key) {
+							$data = array(
+					'time_diff'=>Input::get('diff')+1
+					);
+						Schedule::where('id', $key->id)->update($data);
+						}
 			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Added!!");
 
 	}
@@ -323,6 +331,13 @@ class ScheduleController extends BaseController {
 	foreach ($variable as $key ) {
 		Schedule::where('id', $key->id )->delete();
 	}
+	$variable= DB::table('schedules')->get();
+					  foreach ($variable as $key) {
+							$data = array(
+					'time_diff'=>$key->time_diff-1
+					);
+						Schedule::where('id', $key->id)->update($data);
+						}
 		 return Redirect::to('/o/createschedule')->with("danger", "Schedule Deleted!");
 	}
 	public function addscheduleup(){
@@ -372,6 +387,13 @@ class ScheduleController extends BaseController {
 						$schedule->booking=$numbering-1;
 					 $schedule->save(); 
 			}
+			$variable= DB::table('schedules')->get();
+					  foreach ($variable as $key) {
+							$data = array(
+					'time_diff'=>Input::get('diff')+1
+					);
+						Schedule::where('id', $key->id)->update($data);
+						}
 			 return Redirect::to('/o/createschedule')->with("danger", "Schedule Added!!");
 
 	}
@@ -447,7 +469,7 @@ $result = Marker::select(
            ->orderBy("distances")
            
                 ->get();
-	print_r(	json_encode($result));
+	print_r(json_encode($result));
 	}
 
 }
