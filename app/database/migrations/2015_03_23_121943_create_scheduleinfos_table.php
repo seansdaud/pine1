@@ -19,7 +19,7 @@ class CreateScheduleinfosTable extends Migration {
 			$table->string('end_time');
 			$table->integer('booking_id');
 			$table->integer('day');
-			$table->decimal('price', 10, 10);
+			$table->integer('price');
 			$table->timestamps();
 		});
 	}
