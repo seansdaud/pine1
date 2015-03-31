@@ -53,6 +53,12 @@ Route::group(array("before" => "guest"), function() {
 			"uses" => 'AccountController@postLogin'
 		));
 
+		/*Check Duplicate Users*/
+		Route::post("/check-duplicate-users", array(
+			"as" => "check-duplicate-users",
+			"uses" => "AccountController@checkUsers"
+		));
+
 	});
 
 	/*Register*/
