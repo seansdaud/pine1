@@ -682,3 +682,29 @@ section {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
 }
+.arena-thumb{
+      width: 200px;
+  height: 175px;
+  border-radius: 50%;
+  border: 3px solid rgb(222, 222, 222);
+  margin: 0 auto;
+  display: block;
+}
+.btn-more{
+    float: right;
+    margin-top: -10px;
+}
+.arena-name{
+  color: rgb(244, 60, 18);
+  z-index: 1;
+  top: 12px;
+  left: 20px;
+  padding: 4px 9px;
+  font-family: 'Bangers', cursive;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+.form-group {
+   margin-right: 0px !important; 
+   margin-left: 0px !important; 
+}
