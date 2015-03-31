@@ -52,6 +52,7 @@
   display: inline-block;
   font-size: 17px;
   border-right: 1px dashed rgb(98, 92, 92);
+  color: white;
 }
 .schedule{
 	font-family: 'Ropa Sans', sans-serif;

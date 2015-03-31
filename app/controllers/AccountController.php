@@ -3,10 +3,6 @@
 
 class AccountController extends BaseController {
 
-	public function getLogin(){
-		return View::make('frontend.login')->with('title', "Login");
-	}
-
 	public function postLogin(){
 		$remember = (Input::has('remember')) ? true : false;
 
@@ -41,7 +37,11 @@ class AccountController extends BaseController {
 	}
 
 	public function getRegister(){
-		return View::make('frontend.register')->with('title', 'register');
+		$data = array(
+			'id' => 'register',
+			'title' => 'register'
+		);
+		return View::make('frontend.register', $data);
 	}
 
 	public function postRegister(){

@@ -8,7 +8,7 @@
 				@else
             
               <div id="loginContainer">
-                <a href="#" id="loginButton"><span class="khoj" style="color:white;">Login</span></a>
+                <a href="#" id="loginButton"><span class="khoj">Login</span></a>
                 <div style="clear:both"></div>
                 <div id="loginBox">
                     {{ Form::open(array('route' => 'login-post', 'id' => 'loginForm', 'class' => 'form-horizontal', 'data-toggle' => 'validator')) }}
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-					<a href="{{ URL::route('register') }}"><span class="khoj" style="color:white;">Register</span></a>
+					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
 				@endif
 				<span id="wrap">
 				  <form action="" autocomplete="on">
@@ -60,9 +60,9 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{URL::route('home')}}">HOME</a></li>
-      <li><a href="#">ARENAS</a></li>
-      <li><a href="#">BOOKING</a></li>
-      <li><a href="#">ABOUT</a></li>
+      <li><a href="{{ URL::route('arenas') }}">ARENAS</a></li>
+      <li><a href="{{ URL::route('about') }}">ABOUT</a></li>
+      <li><a href="{{ URL::route('contact') }}">CONTACT</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>

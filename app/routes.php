@@ -18,6 +18,21 @@ Route::get('/', array(
 
 ));
 
+Route::get("/arenas", array(
+	'as' => 'arenas',
+	'uses' => 'SiteController@arenas'
+));
+
+Route::get("/about", array(
+	'as' => 'about',
+	'uses' => 'SiteController@about'
+));
+
+Route::get("/contact", array(
+	'as' => 'contact',
+	'uses' => 'SiteController@contact'
+));
+
 
 /*Unauthenticated group*/
 
@@ -68,12 +83,6 @@ Route::group(array("before"=>"auth"), function() {
 	Route::get("/logout", array(
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
-	));
-
-	/*User Profile (Keep this route at the end of this group)*/
-	Route::get("/{username}", array(
-		'as' => 'user-profile',
-		'uses' => 'UserController@getProfile'
 	));
 
 });
@@ -367,3 +376,9 @@ Route::group(array("before"=>"owner"), function() {
 	));
 
 });
+
+/*User Profile (Keep this route at the end (V.V. important))*/
+Route::get("/{username}", array(
+	'as' => 'user-profile',
+	'uses' => 'UserController@getProfile'
+));
