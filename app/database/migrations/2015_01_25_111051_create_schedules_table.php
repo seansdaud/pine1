@@ -20,7 +20,7 @@ class CreateSchedulesTable extends Migration {
 			$table->integer('time_diff');
 			$table->integer('admin_id');
 			$table->integer('day');
-			$table->decimal('price', 10, 10);
+			$table->integer('price');
 			$table->integer('book_status');
 			$table->integer('booking');
 			$table->timestamps();

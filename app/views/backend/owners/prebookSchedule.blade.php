@@ -21,7 +21,7 @@
 	</div>
 <div class="id"></div>
 <div class="bookname"<div class="bookname" style=" font-size: 266%; color: maroon; margin-top: -3%; margin-left: 34%;">
-Booking for<?php echo Session::get('usersname'); ?></div>
+Booking for <?php echo Session::get('usersname'); ?></div>
 <div class="panel-body tabbody">
 						<table name='table'  class='table detailtable  table-striped table-hover' border="3" width="100%">
 
