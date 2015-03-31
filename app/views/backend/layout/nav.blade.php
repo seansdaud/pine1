@@ -91,11 +91,11 @@
                         <li><a  href="{{ URL::route('booknow', 2) }}">Via New Name</a></li>
                     </ul>
                 </li>
-                
+
                  <li class="sub-menu">
                     <a  href="{{ URL::route('add-arena-info') }}">
                         <i class="fa fa-futbol-o"></i>
-                        <span>Add Arena</span>
+                        <span>Arena</span>
                     </a>
                 </li>
 

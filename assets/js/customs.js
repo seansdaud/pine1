@@ -18,7 +18,7 @@ $('input[name=create]').click(function(){
 		var end= $('input[name=end_time]').val();
 function timeDiff( first, second ) {
     var f = first.split(':'), s = second.split(':');
-    if( first == '12:00am' ) f[0] = '0';
+    if( first == '12:00am' ) f[0] = '00';
     if( first == '12:00pm' ) f[1] = 'am';
     if( second == '12:00am' ) s[0] = '24';
     if( second == '12:00pm' ) s[1] = 'am';
@@ -33,10 +33,10 @@ function newstart(first){
    	 if( first == '11:00pm' ) f[1] = '00am';
      if( first == '11:00am' ) f[1] = '00pm';
       if( first == '12:00pm' ) {
-      	f[0] = '01';
+      	f[0] = '1';
       }
       else if( first == '12:00am' ) {
-      	f[0] = '01';
+      	f[0] = '1';
       }
       else{
       	  f[0] = parseInt( f[0], 10 ) + 1;
@@ -194,7 +194,7 @@ function update_ajax(){
 		var form_data = $("#myform1").serialize();
 		$.ajax({
      		type: "POST",
-          	url: base_url+'/postupdatePrice',
+          	url: base_url+'/o/postupdatePrice',
           	data: form_data,
           	dataType: 'json',
           	  success:function(data){ 
@@ -633,3 +633,18 @@ $(".select-owner").select2({
 
 $(".select-arena").select2({allowClear: true});
 $(".select-master").select2({allowClear: true});
+
+$("#add-arena-form").hide();
+$("#add-arena-form-close").hide();
+$("#add-arena-form-open").on("click", function(e){
+	e.preventDefault();
+	$("#add-arena-form").slideDown();
+	$("#add-arena-form-open").hide();
+	$("#add-arena-form-close").show();
+});
+$("#add-arena-form-close").on("click", function(e){
+	e.preventDefault();
+	$("#add-arena-form").slideUp();
+	$("#add-arena-form-open").show();
+	$("#add-arena-form-close").hide();
+});
