@@ -95,7 +95,7 @@
                  <li class="sub-menu">
                     <a  href="{{ URL::route('add-arena-info') }}">
                         <i class="fa fa-futbol-o"></i>
-                        <span>Arena</span>
+                        <span>Update Arena</span>
                     </a>
                 </li>
 
