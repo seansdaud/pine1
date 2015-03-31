@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ $title }}</title>
+	<title>
+		@if(!empty($title))
+			<?php $heading = explode(" ", $title); ?>
+			@foreach($heading as $head)
+				{{ ucfirst($head) }}
+			@endforeach
+			| Futsal Nepal
+		@else
+			Futsal Nepal
+		@endif
+	</title>
 	{{ HTML::style('assets/css/bootstrap.css') }}
 	{{ HTML::style('assets/css/style1.css') }}
 	{{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
 </head>
-<body>
+<body id="{{ $id }}">
 	<div class="container-fluid" style="padding-left:0; padding-right:0;">
 		@include('frontend.layout.nav')
 		<div class="container">

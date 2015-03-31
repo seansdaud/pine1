@@ -66,7 +66,7 @@ function showPosition(position) {
 
     	$.ajax({
      		type: "GET",
-          	url: base_url+'/getCurrent',
+          	url: base_url+'/o/getCurrent',
           	data: {
           		lat:position.coords.latitude,
           		lng:position.coords.longitude,

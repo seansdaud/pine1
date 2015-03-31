@@ -17,6 +17,25 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
+	// getLatestMap
+		Route::get("/getCurrent", array(
+			'as' => 'getCurrenthome',
+			'uses' => 'SiteController@getCurrent'
+		));	
+Route::get("/arenas", array(
+	'as' => 'arenas',
+	'uses' => 'SiteController@arenas'
+));
+
+Route::get("/about", array(
+	'as' => 'about',
+	'uses' => 'SiteController@about'
+));
+
+Route::get("/contact", array(
+	'as' => 'contact',
+	'uses' => 'SiteController@contact'
+));
 
 
 /*Unauthenticated group*/
@@ -37,8 +56,11 @@ Route::group(array("before" => "guest"), function() {
 			"as" => "login-post",
 			"uses" => 'AccountController@postLogin'
 		));
+	
 
 	});
+	
+		
 
 	/*Register*/
 	Route::get("/register", array(
@@ -68,12 +90,6 @@ Route::group(array("before"=>"auth"), function() {
 	Route::get("/logout", array(
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
-	));
-
-	/*User Profile (Keep this route at the end of this group)*/
-	Route::get("/{username}", array(
-		'as' => 'user-profile',
-		'uses' => 'UserController@getProfile'
 	));
 
 });
@@ -262,14 +278,18 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'add-arena-post',
 			'uses' => 'Owner@addingArena'
 		));	
-		//image-upload post
-		Route::post("/o/uploaded", array(
-			'as' => 'image-upload-post',
-			'uses' => 'Owner@imageUploaded'
-		));	
 
 	});
 /*	Locator*/
+
+Route::get("/o/marker-update", array(
+			'as' => 'marker-update',
+			'uses' => 'owner@markerUpdate'
+		));	
+Route::post("/o/createMaps", array(
+			'as' => 'createMaps',
+			'uses' => 'owner@createMaps'
+		));	
 				Route::get("/o/getCurrent", array(
 			'as' => 'getCurrent',
 			'uses' => 'ScheduleController@getCurrent'
@@ -358,11 +378,7 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'add-arena-info',
 		'uses' => 'Owner@addArena'
 	));	
-	//upload image	
-		Route::get("/o/upload-image", array(
-		'as' => 'upload-image',
-		'uses' => 'Owner@uploadImage'
-	));	
+
 		
 	// owner dashboard
 	Route::get("/o/dashboard", array(
@@ -377,3 +393,9 @@ Route::group(array("before"=>"owner"), function() {
 	));
 
 });
+
+/*User Profile (Keep this route at the end (V.V. important))*/
+Route::get("/{username}", array(
+	'as' => 'user-profile',
+	'uses' => 'UserController@getProfile'
+));

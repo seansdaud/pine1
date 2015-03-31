@@ -31,7 +31,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function arenas(){
 		return $this->hasMany("Arena");
 	}
-	
+	function marker(){
+		return $this->hasOne('Marker');
+
+	}
 	public function eventManager(){
 		return $this->hasMany("Events");
 	}

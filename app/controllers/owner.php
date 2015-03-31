@@ -149,31 +149,39 @@ class Owner extends BaseController {
 				}
 			}
 	}
-	public function uploadImage(){
-		$data = array(
-				'title' => 'img',
-				'id' => 'img'
-			);
-		return View::make("backend.owners.upload_image",$data);
+		public function markerUpdate(){
+
+			$adminid = Auth::id();
+			$data = array(
+			'title' => 'Update Maps',
+			'id' => 'maps',
+			'info' =>Marker::where("admin_id", $adminid)->get()
+		);
+		return View::make("backend.owners.updatemarker",$data)->with("title", "Edit Maps");
+
 	}
-
-	public function imageUploaded(){
-		$file = Input::file('image');
-		$ext = $file->getClientOriginalExtension();
-		$name = uniqid().".".$ext;
-		$upload = $file->move("assets/img/arena", $name);
-		$img = Image::make('assets/img/arena/'.$name);
-		$img->resize(300, null, function ($constraint) {
-		    $constraint->aspectRatio();
-		})->save("assets/img/arena/".$name);
-
-		if($upload){
-				return Redirect::route("upload-image")->with("success","updated");
+	public function createMaps(){
+			$adminid = Auth::id();
+		$get=Marker::where("admin_id", "=", $adminid)->get();
+		if ($get->isEmpty()) {
+			$mark= new Marker;
+			$mark->lat=Input::get("lat");
+			$mark->lng=Input::get("lng");
+			$mark->map=Input::get("iframe");
+			$mark->admin_id=$adminid;
+			if($mark->save()){
+					return Redirect::route('marker-update')->with('warning','Updated Map');
+				}
 		}
-
 		else{
-			return Redirect::route("upload-image")->with("warning","updated");
+				$data = array(
+			'lat'=>Input::get("lat"),
+			'lng'=>Input::get("lng"),
+			'map'=>Input::get("iframe")
+					);
+						Marker::where('admin_id', Auth::id())->update($data);
 		}
+		return Redirect::route('marker-update')->with('warning','Updated Map');
 	}
 
 }

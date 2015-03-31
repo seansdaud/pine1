@@ -1,7 +1,7 @@
 @extends('frontend.layout.main')
 
 @section('content')
-	{{ Form::open(array('route' => 'register-post', 'class'=>'form-horizontal')) }}
+	{{ Form::open(array('route' => 'register-post', 'class'=>'form-horizontal', 'data-toggle' => 'validator')) }}
 		<div class="row" style="margin: 20px auto;">
 		<div class="col-md-8">
 		<div class="reg">Registration >></div>
@@ -9,9 +9,10 @@
 				<div class="form-wrapper">
 					<div class="personal-info">Personal Info</div>
 					<div style="  background: rgb(244, 60, 18); height: 4px; margin-bottom: 10px;"></div>
-					<div class="form-group" style="margin-right:0; margin-left:0;">
+					<div class="form-group">
 						<label for="name">Full Name</label>
-						<input type="text" class="form-control" name="name" value="" placeholder="Enter Full Name" required>
+						<input type="text" class="form-control" id="name" name="name" value="" placeholder="Enter Full Name" required>
+						<span class="help-block with-errors"></span>
 					</div>
 					<div class="row">
 						  <div class="col-xs-6">
@@ -23,26 +24,38 @@
 					</div>
 					<div class="row">
 						  <div class="col-xs-6">
-						    <input type="text" class="form-control" name="username" value="" placeholder="Enter Username" required>
+						  	<div class="form-group">
+						  		<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+						  		<span class="help-block with-errors"></span>
+						  	</div>
 						  </div>
 						  <div class="col-xs-6">
-						    <input type="text" class="form-control" name="email" value="" placeholder="Enter Email" required>
+						  	<div class="form-group">
+						  		<input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+						  		<span class="help-block with-errors"></span>
+						  	</div>
 						  </div>
 					</div>
 					<div class="row" style="margin-top:10px;">
 						  <div class="col-xs-6">
-						    <label for="username">Password</label>
+						    <label for="password">Password</label>
 						  </div>
 						  <div class="col-xs-6">
-						    <label for="email">Confirm Password</label>
+						    <label for="confirm-password">Confirm Password</label>
 						  </div>
 					</div>
 					<div class="row">
 						  <div class="col-xs-6">
-						    <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+						  	<div class="form-group">
+						  		<input type="password" id="password" class="form-control" name="password" placeholder="Enter Password" data-minlength="6" required>
+						  		<span class="help-block with-errors">At least 6 characters</span>
+						  	</div>
 						  </div>
 						  <div class="col-xs-6">
-						    <input type="password" class="form-control" name="password-again" placeholder="Password Again" required>
+						  	<div class="form-group">
+						  		<input type="password" id="confirm-password" class="form-control" name="password-again" data-match="#password" placeholder="Password Again" required>
+						  		<span class="help-block with-errors"></span>
+						  	</div>
 						  </div>
 					</div>
 
@@ -51,18 +64,24 @@
 					<div style="  background: rgb(244, 60, 18); height: 4px; margin-bottom: 10px;"></div>
 					<div class="row">
 						  <div class="col-xs-6">
-						    <label for="username">Address</label>
+						    <label for="address">Address</label>
 						  </div>
 						  <div class="col-xs-6">
-						    <label for="email">Contact No</label>
+						    <label for="contact">Contact No</label>
 						  </div>
 					</div>
 					<div class="row">
 						  <div class="col-xs-6">
-						    <input type="text" class="form-control"  placeholder="Enter Password" required>
+						  	<div class="form-group">
+						  		<input type="text" id="address" class="form-control" name="address" placeholder="Enter Address" required>
+						  		<span class="help-block with-errors"></span>
+						  	</div>
 						  </div>
 						  <div class="col-xs-6">
-						    <input type="text" class="form-control" placeholder="Password Again" required>
+						  	<div class="form-group">
+						  		<input type="number" data-minlength="9" maxlength="10" id="contact" class="form-control" name="contact" placeholder="Mobile / Phone Number" required>
+						  		<span class="help-block with-errors"></span>
+						  	</div>
 						  </div>
 					</div>
 					<div class="form-group" style="margin-right:0; margin-left:0;">
