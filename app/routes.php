@@ -262,6 +262,11 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'add-arena-post',
 			'uses' => 'Owner@addingArena'
 		));	
+		//image-upload post
+		Route::post("/o/uploaded", array(
+			'as' => 'image-upload-post',
+			'uses' => 'Owner@imageUploaded'
+		));	
 
 	});
 /*	Locator*/
@@ -352,6 +357,11 @@ Route::group(array("before"=>"owner"), function() {
 		Route::get("/o/add-arena-info", array(
 		'as' => 'add-arena-info',
 		'uses' => 'Owner@addArena'
+	));	
+	//upload image	
+		Route::get("/o/upload-image", array(
+		'as' => 'upload-image',
+		'uses' => 'Owner@uploadImage'
 	));	
 		
 	// owner dashboard

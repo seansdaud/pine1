@@ -149,5 +149,31 @@ class Owner extends BaseController {
 				}
 			}
 	}
+	public function uploadImage(){
+		$data = array(
+				'title' => 'img',
+				'id' => 'img'
+			);
+		return View::make("backend.owners.upload_image",$data);
+	}
+
+	public function imageUploaded(){
+		$file = Input::file('image');
+		$ext = $file->getClientOriginalExtension();
+		$name = uniqid().".".$ext;
+		$upload = $file->move("assets/img/arena", $name);
+		$img = Image::make('assets/img/arena/'.$name);
+		$img->resize(300, null, function ($constraint) {
+		    $constraint->aspectRatio();
+		})->save("assets/img/arena/".$name);
+
+		if($upload){
+				return Redirect::route("upload-image")->with("success","updated");
+		}
+
+		else{
+			return Redirect::route("upload-image")->with("warning","updated");
+		}
+	}
 
 }

@@ -21,7 +21,7 @@ class Admin extends BaseController {
 
 	public function postProfilePic(){
 		$file = Input::file('image');
-		$ext = $extension = Input::file('image')->getClientOriginalExtension();
+		$ext = Input::file('image')->getClientOriginalExtension();
 		$name = uniqid().".".$ext;
 		$upload = Input::file('image')->move("assets/img/profile", $name);
 		$img = Image::make('assets/img/profile/'.$name);
