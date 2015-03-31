@@ -18,7 +18,7 @@ $('input[name=create]').click(function(){
 		var end= $('input[name=end_time]').val();
 function timeDiff( first, second ) {
     var f = first.split(':'), s = second.split(':');
-    if( first == '12:00am' ) f[0] = '0';
+    if( first == '12:00am' ) f[0] = '00';
     if( first == '12:00pm' ) f[1] = 'am';
     if( second == '12:00am' ) s[0] = '24';
     if( second == '12:00pm' ) s[1] = 'am';
@@ -33,10 +33,10 @@ function newstart(first){
    	 if( first == '11:00pm' ) f[1] = '00am';
      if( first == '11:00am' ) f[1] = '00pm';
       if( first == '12:00pm' ) {
-      	f[0] = '01';
+      	f[0] = '1';
       }
       else if( first == '12:00am' ) {
-      	f[0] = '01';
+      	f[0] = '1';
       }
       else{
       	  f[0] = parseInt( f[0], 10 ) + 1;
@@ -194,7 +194,7 @@ function update_ajax(){
 		var form_data = $("#myform1").serialize();
 		$.ajax({
      		type: "POST",
-          	url: base_url+'/postupdatePrice',
+          	url: base_url+'/o/postupdatePrice',
           	data: form_data,
           	dataType: 'json',
           	  success:function(data){ 
@@ -229,7 +229,7 @@ $("#searchmem").keyup(function(){
 
 			$.ajax({
 				type:'POST',
-					url: url+'/searchuser',
+					url: url+'/o/searchuser',
 				data:{
 					mem:mem
 				},
@@ -563,7 +563,7 @@ $(document).ready(function(){
     	var forwho = $('#for').val();
 			$.ajax({
 				type:'GET',
-					url: url+'/nextdate',
+					url: url+'/o/nextdate',
 				data:{
 					day:day,
 					date:date,
@@ -596,7 +596,7 @@ $(document).ready(function(){
 var forwho = $('#for').val();
 			$.ajax({
 				type:'GET',
-					url: url+'/prevdate',
+					url: url+'/o/prevdate',
 				data:{
 					day:day,
 					date:date,

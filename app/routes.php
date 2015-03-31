@@ -284,7 +284,6 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'viewLog',
 			'uses' => 'ScheduleController@viewLog'
 		));	
-
 				Route::post("/o/getLog", array(
 			'as' => 'getLog',
 			'uses' => 'ScheduleController@getLog'
