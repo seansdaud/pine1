@@ -27,7 +27,7 @@
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   color: #333;
-  background-color: #676161;
+  background-color: #696D7B;
 }
 .navbar-default .navbar-nav > li > a {
   color: #EAEAEA !important;
@@ -257,7 +257,7 @@ body {
 
 
 .responsive-table {
-  background: #34495E;
+  /*background: #34495E;*/
   color: #fff;
   border-radius: .4em;
   overflow: hidden;
