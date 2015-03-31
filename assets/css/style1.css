@@ -682,3 +682,8 @@ section {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
 }
+
+.alert{
+  margin-bottom: 0px !important;
+  border-radius: 0px !important;
+}
