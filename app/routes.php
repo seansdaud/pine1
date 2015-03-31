@@ -22,6 +22,21 @@ Route::get('/', array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+Route::get("/arenas", array(
+	'as' => 'arenas',
+	'uses' => 'SiteController@arenas'
+));
+
+Route::get("/about", array(
+	'as' => 'about',
+	'uses' => 'SiteController@about'
+));
+
+Route::get("/contact", array(
+	'as' => 'contact',
+	'uses' => 'SiteController@contact'
+));
+
 
 /*Unauthenticated group*/
 
@@ -75,12 +90,6 @@ Route::group(array("before"=>"auth"), function() {
 	Route::get("/logout", array(
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
-	));
-
-	/*User Profile (Keep this route at the end of this group)*/
-	Route::get("/{username}", array(
-		'as' => 'user-profile',
-		'uses' => 'UserController@getProfile'
 	));
 
 });
@@ -260,16 +269,15 @@ Route::group(array("before"=>"owner"), function() {
 			'uses' => "EventsController@postOwnerEvents"
 		));
 
+		Route::post("/o/edit-event", array(
+			'as' => 'owner-event-edit-post',
+			'uses' => 'EventsController@editOwnerEventPost'
+		));
+
 		Route::post("/o/addingArena", array(
 			'as' => 'add-arena-post',
 			'uses' => 'Owner@addingArena'
 		));	
-
-		/*arena info edited*/
-		Route::post("/o/arenaInfoEdited", array(
-			'as' => 'arena-info-edited',
-			'uses' => 'Owner@arenaInfoEdited'
-		));
 
 	});
 /*	Locator*/
@@ -359,6 +367,11 @@ Route::post("/o/createMaps", array(
 		'as' => 'owner-event-new',
 		'uses' => 'EventsController@createNewEvent'
 	));
+
+	Route::get("/o/edit-event/{id}", array(
+		'as' => 'owner-event-edit',
+		'uses' => 'EventsController@editOwnerEvent'
+	));
 		
 	//add arena	
 		Route::get("/o/add-arena-info", array(
@@ -372,11 +385,6 @@ Route::post("/o/createMaps", array(
 		'uses' => 'owner@index'
 	));
 
-	Route::get("o/arena-edit/{arena}", array(
-		'as' => 'edit-arena-info',
-		'uses' => 'Owner@editArena'
-	));
-
 	// Owner Profile (Keep it at last !!important...............)
 	Route::get("o/{owner}", array(
 		'as' => 'owner-profile',
@@ -384,3 +392,9 @@ Route::post("/o/createMaps", array(
 	));
 
 });
+
+/*User Profile (Keep this route at the end (V.V. important))*/
+Route::get("/{username}", array(
+	'as' => 'user-profile',
+	'uses' => 'UserController@getProfile'
+));

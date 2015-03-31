@@ -99,11 +99,26 @@ class Owner extends BaseController {
 	}
 
 	public function addArena(){
-		$data = array(
-			'title' => 'add-arena-info',
-			'id' => 'add-arena-info',
-			'info' => Arena::where("user_id", "=", Auth::user()->id)->get()
-		);
+		$arena=Arena::where("user_id", "=", Auth::user()->id)->get();
+		if(!($arena->isEmpty())){
+				$data = array(
+				'title' => 'add-arena-info',
+				'id' => 'add-arena-info',
+				'info'=>$arena[0]
+			);
+		}
+		else{
+				$create = Arena::create(
+				array(
+					'name' => Auth::user()->name,
+					'address' =>'',
+					'phone' => '',
+					'about' => '',
+					'user_id' => Auth::user()->id
+				)
+			);
+			return Redirect::route("add-arena-info");
+		}
 		return View::make("backend.owners.add_arena",$data);
 	}
 	public function addingArena(){
@@ -119,58 +134,17 @@ class Owner extends BaseController {
 				->withErrors($validator);
 		}
 		else{
-				$name=Input::get('name');
-				$address=Input::get('address');
-				$phone=Input::get('phone');
-				$user= Auth::user()->id;
-				$about=Input::get('about');
-				$create=Arena::create(array(
-						'name'=>$name,
-						'address'=>$address,
-						'phone'=>$phone,
-						'about'=>$about,
-						'user_id'=>$user
-					));
-				if($create){
-					return Redirect::route('add-arena-info')
-						->with('global','arena-added');
-				}
-			}
-	}
-
-	public function editArena($arena){
-		$data = array(
-			'title' => 'edit-arena-info',
-			'id' => 'edit-arena-info',
-			'info' => Arena::where("id", "=", $arena)->firstOrFail()
-		);
-		return View::make("backend.owners.edit_arena", $data);
-	}
-
-	public function arenaInfoEdited(){
-		$validator=Validator::make(Input::all(),
-			array(
-				'name'=>'required',
-				'address'=>'required',
-				'phone'=>'required'
-				)
-			);
-		if($validator->fails()){
-			return Redirect::route('edit-arena-info',Input::get('arena_id'))
-				->withErrors($validator);
-		}
-		else{
-				$arena = Arena::where("id", "=", Input::get('arena_id'))->first();
+				$arena = Arena::where("user_id", "=", Auth::user()->id)->first();
 				$arena->name = Input::get("name");
 				$arena->address = Input::get("address");
 				$arena->phone = Input::get("phone");
 				$arena->about = Input::get("about");
 				if($arena->save()){
 					return Redirect::route('add-arena-info')
-				->with('success','edited successfully');
+				->with('success','updated successfully');
 				}
 				else{
-					return Redirect::route('edit-arena-info',Input::get('arena_id'))
+					return Redirect::route('add-arena-info')
 				->with('warning','Error!! Try again');
 				}
 			}
