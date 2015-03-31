@@ -112,6 +112,14 @@
                         <span>Events</span>
                     </a>
                 </li>
+                   <li class="sub-menu">
+                    <a  href="{{ URL::route('marker-update') }}">
+                        <i class="fa fa-calendar-o"></i>
+                        <span>Maps</span>
+                    </a>
+                </li>
+                
+
             @endif
 
         </ul>
