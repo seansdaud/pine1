@@ -229,7 +229,7 @@ $("#searchmem").keyup(function(){
 
 			$.ajax({
 				type:'POST',
-					url: url+'/searchuser',
+					url: url+'/o/searchuser',
 				data:{
 					mem:mem
 				},
@@ -563,7 +563,7 @@ $(document).ready(function(){
     	var forwho = $('#for').val();
 			$.ajax({
 				type:'GET',
-					url: url+'/nextdate',
+					url: url+'/o/nextdate',
 				data:{
 					day:day,
 					date:date,
@@ -596,7 +596,7 @@ $(document).ready(function(){
 var forwho = $('#for').val();
 			$.ajax({
 				type:'GET',
-					url: url+'/prevdate',
+					url: url+'/o/prevdate',
 				data:{
 					day:day,
 					date:date,
