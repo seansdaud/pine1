@@ -22,12 +22,12 @@
 							<span class="change-icon"><i class="fa fa-pencil"></i></span>
 							<input type="file" name="image" id="change-profile-pic" accept="image/gif, image/jpeg, image/png" required/>
 						</a>
+						<input type="hidden" value="admin-profile" name="profile">
 					{{ Form::close() }}
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<div class="col-lg-8 col-md-8 col-sm-8">
 		<!-- Username -->
 		<div class="showback">

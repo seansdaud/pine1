@@ -37,6 +37,35 @@ Route::get("/contact", array(
 	'uses' => 'SiteController@contact'
 ));
 
+Route::group(array("before" => "csrf"), function() {
+
+	Route::post("/c/change-profile-pic", array(
+		'as' => 'change-admin-profile-picture',
+		'uses' => 'admin@postProfilePic'
+	));
+
+	Route::post("/c/change-username", array(
+		'as' => 'change-admin-username',
+		'uses' => 'admin@postAdminUsername'
+	));
+
+	Route::post("/c/change-email", array(
+		'as' => 'change-admin-email',
+		'uses' => 'admin@postAdminEmail'
+	));
+
+	Route::post("/c/change-name", array(
+		'as' => 'change-admin-name',
+		'uses' => 'admin@postAdminName'
+	));
+
+	Route::post("/c/change-password", array(
+		'as' => 'change-admin-password',
+		'uses' => 'admin@postAdminPassword'
+	));
+
+});
+
 
 /*Unauthenticated group*/
 
@@ -104,31 +133,6 @@ Route::group(array("before"=>"admin"), function() {
 
 	/*CSRF Protection*/
 	Route::group(array("before" => "csrf"), function() {
-
-		Route::post("/a/change-profile-pic", array(
-			'as' => 'change-admin-profile-picture',
-			'uses' => 'admin@postProfilePic'
-		));
-
-		Route::post("/a/change-username", array(
-			'as' => 'change-admin-username',
-			'uses' => 'admin@postAdminUsername'
-		));
-
-		Route::post("/a/change-email", array(
-			'as' => 'change-admin-email',
-			'uses' => 'admin@postAdminEmail'
-		));
-
-		Route::post("/a/change-name", array(
-			'as' => 'change-admin-name',
-			'uses' => 'admin@postAdminName'
-		));
-
-		Route::post("/a/change-password", array(
-			'as' => 'change-admin-password',
-			'uses' => 'admin@postAdminPassword'
-		));
 
 		/*Add New Owner view*/
 		Route::post("/a/new-owner-post", array(

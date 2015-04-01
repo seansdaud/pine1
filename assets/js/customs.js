@@ -361,7 +361,22 @@ var now=parseInt(today) ;
  $("#arenas .sidebar-menu li:contains('Arenas')").addClass('active');
 
  //Owners
- $("#schedular .sidebar-menu li a:contains('Create Schedular')").addClass('active');
+ $("#schedular .sidebar-menu li a:contains('Schedular')").addClass('active');
+ $("#schedular .sidebar-menu li:contains('Create')").addClass('active');
+ $("#schedular .sidebar-menu li:contains('Edit')").addClass('active');
+
+ $("#updateschedular .sidebar-menu li a:contains('Schedular')").addClass('active');
+$("#updateschedular .sidebar-menu li:contains('Update')").addClass('active');
+
+$("#showschedular .sidebar-menu li a:contains('Schedular')").addClass('active');
+$("#showschedular .sidebar-menu li:contains('View')").addClass('active');
+
+ $("#book .sidebar-menu li a:contains('Book Now')").addClass('active');
+ $("#book .sidebar-menu li:contains('Via Username')").addClass('active');
+ $("#add-arena-info .sidebar-menu li a:contains('Update Arena')").addClass('active');
+ $("#log .sidebar-menu li a:contains('View Log')").addClass('active');
+ $("#events .sidebar-menu li a:contains('Events')").addClass('active');
+ $("#maps .sidebar-menu li a:contains('Maps')").addClass('active');
 
 /*Admin profile info change*/
 $(".form-inline").hide();
