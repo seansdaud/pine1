@@ -2,9 +2,14 @@
   <div class="row">
                       <div class="col-md-3">
                         <div class="schedule">Schedules</div>
+
                       </div>
+
                     </div>
    <div style="border-bottom: 4px solid #F43C12;"></div>
+    <div>
+        <div class="schedule" style="margin-left: 15%;">Distance:<?php echo intval($result[0]->distances); ?>miles</div>
+    </div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
                           <th>Duration</th>
