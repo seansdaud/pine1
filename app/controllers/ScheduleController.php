@@ -53,7 +53,7 @@ class ScheduleController extends BaseController {
 	public function  updatePrice(){
 		$adminid = Auth::id();
 			$data = array(
-				'id' => 'schedular',
+				'id' => 'updateschedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->orderBy('booking', 'asc')->get()
 		);
 		return View::make("backend.owners.updatePrice", $data)->with("title", "Update Price");
@@ -133,7 +133,7 @@ class ScheduleController extends BaseController {
 	public function showSchedule(){
 			$adminid = Auth::id();
 			$data = array(
-				'id' => 'schedular',
+				'id' => 'showschedular',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
 		return View::make("backend.owners.showSchedule", $data)->with("title", "See Schedule");
@@ -142,7 +142,7 @@ class ScheduleController extends BaseController {
 			$adminid = Auth::id();
 			$data = array(
 				'nos'=>$id,
-				'id' => 'schedular',
+				'id' => 'book',
 			'schedular' => Schedule::where('admin_id', $adminid )->get()
 		);
 		return View::make("backend.owners.bookSchedule", $data)->with("title", "Book Schedule");
