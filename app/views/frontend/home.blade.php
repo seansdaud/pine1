@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ $title }}</title>
+    <title>{{ ucfirst($title) }}</title>
     {{ HTML::style('assets/css/bootstrap.css') }}
     {{ HTML::style('assets/css/style1.css') }}
     {{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
