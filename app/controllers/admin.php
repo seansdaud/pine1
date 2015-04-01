@@ -35,10 +35,10 @@ class Admin extends BaseController {
 			File::delete("assets/img/profile/thumb/".$user->image);
 			$user->image = $name;
 			if($user->save()){
-				return Redirect::route("admin-profile", Auth::user()->username)->with("success", "Profile pic changed.");
+				return Redirect::route(Input::get("profile"), Auth::user()->username)->with("success", "Profile pic changed.");
 			}
 			else{
-				return Redirect::route("admin-profile", Auth::user()->username)->with("warning", "Error occurred while updating database. Please try again.");
+				return Redirect::route(Input::get("profile"), Auth::user()->username)->with("warning", "Error occurred while updating database. Please try again.");
 			}
 		}
 

@@ -53,32 +53,27 @@
                 </li>
                 
                  <li class="sub-menu">
-                    <a  href="{{ URL::route('createschedule') }}">
+                    <a  href="javascript:;">
                         <i class="fa fa-dashboard"></i>
-                        <?php   
-                            $adminid = Auth::id();
-                        $schedular=Schedule::where('admin_id', $adminid )->orderBy('booking', 'asc')->get();
-                         ?>
-                        @if($schedular->isEmpty())
-                        <span>Create Schedular</span>
-                        @else
-                         <span>Edit Schedular</span>
-                        @endif
+                        <span>Schedular</span>
                     </a>
-                </li>
-
-                 <li class="sub-menu">
-                    <a  href="{{ URL::route('updatePrice') }}">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Update Price</span>
-                    </a>
-                </li>
-
-                 <li class="sub-menu">
-                    <a  href="{{ URL::route('showSchedule') }}">
-                        <i class="fa fa-dashboard"></i>
-                        <span>See Schedule</span>
-                    </a>
+                    <ul class="sub">
+                        <li>
+                            <a href="{{ URL::route('createschedule') }}">
+                                <?php   
+                                    $adminid = Auth::id();
+                                $schedular=Schedule::where('admin_id', $adminid )->orderBy('booking', 'asc')->get();
+                                 ?>
+                                @if($schedular->isEmpty())
+                                <span>Create</span>
+                                @else
+                                 <span>Edit</span>
+                                @endif
+                            </a>
+                        </li>
+                        <li><a href="{{ URL::route('updatePrice') }}">Update</a></li>
+                        <li><a href="{{ URL::route('showSchedule') }}">View</a></li>
+                    </ul>
                 </li>
 
                  <li class="sub-menu">
@@ -87,8 +82,8 @@
                         <span>Book Now</span>
                     </a>
                     <ul class="sub">
-                        <li><a  href="{{ URL::route('booknow',1) }}">Via Usenamer</a></li>
-                        <li><a  href="{{ URL::route('booknow', 2) }}">Via New Name</a></li>
+                        <li><a  href="{{ URL::route('booknow',1) }}">Via Username</a></li>
+                        <li><a  href="{{ URL::route('booknow', 2) }}">Via Name</a></li>
                     </ul>
                 </li>
 
