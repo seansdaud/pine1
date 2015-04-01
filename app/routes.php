@@ -17,7 +17,11 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
-
+	// getLatestMap
+		Route::get("/getCurrent", array(
+			'as' => 'getCurrenthome',
+			'uses' => 'SiteController@getCurrent'
+		));	
 Route::get("/arenas", array(
 	'as' => 'arenas',
 	'uses' => 'SiteController@arenas'
@@ -52,8 +56,17 @@ Route::group(array("before" => "guest"), function() {
 			"as" => "login-post",
 			"uses" => 'AccountController@postLogin'
 		));
+	
+
+		/*Check Duplicate Users*/
+		Route::post("/check-duplicate-users", array(
+			"as" => "check-duplicate-users",
+			"uses" => "AccountController@checkUsers"
+		));
 
 	});
+	
+		
 
 	/*Register*/
 	Route::get("/register", array(
@@ -274,6 +287,15 @@ Route::group(array("before"=>"owner"), function() {
 
 	});
 /*	Locator*/
+
+Route::get("/o/marker-update", array(
+			'as' => 'marker-update',
+			'uses' => 'owner@markerUpdate'
+		));	
+Route::post("/o/createMaps", array(
+			'as' => 'createMaps',
+			'uses' => 'owner@createMaps'
+		));	
 				Route::get("/o/getCurrent", array(
 			'as' => 'getCurrent',
 			'uses' => 'ScheduleController@getCurrent'
@@ -362,6 +384,7 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'add-arena-info',
 		'uses' => 'Owner@addArena'
 	));	
+
 		
 	// owner dashboard
 	Route::get("/o/dashboard", array(

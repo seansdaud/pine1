@@ -44,6 +44,14 @@ class AccountController extends BaseController {
 		return View::make('frontend.register', $data);
 	}
 
+	function checkUsers(){
+		$check = Input::get("check");
+		$value = Input::get("value");
+		if(User::where($check, "=", $value)->first()){
+			echo "duplicate";
+		}
+	}
+
 	public function postRegister(){
 		$username = Input::get('username');
 		$email = Input::get('email');

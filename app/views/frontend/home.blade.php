@@ -9,12 +9,13 @@
   <body>
     <div class="container-fluid" style="padding-left:0; padding-right:0;">
       @include('frontend.layout.nav')
-        <div><img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; margin-top: -95px; margin-bottom:25px;"></div>
+        
         
         <div class="container">
-  	
+  	       <div><img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; margin-top: -95px; margin-bottom:25px;"></div>
           	<div class="row">
               	<div class="col-md-8">
+                  <div class="ajax-caller">
                   	<div class="row">
                   		<div class="col-md-3">
                   			<div class="schedule">Schedules</div>
@@ -30,6 +31,7 @@
                           <th>Price</th>
                           <th>Phone No</th>
                         </tr>
+                        <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
       <?php
             date_default_timezone_set("Asia/Katmandu"); 
@@ -113,93 +115,9 @@
                       @endif
               </tr>
                   @endforeach 
-                        <!-- <tr>
-                          <td data-th="Role">12 Pm - 1 Am</td>
-                          <td data-th="Add to Page">Booked</td>
-                          <td data-th="Configure">Suyog</td>
-                          <td data-th="View">Rs 1200</td>
-                          <td data-th="Change Permissions">9830284023</td>
-                        </tr>
 
-                        <tr>
-                          <td data-th="Role">1 Pm - 2 Pm</td>
-                          <td data-th="Add to Page">Booked</td>
-                          <td data-th="Configure">Lalit</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9823930113</td>
-                        </tr>
-                        <tr>
-                          <td data-th="Role">2 Pm - 3 Pm</td>
-                          <td data-th="Add to Page">Not Booked</td>
-                          <td data-th="Configure">- - -</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9846009404</td>
-                        </tr>
-                        
-                        <tr>
-                          <td data-th="Role">3 Pm - 4 Pm</td>
-                          <td data-th="Add to Page">Booked</td>
-                          <td data-th="Configure">Prachanda</td>
-                          <td data-th="View">Rs 1200</td>
-                          <td data-th="Change Permissions">9191930391</td>
-                        </tr>
-                        
-                        <tr>
-                          <td data-th="Role">4 Pm - 5 Pm</td>
-                          <td data-th="Add to Page">Not Booked</td>
-                          <td data-th="Configure">- - -</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9823940012</td>
-                        </tr>
-                        <tr>
-                          <td data-th="Role">2 Pm - 3 Pm</td>
-                          <td data-th="Add to Page">Not Booked</td>
-                          <td data-th="Configure">- - -</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9846009404</td>
-                        </tr>
-                        
-                        <tr>
-                          <td data-th="Role">3 Pm - 4 Pm</td>
-                          <td data-th="Add to Page">Booked</td>
-                          <td data-th="Configure">Prachanda</td>
-                          <td data-th="View">Rs 1200</td>
-                          <td data-th="Change Permissions">9191930391</td>
-                        </tr>
-                
-                        <tr>
-                          <td data-th="Role">4 Pm - 5 Pm</td>
-                          <td data-th="Add to Page">Not Booked</td>
-                          <td data-th="Configure">- - -</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9823940012</td>
-                        </tr>
-                        <tr>
-                          <td data-th="Role">2 Pm - 3 Pm</td>
-                          <td data-th="Add to Page">Not Booked</td>
-                          <td data-th="Configure">- - -</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9846009404</td>
-                        </tr>
-                        
-                        <tr>
-                          <td data-th="Role">3 Pm - 4 Pm</td>
-                          <td data-th="Add to Page">Booked</td>
-                          <td data-th="Configure">Prachanda</td>
-                          <td data-th="View">Rs 1200</td>
-                          <td data-th="Change Permissions">9191930391</td>
-                        </tr>
-                        
-                        <tr>
-                          <td data-th="Role">4 Pm - 5 Pm</td>
-                          <td data-th="Add to Page">Not Booked</td>
-                          <td data-th="Configure">- - -</td>
-                          <td data-th="View">Rs 1000</td>
-                          <td data-th="Change Permissions">9823940012</td>
-                        </tr> -->
-                    
                     </table>
-              		
+              	</div>
               	</div>
               	<div class="col-md-4">
               		  <div class="events">Events</div>
@@ -233,11 +151,61 @@
 
         </div>
     </div>
-
+<input type="hidden" name="_token" value="{{ csrf_token() }}" />
     {{ HTML::script('assets/js/jquery.js') }}
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/validator.min.js') }}
     {{ HTML::script('assets/js/frontend.js') }}
+    <script type="text/javascript">
 
+
+
+// var x = document.getElementById("demo");
+
+
+
+function showPosition(position) {
+  var base_url= $('#base_url').val();
+    //  x.innerHTML = "Latitude: " + position.coords.latitude + 
+    // "<br>Longitude: " + position.coords.longitude;  
+
+      $.ajax({
+        type: "GET",
+            url: base_url+'/getCurrent',
+            data: {
+              lat:position.coords.latitude,
+              lng:position.coords.longitude,
+              radius:200
+
+            },
+              success:function(data){ 
+                if (data=="noResult") {
+
+                }else{
+                    $('.ajax-caller').html(data);
+             // x.innerHTML = "data: "+ data;
+              // console.log(position.coords.latitude);
+              // console.log(position.coords.longitude);
+                 console.log(data);
+                };
+           
+          },
+           beforeSend : function (){
+                 // $('#id').html("<div class='loading'><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
+
+            },
+                error: function(jqXHR, textStatus, errorThrown){ 
+              alert( jqXHR.responseText);
+               console.log(jqXHR.responseText);
+          }
+            });
+}
+ if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+  </script>
   </body>
 </html>
