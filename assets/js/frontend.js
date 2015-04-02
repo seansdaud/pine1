@@ -86,6 +86,22 @@ $(document).ready(function() {
 
 });
 
+$(document).ready(function(){
+    $("#review-form").css("display", "block");
+    $("#review-form textarea").keyup(function(e) {
+        var cs = 200 - $(this).val().length;
+        $('#characters').html(cs + " characters left.");
+        if(cs == 0 || cs < 0){
+            e.preventDefault();
+        }
+    });
+
+    $("#review-form textarea").on("focus", function(){
+        var cs = 200 - $(this).val().length;
+        $("#characters").html(cs + " characters left.");
+    });
+});
+
 
 
 $(document).ready(function() {

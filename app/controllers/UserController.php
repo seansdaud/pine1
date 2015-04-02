@@ -20,4 +20,16 @@ class UserController extends BaseController {
 		return View::make("frontend.user.profile", $data);
 	}
 
+	function addReview(){
+		$data = array(
+			'user_id' => Auth::user()->id,
+			'review' => Input::get("review"),
+			"arena_id" => Input::get("arena_id")
+		);
+		if(Review::Create($data)){
+			return Redirect::route("arena-detail", Input::get("arena_id"))->with("success", "Review Successfully Added.");
+		}
+		return Redirect::route("arena-detail", Input::get("arena_id"))->with("danger", "Error Occurred.");
+	}
+
 }
