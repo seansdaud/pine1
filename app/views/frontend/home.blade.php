@@ -37,7 +37,7 @@
                   			
                         <div class="cat-name">
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>
-                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
+                        <span class="arrow"></span>
                         </div>
                   		</div>
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
