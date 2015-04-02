@@ -22,10 +22,20 @@ Route::get('/', array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+
+/*------------------------------------------------------------------------*/
+/*Arenas*/
 Route::get("/arenas", array(
 	'as' => 'arenas',
 	'uses' => 'SiteController@arenas'
 ));
+
+/*Arena Detail*/
+Route::get("/arena/{id}", array(
+	'as' => 'arena-detail',
+	'uses' => 'SiteController@arenaDetail'
+));
+/*-----------------------------------------------------------------------*/
 
 Route::get("/about", array(
 	'as' => 'about',
