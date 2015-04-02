@@ -8,4 +8,8 @@ class Arena extends Eloquent {
 	public function owner(){
 		return $this->belongsTo("User");
 	}
+
+	public function reviews(){
+		return $this->hasMany("Review");
+	}
 }
