@@ -63,8 +63,24 @@ class AccountController extends BaseController {
 			echo "Empty";
 			exit();
 		}
-		echo "Error";
-		exit();
+	}
+
+	public function recover($code){
+		$user = User::where("code", "=", $code)->where("password_temp", "!=", "");
+
+		if($user->count()) {
+			$user = $user->first();
+
+			$user->password = $user->password_temp;
+			$user->password_temp = "";
+			$user->code = "";
+
+			if($user->save()){
+				return Redirect::route("home")->with("success", "Please login using your new password.");
+			}
+		}
+
+		return Redirect::route("home")->with("danger", "Could not recover your account. Please try again.");
 	}
 
 	public function logout(){

@@ -14,7 +14,8 @@ class SiteController extends BaseController {
 	function arenas(){
 		$data = array(
 			'id' => 'arenas',
-			'title' => 'arenas'
+			'title' => 'arenas',
+			'arenas' => Arena::all()
 		);
 		return View::make("frontend.arenas.arenas", $data);
 	}
