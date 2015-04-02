@@ -79,3 +79,10 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+/*For the 404 page not found errors*/
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array(), 404);
+});

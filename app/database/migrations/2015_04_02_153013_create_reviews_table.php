@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAddressAndContactColumnToUsersTable extends Migration {
+class CreateReviewsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,13 @@ class AddAddressAndContactColumnToUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function($table)
+		Schema::create('reviews', function($table)
 		{
-			$table->text("address");
-			$table->integer("contact");
+			$table->increments("id");
+			$table->integer("user_id");
+			$table->text("review");
+			$table->integer("arena_id");
+			$table->timestamps();
 		});
 	}
 
@@ -26,7 +29,7 @@ class AddAddressAndContactColumnToUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop("reviews");
 	}
 
 }

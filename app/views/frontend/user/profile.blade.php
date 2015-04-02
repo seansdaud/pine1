@@ -2,6 +2,7 @@
 
 @section("content")
 	
+	@if(!empty($user))
 	<div class="row">
 		<div class="col-md-4 col-sm-4">
 		<div class="profile-wrap">
@@ -59,5 +60,9 @@
 			</section>​
 		</div>
 	</div>
+	@else
+		User not available
+
+	@endif
 
 @stop

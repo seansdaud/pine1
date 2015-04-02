@@ -11,7 +11,7 @@
             @if(Auth::user()->usertype == 2)
                 <?php $route = "owner-profile"; ?>
             @endif
-                <a href="{{ URL::route($route, Auth::user()->username) }}">
+                <a href="{{ URL::route($route) }}">
                     @if(Auth::user()->image != ""):
                         <img src="{{ asset('assets/img/profile/thumb/'.Auth::user()->image) }}" class="img-circle" width="60" height="60">
                     @else

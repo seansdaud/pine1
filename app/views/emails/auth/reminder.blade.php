@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h2>Password Reset</h2>
+Hello {{ $username }}, <br><br>
 
-		<div>
-			To reset your password, complete this form: {{ URL::to('password/reset', array($token)) }}.<br/>
-			This link will expire in {{ Config::get('auth.reminder.expire', 60) }} minutes.
-		</div>
-	</body>
-</html>
+It looks like you have requested a new password. Please use the link below to recover your account. If you didn't requested this please ignore this email.<br><br>
+
+New Password : {{ $password }} <br>
+{{ $link }}<br><br>
+
+Regards,<br>
+Futsal Nepal

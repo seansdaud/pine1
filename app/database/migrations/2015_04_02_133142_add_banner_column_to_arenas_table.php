@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAddressAndContactColumnToUsersTable extends Migration {
+class AddBannerColumnToArenasTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class AddAddressAndContactColumnToUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function($table)
+		Schema::table('arenas', function($table)
 		{
-			$table->text("address");
-			$table->integer("contact");
+			$table->text("banner");
 		});
 	}
 

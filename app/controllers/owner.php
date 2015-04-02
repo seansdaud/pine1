@@ -87,12 +87,10 @@ class Owner extends BaseController {
 		//
 	}
 
-	public function getProfile($owner){
-		$user = User::where("username", "=", $owner)->first();
+	public function getProfile(){
 		$data = array(
-			'title' => $user->username,
-			'id' => 'ownerProfile',
-			'owner' => $user
+			'title' => Auth::user()->username,
+			'id' => 'ownerProfile'
 		);
 
 		return View::make("backend.owners.profile", $data);
@@ -134,20 +132,39 @@ class Owner extends BaseController {
 				->withErrors($validator);
 		}
 		else{
-				$arena = Arena::where("user_id", "=", Auth::user()->id)->first();
-				$arena->name = Input::get("name");
-				$arena->address = Input::get("address");
-				$arena->phone = Input::get("phone");
-				$arena->about = Input::get("about");
-				if($arena->save()){
-					return Redirect::route('add-arena-info')
-				->with('success','updated successfully');
+			$arena = Arena::where("user_id", "=", Auth::user()->id)->first();
+			$file = Input::file('banner');
+			if(!empty($file)){
+				$ext = Input::file('banner')->getClientOriginalExtension();
+				$name = str_random(10).".".$ext;
+				$upload = Input::file('banner')->move("assets/img/arena", $name);
+				$img = Image::make('assets/img/arena/'.$name);
+				$img->resize(null, 250, function ($constraint) {
+				    $constraint->aspectRatio();
+				})->save("assets/img/arena/thumb/".$name);
+
+				if($upload){
+					File::delete("assets/img/arena/".$arena->banner);
+					File::delete("assets/img/arena/thumb/".$arena->banner);
+					$arena->banner = $name;
 				}
 				else{
-					return Redirect::route('add-arena-info')
-				->with('warning','Error!! Try again');
+					return Redirect::route("add-arena-info")->with("danger", "Error occurred. Please try again.");
 				}
 			}
+				
+			$arena->name = Input::get("name");
+			$arena->address = Input::get("address");
+			$arena->phone = Input::get("phone");
+			$arena->about = Input::get("about");
+			if($arena->save()){
+				return Redirect::route('add-arena-info')->with('success','updated successfully');
+			}
+			else{
+				return Redirect::route('add-arena-info')->with('warning','Error!! Try again');
+			}
+			
+		}
 	}
 		public function markerUpdate(){
 
