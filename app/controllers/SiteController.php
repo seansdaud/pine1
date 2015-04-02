@@ -14,9 +14,24 @@ class SiteController extends BaseController {
 	function arenas(){
 		$data = array(
 			'id' => 'arenas',
-			'title' => 'arenas'
+			'title' => 'arenas',
+			'arenas' => Arena::all()
 		);
 		return View::make("frontend.arenas.arenas", $data);
+	}
+
+	function arenaDetail($id){
+		$arena = Arena::where("id", "=", $id);
+		if(!$arena->count()){
+			App::abort(404);
+		}
+		$data = array(
+			'id' => 'arenas',
+			'title' => $arena->first()->name,
+			'arena' => $arena->first()
+		);
+
+		return View::make("frontend.arenas.profile", $data);
 	}
 
 	function about(){
