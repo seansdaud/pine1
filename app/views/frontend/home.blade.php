@@ -9,10 +9,10 @@
   <body>
     <div class="container-fluid" style="padding-left:0; padding-right:0;">
       @include('frontend.layout.nav')
-        <div><img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; margin-top: -95px; margin-bottom:25px;"></div>
+        
         
         <div class="container">
-  	
+  	       <div><img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; margin-top: -95px; margin-bottom:25px;"></div>
           	<div class="row">
               	<div class="col-md-8">
                   <div class="ajax-caller">
