@@ -87,12 +87,10 @@ class Owner extends BaseController {
 		//
 	}
 
-	public function getProfile($owner){
-		$user = User::where("username", "=", $owner)->first();
+	public function getProfile(){
 		$data = array(
-			'title' => $user->username,
-			'id' => 'ownerProfile',
-			'owner' => $user
+			'title' => Auth::user()->username,
+			'id' => 'ownerProfile'
 		);
 
 		return View::make("backend.owners.profile", $data);
