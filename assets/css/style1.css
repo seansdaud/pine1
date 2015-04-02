@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Bangers);
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
 @media (min-width: 768px){
     .navbar-nav{
         float:none;
@@ -12,6 +13,7 @@
   	background: transparent !important;
   	font-family: 'Ropa Sans', sans-serif;
   	border-top: 8px solid #F43C12 !important;
+    z-index: 20;
 
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
@@ -27,7 +29,7 @@
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   color: #333;
-  background-color: #696D7B;
+  background-color: #A6A9AD;
 }
 .navbar-default .navbar-nav > li > a {
   color: #EAEAEA !important;
@@ -55,12 +57,13 @@
   color: white;
 }
 .schedule{
-	font-family: 'Ropa Sans', sans-serif;
-    font-size: 23px;
-    background: #F43C12;
-    padding: 7px 18px;
-    color: white;
-    display: inline-block;
+	color:#fff; 
+  text-decoration:none; 
+  text-transform: uppercase;
+  font-size: 21px;
+  background-color: #f15620 !important;
+  padding: 5px 20px 5px 30px !important;
+  display: block !important;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
 	border-top: 4px solid #ddd !important;
@@ -121,6 +124,8 @@ body {
 	background: #111620;
 	font-family: 'Ropa Sans', sans-serif;
 	font-size: 16px;
+  background: #EEEEEE url(site-background.jpg) center top no-repeat !important;
+
 	
 }
 #wrap {
@@ -259,6 +264,7 @@ body {
 
 .responsive-table {
   /*background: #34495E;*/
+  background: #EEEEEE url(Capture.PNG) !important;
   color: #fff;
   border-radius: .4em;
   overflow: hidden;
@@ -275,7 +281,7 @@ body {
   }
 }
 .responsive-table th, .responsive-table td:before {
-  color: #dd5;
+  color: #F15620;
 }
 
 
@@ -323,7 +329,7 @@ body {
 }
 
 .layer {
-    background-color: rgba(74, 81, 95, 0.67);
+    background-color: rgba(0, 0, 0, 0.34);
     position: absolute;
     top: 0;
     left: 0;
@@ -359,7 +365,7 @@ body {
   -webkit-transform: skew(-15deg);
   -moz-transform: skew(20deg);
   -o-transform: skew(20deg);
-  background: rgb(180, 183, 186);
+  background: rgb(74, 74, 74);
   padding: 3px;
 }
 .gaira{
@@ -371,12 +377,13 @@ body {
   -webkit-transform: skew(-15deg);
   -moz-transform: skew(20deg);
   -o-transform: skew(20deg);
-  background: rgb(93, 175, 244);
+  background: rgb(21, 33, 47);
   padding: 2px 13px;
+  border-right: 3px solid whitesmoke;
 }
 
 .layer:hover{
-  background-color:rgba(140, 137, 134, 0.53);
+  background-color:rgba(241, 86, 32, 0.93);
 }
 .origin{
   color: white;
@@ -676,7 +683,64 @@ section {
     -o-transform: rotate(45deg);
 }
 
+.arena-thumb{
+          width: 100%;
+  height: 224px;
+  /* border-radius: 50%; */
+  border: 3px solid rgb(222, 222, 222);
+  margin: 0 auto;
+  display: block;
+}
+.btn-more{
+    float: right;
+    margin-top: -10px;
+}
+.arena-name{
+  color: rgb(244, 60, 18);
+  z-index: 1;
+  top: 12px;
+  left: 20px;
+  padding: 4px 9px;
+  font-family: 'Bangers', cursive;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+.form-group {
+   margin-right: 0px !important; 
+   margin-left: 0px !important; 
+ }
+
 .alert{
   margin-bottom: 0px !important;
   border-radius: 0px !important;
+}
+.container-costum{
+  box-shadow: 0px 6px 90px #000000;
+  background: rgb(255, 255, 255);
+  margin-top: -95px;
+}
+.social img{
+    height: 60px;
+    width: 63px;
+    padding: 8px;
+}
+.social{
+  text-align: center;
+  padding: 10px;
+  background: #EEEEEE url(Capture.png)!important;
+
+}
+.arena-banner{
+    width: 100%;
+  height: 368px;
+}
+.arena-top{
+    font-family: 'Titillium Web', sans-serif;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 46px;
+}
+.arena-wrapper{
+  margin: 91px 12px;
 }

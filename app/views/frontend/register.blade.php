@@ -4,7 +4,7 @@
 	{{ Form::open(array('route' => 'register-post', 'class'=>'form-horizontal', 'data-toggle' => 'validator', 'check-url' => URL::route('check-duplicate-users'), 'id' => 'check-duplicate')) }}
 		<div class="row" style="margin: 20px auto;">
 			<span id="load-image" url="{{ URL::route('home') }}">
-			<div class="col-md-8">
+			<div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
 				<div class="reg">Registration >></div>
 					<div class="form-wrapper">
 						<div class="personal-info">Personal Info</div>

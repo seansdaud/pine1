@@ -244,6 +244,11 @@ Route::group(array("before"=>"owner"), function() {
 	/*CSRF protection*/
 
 	Route::group(array("before" => "csrf"), function() {
+		/*create_instant_user*/
+			Route::post("/o/create_instant_user", array(
+			'as' => 'create_instant_user',
+			'uses' => 'ScheduleController@UserCreate'
+		));
 		/*	Add schedule*/
 		Route::post("/o/addSchedule", array(
 			'as' => 'addSchedule',
@@ -353,6 +358,11 @@ Route::group(array("before"=>"owner"), function() {
 		Route::post("/o/searchuser", array(
 		'as' => 'searchuser',
 		'uses' => 'ScheduleController@searchuser'
+	));	
+		/*Search via name*/
+		Route::post("/o/searchuservianame", array(
+		'as' => 'searchuservianame',
+		'uses' => 'ScheduleController@search_uservianame'
 	));	
 
 

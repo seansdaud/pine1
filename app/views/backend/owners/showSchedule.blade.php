@@ -59,11 +59,11 @@
 										</td>
 											@if($flag==1) 
 											<td>
-												<input  type="button"  class="btn btn-primary"  value="Booked" >
+												<input  type="button"  class="btn btn-danger"  value="Booked" >
 											</td>
 											@else
 											<td>
-												<input  type="button"  class="btn btn-danger"  value="Not Booked" >
+												<input  type="button"  class="btn btn-primary"  value="Available" >
 											</td>
 											@endif
 
@@ -72,11 +72,11 @@
 												<?php	$user= User::where('id',$getuser)->get();		
 											?>
 											<td>
-													<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->name; ?>" >
+													<input  type="button"  class="btn btn-danger"  value="<?php 	echo $user[0]->name; ?>" >
 											</td>
 											@else
 											<td>
-												<input  type="button"  class="btn btn-danger"  value="Not Booked" >
+												<input  type="button"  class="btn btn-success"  value="book" >
 											</td>
 											@endif
 										<td>
@@ -89,18 +89,18 @@
 										@if($flag==1) 
 												<?php	$user= User::where('id',$getuser)->get();		
 											?>
-													@if(!empty($user[0]->contactno))
+													@if(!empty($user[0]->contact))
 													<td>
-															<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->contactno; ?>" >
+															<input  type="button"  class="btn btn-danger"  value="<?php 	echo $user[0]->contact; ?>" >
 													</td>
 													@else
 													<td>
-														<input  type="button"  class="btn btn-danger"  value="None" >
+														<input  type="button"  class="btn btn-danger"  value="No Number" >
 													</td>
 													@endif
 											@else
 											<td>
-												<input  type="button"  class="btn btn-danger"  value="Not Booked" >
+												<input  type="button"  class="btn btn-success"  value="Not Booked" >
 											</td>
 											@endif
 							</tr>

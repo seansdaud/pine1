@@ -9,20 +9,24 @@
   <body>
     <div class="container-fluid" style="padding-left:0; padding-right:0;">
       @include('frontend.layout.nav')
-        <div><img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; margin-top: -95px; margin-bottom:25px;"></div>
         
-        <div class="container">
-  	
+        
+        <div class="container container-costum">
+  	        <div style="margin-left: -15px !important; margin-right: -15px !important;">
+              <img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; border-bottom: 7px solid rgb(244, 60, 18); margin-bottom:25px; box-shadow: 0px 53px 217px #000000;">
+            </div>
           	<div class="row">
-              	<div class="col-md-8">
+              	<div class="col-md-8" style="  box-shadow: 4px 19px 16px #888888;">
                   <div class="ajax-caller">
                   	<div class="row">
-                  		<div class="col-md-3">
-                  			<div class="schedule">Schedules</div>
+                  		<div class="col-md-3 col-sm-4 col-xs-8">
+                  			
+                        <div class="cat-name">
+                        <span class="base"><a href="#" class="schedule">Schedules</a></span>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
+                        </div>
                   		</div>
                   	</div>
-
-              	    <div style="border-bottom: 4px solid #F43C12;"></div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
                           <th>Duration</th>
@@ -120,8 +124,15 @@
               	</div>
               	</div>
               	<div class="col-md-4">
-              		  <div class="events">Events</div>
-              		  <div style="border-bottom: 4px solid rgb(81, 81, 82); margin-bottom:16px;"></div>
+            		    <div class="row">
+                      <div class="col-md-5 col-sm-7 col-xs-5">
+                        
+                        <div class="cat-name" style="margin-bottom:17px;">
+                        <span class="base"><a href="#" class="schedule">Events</a></span>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
+                        </div>
+                      </div>
+                    </div>
                 		<div class="CoverImage FlexEmbed FlexEmbed--2by1 background"
                 		     style="background-image:url(assets/css/football.jpg)">
                 		     <div class="text-over">Pokhara futsal tournament</div>
@@ -146,6 +157,21 @@
                 		     <div class="gaira">9 Sep - 12 Sep</div>
                 		     <div class="layer"></div>
                 		</div>
+                    <div class="row">
+                      <div class="col-md-6 col-sm-7 col-xs-5">
+                        
+                        <div class="cat-name" style="margin-bottom:17px;">
+                        <span class="base"><a href="#" class="schedule">Follow us</a></span>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="social">
+                      <img src="{{ asset('assets/img/fb.png') }}">
+                      <img src="{{ asset('assets/img/instagram.jpg') }}">
+                      <img src="{{ asset('assets/img/Google-Plus-icon.png') }}">
+                      <img src="{{ asset('assets/img/twitter.png') }}">                      
+                    </div>
               	</div>
             </div>
 
