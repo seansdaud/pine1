@@ -132,7 +132,20 @@ class Owner extends BaseController {
 				->withErrors($validator);
 		}
 		else{
+			$file = Input::file('banner');
+			$ext = Input::file('banner')->getClientOriginalExtension();
+			$name = str_random(10).".".$ext;
+			$upload = Input::file('banner')->move("assets/img/arena", $name);
+			$img = Image::make('assets/img/arena/'.$name);
+			$img->resize(null, 250, function ($constraint) {
+			    $constraint->aspectRatio();
+			})->save("assets/img/arena/thumb/".$name);
+
+			if($upload){
 				$arena = Arena::where("user_id", "=", Auth::user()->id)->first();
+				File::delete("assets/img/arena/".$arena->banner);
+				File::delete("assets/img/arena/thumb/".$arena->banner);
+				$arena->banner = $name;
 				$arena->name = Input::get("name");
 				$arena->address = Input::get("address");
 				$arena->phone = Input::get("phone");
@@ -146,6 +159,10 @@ class Owner extends BaseController {
 				->with('warning','Error!! Try again');
 				}
 			}
+			else{
+				return Redirect::route("add-arena-info")->with("danger", "Error occurred. Please try again.");
+			}
+		}
 	}
 		public function markerUpdate(){
 
