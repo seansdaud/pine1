@@ -95,10 +95,111 @@ class ScheduleController extends BaseController {
 	}
 	public function searchuser(){
 		$search_content=Input::get('mem');
+		$search_content2=Input::get('cont');
+			if ($search_content!=null || 	$search_content2!=null ) {
+ $result = User::where('name', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',1)->get();
+			 $result_count = User::where('name', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',1)->count();
+				if($result_count!=null){
+				$suffix=($result_count != 1 )?'s':'';
+				$res= array();
+				foreach ($result as $key ) {
+					if ($key->contact==null) {
+						$data = array(
+					'id'=>$key->id,
+					'name'=> $key->name,
+						'uname'=> $key->username,
+					'contact'=> "None"
+				
+					);
+					}
+					else{
+						$data = array(
+					'id'=>$key->id,
+						'uname'=> $key->username,
+					'name'=> $key->name,
+					'contact'=> $key->contact,
+					);
+					}
+					array_push($res, $data);
+					
+				}
+				print_r(json_encode($res));
+				}
+				else{
+					$res= array();
+					$data = array(
+					'uname'=> 'emptysetfound',
+					);
+					array_push($res, $data);
+						print_r(json_encode($res));
+				}
+				}
+				else{
+						$res= array();
+					$data = array(
+					'uname'=> 'emptysetfound',
+					);
+					array_push($res, $data);
+						print_r(json_encode($res));
+				}
+
+	}
+	public function search_uservianame(){
+		$search_content=Input::get('mem');
+			$search_content2=Input::get('cont');
+				if ($search_content!=null || 	$search_content2!=null ) {
+
+				 $result = User::where('name', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',4)->get();
+			 $result_count = User::where('name', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',4)->count();
+				if($result_count!=null){
+				$suffix=($result_count != 1 )?'s':'';
+				$res= array();
+				foreach ($result as $key ) {
+					if ($key->contact==null) {
+						$data = array(
+					'id'=>$key->id,
+					'name'=> $key->name,
+					'contact'=> "None"
+				
+					);
+					}
+					else{
+						$data = array(
+					'id'=>$key->id,
+					'name'=> $key->name,
+					'contact'=> $key->contact,
+					);
+					}
+					
+					array_push($res, $data);
+				}
+				print_r(json_encode($res));
+				}
+				else{
+					$res= array();
+					$data = array(
+					'uname'=> 'emptysetfound',
+					);
+					array_push($res, $data);
+						print_r(json_encode($res));
+				}
+				}
+				else{
+						$res= array();
+					$data = array(
+					'uname'=> 'emptysetfound',
+					);
+					array_push($res, $data);
+						print_r(json_encode($res));
+				}
+
+	}
+			public function searchuservianame(){
+				$search_content=Input::get('mem');
 				if ($search_content!=null) {
 
-				 $result = User::where('username', 'LIKE', '%'.$search_content.'%')->where('usertype', 1)->get();
-			 $result_count = User::where('username', 'LIKE', '%'.$search_content.'%')->where('usertype', 1)->count();
+				 $result = User::where('name', 'LIKE', '%'.$search_content.'%')->where('usertype',4)->get();
+			 $result_count = User::where('name', 'LIKE', '%'.$search_content.'%')->where('usertype',4)->count();
 				if($result_count!=null){
 				$suffix=($result_count != 1 )?'s':'';
 				$res= array();
@@ -129,7 +230,7 @@ class ScheduleController extends BaseController {
 						print_r(json_encode($res));
 				}
 
-	}
+		}
 	public function showSchedule(){
 			$adminid = Auth::id();
 			$data = array(
@@ -148,21 +249,22 @@ class ScheduleController extends BaseController {
 		return View::make("backend.owners.bookSchedule", $data)->with("title", "Book Schedule");
 	}
 	public function prebookschedule($id){
-		$emp=Input::get('user');
-		if (empty($emp)) {
+		$emp=Input::get('user_id');
+		if (empty($emp) ) {
 			$user=Session::get('usersname');
 		}
 		else{
-				$user=Input::get('user');
+				$user=Input::get('user_id');
 		}
-		if($id=="1"){
 	
-		$adminid = Auth::id();
+			$adminid = Auth::id();
+
 		$data = array(
 				'id' => 'schedular',
+				
 		);
-		}
-		Session::put('usersname',  $user);
+			Session::put('user_typo',$id);
+		Session::put('usersname',$user);
 		return View::make("backend.owners.prebookSchedule", $data)->with("title", "Book Schedule");
 	}
 	public function postbookschedule(){
@@ -470,6 +572,16 @@ $result = Marker::select(
            
                 ->get();
 	print_r(json_encode($result));
+	}
+	public function UserCreate(){
+		$u= new User;
+		$u->usertype=4;
+		$u->name=Input::get('name');
+		$u->contact=Input::get('contact');
+		if($u->save()){
+			 return Redirect::to('/o/booknow/2')->with("danger", "User Added!!");
+		}
+			 return Redirect::to('/o/booknow/2')->with("danger", "Error!While Adding");
 	}
 
 
