@@ -16,7 +16,7 @@
 	{{ HTML::style('assets/css/style1.css') }}
 	{{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
 </head>
-<body id="{{ $id }}">
+<body>
 	<div class="container-fluid" style="padding-left:0; padding-right:0;">
 		@include('frontend.layout.nav')
 		<div class="container container-costum">
