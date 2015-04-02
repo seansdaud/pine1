@@ -85,6 +85,12 @@ Route::group(array("before" => "guest"), function() {
 			"as" => "login-post",
 			"uses" => 'AccountController@postLogin'
 		));
+
+		/*Forgot Password*/
+		Route::post("/forgot", array(
+			"as" => "forgot-login-post",
+			"uses" => 'AccountController@forgot'
+		));
 	
 
 		/*Check Duplicate Users*/
@@ -94,8 +100,11 @@ Route::group(array("before" => "guest"), function() {
 		));
 
 	});
-	
-		
+
+	Route::get("/recover/{code}", array(
+		'as' => 'recover',
+		'uses' => 'AccountController@recover'
+	));
 
 	/*Register*/
 	Route::get("/register", array(
@@ -224,7 +233,7 @@ Route::group(array("before"=>"admin"), function() {
 	));
 
 	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */
-	Route::get("/a/{admin}", array(
+	Route::get("/a/profile", array(
 		'as' => 'admin-profile',
 		'uses' => 'admin@profile'
 	));
@@ -290,13 +299,13 @@ Route::group(array("before"=>"owner"), function() {
 		));	
 
 	});
-/*	Locator*/
+	/*	Locator*/
 
-Route::get("/o/marker-update", array(
+	Route::get("/o/marker-update", array(
 			'as' => 'marker-update',
 			'uses' => 'owner@markerUpdate'
 		));	
-Route::post("/o/createMaps", array(
+	Route::post("/o/createMaps", array(
 			'as' => 'createMaps',
 			'uses' => 'owner@createMaps'
 		));	
@@ -397,7 +406,7 @@ Route::post("/o/createMaps", array(
 	));
 
 	// Owner Profile (Keep it at last !!important...............)
-	Route::get("o/{owner}", array(
+	Route::get("o/profile", array(
 		'as' => 'owner-profile',
 		'uses' => 'owner@getProfile'
 	));

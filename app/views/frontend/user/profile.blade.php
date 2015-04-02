@@ -2,31 +2,36 @@
 
 @section("content")
 	
+	@if(!empty($user))
 	<div class="row">
 		<div class="col-md-4 col-sm-4">
 		<div class="profile-wrap">
-			<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
+			<?php if(!empty($user->image)): ?>
+				<img class="img-profile img-circle" src="{{ asset('assets/img/profile/thumb/'.$user->image) }}">
+			<?php else: ?>
+				<img class="img-profile img-circle" src="{{ asset('assets/img/profile.jpg') }}">
+			<?php endif; ?>
 			<div style="  margin-top: 25px;">
 				<table class="table">
 				  <tr>
 				  	<td>Name :</td>
-				  	<td>Lalit Thapa</td>
+				  	<td>{{ $user->name }}</td>
 				  </tr>
 				  <tr>
 				  	<td>Email :</td>
-				  	<td>Lalit_emo@gmail.com</td>
+				  	<td>{{ $user->email }}</td>
 				  </tr>
 				  <tr>
 				  	<td>Username :</td>
-				  	<td>Dalli</td>
+				  	<td>{{ $user->username }}</td>
 				  </tr>
 				  <tr>
 				  	<td>Location :</td>
-				  	<td>Lamachaur Pokhara</td>
+				  	<td>{{ $user->address }}</td>
 				  </tr>
 				  <tr>
 				  	<td>Contact No :</td>
-				  	<td>+977-9823939129</td>
+				  	<td>{{ $user->contact }}</td>
 				  </tr>
 				</table>
 			</div>
@@ -79,5 +84,9 @@
 </section>​
 		</div>
 	</div>
+	@else
+		User not available
+
+	@endif
 
 @stop

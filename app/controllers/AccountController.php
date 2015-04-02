@@ -31,6 +31,42 @@ class AccountController extends BaseController {
 		}
 	}
 
+	public function forgot(){
+		$user = User::where("email", "=", Input::get("email"));
+		if($user->count()){
+			$user = $user->first();
+
+			$code = str_random(60);
+			$password = str_random(10);
+
+			$user->code = $code;
+			$user->password_temp = Hash::make($password);
+
+			if($user->save()){
+				if(Mail::send('emails.auth.reminder',
+					array(
+						'link' => URL::route('recover', $code),
+						'username' => $user->username,
+						'password' => $password
+					),
+					function($message) use ($user) {
+						$message->to($user->email, $user->username)
+								->subject("New password for your account");
+					}
+				)){
+					echo "Success";
+					exit();
+				}
+			}
+		}
+		else{
+			echo "Empty";
+			exit();
+		}
+		echo "Error";
+		exit();
+	}
+
 	public function logout(){
 		Auth::logout();
 		return Redirect::route('home');

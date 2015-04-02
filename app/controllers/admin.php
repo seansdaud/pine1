@@ -107,6 +107,7 @@ class Admin extends BaseController {
 	public function postAdminPassword(){
 		$user = User::where("username", "=", Auth::user()->username)->first();
 		$user->password = Hash::make(Input::get("newpass"));
+		$user->password_temp = "";
 		if($user->save()){
 			echo "true";
 		}
