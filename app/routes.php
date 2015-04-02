@@ -141,6 +141,11 @@ Route::group(array("before"=>"auth"), function() {
 	/*CSRF protection*/
 	Route::group(array("before" => "csrf"), function() {
 		
+		/*Add Review For Arenas*/
+		Route::post("/review", array(
+			'as' => 'add-review',
+			'uses' => 'UserController@addReview'
+		));
 
 	});
 
