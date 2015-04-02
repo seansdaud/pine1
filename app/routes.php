@@ -108,7 +108,11 @@ Route::group(array("before" => "guest"), function() {
 			"as" => "check-duplicate-users",
 			"uses" => "AccountController@checkUsers"
 		));
-
+			/*Check Duplicate Users*/
+		Route::post("/check-duplicate-users4", array(
+			"as" => "check-duplicate-users4",
+			"uses" => "AccountController@check4"
+		));
 	});
 
 	Route::get("/recover/{code}", array(

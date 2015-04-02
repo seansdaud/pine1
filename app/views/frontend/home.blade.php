@@ -4,6 +4,7 @@
     <title>{{ ucfirst($title) }}</title>
     {{ HTML::style('assets/css/bootstrap.css') }}
     {{ HTML::style('assets/css/style1.css') }}
+   {{ HTML::style('assets/css/select2.min.css') }}
     {{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
   </head>
   <body>
@@ -22,8 +23,22 @@
                 <div class="form-group">
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
+
                   <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                  <input type="text" class="form-control" id="inputGroupSuccess4" aria-describedby="inputGroupSuccess4Status">
+      
+                <select class="select-arena form-control">
+
+            <?php $field=User::where('usertype', 2)->get(); ?>
+            <?php if (!$field->isEmpty()):?>
+            <?php foreach ($field as $key ): ?>
+             
+              <?php if (!empty($key->arenas->name)):?>
+                <option value="<?php echo $key->arenas->id;  ?>"><?php echo ucfirst($key->arenas->name); ?></option>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
+                  
+              </select>
                 </div>              
                 </div>
             </div>
@@ -221,6 +236,13 @@
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/validator.min.js') }}
     {{ HTML::script('assets/js/frontend.js') }}
+    {{ HTML::script('assets/js/select2.min.js') }}
+    <script type="text/javascript">
+       $(".select-arena").select2({
+          placeholder: "Select a arena",
+  allowClear: true,
+       });
+     </script>
     <script type="text/javascript">
 
 
