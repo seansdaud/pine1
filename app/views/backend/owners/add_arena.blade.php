@@ -5,7 +5,17 @@
 		<li class="active">Arena Info</li>
 	</ol>
 
-	<form action="{{ URL::route('add-arena-post') }}" method="post" class="form-horizontal" data-toggle="validator" id="add-arena-form">
+	<form action="{{ URL::route('add-arena-post') }}" method="post" class="form-horizontal" data-toggle="validator" id="add-arena-form" enctype='multipart/form-data'>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Banner</label>
+			<div class="col-sm-10">
+				<?php if(!empty($info->banner)): ?>
+					<img src="{{ asset('assets/img/arena/thumb/'.$info->banner) }}">
+				<?php endif; ?>
+				<input type="file" name="banner" accept="image/gif, image/jpeg, image/png">
+			</div>
+		</div>
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Name</label>

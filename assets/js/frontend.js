@@ -46,10 +46,6 @@ $(function() {
                     $(".invalid").html("Email does not exist in our system.");
                     $("#" + id + " .loading").css("display", "none");
                 }
-                else if(data == "Error"){
-                    $(".invalid").html("Error Occurred. Please try again.");
-                    $("#" + id + " .loading").css("display", "none");
-                }
                 else if(data == "Success"){
                     $(".invalid").html("Recovery Email Sent.");
                     $("#" + id + " .loading").css("display", "none");
