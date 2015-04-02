@@ -3,7 +3,14 @@
 		<div class="row">
 			<div class="col-md-offset-7 col-md-5">
 				@if(Auth::check())
-          <a href="{{ URL::route('user-profile', Auth::user()->username) }}"><span class="khoj">{{ Auth::user()->username }}</span></a>
+          <?php if(Auth::user()->usertype == "1"): ?>
+              <?php $profile = URL::route('user-profile', Auth::user()->username); ?>
+          <?php elseif(Auth::user()->usertype == "2"): ?>
+              <?php $profile = URL::route('owner-profile'); ?>
+          <?php else: ?>
+              <?php $profile = URL::route('admin-profile'); ?>
+          <?php endif; ?>
+          <a href="{{ $profile }}"><span class="khoj">{{ Auth::user()->username }}</span></a>
 					<a href="{{ URL::route('logout') }}"><span class="khoj">Logout</span></a>
 				@else
             
@@ -11,7 +18,7 @@
                 <a href="#" id="loginButton"><span class="khoj">Login</span></a>
                 <div style="clear:both"></div>
                 <div id="loginBox">
-                    {{ Form::open(array('route' => 'login-post', 'id' => 'loginForm', 'class' => 'form-horizontal', 'data-toggle' => 'validator')) }}
+                    {{ Form::open(array('route' => 'login-post', 'id' => 'loginForm', 'class' => 'form-horizontal popout', 'data-toggle' => 'validator')) }}
                         <div class="invalid"></div>
                         <div class="loading"><img src="{{ asset('assets/img/load.gif') }}"></div>
                         <fieldset id="body">
@@ -28,10 +35,24 @@
                             <input type="submit" id="login" value="Sign in" />
                             <label for="checkbox"><input type="checkbox" id="checkbox" name="remember">Remember me</label>
                         </fieldset>
-                        <span><a href="#">Forgot your password?</a></span>
+                        <span><a href="#" id="forgot-password">Forgot your password?</a></span>
+                    {{ Form::close() }}
+
+                    {{ Form::open(array('route' => 'forgot-login-post', 'id' => 'forgotForm', 'class' => 'form-horizontal popout', 'data-toggle' => 'validator', 'style'=>'display: none;')) }}
+                        <div class="invalid"></div>
+                        <div class="loading"><img src="{{ asset('assets/img/load.gif') }}"></div>
+                        <fieldset id="body">
+                            <div class="form-group" style="margin-left: 0px;">
+                                <input type="email" name="email" id="email" placeholder="Enter your registered email" required>
+                                <div class="help-block with-errors error-costum"></div>
+                            </div>
+
+                            <input type="submit" id="login" value="Recover" />
+                        </fieldset>
+                        <span><a href="#" id="back-to-login">Login</a></span>
                     {{ Form::close() }}
                 </div>
-            </div>
+              </div>
 
 					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
 				@endif
@@ -46,6 +67,7 @@
 	</div>
 </div>
 
+<div>
   @if(Session::has('danger'))
     <div class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -73,6 +95,7 @@
       {{ Session::get('info') }}
     </div>
   @endif
+</div>
 
 <nav class="navbar navbar-default nav-costum" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -87,8 +110,8 @@
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="{{URL::route('home')}}">HOME</a></li>
+    <ul class="nav navbar-nav" id="{{ $id }}">
+      <li><a href="{{URL::route('home')}}">HOME</a></li>
       <li><a href="{{ URL::route('arenas') }}">ARENAS</a></li>
       <li><a href="{{ URL::route('about') }}">ABOUT</a></li>
       <li><a href="{{ URL::route('contact') }}">CONTACT</a></li>
