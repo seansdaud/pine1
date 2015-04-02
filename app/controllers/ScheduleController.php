@@ -574,10 +574,16 @@ $result = Marker::select(
 	print_r(json_encode($result));
 	}
 	public function UserCreate(){
+
+		$data=User::where('name',Input::get('name'))->where('contact',Input::get('contact'))->where('usertype',4)->first();
+			if ($data) {
+				 return Redirect::to('/o/booknow/2')->with("danger", "Duplicate Data");
+			}
 		$u= new User;
 		$u->usertype=4;
 		$u->name=Input::get('name');
 		$u->contact=Input::get('contact');
+
 		if($u->save()){
 			 return Redirect::to('/o/booknow/2')->with("danger", "User Added!!");
 		}

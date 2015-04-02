@@ -18,13 +18,13 @@
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
                                 <li>
-                                  <a href="#" aria-label="Previous">
+                                  <a aria-label="Previous" class="prevget">
                                     <span aria-hidden="true">&laquo;</span>
                                   </a>
                                 </li>
                                 
                                 <li>
-                                  <a href="#" aria-label="Next">
+                                  <a aria-label="Next" class="nextget">
                                     <span aria-hidden="true">&raquo;</span>
                                   </a>
                                 </li>
