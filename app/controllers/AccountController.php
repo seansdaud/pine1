@@ -83,25 +83,48 @@ class AccountController extends BaseController {
 	function checkUsers(){
 		$check = Input::get("check");
 		$value = Input::get("value");
-		if(User::where($check, "=", $value)->first()){
+		if(User::where($check, "=", $value)->where('usertype',3)->first()){
 			echo "duplicate";
 		}
 	}
 
 	public function postRegister(){
+
 		$username = Input::get('username');
 		$email = Input::get('email');
 		$password = Input::get('password');
-
-		$user = User::create(array(
+		$data=User::where('name',Input::get('name'))->where('contact',Input::get('contact'))->where('usertype',4)->first();
+		if ($data) {
+					$data1 = array(
+						'username' => $username,
+						'email' => $email,
+						'password' => Hash::make($password),
+						'active' => 0,
+						'code' => str_random(60),
+						'usertype' => 1,
+						'name' => Input::get('name'),
+						'address'=> Input::get('address'),
+						'contact'=> Input::get('contact'),
+					);
+				
+						User::where('id', $data->id)->update($data1);
+							 $user=User::where('id', $data->id)->first();
+					
+		}
+		else{
+				$user = User::create(array(
 			'username' => $username,
 			'email' => $email,
 			'password' => Hash::make($password),
 			'active' => 0,
 			'code' => str_random(60),
 			'usertype' => 1,
-			'name' => Input::get('name')
+			'name' => Input::get('name'),
+			'address'=> Input::get('address'),
+			'contact'=> Input::get('contact'),
 		));
+		}
+	
 
 		if($user){
 
