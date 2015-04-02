@@ -104,6 +104,7 @@ class AccountController extends BaseController {
 		}
 	}
 
+
 	public function postRegister(){
 
 		$username = Input::get('username');

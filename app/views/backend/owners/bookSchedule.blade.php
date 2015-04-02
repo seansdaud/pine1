@@ -40,8 +40,9 @@
 			</div>
 			<label class="col-sm-2 control-label">Enter Contact No:</label>
 			<div class="col-sm-10">
-				<input type="text" name="contact" class="form-control"  required>
+				<input type="text" name="contact"  class="form-control"  required>
 			</div>
+				<span class="help-block with-errors"></span>
 			</div>
 			<div class="form-group">
 			<input type="submit" value="Add" class="col-sm-offset-2 btn btn-default">
@@ -63,6 +64,7 @@
                               <div class="col-sm-10">
                                  	<input type="text" name="contact" style="width: 21%;" class="form-control keys"  id="searchcont" >
                               </div>
+
                           </div>
 	</div>
 			<input type="hidden" id='type' value="2">
