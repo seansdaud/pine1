@@ -222,16 +222,25 @@ function update_ajax(){
 
 }
 	$('#btn_book').prop('disabled',true);
-$("#searchmem").keyup(function(){
+$(".keys").keyup(function(){
 	$('#btn_book').prop('disabled',true);
-		var mem = $(this).val();	
+		var mem = $('#searchmem').val();
+
+		 var cont = $('#searchcont').val();	
+		 var type = $('#type').val();
+		 if (type==1) {
+		 	var urls="searchuser";
+		 }else{
+			var urls="searchuservianame";
+		 };
 		var url = $('#base_url').val();
 
 			$.ajax({
 				type:'POST',
-					url: url+'/o/searchuser',
+					url: url+'/o/'+urls,
 				data:{
-					mem:mem
+					mem:mem,
+					cont:cont
 				},
 				dataType: 'json',
 				success:function(data)
@@ -259,20 +268,32 @@ $("#searchmem").keyup(function(){
 							"<tbody>"+
 									"<tr >"+
 										"<th>id</th>"+
+										"<th>UserName</th>"+
 										"<th>Name</th>"+
+											"<th>Contact</th>"+
 										"<th>Action</th>"+
 									"</tr>"+
 									"</tbody>");
 						jQuery("#display tbody").append(function(){
 														 var $container = $('<div></div>');
 														    $.each(array, function(val) {
+														    	var put;
+														    		put=data[val].uname;
+														    	if (data[val].uname==null) {
+														    		 put=data[val].name;
+														    	};
+														    
 														        $container.append($("<tr/>").append(
 														        	 $("<td/>").html(val+1),
-														        	  $("<td/>").html("<div class='data"+val+"'>"+data[val].uname+"</div>"), 
+														        	 $("<td/>").html("<div class='data"+val+"'>"+put+"</div>"), 
+														        	  $("<td/>").html("<div class='data"+val+"'>"+data[val].name+"</div>"), 
+														        	  	  $("<td/>").html("<div class='data"+val+"'>"+data[val].contact+"</div>"), 
 														        	  $("<td/>").html("<input class='btn btn-primary ' id='btnw-"+val+"' onclick='return item("+val+");' type='button' value='Choose'>")
 
 														        ));
-														      $('#display').append("<input class='datahid"+val+" form-control' type='hidden' value='"+data[val].uname+"'>");
+														      $('#display').append("<input class='datahid"+val+" form-control' type='hidden' value='"+put+"'>");
+														       $('#display').append("<input class='datahidc"+val+" form-control' type='hidden' value='"+data[val].contact+"'>");
+														       $('#display').append("<input class='datahids"+val+" form-control' type='hidden' value='"+data[val].id+"'>");
 														    });
 
 														   return $container.html();
@@ -303,7 +324,11 @@ $("#searchmem").keyup(function(){
 	});
 function item(m){
 	var value = $(".datahid"+m).val();
+		var value1 = $(".datahids"+m).val();
+		var value2 = $(".datahidc"+m).val();
 	$("#searchmem").val(value);
+	$("#searchcont").val(value2);
+		$("#user_id").val(value1);
 	$('#btn_book').prop('disabled',false);
 }
 // $(document).ready(function() {
@@ -615,7 +640,8 @@ var forwho = $('#for').val();
 				data:{
 					day:day,
 					date:date,
-					forwho:forwho
+					forwho:forwho,
+					
 				},
 		success:function(data)
 				{

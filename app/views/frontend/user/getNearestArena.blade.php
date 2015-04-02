@@ -2,9 +2,14 @@
   <div class="row">
                       <div class="col-md-3">
                         <div class="schedule">Schedules</div>
+
                       </div>
+
                     </div>
    <div style="border-bottom: 4px solid #F43C12;"></div>
+    <div>
+        <div class="schedule" style="margin-left: 15%;">Distance:<?php echo intval($result[0]->distances); ?>miles</div>
+    </div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
                           <th>Duration</th>
@@ -52,11 +57,11 @@
                     </td>
                       @if($flag==1) 
                       <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-primary"  value="Booked" >
+                        <input  type="button"  class="btn btn-danger"  value="Booked" >
                       </td>
                       @else
                       <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-danger"  value="Not Booked" >
+                        <input  type="button"  class="btn btn-primary"  value="Available" >
                       </td>
                       @endif
 
@@ -65,11 +70,11 @@
                         <?php $user= User::where('id',$getuser)->get();   
                       ?>
                       <td data-th="Configure">
-                          <input  type="button"  class="btn btn-primary"  value="<?php  echo $user[0]->name; ?>" >
+                          <input  type="button"  class="btn btn-danger"  value="<?php  echo $user[0]->name; ?>" >
                       </td>
                       @else
                       <td data-th="Configure">
-                        <input  type="button"  class="btn btn-danger"  value="Not Booked" >
+                        <input  type="button"  class="btn btn-success"  value="Book" >
                       </td>
                       @endif
                     <td data-th="View">
@@ -82,18 +87,18 @@
                     @if($flag==1) 
                         <?php $user= User::where('id',$getuser)->get();   
                       ?>
-                          @if(!empty($user[0]->contactno))
+                          @if(!empty($user[0]->contact))
                         <td data-th="Change Permissions">
-                              <input  type="button"  class="btn btn-primary"  value="<?php  echo $user[0]->contactno; ?>" >
+                              <input  type="button"  class="btn btn-danger"  value="<?php  echo $user[0]->contact; ?>" >
                           </td>
                           @else
                           <td>
-                            <input  type="button"  class="btn btn-danger"  value="None" >
+                            <input  type="button"  class="btn btn-success"  value="None" >
                           </td>
                           @endif
                       @else
                      <td data-th="Change Permissions">
-                        <input  type="button"  class="btn btn-danger"  value="Not Booked" >
+                        <input  type="button"  class="btn btn-success"  value="Not Booked" >
                       </td>
                       @endif
               </tr>
