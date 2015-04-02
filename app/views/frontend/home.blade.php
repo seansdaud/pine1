@@ -26,6 +26,25 @@
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
+                      <div class="col-md-9">
+                        <div style="float:right;">
+                          <nav>
+                              <ul class="pagination" style="margin:0 !important;">
+                                <li>
+                                  <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                  </a>
+                                </li>
+                                
+                                <li>
+                                  <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                        </div>
+                      </div>
                   	</div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
