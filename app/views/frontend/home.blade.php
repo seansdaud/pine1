@@ -4,6 +4,7 @@
     <title>{{ ucfirst($title) }}</title>
     {{ HTML::style('assets/css/bootstrap.css') }}
     {{ HTML::style('assets/css/style1.css') }}
+   {{ HTML::style('assets/css/select2.min.css') }}
     {{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
   </head>
   <body>
@@ -22,8 +23,23 @@
                 <div class="form-group">
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
+
                   <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                  <input type="text" class="form-control" id="inputGroupSuccess4" aria-describedby="inputGroupSuccess4Status">
+      
+                <select class="select-arena form-control">
+                <option value=""><option>
+
+            <?php $field=User::where('usertype', 2)->get(); ?>
+            <?php if (!$field->isEmpty()):?>
+            <?php foreach ($field as $key ): ?>
+             
+              <?php if (!empty($key->arenas->name)):?>
+                <option value="<?php echo $key->arenas->id;  ?>"><?php echo ucfirst($key->arenas->name); ?></option>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
+                  
+              </select>
                 </div>              
                 </div>
             </div>
@@ -221,6 +237,13 @@
     {{ HTML::script('assets/js/bootstrap.min.js') }}
     {{ HTML::script('assets/js/validator.min.js') }}
     {{ HTML::script('assets/js/frontend.js') }}
+    {{ HTML::script('assets/js/select2.min.js') }}
+    <script type="text/javascript">
+       $(".select-arena").select2({
+          placeholder: "Select a arena",
+  allowClear: true,
+       });
+     </script>
     <script type="text/javascript">
 
 
@@ -270,7 +293,41 @@ function showPosition(position) {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+    // $('.select-arena').on('change', function (e) {
+    //       var base_url= $('#base_url').val();
+    //     var optionSelected = $("option:selected", this);
+    //     var valueSelected = this.value;
+    //           $.ajax({
+    //                  url:base_url+"",
+    //                    type:'POST',
+    //                    data: {
+    //                     id:valueSelected
+    //                   },
+    //                success:function(result){ 
+    //               $(".ajax").html(result);
+    //               $('#id').html("");
+    //                 $('#datepick').datepicker({
+    //           dateFormat:"D,yy-mm-dd", ///"dd-mm-yy"
+    //           // dateFormat:"yy-mm-dd",
+    //           minDate:0, // -5d
+    //           // maxDate:'+1m + 10d',
+    //           showButtonPanel:true,
+    //           showAnim:'bounce' // fadein show etc
+    //           });
+    //                   var today = $("#today").val();
+    //         var now=parseInt(today) ;
+    //           $(" ."+now).addClass("active");
+    //                 return true;
+    //           },
+    //        beforeSend : function (){
+    //              $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
 
+    //         },
+    //           error: function(jqXHR, textStatus, errorThrown){ 
+    //             alert(jqXHR.responseText);
+    //           }
+    //             });
+    //     });
   </script>
   </body>
 </html>

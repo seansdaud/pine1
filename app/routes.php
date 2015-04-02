@@ -108,7 +108,11 @@ Route::group(array("before" => "guest"), function() {
 			"as" => "check-duplicate-users",
 			"uses" => "AccountController@checkUsers"
 		));
-
+			/*Check Duplicate Users*/
+		Route::post("/check-duplicate-users4", array(
+			"as" => "check-duplicate-users4",
+			"uses" => "AccountController@check4"
+		));
 	});
 
 	Route::get("/recover/{code}", array(
@@ -136,7 +140,16 @@ Route::group(array("before"=>"auth"), function() {
 
 	/*CSRF protection*/
 	Route::group(array("before" => "csrf"), function() {
+		Route::post("/update-profile-post", array(
+			'as' => 'update-profile-post',
+			'uses' => 'UserController@profileUpdated'
+		));	
 		
+		/*Add Review For Arenas*/
+		Route::post("/review", array(
+			'as' => 'add-review',
+			'uses' => 'UserController@addReview'
+		));
 
 	});
 
@@ -145,6 +158,10 @@ Route::group(array("before"=>"auth"), function() {
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
 	));
+	Route::get("/update-profile", array(
+			'as' => 'change-profile',
+			'uses' => 'UserController@changeProfile'
+		));
 
 });
 

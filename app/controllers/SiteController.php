@@ -4,6 +4,7 @@ class SiteController extends BaseController {
 
 	public function index()
 	{
+		$code = str_random(60);
 		$data = array(
 			'id' => 'home',
 			'title' => 'home'
