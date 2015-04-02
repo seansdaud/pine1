@@ -66,7 +66,7 @@
   display: block !important;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-	border-top: 4px solid #ddd !important;
+	border-top: 2px solid #ddd !important;
 }
 .time-side{
 	background: rgb(186, 191, 194);
@@ -391,6 +391,23 @@ body {
 .origin:hover{
   color: rgb(249, 98, 63);
 }
+.logs{
+  margin-top: 15px;
+  background: rgb(232, 232, 232);
+  padding: 8px;
+  font-family: 'Titillium Web', sans-serif;
+  text-transform: capitalize;
+}
+.times{
+  float: right;
+  margin-right: 4px;
+  background: rgb(241, 86, 32);
+  color: white;
+  border-radius: 50%;
+  padding: 6px;
+  width: 33px;
+  text-align: center;
+}
 
 /* Login Container (default to float:right) */
 #loginContainer {
@@ -562,6 +579,15 @@ label{
   font-size: 20px;
   display: inline-block;
 }
+.arrow{
+  display: block !important; 
+  position: absolute !important; 
+  width: 0 !important; height: 0 !important; 
+  border-top: 40px solid #F15620 !important; 
+  border-right: 40px solid transparent !important; 
+  right: -25px; 
+  top: 0;
+}
 .reg{
   background: rgb(105, 109, 123);
   color: white;
@@ -571,14 +597,20 @@ label{
 }
 .img-profile{
   width: 175px;
-  height: auto;
+  height: 175px;
   display: block;
   margin: 0 auto;
   border: 4px solid rgb(221, 221, 221);
+  position: absolute;
+  left: -206px;
+  top: 82px;
 }
 .profile-wrap{
-  background: #BBC2C5;
+  background: #EEEEEE url(Capture.PNG) !important;
+  color: white;
   padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 
@@ -589,12 +621,13 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
   
 
 section {
-    background: #BBC2C5;
+    background: #EEEEEE url(site-background.jpg) center top no-repeat !important;
     padding-right: 85px;
     padding-top: 20px;
     padding-bottom: 20px;
     height: 100%;
     margin: auto;
+    margin-top: 15px;
 }
 
 .comment {
@@ -610,7 +643,7 @@ section {
 .comment-img {
     float: left;
     margin-right: 33px;
-    border-radius: 5px;
+    border-radius: 23px;
     overflow: hidden;
 }
 
@@ -622,7 +655,8 @@ section {
     padding: 10px;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
-    background: #fff;
+    background: #15212F;
+    color: white;;
 }
 
 .comment .text p:last-child { margin: 0 }
