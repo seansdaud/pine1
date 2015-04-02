@@ -83,7 +83,7 @@
                     </a>
                     <ul class="sub">
                         <li><a  href="{{ URL::route('booknow',1) }}">Via Username</a></li>
-                        <li><a  href="{{ URL::route('booknow', 2) }}">Via Name</a></li>
+                        <li><a  href="{{ URL::route('booknow', 2) }}">Via name</a></li>
                     </ul>
                 </li>
 

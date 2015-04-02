@@ -21,7 +21,16 @@
 	</div>
 <div class="id"></div>
 <div class="bookname"<div class="bookname" style=" font-size: 266%; color: maroon; margin-top: -3%; margin-left: 34%;">
-Booking for <?php echo Session::get('usersname'); ?></div>
+<?php $usersnamez = Session::get('usersname');
+										$usersidz= User::where('id',$usersnamez)->get(); ?>
+	<?php 
+	$types = Session::get('user_typo');
+	if($types ==1):?>
+		Booking for <?php echo $usersidz[0]->username; ?></div>
+	<?php else: ?>
+		Booking for <?php echo $usersidz[0]->name; ?></div>
+	<?php endif; 
+	?>
 <div class="panel-body tabbody">
 						<table name='table'  class='table detailtable  table-striped table-hover' border="3" width="100%">
 
@@ -78,7 +87,7 @@ Booking for <?php echo Session::get('usersname'); ?></div>
 										{{ Form::open(array('route' => 'postbookschedule','class'=>'form-horizontal row-fluid','id' => 'myform' ,'files'=>true, 'method'=>'post')) }}
 										<?php 
 										$usersname = Session::get('usersname');
-										$usersid= User::where('username',$usersname)->get(); ?>
+										$usersid= User::where('id',$usersname)->get(); ?>
 																<input type="hidden" name="key_id" value="<?php echo $key->id; ?>">
 																	<input type="hidden" name="price" value="<?php echo $key->price; ?>">	
 																<input type="hidden" name="user_id" value="<?php echo $usersid[0]->id; ?>">
@@ -97,9 +106,9 @@ Booking for <?php echo Session::get('usersname'); ?></div>
 									@if($flag==1) 
 											<?php	$user= User::where('id',$getuser)->get();		
 										?>
-												@if(!empty($user[0]->contactno))
+												@if(!empty($user[0]->contact))
 												<td>
-														<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->contactno; ?>" >
+														<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->contact; ?>" >
 												</td>
 												@else
 												<td>

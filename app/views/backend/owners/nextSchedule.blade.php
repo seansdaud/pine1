@@ -79,9 +79,9 @@
 										@if($flag==1) 
 												<?php	$user= User::where('id',$getuser)->get();		
 											?>
-													@if(!empty($user[0]->contactno))
+													@if(!empty($user[0]->contact))
 													<td>
-															<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->contactno; ?>" >
+															<input  type="button"  class="btn btn-primary"  value="<?php 	echo $user[0]->contact; ?>" >
 													</td>
 													@else
 													<td>
