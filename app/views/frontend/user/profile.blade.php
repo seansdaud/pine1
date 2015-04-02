@@ -5,78 +5,58 @@
 	<div class="row">
 		<div class="col-md-4 col-sm-4">
 		<div class="profile-wrap">
-			<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
+			@if(Auth::user()->image != "")
+				<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
+			@else
+				<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
+			@endif
 			<div style="  margin-top: 25px;">
 				<table class="table">
 				  <tr>
 				  	<td>Name :</td>
-				  	<td>Lalit Thapa</td>
+				  	<td>{{ $user->name }}</td>
 				  </tr>
 				  <tr>
 				  	<td>Email :</td>
-				  	<td>Lalit_emo@gmail.com</td>
+				  	<td>{{ $user->email }}</td>
 				  </tr>
 				  <tr>
-				  	<td>Username :</td>
-				  	<td>Dalli</td>
-				  </tr>
-				  <tr>
-				  	<td>Location :</td>
-				  	<td>Lamachaur Pokhara</td>
+				  	<td>Address :</td>
+				  	<td>{{$user->address}}</td>
 				  </tr>
 				  <tr>
 				  	<td>Contact No :</td>
-				  	<td>+977-9823939129</td>
+				  	<td>{{ $user->contact }}</td>
 				  </tr>
 				</table>
 			</div>
-			
-
+			<div>
+				<a href="{{ URL::route('change-profile') }}">edit</a>
+			</div>
 		</div>
 		</div>
 		<div class="col-md-8 col-sm-8">
 			<section class="comments">
-	<article class="comment">
-		<a class="comment-img" href="#non">
-			<img src="http://lorempixum.com/50/50/people/1" alt="" width="50" height="50" />
-		</a>
-			
-		<div class="comment-body">
-			<div class="text">
-			  <p>You booked <a href="#">Pokhara Futsal Arena</a></p>
-			</div>
-			<p class="attribution">At 2:20pm, 4th Dec 2012</p>
-		</div>
-	</article>
-	
-	<article class="comment">
-		<a class="comment-img" href="#non">
-		<img src="http://lorempixum.com/50/50/people/7" alt="" width="50" height="50">
-		</a>
-			
-		<div class="comment-body">
-			<div class="text">
-			  <p>This is a much longer one that will go on for a few lines.</p>
-			  <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
-			</div>
-		<p class="attribution">At 2:23pm, 4th Dec 2012</p>
-		</div>
-	</article>
-		
-	<article class="comment">
-		<a class="comment-img" href="#non">
-		<img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/572942_100000672487970_422966851_q.jpg" alt="" width="50" height="50">
-		</a>
-			
-		<div class="comment-body">
-			<div class="text">
-				<p>Originally from <a href="http://cssdeck.com/item/301/timeline-style-blog-comments#comment_289">cssdeck.com</a> this presentation has been updated 
-				to looks more precisely to the facebook timeline</p>
-			</div>
-		<p class="attribution">At 2:44pm, 14th Apr 2012</p>
-		</div>
-	</article>
-</section>​
+				@foreach($booking as $book)
+				<article class="comment">
+					<a class="comment-img" href="#non">
+						@if(Auth::user()->image != "")
+							<img src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}" alt="" width="50" height="50">
+						@else
+							<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}" alt="" width="50" height="50">
+						@endif
+					</a>
+					<? $arena=Arena::where('id','=', $book->arena_id)->firstOrFail();?>
+					<? $time=Scheduleinfo::where('booking_id','=',$book->id)->firstOrFail();?>
+					<div class="comment-body">
+						<div class="text">
+						  <p>You booked <a href="#">{{ $arena->name }}</a> from {{ $time->start_time }} to {{$time->end_time}}</p>
+						</div>
+						<p class="attribution">On {{ date("H:m:s", strtotime($book->created_at)); }}, {{ $book->booking_date }}</p>
+					</div>
+				</article>
+				@endforeach
+			</section>​
 		</div>
 	</div>
 

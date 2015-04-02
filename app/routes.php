@@ -117,7 +117,10 @@ Route::group(array("before"=>"auth"), function() {
 
 	/*CSRF protection*/
 	Route::group(array("before" => "csrf"), function() {
-		
+		Route::post("/update-profile-post", array(
+			'as' => 'update-profile-post',
+			'uses' => 'UserController@profileUpdated'
+		));	
 
 	});
 
@@ -126,6 +129,10 @@ Route::group(array("before"=>"auth"), function() {
 		'as' => 'logout',
 		'uses' => 'AccountController@logout'
 	));
+	Route::get("/update-profile", array(
+			'as' => 'change-profile',
+			'uses' => 'UserController@changeProfile'
+		));
 
 });
 
