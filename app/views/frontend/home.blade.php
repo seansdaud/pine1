@@ -27,6 +27,7 @@
                   <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
       
                 <select class="select-arena form-control">
+                <option value=""><option>
 
             <?php $field=User::where('usertype', 2)->get(); ?>
             <?php if (!$field->isEmpty()):?>
@@ -292,7 +293,41 @@ function showPosition(position) {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+    // $('.select-arena').on('change', function (e) {
+    //       var base_url= $('#base_url').val();
+    //     var optionSelected = $("option:selected", this);
+    //     var valueSelected = this.value;
+    //           $.ajax({
+    //                  url:base_url+"",
+    //                    type:'POST',
+    //                    data: {
+    //                     id:valueSelected
+    //                   },
+    //                success:function(result){ 
+    //               $(".ajax").html(result);
+    //               $('#id').html("");
+    //                 $('#datepick').datepicker({
+    //           dateFormat:"D,yy-mm-dd", ///"dd-mm-yy"
+    //           // dateFormat:"yy-mm-dd",
+    //           minDate:0, // -5d
+    //           // maxDate:'+1m + 10d',
+    //           showButtonPanel:true,
+    //           showAnim:'bounce' // fadein show etc
+    //           });
+    //                   var today = $("#today").val();
+    //         var now=parseInt(today) ;
+    //           $(" ."+now).addClass("active");
+    //                 return true;
+    //           },
+    //        beforeSend : function (){
+    //              $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
 
+    //         },
+    //           error: function(jqXHR, textStatus, errorThrown){ 
+    //             alert(jqXHR.responseText);
+    //           }
+    //             });
+    //     });
   </script>
   </body>
 </html>
