@@ -5,7 +5,7 @@ class UserController extends BaseController {
 	public function getProfile($username){
 		$user = User::where(array("username" => $username, "usertype" => "1"))->first();
 		$event=Events::where('user_id','=', Auth::user()->id)->get();
-		$booking=Booking::where('user_id','=', Auth::user()->id)->get();
+		$booking=Booking::where('user_id','=', Auth::user()->id)->orderBy('id','desc')->get();
 		
 		
 		if(!empty($user)):
