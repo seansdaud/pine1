@@ -12,10 +12,14 @@
 				<span style="display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
 				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; bottom: -77px;"></span>
 				
-				<img class="img-profile img-circle" src="{{ asset('assets/img/ui-zac.jpg') }}">
+				@if(Auth::user()->image != "")
+					<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
+				@else
+					<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
+				@endif
 				
 				<div class="arena-wrapper">
-					<div class="arena-top">Prachanda Gurung</div>
+					<div class="arena-top">{{ $user->name }}</div>
 					<div style="color:white; font-family:'Titillium Web', sans-serif;">
 					<span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span>
 					</div>
@@ -36,11 +40,6 @@
 		</div>
 		
 		<div class="profile-wrap">
-			@if(Auth::user()->image != "")
-				<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
-			@else
-				<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
-			@endif
 			<div style="  margin-top: 25px;">
 				<table class="table">
 				  <tr>

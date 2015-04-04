@@ -4,13 +4,12 @@
  	<ol class="breadcrumb">
 		<li class="active">Edit Profile</li>
 	</ol>
-
+	@if(Auth::user()->image != "")
+		<img class="img-circle pic-profile" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
+	@else
+		<img class="img-circle pic-profile" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
+	@endif
 	<form action="{{ URL::route('update-profile-post') }}" method="post" class="form-horizontal" data-toggle="validator" enctype='multipart/form-data'>
-		@if(Auth::user()->image != "")
-			<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/'.Auth::user()->image) }}">
-		@else
-			<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
-		@endif
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Change picture</label>
 			<div class="col-sm-6">
@@ -55,8 +54,13 @@
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Address</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input type="text" name="address" value="{{ Auth::user()->address }}">
+			</div>
+			<div class="col-sm-4 help-block with-errors">
+				@if($errors->has('contact'))
+					{{ $errors->first('contact') }}
+				@endif
 			</div>
 		</div>
 
