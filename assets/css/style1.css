@@ -902,6 +902,11 @@ section {
   text-align: right;
   text-transform: capitalize;
 }
+
+.select2-container--default .select2-selection--single {
+  border-radius: 0 4px 4px 0px !important;
+}
+
 .loc{
   padding: 6px 14px;
   background: rgb(239, 239, 239);
