@@ -11,9 +11,9 @@
 	@endif
 	<form action="{{ URL::route('update-profile-post') }}" method="post" class="form-horizontal" data-toggle="validator" enctype='multipart/form-data'>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Change picture</label>
+			<label class="col-sm-2 control-label">Change Profile Picture</label>
 			<div class="col-sm-6">
-				<input type="file" name="image" class="form-control" accept="image/gif, image/jpeg, image/png">
+				<input type="file" name="image" accept="image/gif, image/jpeg, image/png">
 			</div>
 		</div>
 		<div class="form-group">
@@ -55,7 +55,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Address</label>
 			<div class="col-sm-6">
-				<input type="text" name="address" value="{{ Auth::user()->address }}">
+				<input type="text" name="address" class="form-control" value="{{ Auth::user()->address }}">
 			</div>
 			<div class="col-sm-4 help-block with-errors">
 				@if($errors->has('contact'))
