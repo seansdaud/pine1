@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-md-7">
 					<div class="cat-name">
-		                <span class="base schedule">Personal info</span>
+		                <span class="base schedule">Arena info</span>
 		                <span class="arrow"></span>
 	                </div>
 				</div>
