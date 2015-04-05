@@ -60,8 +60,8 @@
 				  </tr>
 				</table>
 			</div>
-			<div>
-				<a href="{{ URL::route('change-profile') }}">edit</a>
+			<div class="profile-edit">
+				<a href="{{ URL::route('change-profile') }}"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
 		<div>
@@ -74,13 +74,33 @@
 				</div>
 			</div>
 			<div class="logs">
-				<div style="  border-bottom: 1px solid white; height: 40px; padding: 2px;">
-					<span style="  padding-top: 3px;">pokhara futsal arena</span>
-					<span class="times">19</span>
+				<div style="  border-bottom: 1px solid white; padding: 2px;">
+					<div style="  padding-top: 3px; color: rgb(21, 33, 47);">pokhara futsal arena</div>
+					<!-- <span class="times">19</span> -->
+					<div class="badges">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Booked: 10
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Badges: 6
+						</div>
+					</div>
+					</div>
 				</div>
-				<div style="  border-bottom: 1px solid white; height: 40px; padding: 2px;">
-					<span style="  display: inline-block;">pokhara futsal arena</span>
-					<span class="times">19</span>
+				<div style="  border-bottom: 1px solid white; padding: 2px;">
+					<div style="  padding-top: 3px; color: rgb(21, 33, 47);">pokhara futsal arena</div>
+					<!-- <span class="times">19</span> -->
+					<div class="badges">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Booked: 10
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Badges: 6
+						</div>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>
