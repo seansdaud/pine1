@@ -902,3 +902,15 @@ section {
   text-align: right;
   text-transform: capitalize;
 }
+.loc{
+  padding: 6px 14px;
+  background: rgb(239, 239, 239);
+  margin: 5px auto;
+  color: rgb(241, 86, 32);
+}
+.glyp{
+  color: rgb(24, 39, 55);
+  font-size: 25px;
+  margin-top: 5px;
+  margin-right: 7px;
+}
