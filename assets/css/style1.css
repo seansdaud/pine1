@@ -605,6 +605,16 @@ label{
   left: -206px;
   top: 82px;
 }
+.pic-profile{
+  width: 175px;
+  height: 175px;
+  display: block;
+  margin: 0 auto;
+  border: 4px solid rgb(221, 221, 221);
+  position: absolute;
+  left: 896px;
+  top: 99px;
+}
 .profile-wrap{
   background: #EEEEEE url(Capture.PNG) !important;
   color: white;
