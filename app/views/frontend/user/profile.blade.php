@@ -12,10 +12,14 @@
 				<span style="display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
 				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; bottom: -77px;"></span>
 				
-				<img class="img-profile img-circle" src="{{ asset('assets/img/ui-zac.jpg') }}">
+				@if(Auth::user()->image != "")
+					<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
+				@else
+					<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
+				@endif
 				
 				<div class="arena-wrapper">
-					<div class="arena-top">Prachanda Gurung</div>
+					<div class="arena-top">{{ $user->name }}</div>
 					<div style="color:white; font-family:'Titillium Web', sans-serif;">
 					<span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span>
 					</div>
@@ -36,11 +40,6 @@
 		</div>
 		
 		<div class="profile-wrap">
-			@if(Auth::user()->image != "")
-				<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
-			@else
-				<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}">
-			@endif
 			<div style="  margin-top: 25px;">
 				<table class="table">
 				  <tr>
@@ -61,8 +60,8 @@
 				  </tr>
 				</table>
 			</div>
-			<div>
-				<a href="{{ URL::route('change-profile') }}">edit</a>
+			<div class="profile-edit">
+				<a href="{{ URL::route('change-profile') }}"><span class="glyphicon glyphicon-edit"></span></a>
 			</div>
 		</div>
 		<div>
@@ -75,13 +74,33 @@
 				</div>
 			</div>
 			<div class="logs">
-				<div style="  border-bottom: 1px solid white; height: 40px; padding: 2px;">
-					<span style="  padding-top: 3px;">pokhara futsal arena</span>
-					<span class="times">19</span>
+				<div style="  border-bottom: 1px solid white; padding: 2px;">
+					<div style="  padding-top: 3px; color: rgb(21, 33, 47);">pokhara futsal arena</div>
+					<!-- <span class="times">19</span> -->
+					<div class="badges">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Booked: 10
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Badges: 6
+						</div>
+					</div>
+					</div>
 				</div>
-				<div style="  border-bottom: 1px solid white; height: 40px; padding: 2px;">
-					<span style="  display: inline-block;">pokhara futsal arena</span>
-					<span class="times">19</span>
+				<div style="  border-bottom: 1px solid white; padding: 2px;">
+					<div style="  padding-top: 3px; color: rgb(21, 33, 47);">pokhara futsal arena</div>
+					<!-- <span class="times">19</span> -->
+					<div class="badges">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Booked: 10
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							Badges: 6
+						</div>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>
