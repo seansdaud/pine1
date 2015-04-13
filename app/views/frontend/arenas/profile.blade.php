@@ -219,35 +219,39 @@
 	                </div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div>
-						<span class="review-img"><img src="{{ asset('assets/img/ui-zac.jpg') }}"></span>
-						<span class="gurg">Prachanda Gurung</span>
-					</div>
-					<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud </div>
-				</div>
+				<?php $row_closed = null; $i=0; ?>
+				@foreach($arena->reviews as $review)
+					<?php $review_from = User::where("id", "=", $review->user_id)->first(); ?>
+					<?php $i++; if($i==1): $row_closed=false; ?>
+						<div class="row">
+					<?php endif; ?>
 
-			</div>
-			@foreach($arena->reviews as $review)
+							<div class="col-md-6">
+								<div>
+									<?php if(!empty($review_from->image)): ?>
+										<?php $image = "assets/img/profile/user/thumb/".$review_from->image; ?>
+									<?php else: ?>
+										<?php $image = "assets/img/default.jpg" ?>
+									<?php endif; ?>
+									<span class="review-img"><img src="{{ asset($image) }}" alt="{{ ucfirst($review_from->name) }}"></span>
+									<span class="gurg">{{ ucfirst($review_from->name) }}</span><br>
+									<small>
+										<?php echo $date = date("d M Y", strtotime($review->created_at)); ?>
+										<?php if((int)date("H", strtotime($review->created_at)) > 12): ?>
+											<?php echo date("h:m", strtotime($review->created_at))." pm"; ?>
+										<?php else: ?>
+											<?php echo date("h:m", strtotime($review->created_at))." am"; ?>
+										<?php endif; ?>
+									</small>
+								</div>
+								<div>{{ ucfirst($review->review) }}</div>
+							</div>
 
-				<?php $review_from = User::where("id", "=", $review->user_id)->first(); ?>
-				<b>{{ ucfirst($review_from->name) }}</b>
-				<p>
-					{{ ucfirst($review->review) }}
-					<small>
-						<?php echo $date = date("d M Y", strtotime($review->created_at)); ?>
-						<?php if((int)date("H", strtotime($review->created_at)) > 12): ?>
-							<?php echo date("h:m", strtotime($review->created_at))." pm"; ?>
-						<?php else: ?>
-							<?php echo date("h:m", strtotime($review->created_at))." am"; ?>
-						<?php endif; ?>
-					</small>
-				</p>
+					<?php if($i==2): $i=0; $row_closed=true; ?>
+						</div>
+					<?php endif; ?>
 
-			@endforeach
+				@endforeach
 
 			@if(Auth::check())
 				@if(Auth::user()->usertype=="1")
