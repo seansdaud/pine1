@@ -125,8 +125,21 @@ body {
 	font-family: 'Ropa Sans', sans-serif;
 	font-size: 16px;
   background: #EEEEEE url(site-background.jpg) center top no-repeat !important;
+  padding-bottom: 250px !important;
 
 	
+}
+html{
+  position: relative;
+  min-height: 100%;
+}
+.footer{
+  position: absolute;
+  bottom: 0px;
+  height: 245px;
+  width: 100%;
+  background-repeat: no-repeat !important;
+  color: rgb(237, 237, 237);
 }
 #wrap {
     /* margin: 50px 100px; */
@@ -136,6 +149,52 @@ body {
   float: right;
   padding: 0;
   position: relative;
+}
+.footer-events{
+  display: inline-block;
+  border-bottom: 2px solid #8B8B8B;
+  font-size: 19px;
+  font-family: 'Titillium Web', sans-serif;
+  margin-bottom: 4px;
+}
+.footer-wrap{
+  background: rgb(30, 40, 53);
+  padding: 10px 0;
+}
+.terminal{
+  color: rgb(226, 95, 65);
+  background: rgb(17, 25, 36);
+  padding: 3px;
+}
+.social{
+  margin-bottom: 7px;
+}
+.galo{
+  color: rgb(139, 139, 139);
+  font-size: 22px;
+}
+.logo-below{
+    width: 156px;
+    margin: 2px auto;
+    display: block;
+}
+.date-wrap{
+    float: left;
+    width: 60px;
+    text-align: center;
+    margin: 6px auto;
+    display: inline;
+    background-color: #111924;
+    color: #DF5E3E;
+    height: 71px;
+    border-radius: 4px;
+}
+.months-desi{
+    display: block;
+    margin-top: -3px;
+    background: black;
+    padding: 3px;
+    color: white;
 }
 
 #wrap > form> input[type="text"] {
@@ -261,7 +320,10 @@ body {
   }
 }
 
-
+.foot-below{
+  background: #EEEEEE url(gray.PNG) !important;
+  padding: 3px;
+}
 .responsive-table {
   /*background: #34495E;*/
   background: #EEEEEE url(Capture.PNG) !important;
@@ -854,16 +916,12 @@ section {
   margin-top: -95px;
 }
 .social img{
-    height: 60px;
-    width: 63px;
-    padding: 8px;
+  width: 51px;
+  height: 42px;
+  padding-right: 8px;
+  margin: 6px auto;
 }
-.social{
-  text-align: center;
-  padding: 10px;
-  background: #EEEEEE url(Capture.png)!important;
 
-}
 .arena-banner{
     width: 100%;
   height: 368px;
