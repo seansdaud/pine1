@@ -27,7 +27,7 @@
                   <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
       
                 <select class="select-arena form-control">
-              
+                <option value=""><option>
 
             <?php $field=User::where('usertype', 2)->get(); ?>
             <?php if (!$field->isEmpty()):?>
@@ -53,7 +53,7 @@
                   			
                         <div class="cat-name">
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>
-                        <span class="arrow"></span>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
@@ -241,9 +241,7 @@
     <script type="text/javascript">
        $(".select-arena").select2({
           placeholder: "Select a arena",
-  allowClear: true,
-   initSelection: function(element, callback) {                   
-            }
+  allowClear: true
        });
      </script>
     <script type="text/javascript">
@@ -298,15 +296,16 @@ function showPosition(position) {
     $('.select-arena').on('change', function (e) {
           var base_url= $('#base_url').val();
         var optionSelected = $("option:selected", this);
-        alert("As");
+  
         var valueSelected = this.value;
               $.ajax({
                      url:base_url+"/getArena",
-                       type:'POST',
+                       type:'GET',
                        data: {
                         id:valueSelected
                       },
                    success:function(result){ 
+                    alert(result);
                  // $(".ajax").html(result);
                 //  $('#id').html("");
               },

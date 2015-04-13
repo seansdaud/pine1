@@ -71,4 +71,7 @@ class SiteController extends BaseController {
 	                }
 	      
 		}
+		public function getArena(){
+			return "ASdsd";
+		}
 }
