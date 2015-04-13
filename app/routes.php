@@ -46,6 +46,10 @@ Route::get("/contact", array(
 	'as' => 'contact',
 	'uses' => 'SiteController@contact'
 ));
+Route::post("/submit-query", array(
+	'as'=>'submit-query',
+	'uses'=>'SiteController@submit_query'
+	));
 
 Route::group(array("before" => "csrf"), function() {
 
