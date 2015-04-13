@@ -135,13 +135,12 @@
 		<div class="form-group">
 			<input type="submit" value="update" class="col-sm-offset-2 btn btn-default">
 		</div> -->
-		{{ Form::token() }}
-	</form>
-
-      </div>
       <div class="modal-footer" style="  background: rgb(21, 33, 47);">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+		{{ Form::token() }}
+	</form>
       </div>
     </div>
   </div>
