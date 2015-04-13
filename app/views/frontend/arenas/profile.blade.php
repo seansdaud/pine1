@@ -219,6 +219,18 @@
 	                </div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div>
+						<span class="review-img"><img src="{{ asset('assets/img/ui-zac.jpg') }}"></span>
+						<span class="gurg">Prachanda Gurung</span>
+					</div>
+					<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud </div>
+				</div>
+
+			</div>
 			@foreach($arena->reviews as $review)
 
 				<?php $review_from = User::where("id", "=", $review->user_id)->first(); ?>

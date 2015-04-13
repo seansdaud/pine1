@@ -919,3 +919,24 @@ section {
   margin-top: 5px;
   margin-right: 7px;
 }
+.review-img img{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  
+}
+.gurg{
+  background: rgb(103, 123, 145);
+  padding: 4px 6px;
+  border-radius: 3px 17px 17px 3px;
+  color: white;
+  margin-top: 8px;
+}
+.cover-change{
+  position: absolute;
+  bottom: 0;
+  color: rgb(226, 226, 226);
+  background: rgba(0, 0, 0, 0.72);
+  padding: 6px 22px;
+  font-size: 19px;
+}
