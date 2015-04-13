@@ -76,9 +76,6 @@
 
 					</table>
 				</div>
-				<div class="profile-edit">
-					<a href="#"><span class="glyphicon glyphicon-edit"></span></a>
-				</div>
 			</div>
 			
 			<div class="row">
