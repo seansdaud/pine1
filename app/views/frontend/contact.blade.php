@@ -70,17 +70,18 @@
 	                </div>
 				</div>
 			</div>
-			<form style="margin-top:10px;">
+			<form style="margin-top:10px;" action="{{ URL::route('submit-query') }}" method="post">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Name</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
+			    <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter Name" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Email address</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+			    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email" required>
 			  </div>
-			  <textarea class="form-control" rows="6"></textarea>
+			  <textarea class="form-control" rows="6" name="query" required></textarea>
   				<button type="submit" class="btn btn-success" style="margin-top:10px;">Submit</button>
+  				{{ Form::token() }}
 			</form>
 		</div>
 	</div>
