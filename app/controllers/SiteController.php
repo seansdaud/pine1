@@ -50,6 +50,20 @@ class SiteController extends BaseController {
 		);
 		return View::make("frontend.contact", $data);
 	}
+	function submit_query(){
+		$email=Input::get('name');
+		$username=Input::get('email');
+		$query=Input::get('query');
+		Mail::send('frontend.email.query',array(
+						'from'=>$email,
+						'name'=>$username,
+						'query'=>$query
+					), function($message){
+					$message->to("prachanda.gurung@gmail.com", "futsal")->subject('Inquiry');
+				});
+		return Redirect::route('contact')
+						->with('success','Your query has been submitted! We will reply you within a two working days');
+	}
 	public function getCurrent(){
 		$lat = $_GET["lat"];
 	$lng = $_GET["lng"];
@@ -70,5 +84,8 @@ class SiteController extends BaseController {
 	                	  return View::make('frontend.user.getNearestArena',$data);
 	                }
 	      
+		}
+		public function getArena(){
+			return "ASdsd";
 		}
 }

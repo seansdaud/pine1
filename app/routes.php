@@ -22,6 +22,12 @@ Route::get('/', array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+		// getLatestMap
+		Route::get("/getArena", array(
+			'as' => 'getArena',
+			'uses' => 'SiteController@getArena'
+		));	
+
 
 /*------------------------------------------------------------------------*/
 /*Arenas*/
@@ -46,6 +52,10 @@ Route::get("/contact", array(
 	'as' => 'contact',
 	'uses' => 'SiteController@contact'
 ));
+Route::post("/submit-query", array(
+	'as'=>'submit-query',
+	'uses'=>'SiteController@submit_query'
+	));
 
 Route::group(array("before" => "csrf"), function() {
 

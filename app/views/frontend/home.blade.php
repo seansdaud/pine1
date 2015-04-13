@@ -53,7 +53,7 @@
                   			
                         <div class="cat-name">
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>
-                        <span class="arrow"></span>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
@@ -212,25 +212,83 @@
                 		     <div class="gaira">9 Sep - 12 Sep</div>
                 		     <div class="layer"></div>
                 		</div>
-                    <div class="row">
-                      <div class="col-md-6 col-sm-7 col-xs-5">
-                        
-                        <div class="cat-name" style="margin-bottom:17px;">
-                        <span class="base"><a href="#" class="schedule">Follow us</a></span>
-                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="social">
-                      <img src="{{ asset('assets/img/fb.png') }}">
-                      <img src="{{ asset('assets/img/instagram.jpg') }}">
-                      <img src="{{ asset('assets/img/Google-Plus-icon.png') }}">
-                      <img src="{{ asset('assets/img/twitter.png') }}">                      
-                    </div>
+                    
               	</div>
             </div>
 
         </div>
+    </div>
+    <!-- //footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="row footer-wrap">
+          <div class="col-md-4">
+            <img class="logo-below" src="{{ asset('assets/img/logo.png') }}">
+          </div>
+          <div class="col-md-4">
+              <div>
+                <div class="footer-events">
+                  <span class="glyphicon glyphicon-bookmark galo"></span>
+                  <span>Follow Us</span>
+                </div>
+              </div>
+              <div class="social">
+                <img src="{{ asset('assets/img/fb.png') }}">
+                <img src="{{ asset('assets/img/instagram.jpg') }}">
+                <img src="{{ asset('assets/img/Google-Plus-icon.png') }}">
+                <img src="{{ asset('assets/img/twitter.png') }}">                      
+              </div>
+              <div>
+                <div class="footer-events">
+                  <span class="glyphicon glyphicon-bookmark galo"></span>
+                  <span>Contact</span>
+                </div>
+              </div>
+              <span class="glyphicon glyphicon-earphone terminal"></span> 
+              <span>+977-9837992201</span>
+              <span>+977-9837992201</span>
+              <div>
+              <span class="glyphicon glyphicon-globe terminal"></span>
+              <span>futsalnepal.com</span>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <div class="footer-events">
+                <span class="glyphicon glyphicon-bookmark galo"></span>
+                <span>Events</span>
+              </div>
+            </div>
+            <div style="min-height:85px;">
+              <div class="date-wrap">
+                <span style="font-size: 32px;">16</span><br/>
+                <span class="months-desi">Dec</span>
+              </div>
+              <div style="padding: 7px 0px 0px 77px;">
+                <div style="font-size: 20px; border-right: 3px solid rgb(241, 86, 32);">Pokhara futsal tournament</div>
+                <div style="  color: rgb(186, 186, 178);">Gairapatan Pokhara</div>
+                
+              </div>
+            </div>
+            <div style="min-height:85px;">
+              <div class="date-wrap">
+                <span style="font-size: 32px;">16</span><br/>
+                <span class="months-desi">Dec</span>
+              </div>
+              <div style="padding: 7px 0px 0px 77px;">
+                <div style="font-size: 20px; border-right: 3px solid rgb(241, 86, 32);">Pokhara futsal tournament</div>
+                <div style="  color: rgb(186, 186, 178);">Gairapatan Pokhara</div>
+                
+              </div>
+            </div>
+          
+          </div>
+        </div>
+        <div class="row foot-below">
+          <span>COPYRIGHT © 2010 - 2014, FUTSAL NEPAL</span> || <span>Designed by <a style="color:rgb(240, 242, 255);" href="http://pinesofts.com/">Pinesoft</a></span>
+          
+        </div>
+      </div>
     </div>
 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     {{ HTML::script('assets/js/jquery.js') }}
@@ -241,7 +299,7 @@
     <script type="text/javascript">
        $(".select-arena").select2({
           placeholder: "Select a arena",
-  allowClear: true,
+  allowClear: true
        });
      </script>
     <script type="text/javascript">
@@ -293,41 +351,31 @@ function showPosition(position) {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-    // $('.select-arena').on('change', function (e) {
-    //       var base_url= $('#base_url').val();
-    //     var optionSelected = $("option:selected", this);
-    //     var valueSelected = this.value;
-    //           $.ajax({
-    //                  url:base_url+"",
-    //                    type:'POST',
-    //                    data: {
-    //                     id:valueSelected
-    //                   },
-    //                success:function(result){ 
-    //               $(".ajax").html(result);
-    //               $('#id').html("");
-    //                 $('#datepick').datepicker({
-    //           dateFormat:"D,yy-mm-dd", ///"dd-mm-yy"
-    //           // dateFormat:"yy-mm-dd",
-    //           minDate:0, // -5d
-    //           // maxDate:'+1m + 10d',
-    //           showButtonPanel:true,
-    //           showAnim:'bounce' // fadein show etc
-    //           });
-    //                   var today = $("#today").val();
-    //         var now=parseInt(today) ;
-    //           $(" ."+now).addClass("active");
-    //                 return true;
-    //           },
-    //        beforeSend : function (){
-    //              $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
+    $('.select-arena').on('change', function (e) {
+          var base_url= $('#base_url').val();
+        var optionSelected = $("option:selected", this);
+  
+        var valueSelected = this.value;
+              $.ajax({
+                     url:base_url+"/getArena",
+                       type:'GET',
+                       data: {
+                        id:valueSelected
+                      },
+                   success:function(result){ 
+                    alert(result);
+                 // $(".ajax").html(result);
+                //  $('#id').html("");
+              },
+           beforeSend : function (){
+            //     $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
 
-    //         },
-    //           error: function(jqXHR, textStatus, errorThrown){ 
-    //             alert(jqXHR.responseText);
-    //           }
-    //             });
-    //     });
+            },
+              error: function(jqXHR, textStatus, errorThrown){ 
+                alert(jqXHR.responseText);
+              }
+                });
+        });
   </script>
   </body>
 </html>
