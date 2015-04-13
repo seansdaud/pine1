@@ -53,7 +53,7 @@
                   			
                         <div class="cat-name">
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>
-                        <span class="arrow"></span>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
@@ -299,7 +299,7 @@
     <script type="text/javascript">
        $(".select-arena").select2({
           placeholder: "Select a arena",
-  allowClear: true,
+  allowClear: true
        });
      </script>
     <script type="text/javascript">
@@ -351,41 +351,31 @@ function showPosition(position) {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-    // $('.select-arena').on('change', function (e) {
-    //       var base_url= $('#base_url').val();
-    //     var optionSelected = $("option:selected", this);
-    //     var valueSelected = this.value;
-    //           $.ajax({
-    //                  url:base_url+"",
-    //                    type:'POST',
-    //                    data: {
-    //                     id:valueSelected
-    //                   },
-    //                success:function(result){ 
-    //               $(".ajax").html(result);
-    //               $('#id').html("");
-    //                 $('#datepick').datepicker({
-    //           dateFormat:"D,yy-mm-dd", ///"dd-mm-yy"
-    //           // dateFormat:"yy-mm-dd",
-    //           minDate:0, // -5d
-    //           // maxDate:'+1m + 10d',
-    //           showButtonPanel:true,
-    //           showAnim:'bounce' // fadein show etc
-    //           });
-    //                   var today = $("#today").val();
-    //         var now=parseInt(today) ;
-    //           $(" ."+now).addClass("active");
-    //                 return true;
-    //           },
-    //        beforeSend : function (){
-    //              $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
+    $('.select-arena').on('change', function (e) {
+          var base_url= $('#base_url').val();
+        var optionSelected = $("option:selected", this);
+  
+        var valueSelected = this.value;
+              $.ajax({
+                     url:base_url+"/getArena",
+                       type:'GET',
+                       data: {
+                        id:valueSelected
+                      },
+                   success:function(result){ 
+                    alert(result);
+                 // $(".ajax").html(result);
+                //  $('#id').html("");
+              },
+           beforeSend : function (){
+            //     $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
 
-    //         },
-    //           error: function(jqXHR, textStatus, errorThrown){ 
-    //             alert(jqXHR.responseText);
-    //           }
-    //             });
-    //     });
+            },
+              error: function(jqXHR, textStatus, errorThrown){ 
+                alert(jqXHR.responseText);
+              }
+                });
+        });
   </script>
   </body>
 </html>
