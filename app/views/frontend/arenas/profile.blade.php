@@ -241,17 +241,22 @@
 			@endforeach
 
 			@if(Auth::check())
-				{{ Form::open(array('route' => 'add-review', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id'=>'review-form', 'style'=>'display:none;')) }}
-					<div id="characters"></div>
-					<div class="form-group">
-						<textarea name="review" class="form-control" placeholder="Write short review for this arena" required maxlength="200"></textarea>
-					</div>
-					<input type="hidden" name="arena_id" value="{{ $arena->id }}">
-					<div class="form-group">
-						<input type="submit" value="Submit" class="btn btn-info">
-					</div>
-
-				{{ Form::close() }}
+				@if(Auth::user()->usertype=="1")
+					{{ Form::open(array('route' => 'add-review', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id'=>'review-form', 'style'=>'display:none;')) }}
+						<div id="characters"></div>
+						<div class="form-group">
+							<textarea name="review" class="form-control" placeholder="Write short review for this arena" required maxlength="200"></textarea>
+						</div>
+						<input type="hidden" name="arena_id" value="{{ $arena->id }}">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-info">
+						</div>
+					{{ Form::close() }}
+				@else
+					Login as a user to add review.
+				@endif
+			@else
+				Login to add review.
 			@endif
 			
 		</div>
