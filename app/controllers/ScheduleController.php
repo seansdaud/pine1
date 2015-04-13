@@ -308,9 +308,23 @@ class ScheduleController extends BaseController {
 					$schedule->price = $datename[0]->price;
 					$schedule->day=$datename[0]->day;
 					$schedule->booking_id=$book->id;
-					 $schedule->save(); 
-
-			 return Redirect::to('/o/showSchedule')->with("danger", "Schedule Booked!!");
+					$schedule->save();
+					$booking_info=Booking::where("id","=",$book->id)->first(); 
+					$arena=Arena::where("id","=",$booking_info->arena_id)->first();
+					$user_id=Input::get('user_id');
+					$user_info=User::where("id", "=", $user_id)->first();
+					if (!empty($user_info->email)){
+								Mail::send('emails.booked',array(
+									'username'=>$user_info->name,
+									'start'=>$datename[0]->start_time,
+									'end'=>$datename[0]->end_time,
+									'date'=>$booking_info->booking_date,
+									'arena'=>$arena->name
+							), function($message) use ($user_info){
+							$message->to($user_info->email, $user_info->name)->subject('Futsal booking');
+						});
+					}
+			 return Redirect::to('/o/showSchedule')->with("success", "Schedule Booked!!");
 		
 	}
 	public function nextdate(){
