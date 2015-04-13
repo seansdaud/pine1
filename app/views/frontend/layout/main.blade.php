@@ -24,7 +24,9 @@
 			@yield('content')
 		</div>
 	</div>
-
+	<div class="footer">
+		footer
+	</div>
 	{{ HTML::script('assets/js/jquery.js') }}
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/validator.min.js') }}
