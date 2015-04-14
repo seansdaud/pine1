@@ -6,7 +6,11 @@
 	<div style="margin-right:-15px!important; margin-left:-15px !important; background: #131D29;   border-bottom: 7px solid rgb(244, 60, 18); margin-bottom:15px;">
 		<div class="row" >
 			<div class="col-md-6 col-sm-6">
-				<img class="arena-banner" src="{{ asset('assets/img/stadium.jpg') }}">
+				@if(Auth::user()->cover != "")
+					<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
+				@else
+					<img class="arena-banner" src="{{ asset('assets/img/stadium.jpg') }}">
+				@endif
 				<a href="#"><span class="cover-change">Edit Cover</span></a>
 			</div>
 			<div class="col-md-6 col-sm-6">
