@@ -4,6 +4,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
@@ -28,15 +29,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $hidden = array('password', 'remember_token');
 
-	public function arenas(){
-		return $this->hasOne("Arena");
+	public function arena(){
+		return $this->hasOne("Arena", "id", "user_id");
 	}
+
 	function marker(){
 		return $this->hasOne('Marker');
-
 	}
-	public function eventManager(){
+
+	public function events(){
 		return $this->hasMany("Events");
+	}
+
+	public function bookings(){
+		return $this->hasMany("Booking");
 	}
 
 }
