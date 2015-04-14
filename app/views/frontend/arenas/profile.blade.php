@@ -13,7 +13,7 @@
 			</div>
 			<div class="col-md-6 col-sm-6">
 				<span style="display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
-				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; bottom: -77px;"></span>
+				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; top: 148px;"></span>
 				<div class="arena-wrapper">
 					<div class="arena-top">{{ $arena->name }}</div>
 					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span></div>
@@ -244,48 +244,57 @@
 	                </div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div>
-						<span class="review-img"><img src="{{ asset('assets/img/ui-zac.jpg') }}"></span>
-						<span class="gurg">Prachanda Gurung</span>
-					</div>
-					<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud </div>
-				</div>
+				<?php $row_closed = null; $i=0; ?>
+				@foreach($arena->reviews as $review)
+					<?php $review_from = User::where("id", "=", $review->user_id)->first(); ?>
+					<?php $i++; if($i==1): $row_closed=false; ?>
+						<div class="row">
+					<?php endif; ?>
 
-			</div>
-			@foreach($arena->reviews as $review)
+							<div class="col-md-6">
+								<div>
+									<?php if(!empty($review_from->image)): ?>
+										<?php $image = "assets/img/profile/user/thumb/".$review_from->image; ?>
+									<?php else: ?>
+										<?php $image = "assets/img/default.jpg" ?>
+									<?php endif; ?>
+									<span class="review-img"><img src="{{ asset($image) }}" alt="{{ ucfirst($review_from->name) }}"></span>
+									<span class="gurg">{{ ucfirst($review_from->name) }}</span><br>
+									<small>
+										<?php echo $date = date("d M Y", strtotime($review->created_at)); ?>
+										<?php if((int)date("H", strtotime($review->created_at)) > 12): ?>
+											<?php echo date("h:m", strtotime($review->created_at))." pm"; ?>
+										<?php else: ?>
+											<?php echo date("h:m", strtotime($review->created_at))." am"; ?>
+										<?php endif; ?>
+									</small>
+								</div>
+								<div>{{ ucfirst($review->review) }}</div>
+							</div>
 
-				<?php $review_from = User::where("id", "=", $review->user_id)->first(); ?>
-				<b>{{ ucfirst($review_from->name) }}</b>
-				<p>
-					{{ ucfirst($review->review) }}
-					<small>
-						<?php echo $date = date("d M Y", strtotime($review->created_at)); ?>
-						<?php if((int)date("H", strtotime($review->created_at)) > 12): ?>
-							<?php echo date("h:m", strtotime($review->created_at))." pm"; ?>
-						<?php else: ?>
-							<?php echo date("h:m", strtotime($review->created_at))." am"; ?>
-						<?php endif; ?>
-					</small>
-				</p>
+					<?php if($i==2): $i=0; $row_closed=true; ?>
+						</div>
+					<?php endif; ?>
 
-			@endforeach
+				@endforeach
 
 			@if(Auth::check())
-				{{ Form::open(array('route' => 'add-review', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id'=>'review-form', 'style'=>'display:none;')) }}
-					<div id="characters"></div>
-					<div class="form-group">
-						<textarea name="review" class="form-control" placeholder="Write short review for this arena" required maxlength="200"></textarea>
-					</div>
-					<input type="hidden" name="arena_id" value="{{ $arena->id }}">
-					<div class="form-group">
-						<input type="submit" value="Submit" class="btn btn-info">
-					</div>
-
-				{{ Form::close() }}
+				@if(Auth::user()->usertype=="1")
+					{{ Form::open(array('route' => 'add-review', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id'=>'review-form', 'style'=>'display:none;')) }}
+						<div id="characters"></div>
+						<div class="form-group">
+							<textarea name="review" class="form-control" placeholder="Write short review for this arena" required maxlength="200"></textarea>
+						</div>
+						<input type="hidden" name="arena_id" value="{{ $arena->id }}">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-info">
+						</div>
+					{{ Form::close() }}
+				@else
+					Login as a user to add review.
+				@endif
+			@else
+				Login to add review.
 			@endif
 			
 		</div>
