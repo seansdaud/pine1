@@ -80,7 +80,7 @@
 			    <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter email" required>
 			  </div>
 			  <textarea class="form-control" rows="6" name="query" required></textarea>
-  				<button type="submit" class="btn btn-success" style="margin-top:10px;">Submit</button>
+  				<button type="submit" class="btn btn-success" style="margin-top:10px; margin-bottom:10px;">Submit</button>
   				{{ Form::token() }}
 			</form>
 		</div>
