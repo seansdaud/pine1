@@ -31,7 +31,7 @@
 	                </div>
 				</div>
 			</div>
-		
+			
 			<div class="profile-wrap">
 				<div style="  margin-top: 25px;">
 					<table class="table">

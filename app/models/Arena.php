@@ -6,7 +6,7 @@ class Arena extends Eloquent {
 	protected $fillable = ['name','address','phone','user_id','about'];
 
 	public function owner(){
-		return $this->belongsTo("User", "user_id", "id");
+		return $this->belongsTo("User", "user_id", "id")->withTrashed();
 	}
 
 	public function reviews(){
