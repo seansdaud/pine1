@@ -88,4 +88,32 @@ class SiteController extends BaseController {
 		public function getArena(){
 			return "ASdsd";
 		}
+		public function prevdate(){
+	$day=Input::get('day');
+		$date=Input::get('date');
+		 date_default_timezone_set("Asia/Katmandu"); 
+		             $todate=date("Y-m-d"); 
+		             if ($date<$todate) {
+		             	echo "not";
+		             }{
+		             		$parts = explode('-', $date);
+								$datePlusFive = date(
+								    'Y-m-d', 
+								    mktime(0, 0, 0, $parts[1], $parts[2]-1 , $parts[0])
+								    //              ^ Month    ^ Day + 5      ^ Year
+								);	
+		$day=$day-1;
+		if ($day == 0) {
+			$day=7;
+			}				$data = array(
+				'date'=>$datePlusFive,
+			'day' => $day,
+				'owner' => Input::get('owner')
+		);
+			return View::make("frontend.user.nextSchedulebook", $data);
+
+		             }
+			
+
+		 }
 }

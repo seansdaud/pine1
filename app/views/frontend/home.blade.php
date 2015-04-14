@@ -53,29 +53,43 @@
                   			
                         <div class="cat-name">
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>
+
+      <?php
+            date_default_timezone_set("Asia/Katmandu"); 
+            $day=date('w') +1; 
+            echo "<input type='hidden' id='today' value='".$day."' >";
+            $date=date("Y-m-d"); 
+            echo " <input type='hidden' id='date' value='".$date."' >";
+        ?>
+                        <?php      $user= User::where('usertype',2)->limit(1)->get();
+                    $adminid =$user[0]->id; ?>
+            <div id="id"></div>
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
-                        <div class="futsal-name">Pokhara futsal Arena</div>
-                      </div>
+                                             </div>
                       <div class="col-md-2 col-sm-2">
-                        <div class="futsal-name">27 Feb 2015</div>
+                        <div class="futsal-name"><?php echo  $date;?></div>
                       </div>
                       <div class="col-md-2 col-sm-2">
                         <div style="float:right;">
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
                                 <li>
-                                  <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                  </a>
+                                 <div class="btn btn-warning schedule-prev">
+                                   
+                                    <span aria-hidden="true" >&laquo;</span>
+                                 </div>
+                              
                                 </li>
                                 
                                 <li>
-                                  <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                  </a>
+                                  
+                                 <div class="btn btn-warning schedule-nxt">
+
+                                    <span aria-hidden="true" >&raquo;</span>
+                                  </div>
                                 </li>
                               </ul>
                             </nav>
@@ -92,16 +106,8 @@
                         </tr>
                         <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
-      <?php
-            date_default_timezone_set("Asia/Katmandu"); 
-            $day=date('w') +1; 
-            echo "<input type='hidden' id='today' value='".$day."' >";
-            $date=date("Y-m-d"); 
-            echo " <input type='hidden' id='date' value='".$date."' >";
-        ?>
                                 <?php
-                                $user= User::where('usertype',2)->limit(1)->get();
-                    $adminid =$user[0]->id;
+                           
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
                     ?>
                     @foreach ($schedular as $key)
@@ -296,6 +302,8 @@
     {{ HTML::script('assets/js/validator.min.js') }}
     {{ HTML::script('assets/js/frontend.js') }}
     {{ HTML::script('assets/js/select2.min.js') }}
+
+    {{ HTML::script('assets/js/customsfront.js') }}
     <script type="text/javascript">
        $(".select-arena").select2({
           placeholder: "Select a arena",

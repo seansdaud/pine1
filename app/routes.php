@@ -28,7 +28,11 @@ Route::get('/', array(
 			'uses' => 'SiteController@getArena'
 		));	
 
-
+			/*Next date Show*/
+			Route::get("/prevdate", array(
+		'as' => 'prevdate',
+		'uses' => 'SiteController@prevdate'
+	));	
 /*------------------------------------------------------------------------*/
 /*Arenas*/
 Route::get("/arenas", array(
