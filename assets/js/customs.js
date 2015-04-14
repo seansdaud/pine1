@@ -445,6 +445,7 @@ $(document).ready(function() {
 			        document.getElementById("new-password").value = "";
 			        document.getElementById("new-password-again").value = "";
 			        $("#change-admin-password-form").hide();
+			        $("#change-admin-password-form").find(".danger").html("");
 			        $("#change-admin-password-form").parent().find("#to-be-changed").show();
 				}
 				else{

@@ -144,3 +144,10 @@ $(document).ready(function() {
         }
     });
 });
+
+$(".select-arena").select2({
+    placeholder: "Select a arena",
+    allowClear: true
+});
+
+// var x = document.getElementById("demo");

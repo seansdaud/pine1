@@ -4,24 +4,14 @@ class UserController extends BaseController {
 
 	public function getProfile($username){
 		$user = User::where(array("username" => $username, "usertype" => "1"))->first();
-		$event=Events::where('user_id','=', Auth::user()->id)->get();
-		$booking=Booking::where('user_id','=', Auth::user()->id)->orderBy('id','desc')->get();
-		
-		
-		if(!empty($user)):
-			$data = array(
-				'id' => 'user-profile',
-				'title' => $user->username,
-				'user' => $user,
-				'booking'=>$booking
-			);
-		else:
-			$data = array(
-				'id' => 'user-profile',
-				'title' => "not found",
-				'user' => $user,
-			);
-		endif;
+		if(empty($user)){
+			App::abort(404);
+		}
+		$data = array(
+			'id' => 'user-profile',
+			'title' => $user->username,
+			'user' => $user,
+		);
 		return View::make("frontend.user.profile", $data);
 	}
 
