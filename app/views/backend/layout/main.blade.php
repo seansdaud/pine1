@@ -41,7 +41,6 @@
 	{{ HTML::script('assets/js/validator.min.js') }}
 	{{ HTML::script('assets/js/jquery.dcjqaccordion.2.7.js') }}
 	{{ HTML::script('assets/js/jquery.scrollTo.min.js') }}
-	{{ HTML::script('assets/js/jquery.nicescroll.js') }}
 	{{ HTML::script('assets/js/jquery.sparkline.js') }}
 	{{ HTML::script('assets/js/common-scripts.js') }}
 	{{ HTML::script('assets/js/gritter/js/jquery.gritter.js') }}
