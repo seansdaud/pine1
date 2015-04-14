@@ -94,8 +94,10 @@
             echo " <input type='hidden' id='date' value='".$date."' >";
         ?>
                                 <?php
-                                $user= User::where('usertype',2)->limit(1)->get();
-                    $adminid =$user[0]->id;
+                                $user= User::where('usertype',2);
+                    if($user->count()):
+                      $user=$user->first();
+                    $adminid =$user->id;
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
                     ?>
                     @foreach ($schedular as $key)
@@ -168,8 +170,9 @@
                       @endif
               </tr>
                   @endforeach 
-
+                  <?php endif; ?>
                     </table>
+
               	</div>
               	</div>
               	<div class="col-md-4">

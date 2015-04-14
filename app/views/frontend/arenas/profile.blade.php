@@ -252,7 +252,7 @@
 					<?php endif; ?>
 
 				@endforeach
-				<?php if($row_closed==false): ?>
+				<?php if($row_closed==false & $row_closed!=null): ?>
 					<?php echo "</div>"; ?>
 				<?php endif; ?>
 

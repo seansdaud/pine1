@@ -1,6 +1,9 @@
 <?php
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Arena extends Eloquent {
+	use SoftDeletingTrait;
+
 	protected $table = 'arenas';
 
 	protected $fillable = ['name','address','phone','user_id','about'];

@@ -184,6 +184,7 @@ class Admin extends BaseController {
 		foreach($owners as $id){
 			$owner = User::where("id", "=", $id);
 			$user = $owner->first();
+			Arena::where("user_id", $id)->first()->delete();
 			if($owner->delete()){
 				$count++;
 				continue;
