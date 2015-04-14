@@ -319,7 +319,7 @@ class ScheduleController extends BaseController {
 									'start'=>$datename[0]->start_time,
 									'end'=>$datename[0]->end_time,
 									'date'=>$booking_info->booking_date,
-									'arena'=>$arena->name
+									// 'arena'=>$arena->name
 							), function($message) use ($user_info){
 							$message->to($user_info->email, $user_info->name)->subject('Futsal booking');
 						});
