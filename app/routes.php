@@ -172,6 +172,12 @@ Route::group(array("before"=>"auth"), function() {
 			'uses' => 'UserController@addReview'
 		));
 
+		/*change cover pic-user*/
+		Route::post("/cover-pic",array(
+			'as'=>'change-user-cover-picture',
+			'uses'=>'UserController@changeCover'
+			));
+
 	});
 
 	/*Logout*/

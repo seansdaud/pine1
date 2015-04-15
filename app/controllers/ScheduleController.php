@@ -310,7 +310,7 @@ class ScheduleController extends BaseController {
 					$schedule->booking_id=$book->id;
 					$schedule->save();
 					$booking_info=Booking::where("id","=",$book->id)->first(); 
-					$arena=Arena::where("id","=",$booking_info->arena_id)->first();
+					$arena=Arena::where("user_id",$booking_info->arena_id)->first();
 					$user_id=Input::get('user_id');
 					$user_info=User::where("id", "=", $user_id)->first();
 					if (!empty($user_info->email)){
@@ -319,7 +319,7 @@ class ScheduleController extends BaseController {
 									'start'=>$datename[0]->start_time,
 									'end'=>$datename[0]->end_time,
 									'date'=>$booking_info->booking_date,
-									// 'arena'=>$arena->name
+									'arena'=>$arena->name
 							), function($message) use ($user_info){
 							$message->to($user_info->email, $user_info->name)->subject('Futsal booking');
 						});
