@@ -85,4 +85,31 @@ class UserController extends BaseController {
 			}
 		}
 	}
+
+	function changeCover(){
+				$file = Input::file('cover');
+				$ext = Input::file('cover')->getClientOriginalExtension();
+				$name = uniqid().".".$ext;
+				if(!is_dir("assets/img/profile/user/cover")){
+						mkdir("assets/img/profile/user/cover",0777, true);
+					}
+				$upload = Input::file('cover')->move("assets/img/profile/user/cover", $name);
+				if($upload){
+					$user = User::where("id", "=", Auth::user()->id)->first();
+					File::delete("assets/img/profile/user/cover".$user->profile_pic);
+					$user->cover_pic = $name;
+					if($user->save()){
+						return Redirect::route('user-profile',Auth::user()->username)
+							->with('success','updated successfully');
+					}
+					else{
+						return Redirect::route('user-profile',Auth::user()->username)
+							->with('warning','Error!! Try again');
+					}
+				}
+
+				else{
+					return Redirect::route("user-profile", Auth::user()->username)->with("danger", "Error uploading your file. Please try again.");
+				}
+	}
 }

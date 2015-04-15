@@ -197,6 +197,22 @@ html{
     color: white;
 }
 
+.choose>input[type='file']{
+    top: -20px;
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+}
+.choose {
+    position: absolute;
+    bottom: 4px;
+    background: black;
+    padding: 3px;
+    display: block;
+    overflow: hidden;
+    width: 13%;
+    height: 20px;
+}
 #wrap > form> input[type="text"] {
   height: 30px;
   font-size: 15px;

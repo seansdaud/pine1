@@ -6,14 +6,18 @@
 		<div class="row" >
 			<div class="col-md-6 col-sm-6">
 				@if(Auth::user()->cover_pic != "")
-					<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->cover_pic) }}">
+					<img class="arena-banner" src="{{ asset('assets/img/profile/user/cover/'.Auth::user()->cover_pic) }}">
 				@else
 					<img class="arena-banner" src="{{ asset('assets/img/stadium.jpg') }}">
 				@endif
-				<a href="#"><span class="cover-change">Edit Cover</span></a>
 				<?php if(Auth::check()): ?>
 					<?php if(Auth::user()->username == $user->username): ?>
-						<a href="#"><span class="cover-change">Edit Cover</span></a>
+						{{ Form::open(array('route' => 'change-user-cover-picture', 'files' => true, 'id'=>'change-user-cover-pic')) }}
+							<a class="choose change">
+								<span class="change-text">Edit Cover</span>
+								<input type="file" name="cover" id="change-cover-pic" accept="image/gif, image/jpeg, image/png" required/>
+							</a>
+						{{ Form::close() }}
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>
