@@ -5,13 +5,12 @@
 	<div style="margin-right:-15px!important; margin-left:-15px !important; background: #131D29;   border-bottom: 7px solid rgb(244, 60, 18); margin-bottom:15px;">
 		<div class="row" >
 			<div class="col-md-6 col-sm-6">
-				@if(Auth::user()->cover != "")
-					<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->image) }}">
+				@if(Auth::user()->cover_pic != "")
+					<img class="img-profile img-circle" src="{{ asset('assets/img/profile/user/thumb/'.Auth::user()->cover_pic) }}">
 				@else
 					<img class="arena-banner" src="{{ asset('assets/img/stadium.jpg') }}">
 				@endif
 				<a href="#"><span class="cover-change">Edit Cover</span></a>
-				<img class="arena-banner" src="{{ asset('assets/img/stadium.jpg') }}">
 				<?php if(Auth::check()): ?>
 					<?php if(Auth::user()->username == $user->username): ?>
 						<a href="#"><span class="cover-change">Edit Cover</span></a>
@@ -141,16 +140,12 @@
 										@endif
 									</div>
 								</div>
-								<!-- 
-								<div class="form-group">
-									<input type="submit" value="update" class="col-sm-offset-2 btn btn-default">
-								</div> -->
+								<div class="modal-footer" style="  background: rgb(21, 33, 47);">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        <button type="submit" class="btn btn-primary">Save changes</button>
+							    </div>
 								{{ Form::token() }}
 							</form>
-					      </div>
-					      <div class="modal-footer" style="  background: rgb(21, 33, 47);">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Save changes</button>
 					      </div>
 					    </div>
 					  </div>
@@ -219,11 +214,12 @@
 							<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}" alt="" width="50" height="50">
 						@endif
 					</a>
-					<? $arena=User::where('id','=', $book->arena_id)->firstOrFail();?>
+					<? $arena=User::where('id','=', $book->arena_id)->firstOrFail();
+										?>
 					<? $time=Scheduleinfo::where('booking_id','=',$book->id)->firstOrFail();?>
 					<div class="comment-body">
 						<div class="text">
-						  <p>You booked <a href="{{ URL::route('arena-detail', $arena->arenas->id) }}">{{ $arena->arenas->name }}</a> from {{ $time->start_time }} to {{$time->end_time}} for {{$book->booking_date}}.</p>
+						  <p>You booked <a href="{{ URL::route('arena-detail', $arena->arena->id) }}">{{ $arena->arena->name }}</a> from {{ $time->start_time }} to {{$time->end_time}} for {{$book->booking_date}}.</p>
 						</div>
 						<p class="attribution">On {{ date("H:m:s", strtotime($book->created_at)); }}, {{ date("Y-M-d", strtotime($book->created_at)) }}</p>
 					</div>

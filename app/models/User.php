@@ -10,7 +10,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait, SoftDeletingTrait;
 
-	protected $fillable = array('email', 'username', 'password', 'password_temp', 'code', 'active', 'usertype', 'name', 'deleted', 'address', 'contact');
+	protected $fillable = array('email', 'username', 'password', 'password_temp', 'code', 'active', 'usertype', 'name', 'deleted', 'address', 'contact','image','cover_pic');
 
 	/**
 	 * The database table used by the model.
@@ -30,7 +30,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
 	public function arena(){
-		return $this->hasOne("Arena", "id", "user_id");
+		return $this->hasOne("Arena");
 	}
 
 	function marker(){

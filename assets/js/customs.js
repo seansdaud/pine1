@@ -486,7 +486,6 @@ $(document).ready(function() {
 		var change = $(this).find(".form-group input").attr("change");
 		triggerChange(url, username, token, change, id);
 	});
-
 });
 
 function triggerChange(url, value, token, changeType, id){
