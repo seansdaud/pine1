@@ -93,7 +93,8 @@ class SiteController extends BaseController {
 		$date=Input::get('date');
 		 date_default_timezone_set("Asia/Katmandu"); 
 		             $todate=date("Y-m-d"); 
-		             if ($date<$todate) {
+
+		             if ($date<=$todate) {
 		             	return "here";
 		             }
 		             {
