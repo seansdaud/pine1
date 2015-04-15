@@ -94,8 +94,9 @@ class SiteController extends BaseController {
 		 date_default_timezone_set("Asia/Katmandu"); 
 		             $todate=date("Y-m-d"); 
 		             if ($date<$todate) {
-		             	echo "not";
-		             }{
+		             	return "here";
+		             }
+		             {
 		             		$parts = explode('-', $date);
 								$datePlusFive = date(
 								    'Y-m-d', 
@@ -113,6 +114,33 @@ class SiteController extends BaseController {
 			return View::make("frontend.user.nextSchedulebook", $data);
 
 		             }
+			
+
+		 }
+		 		public function nxtdate(){
+	$day=Input::get('day');
+		$date=Input::get('date');
+		 date_default_timezone_set("Asia/Katmandu"); 
+		             $todate=date("Y-m-d"); 
+		         
+		             		$parts = explode('-', $date);
+								$datePlusFive = date(
+								    'Y-m-d', 
+								    mktime(0, 0, 0, $parts[1], $parts[2]+1 , $parts[0])
+								    //              ^ Month    ^ Day + 5      ^ Year
+								);	
+			$day=$day+1;
+		if ($day == 8) {
+			$day=1;
+			}	
+				$data = array(
+				'date'=>$datePlusFive,
+			'day' => $day,
+				'owner' => Input::get('owner')
+		);
+			return View::make("frontend.user.nextSchedulebook", $data);
+
+		          
 			
 
 		 }

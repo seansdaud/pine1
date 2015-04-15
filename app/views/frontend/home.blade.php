@@ -77,7 +77,7 @@
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
                                 <li>
-                                 <div class="btn btn-warning schedule-prev">
+<div class="btn btn-warning schedul" data-type="prev">
                                    
                                     <span aria-hidden="true" >&laquo;</span>
                                  </div>
@@ -86,7 +86,8 @@
                                 
                                 <li>
                                   
-                                 <div class="btn btn-warning schedule-nxt">
+                                 <div class="btn btn-warning schedul"   data-type="next">
+
 
                                     <span aria-hidden="true" >&raquo;</span>
                                   </div>
@@ -106,6 +107,7 @@
                         </tr>
                         <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
+    <input type="hidden" id='owner_id' value="<?php echo  $adminid ;?>">
                                 <?php
                            
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();

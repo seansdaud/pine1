@@ -4,16 +4,16 @@ $(document).ready(function(){
      	var day = $('#today').val();
      	var date = $('#date').val();
        	var type=$(this).attr('data-type');
-       	if (type=="") {
-       		
+       	if (type=="prev") {
+       		var mainurl=url+'/prevdate';
        	}
        		else{
-
+       			var mainurl=url+'/nxtdate';
        		}
     	var owner = $('#owner_id').val();
 			$.ajax({
 				type:'GET',
-					url: url+'/prevdate',
+					url: mainurl,
 				data:{
 					day:day,
 					date:date,
@@ -21,12 +21,15 @@ $(document).ready(function(){
 				},
 		success:function(data)
 				{
-					if (date=="not") {
-						return false;
-					};
+					if (data=="here") {
+						$('.id').html("");
+					
+						
+					}else{
 
 					$('.ajax-caller').html(data);
 							   $('.id').html("");
+							};
 				 },
 				  beforeSend : function (){
                  $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
@@ -43,8 +46,8 @@ $(document).ready(function(){
 	 		 }
 				  });
     });
-    	var url = $('#base_url').val();
+    	// var url = $('#base_url').val();
 
-                 $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
+     //             $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
 
         });

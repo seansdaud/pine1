@@ -23,7 +23,7 @@
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
                                 <li>
-                                <div class="btn btn-warning schedule-prev">
+                               <div class="btn btn-warning schedul" data-type="prev">
                                    
                                     <span aria-hidden="true" >&laquo;</span>
                                  </div>
@@ -32,7 +32,7 @@
                                 
                                 <li>
                                   
-                                 <div class="btn btn-warning schedule-nxt">
+                                 <div class="btn btn-warning schedul"   data-type="next">
 
                                     <span aria-hidden="true" >&raquo;</span>
                                   </div>

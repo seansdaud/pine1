@@ -33,6 +33,13 @@ Route::get('/', array(
 		'as' => 'prevdate',
 		'uses' => 'SiteController@prevdate'
 	));	
+
+			/*Next date Show*/
+			Route::get("/nxtdate", array(
+		'as' => 'nxtdate',
+		'uses' => 'SiteController@nxtdate'
+	));	
+
 /*------------------------------------------------------------------------*/
 /*Arenas*/
 Route::get("/arenas", array(
