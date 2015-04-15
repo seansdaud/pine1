@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ ucfirst($title) }}</title>
-    {{ HTML::style('assets/css/bootstrap.css') }}
-    {{ HTML::style('assets/css/style1.css') }}
-   {{ HTML::style('assets/css/select2.min.css') }}
-    {{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
-  </head>
+  @include('frontend.layout.header')
   <body>
     <div class="container-fluid" style="padding-left:0; padding-right:0;">
       @include('frontend.layout.nav')
@@ -33,8 +27,8 @@
             <?php if (!$field->isEmpty()):?>
             <?php foreach ($field as $key ): ?>
              
-              <?php if (!empty($key->arenas->name)):?>
-                <option value="<?php echo $key->arenas->id;  ?>"><?php echo ucfirst($key->arenas->name); ?></option>
+              <?php if (!empty($key->arena->name)):?>
+                <option value="<?php echo $key->arena->id;  ?>"><?php echo ucfirst($key->arena->name); ?></option>
               <?php endif; ?>
             <?php endforeach; ?>
           <?php endif; ?>
@@ -102,14 +96,17 @@
                           <th>Duration</th>
                           <th>Status</th>
                           <th>Booked By</th>
-                          <th>Price</th>
+                          <th>Price</th><!-- 
                           <th>Phone No</th>
-                        </tr>
+ -->                        </tr>
                         <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
     <input type="hidden" id='owner_id' value="<?php echo  $adminid ;?>">
                                 <?php
-                           
+                                $user= User::where('usertype',2);
+                    if($user->count()):
+                      $user=$user->first();
+                    $adminid =$user->id;
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
                     ?>
                     @foreach ($schedular as $key)
@@ -163,27 +160,12 @@
                       Rs.<?php echo $key->price; ?>
                     @endif  
                     </td>
-                    @if($flag==1) 
-                        <?php $user= User::where('id',$getuser)->get();   
-                      ?>
-                          @if(!empty($user[0]->contactno))
-                        <td data-th="Change Permissions">
-                              <input  type="button"  class="btn btn-primary"  value="<?php  echo $user[0]->contactno; ?>" >
-                          </td>
-                          @else
-                          <td>
-                            <input  type="button"  class="btn btn-danger"  value="None" >
-                          </td>
-                          @endif
-                      @else
-                     <td data-th="Change Permissions">
-                        <input  type="button"  class="btn btn-danger"  value="Not Booked" >
-                      </td>
-                      @endif
+              
               </tr>
                   @endforeach 
-
+                  <?php endif; ?>
                     </table>
+
               	</div>
               	</div>
               	<div class="col-md-4">
@@ -226,86 +208,8 @@
 
         </div>
     </div>
-    <!-- //footer -->
-    <div class="footer">
-      <div class="container">
-        <div class="row footer-wrap">
-          <div class="col-md-4">
-            <img class="logo-below" src="{{ asset('assets/img/logo.png') }}">
-          </div>
-          <div class="col-md-4">
-              <div>
-                <div class="footer-events">
-                  <span class="glyphicon glyphicon-bookmark galo"></span>
-                  <span>Follow Us</span>
-                </div>
-              </div>
-              <div class="social">
-                <img src="{{ asset('assets/img/fb.png') }}">
-                <img src="{{ asset('assets/img/instagram.jpg') }}">
-                <img src="{{ asset('assets/img/Google-Plus-icon.png') }}">
-                <img src="{{ asset('assets/img/twitter.png') }}">                      
-              </div>
-              <div>
-                <div class="footer-events">
-                  <span class="glyphicon glyphicon-bookmark galo"></span>
-                  <span>Contact</span>
-                </div>
-              </div>
-              <span class="glyphicon glyphicon-earphone terminal"></span> 
-              <span>+977-9837992201</span>
-              <span>+977-9837992201</span>
-              <div>
-              <span class="glyphicon glyphicon-globe terminal"></span>
-              <span>futsalnepal.com</span>
-              </div>
-          </div>
-          <div class="col-md-4">
-            <div>
-              <div class="footer-events">
-                <span class="glyphicon glyphicon-bookmark galo"></span>
-                <span>Events</span>
-              </div>
-            </div>
-            <div style="min-height:85px;">
-              <div class="date-wrap">
-                <span style="font-size: 32px;">16</span><br/>
-                <span class="months-desi">Dec</span>
-              </div>
-              <div style="padding: 7px 0px 0px 77px;">
-                <div style="font-size: 20px; border-right: 3px solid rgb(241, 86, 32);">Pokhara futsal tournament</div>
-                <div style="  color: rgb(186, 186, 178);">Gairapatan Pokhara</div>
-                
-              </div>
-            </div>
-            <div style="min-height:85px;">
-              <div class="date-wrap">
-                <span style="font-size: 32px;">16</span><br/>
-                <span class="months-desi">Dec</span>
-              </div>
-              <div style="padding: 7px 0px 0px 77px;">
-                <div style="font-size: 20px; border-right: 3px solid rgb(241, 86, 32);">Pokhara futsal tournament</div>
-                <div style="  color: rgb(186, 186, 178);">Gairapatan Pokhara</div>
-                
-              </div>
-            </div>
-          
-          </div>
-        </div>
-        <div class="row foot-below">
-          <span>COPYRIGHT © 2010 - 2014, FUTSAL NEPAL</span> || <span>Designed by <a style="color:rgb(240, 242, 255);" href="http://pinesofts.com/">Pinesoft</a></span>
-          
-        </div>
-      </div>
-    </div>
-<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    {{ HTML::script('assets/js/jquery.js') }}
-    {{ HTML::script('assets/js/bootstrap.min.js') }}
-    {{ HTML::script('assets/js/validator.min.js') }}
-    {{ HTML::script('assets/js/frontend.js') }}
-    {{ HTML::script('assets/js/select2.min.js') }}
+    @include('frontend.layout.footer')
 
-    {{ HTML::script('assets/js/customsfront.js') }}
     <script type="text/javascript">
        $(".select-arena").select2({
           placeholder: "Select a arena",
@@ -318,15 +222,13 @@
 
 // var x = document.getElementById("demo");
 
+    function showPosition(position) {
+      var base_url= $('#base_url').val();
+        //  x.innerHTML = "Latitude: " + position.coords.latitude + 
+        // "<br>Longitude: " + position.coords.longitude;  
 
-
-function showPosition(position) {
-  var base_url= $('#base_url').val();
-    //  x.innerHTML = "Latitude: " + position.coords.latitude + 
-    // "<br>Longitude: " + position.coords.longitude;  
-
-      $.ajax({
-        type: "GET",
+        $.ajax({
+            type: "GET",
             url: base_url+'/getCurrent',
             data: {
               lat:position.coords.latitude,
@@ -334,7 +236,7 @@ function showPosition(position) {
               radius:200
 
             },
-              success:function(data){ 
+            success:function(data){ 
                 if (data=="noResult") {
 
                 }else{
@@ -345,47 +247,52 @@ function showPosition(position) {
                  console.log(data);
                 };
            
-          },
-           beforeSend : function (){
+            },
+            beforeSend : function (){
                  // $('#id').html("<div class='loading'><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
 
             },
-                error: function(jqXHR, textStatus, errorThrown){ 
+            error: function(jqXHR, textStatus, errorThrown){ 
               alert( jqXHR.responseText);
                console.log(jqXHR.responseText);
-          }
-            });
-}
- if (navigator.geolocation) {
+            }
+        });
+    }
+
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
+    }
+    else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+
     $('.select-arena').on('change', function (e) {
-          var base_url= $('#base_url').val();
+        var base_url= $('#base_url').val();
         var optionSelected = $("option:selected", this);
-  
+      
         var valueSelected = this.value;
-              $.ajax({
-                     url:base_url+"/getArena",
-                       type:'GET',
-                       data: {
-                        id:valueSelected
-                      },
-                   success:function(result){ 
-                    alert(result);
-                 // $(".ajax").html(result);
-                //  $('#id').html("");
-              },
-           beforeSend : function (){
-            //     $('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
+        
+        $.ajax({
+            url:base_url+"/getArena",
+            type:'GET',
+            data: {
+                id:valueSelected
+            },
+            success:function(result){ 
+            alert(result);
+            // $(".ajax").html(result);
+            //  $('#id').html("");
+            },
+            beforeSend : function (){
+            //$('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
 
             },
-              error: function(jqXHR, textStatus, errorThrown){ 
+            error: function(jqXHR, textStatus, errorThrown){ 
                 alert(jqXHR.responseText);
-              }
-                });
+            }
         });
+    });
+
   </script>
   </body>
 </html>

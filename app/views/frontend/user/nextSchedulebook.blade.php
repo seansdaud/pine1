@@ -12,7 +12,7 @@
                                                <div class="futsal-name">
                          <?php
                          $arena_name=User::where('id',  $owner)->get();
-                          echo $arena_name[0]->arenas->name; ?>
+                          echo $arena_name[0]->arena->name; ?>
                          </div>
                       </div>
                       <div class="col-md-2 col-sm-2">
@@ -48,8 +48,8 @@
                           <th>Status</th>
                           <th>Booked By</th>
                           <th>Price</th>
-                          <th>Phone No</th>
-                        </tr>
+                        <!--   <th>Phone No</th>
+ -->                        </tr>
                         <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
       <?php
@@ -117,23 +117,7 @@
                       Rs.<?php echo $key->price; ?>
                     @endif  
                     </td>
-                    @if($flag==1) 
-                        <?php $user= User::where('id',$getuser)->get();   
-                      ?>
-                          @if(!empty($user[0]->contact))
-                        <td data-th="Change Permissions">
-                              <input  type="button"  class="btn btn-danger"  value="<?php  echo $user[0]->contact; ?>" >
-                          </td>
-                          @else
-                          <td>
-                            <input  type="button"  class="btn btn-success"  value="None" >
-                          </td>
-                          @endif
-                      @else
-                     <td data-th="Change Permissions">
-                        <input  type="button"  class="btn btn-success"  value="Not Booked" >
-                      </td>
-                      @endif
+                  
               </tr>
                   @endforeach 
      </table>

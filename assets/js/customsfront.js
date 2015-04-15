@@ -4,6 +4,7 @@ $(document).ready(function(){
      	var day = $('#today').val();
      	var date = $('#date').val();
        	var type=$(this).attr('data-type');
+     
        	if (type=="prev") {
        		var mainurl=url+'/prevdate';
        	}

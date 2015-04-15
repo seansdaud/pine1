@@ -445,6 +445,7 @@ $(document).ready(function() {
 			        document.getElementById("new-password").value = "";
 			        document.getElementById("new-password-again").value = "";
 			        $("#change-admin-password-form").hide();
+			        $("#change-admin-password-form").find(".danger").html("");
 			        $("#change-admin-password-form").parent().find("#to-be-changed").show();
 				}
 				else{
@@ -485,7 +486,6 @@ $(document).ready(function() {
 		var change = $(this).find(".form-group input").attr("change");
 		triggerChange(url, username, token, change, id);
 	});
-
 });
 
 function triggerChange(url, value, token, changeType, id){

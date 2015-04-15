@@ -1,4 +1,4 @@
-@extends('backend.layout.main')
+s@extends('backend.layout.main')
 
 @section("content")
 	<ol class="breadcrumb">
