@@ -204,14 +204,14 @@ html{
     cursor: pointer;
 }
 .choose {
-    position: absolute;
-    bottom: 4px;
-    background: black;
-    padding: 3px;
-    display: block;
-    overflow: hidden;
-    width: 13%;
-    height: 20px;
+      position: absolute;
+      bottom: 0px;
+      background: rgba(0, 0, 0, 0.79);
+      padding: 6px 12px;
+      display: block;
+      overflow: hidden;
+      width: 18%;
+      height: 35px;
 }
 #wrap > form> input[type="text"] {
   height: 30px;
@@ -904,13 +904,13 @@ section {
 }
 .btn-large{
     padding: 6px 16px !important;
-    background-color: #15212F !important;
-    border-color: #14202E !important;
+    background-color: #F15620 !important;
+    border-color: #F15620 !important;
     margin-top: 23px; 
 }
 .btn-large:hover{
-    background-color: #F15620 !important;
-    border-color: #F15620 !important;
+    background-color: #15212F !important;
+    border-color: #14202E !important;
 }
 .a-traingle1{
   display: block !important;
