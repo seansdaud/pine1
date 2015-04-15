@@ -18,9 +18,73 @@
             </div>
             <div class="search-all">
             <div class="row">
-              <div class="col-md-8 col-sm-8 others">Search Other Arenas >></div>
+              <div class="col-md-2 col-sm-2 others">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle parae" data-toggle="dropdown" role="button" aria-expanded="false">Price <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Another action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-2 others">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle parae" data-toggle="dropdown" role="button" aria-expanded="false">Location <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Another action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-2 others">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle parae" data-toggle="dropdown" role="button" aria-expanded="false">Distance <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Another action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-2 others">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle parae" data-toggle="dropdown" role="button" aria-expanded="false">Others <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Another action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </div>
+              </div>
               <div class="col-md-4 col-sm-4">
-                <div class="form-group">
+                <button type="button" class="btn btn-success btn-large btn-lg btn-block">Search</button>
+                <!-- <div class="form-group">
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
 
@@ -41,12 +105,12 @@
                   
               </select>
                 </div>              
-                </div>
+                </div> -->
             </div>
             </div>
             </div>
           	<div class="row">
-              	<div class="col-md-8" style="  box-shadow: 4px 19px 16px #888888;">
+              	<div class="col-md-8 col-sm-8" style="  box-shadow: 4px 19px 16px #888888;">
                   <div class="ajax-caller">
                   	<div class="row">
                   		<div class="col-md-3 col-sm-4 col-xs-8">
@@ -178,7 +242,7 @@
                     </table>
               	</div>
               	</div>
-              	<div class="col-md-4">
+              	<div class="col-md-4 col-sm-4">
             		    <div class="row">
                       <div class="col-md-5 col-sm-7 col-xs-5">
                         
@@ -222,10 +286,10 @@
     <div class="footer">
       <div class="container">
         <div class="row footer-wrap">
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4">
             <img class="logo-below" src="{{ asset('assets/img/logo.png') }}">
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4">
               <div>
                 <div class="footer-events">
                   <span class="glyphicon glyphicon-bookmark galo"></span>
@@ -252,7 +316,7 @@
               <span>futsalnepal.com</span>
               </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4">
             <div>
               <div class="footer-events">
                 <span class="glyphicon glyphicon-bookmark galo"></span>
