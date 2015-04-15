@@ -31,7 +31,7 @@
 	                </div>
 				</div>
 			</div>
-			
+		
 			<div class="profile-wrap">
 				<div style="  margin-top: 25px;">
 					<table class="table">
@@ -234,7 +234,7 @@
 										<?php $image = "assets/img/default.jpg" ?>
 									<?php endif; ?>
 									<span class="review-img"><img src="{{ asset($image) }}" alt="{{ ucfirst($review_from->name) }}"></span>
-									<span><a class="gurg" href="{{ URL::route('user-profile', $review_from->username) }}">{{ ucfirst($review_from->name) }}</a></span><br>
+									<span class="gurg">{{ ucfirst($review_from->name) }}</span><br>
 									<small>
 										<?php echo $date = date("d M Y", strtotime($review->created_at)); ?>
 										<?php if((int)date("H", strtotime($review->created_at)) > 12): ?>
@@ -252,32 +252,25 @@
 					<?php endif; ?>
 
 				@endforeach
-				<?php if($row_closed==false & $row_closed!=null): ?>
-					<?php echo "</div>"; ?>
-				<?php endif; ?>
 
-			<div class="row">
-				<div class="col-md-12">
-					@if(Auth::check())
-						@if(Auth::user()->usertype=="1")
-							{{ Form::open(array('route' => 'add-review', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id'=>'review-form', 'style'=>'display:none;')) }}
-								<div id="characters"></div>
-								<div class="form-group">
-									<textarea name="review" class="form-control" placeholder="Write short review for this arena" required maxlength="200"></textarea>
-								</div>
-								<input type="hidden" name="arena_id" value="{{ $arena->id }}">
-								<div class="form-group">
-									<input type="submit" value="Submit" class="btn btn-info">
-								</div>
-							{{ Form::close() }}
-						@else
-							Login as a user to add review.
-						@endif
-					@else
-						Login to add review.
-					@endif
-				</div>
-			</div>
+			@if(Auth::check())
+				@if(Auth::user()->usertype=="1")
+					{{ Form::open(array('route' => 'add-review', 'class' => 'form-horizontal style-form', 'data-toggle' => 'validator', 'id'=>'review-form', 'style'=>'display:none;')) }}
+						<div id="characters"></div>
+						<div class="form-group">
+							<textarea name="review" class="form-control" placeholder="Write short review for this arena" required maxlength="200"></textarea>
+						</div>
+						<input type="hidden" name="arena_id" value="{{ $arena->id }}">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-info">
+						</div>
+					{{ Form::close() }}
+				@else
+					Login as a user to add review.
+				@endif
+			@else
+				Login to add review.
+			@endif
 			
 		</div>
 	</div>
