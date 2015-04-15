@@ -161,6 +161,12 @@ class Admin extends BaseController {
 		);
 
 		if($create){
+			$owner_id=DB::getPdo()->lastInsertId();
+			$arena=Arena::create(
+				array(
+					'name'=>Input::get("name"),
+					'user_id'=>$owner_id
+					));
 			return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
 		}
 		else{
