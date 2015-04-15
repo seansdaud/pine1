@@ -28,6 +28,17 @@ Route::get('/', array(
 			'uses' => 'SiteController@getArena'
 		));	
 
+			/*Next date Show*/
+			Route::get("/prevdate", array(
+		'as' => 'prevdate',
+		'uses' => 'SiteController@prevdate'
+	));	
+
+			/*Next date Show*/
+			Route::get("/nxtdate", array(
+		'as' => 'nxtdate',
+		'uses' => 'SiteController@nxtdate'
+	));	
 
 /*------------------------------------------------------------------------*/
 /*Arenas*/
@@ -160,6 +171,12 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'add-review',
 			'uses' => 'UserController@addReview'
 		));
+
+		/*change cover pic-user*/
+		Route::post("/cover-pic",array(
+			'as'=>'change-user-cover-picture',
+			'uses'=>'UserController@changeCover'
+			));
 
 	});
 

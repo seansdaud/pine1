@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewsTable extends Migration {
+class AddCoverImageColumnToUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,9 @@ class CreateReviewsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('reviews', function($table)
+		Schema::table('users', function($table)
 		{
-			$table->increments("id");
-			$table->integer("user_id");
-			$table->text("review");
-			$table->integer("arena_id");
-			$table->timestamps();
+			$table->text("cover_pic");
 		});
 	}
 
@@ -29,7 +25,7 @@ class CreateReviewsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop("reviews");
+		//
 	}
 
 }
