@@ -12,9 +12,49 @@
             </div>
             <div class="search-all">
             <div class="row">
-              <div class="col-md-8 col-sm-8 others">Search Other Arenas >></div>
+              <div class="col-md-2 col-sm-2 others">
+                <div>Price :</div>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="col-md-2 col-sm-2 others">
+                <div>Location :</div>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="col-md-2 col-sm-2 others">
+                <div>Distance :</div>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div class="col-md-2 col-sm-2 others">
+                <div>Others :</div>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
               <div class="col-md-4 col-sm-4">
-                <div class="form-group">
+                <button type="button" class="btn btn-success btn-large btn-lg btn-block">Search</button>
+                <!-- <div class="form-group">
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
 
@@ -35,12 +75,12 @@
                   
               </select>
                 </div>              
-                </div>
+                </div> -->
             </div>
             </div>
             </div>
           	<div class="row">
-              	<div class="col-md-8" style="  box-shadow: 4px 19px 16px #888888;">
+              	<div class="col-md-8 col-sm-8" style="  box-shadow: 4px 19px 16px #888888;">
                   <div class="ajax-caller">
                   	<div class="row">
                   		<div class="col-md-3 col-sm-4 col-xs-8">
@@ -175,7 +215,7 @@
 
               	</div>
               	</div>
-              	<div class="col-md-4">
+              	<div class="col-md-4 col-sm-4">
             		    <div class="row">
                       <div class="col-md-5 col-sm-7 col-xs-5">
                         
@@ -215,9 +255,19 @@
 
         </div>
     </div>
-    
     @include('frontend.layout.footer')
   </body>
+    <script type="text/javascript">
+       $(".select-arena").select2({
+          placeholder: "Select a arena",
+  allowClear: true
+       });
+     </script>
+    <script type="text/javascript">
+
+
+
+// var x = document.getElementById("demo");
 
   <script type="text/javascript">
 

@@ -218,9 +218,10 @@
 							<img class="img-profile img-circle" src="{{ asset('assets/img/5457227d9719a.jpg') }}" alt="" width="50" height="50">
 						@endif
 					</a>
-					<? $arena=User::where('id','=', $book->arena_id)->firstOrFail();
+					<?php $arena=User::where('id','=', $book->arena_id)->first();
+									
 										?>
-					<? $time=Scheduleinfo::where('booking_id','=',$book->id)->firstOrFail();?>
+					<?php $time=Scheduleinfo::where('booking_id','=',$book->id)->first();?>
 					<div class="comment-body">
 						<div class="text">
 						  <p>You booked <a href="{{ URL::route('arena-detail', $arena->arena->id) }}">{{ $arena->arena->name }}</a> from {{ $time->start_time }} to {{$time->end_time}} for {{$book->booking_date}}.</p>
