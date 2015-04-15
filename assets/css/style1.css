@@ -859,12 +859,12 @@ section {
   padding: 10px;
   background: rgb(190, 190, 190);
   margin-bottom: 14px;
-  height: 57px;
+  /*height: 57px;*/
 }
 .others{
   font-family: 'Titillium Web', sans-serif;
   text-align: center;
-  font-size: 25px;
+  font-size: 18px;
   color: white;
 }
 .futsal-name{
@@ -874,8 +874,27 @@ section {
   background: rgb(193, 193, 193);
   text-align: center;
   text-transform: capitalize;
-  border-radius: 45px 5px 42px 2px;
+  /*border-radius: 45px 5px 42px 2px;*/
   font-size: 14px;
+}
+.parae{
+  border: 1px solid rgb(84, 100, 119);
+  padding: 5px 10px;
+  background: rgb(211, 211, 211);
+  color: rgb(20, 32, 46);
+  border-radius: 4px;
+  margin-top: 1px;
+  display: block;
+}
+.btn-large{
+    padding: 6px 16px !important;
+    background-color: #15212F !important;
+    border-color: #14202E !important;
+    margin-top: 23px; 
+}
+.btn-large:hover{
+    background-color: #F15620 !important;
+    border-color: #F15620 !important;
 }
 .a-traingle1{
   display: block !important;
