@@ -888,6 +888,13 @@ section {
 }
 .btn-large{
     padding: 6px 16px !important;
+    background-color: #15212F !important;
+    border-color: #14202E !important;
+    margin-top: 23px; 
+}
+.btn-large:hover{
+    background-color: #F15620 !important;
+    border-color: #F15620 !important;
 }
 .a-traingle1{
   display: block !important;

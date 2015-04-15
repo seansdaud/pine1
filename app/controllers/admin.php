@@ -161,6 +161,12 @@ class Admin extends BaseController {
 		);
 
 		if($create){
+			$owner_id=DB::getPdo()->lastInsertId();
+			$arena=Arena::create(
+				array(
+					'name'=>Input::get("name"),
+					'user_id'=>$owner_id
+					));
 			return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
 		}
 		else{
@@ -184,6 +190,7 @@ class Admin extends BaseController {
 		foreach($owners as $id){
 			$owner = User::where("id", "=", $id);
 			$user = $owner->first();
+			Arena::where("user_id", $id)->delete();
 			if($owner->delete()){
 				$count++;
 				continue;
@@ -203,6 +210,7 @@ class Admin extends BaseController {
 		$count = 0;
 		foreach($owners as $id){
 			$owner = User::where("id", "=", $id);
+			Arena::where("user_id", $id)->restore();
 			if($owner->restore()){
 				$user = $owner->first();
 				$count++;

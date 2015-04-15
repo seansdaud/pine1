@@ -16,7 +16,6 @@
 			</div>
 		</div>
 	</div>
-
 	<?php $row_closed=null; $i=0; foreach($arenas as $arena): $i++; ?>
 		<?php if($i==1): $row_closed=false; ?>
 			<div class="row" style="margin-bottom:15px;">
