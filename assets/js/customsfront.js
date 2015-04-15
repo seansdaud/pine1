@@ -24,7 +24,7 @@ $(document).ready(function(){
 				{
 					if (data=="here") {
 						$('.id').html("");
-					swal({   title: "Alert!",   text: "You cannot view Previous Bookings",   timer: 2000,   showConfirmButton: false });
+					swal({   title: "Alert!", type:"error",  text: "You cannot view Previous Bookings",   timer: 2000,   showConfirmButton: false });
 						
 					}else{
 
