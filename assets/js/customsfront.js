@@ -52,3 +52,10 @@ $(document).ready(function(){
      //             $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
 
         });
+
+function myFunction(tel){
+
+   $('.modal').modal('hide');
+	swal({   title: "Call Here For Booking!", type:"success",  text: "Phone Number:"+tel,     showConfirmButton: true });
+						
+}
