@@ -87,6 +87,12 @@ $(document).ready(function() {
 });
 
 $(document).ready(function(){
+    $("#change-cover-pic").on("change", function() {      
+        $("#change-user-cover-pic").submit();
+    });
+});
+
+$(document).ready(function(){
     $("#review-form").css("display", "block");
     $("#review-form textarea").keyup(function(e) {
         var cs = 200 - $(this).val().length;
