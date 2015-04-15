@@ -43,18 +43,11 @@
                 </select>
               </div>
               <div class="col-md-2 col-sm-2 others">
-                <div>Others :</div>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
+                <button type="button" class="btn btn-success btn-large btn-lg btn-block">Search</button>
               </div>
               <div class="col-md-4 col-sm-4">
-                <button type="button" class="btn btn-success btn-large btn-lg btn-block">Search</button>
-                <!-- <div class="form-group">
+                <div style="color: rgb(245, 245, 245); text-align: center; font-size: 17px;">Search Arena :</div>
+                <div class="form-group" style="margin-bottom:0px;">
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
 
@@ -75,7 +68,7 @@
                   
               </select>
                 </div>              
-                </div> -->
+                </div>
             </div>
             </div>
             </div>
