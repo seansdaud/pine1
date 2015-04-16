@@ -3,6 +3,9 @@ $("#arenas li a:contains('ARENAS')").parent().addClass('active');
 $("#about li a:contains('ABOUT')").parent().addClass('active');
 $("#contact li a:contains('CONTACT')").parent().addClass('active');
 
+$('input[name=start_time]').timepicker();
+$('input[name=end_time]').timepicker();
+
 // Login Form
 
 $(function() {

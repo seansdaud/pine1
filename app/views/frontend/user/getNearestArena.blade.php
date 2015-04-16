@@ -3,6 +3,7 @@
                       <div class="col-md-3 col-sm-4 col-xs-8">
                         
                         <div class="cat-name">
+
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>                        
                         <div id="id"></div>
                           <?php
@@ -91,7 +92,9 @@
                         }
                           
                       ?>
+
                      
                         @include("frontend.arenas.scheduletemp")
+
                   @endforeach 
      </table>

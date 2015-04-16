@@ -23,14 +23,17 @@ $(document).ready(function(){
 		success:function(data)
 				{
 					if (data=="here") {
+
 						$('#id').html("");
 					swal({   title: "Alert!", type:"error",  text: "You cannot view Previous Bookings",   timer: 2000,   showConfirmButton: false });
 						
 					}else{
 
 					$('.ajax-caller').html(data);
+
 						
 						$('#id').html("");
+
 							};
 							if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(showPosition1);
@@ -55,6 +58,7 @@ $(document).ready(function(){
 	 		 }
 				  });
     });
+
     	
         });
 
