@@ -23,15 +23,17 @@ $(document).ready(function(){
 		success:function(data)
 				{
 					if (data=="here") {
+
 						$('#id').html("");
 					swal({   title: "Alert!", type:"error",  text: "You cannot view Previous Bookings",   timer: 2000,   showConfirmButton: false });
 						
 					}else{
 
 					$('.ajax-caller').html(data);
+
 						
 						$('#id').html("");
-							};
+						};
 				 },
 				  beforeSend : function (){
                  $('#id').html("<div class='loading1' ><img src='"+url+"/assets/img/ajax_load.gif'></div>");
@@ -48,6 +50,7 @@ $(document).ready(function(){
 	 		 }
 				  });
     });
+
     	
         });
 

@@ -98,7 +98,6 @@
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
 
                         <div class="futsal-name"><?php echo  $user[0]->name;?></div>
-
                                              </div>
                       <div class="col-md-2 col-sm-2">
                         <div class="futsal-name"><?php echo  $date;?></div>
@@ -166,7 +165,6 @@
                         }
                           
                       ?>
-
                         @include("frontend.arenas.scheduletemp")
                   @endforeach 
                   <?php endif; ?>
