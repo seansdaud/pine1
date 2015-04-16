@@ -55,6 +55,7 @@ class UserController extends BaseController {
 					$user->email = Input::get("email");
 					$user->contact = Input::get("contact");
 					$user->address = Input::get("address");
+					$user->users_daily = Input::get("users_daily");
 					if($user->save()){
 						return Redirect::route('user-profile',Auth::user()->username)
 							->with('success','updated successfully');
@@ -75,6 +76,7 @@ class UserController extends BaseController {
 			$user->email = Input::get("email");
 			$user->contact = Input::get("contact");
 			$user->address = Input::get("address");
+			$user->users_daily = Input::get("users_daily");
 			if($user->save()){
 				return Redirect::route('user-profile',Auth::user()->username)
 			->with('success','updated successfully');
@@ -96,7 +98,7 @@ class UserController extends BaseController {
 				$upload = Input::file('cover')->move("assets/img/profile/user/cover", $name);
 				if($upload){
 					$user = User::where("id", "=", Auth::user()->id)->first();
-					File::delete("assets/img/profile/user/cover".$user->profile_pic);
+					File::delete("assets/img/profile/user/cover/".$user->profile_pic);
 					$user->cover_pic = $name;
 					if($user->save()){
 						return Redirect::route('user-profile',Auth::user()->username)
