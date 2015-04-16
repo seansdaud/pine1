@@ -146,6 +146,28 @@ class SiteController extends BaseController {
 			
 
 		 }
+		 public function getCurrentnow(){
+		 			$lat = $_GET["lat"];
+		 				$owner = $_GET["owner"];
+	$lng = $_GET["lng"];
+	$radius = Input::get('radius');
+	$result = Marker::where('admin_id',$owner)->select(
+	                DB::raw("*, ( 3959 * acos( cos( radians('".$lat."') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('".$lng."') ) + sin( radians('".$lat."') ) * sin( radians( lat ) ) ) ) AS distances"))
+	                ->having("distances", "<",$radius)
+	           ->orderBy("distances")
+	           
+	                ->get();
+	              
+		//print_r(json_encode($result));
+	                if ($result->isEmpty()) {
+	                	return "noResult";
+	                }
+	                else{
+	                	  $data = array('result' => $result);
+	                	  return $data;
+	                	  }	                
+	      
+		}
 
 	public function search(){
 		$start_time = Input::get("start_time");

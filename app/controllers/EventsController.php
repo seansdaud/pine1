@@ -24,6 +24,9 @@ class EventsController extends BaseController {
 	}
 
 	public function postOwnerEvents(){
+
+
+
 		$event = Events::create(
 				array(
 						"name" => Input::get("name"),
@@ -31,8 +34,106 @@ class EventsController extends BaseController {
 						"user_id" => Input::get("master")
 					)
 			);
+				if($event){
+			$user=User::where("id",Input::get("master"))->first();
+		$userevent=new User;
+		$userevent->name=Input::get("name");
+		$userevent->contact=$user->contact;
+		$userevent->save();
 
-		if($event){
+			$from=Input::get('getdate1');
+				$to=Input::get('getdate2');
+			$start=Input::get('start_time1');
+				$end=Input::get('end_time1');
+				$datetime1 = new DateTime($from);
+$datetime2 = new DateTime($to);
+$interval = $datetime1->diff($datetime2);
+$diff=$interval->format('%a');
+	
+			$from_date=$from;
+				$adminid = Auth::id();
+				for ($i=0; $i < $diff+1; $i++) {
+						$forday = strtotime("+0 day", strtotime($from_date));
+						$ford= date("Y-m-d", $forday);
+
+						$day = date('w', $forday);
+						$day=$day+1;
+
+					
+		$schedule=Schedule::where('admin_id',$adminid)->where('day',$day)->orderBy('booking', 'asc')->get();	
+		$flag=0;	
+
+
+						foreach ($schedule as $key) {
+							print_r($from_date);
+
+										if ($key->start_time==$start) {
+								$flag=1;
+							}
+
+							if ($key->start_time==$end) {
+								$flag=0;
+							}
+							if ($flag==1) {
+								
+						// print_r($from_date);
+						 print_r($key->start_time);
+						 echo "<br/>";
+						 		print_r($key->end_time);
+								$adminid = Auth::id();
+			$datename=Schedule::where('id', $key->id)->get();
+			if($datename[0]->book_status==0){
+				 $book = new Booking;
+					 $book->schedule_id= $key->id;
+					  $book->user_id=$userevent->id;
+					  $book->booking_date=	$from_date;
+					   $book->booked_price=$key->price;
+					  $book->arena_id=$adminid;
+					  $book->save(); 
+						  $client = Schedule::findOrFail( $key->id);
+
+						$client->book_status=$book->id;
+						$client->push();
+						 $bookin = Booking::findOrFail($book->id);
+
+						$bookin->status=$book->id;
+						$bookin->push();
+			}
+			else{
+				 $book = new Booking;
+					 $book->schedule_id=$key->id;
+					  $book->user_id=$userevent->id;
+					  $book->booking_date=	$from_date;
+					     $book->booked_price=$key->price;
+					  $book->arena_id=$adminid;
+					  $book->save(); 
+					   $bookin = Booking::findOrFail($book->id);
+
+						$bookin->status=$datename[0]->book_status;
+						$bookin->push();
+
+
+			}
+				 $schedule = new Scheduleinfo;
+					$schedule->start_time=$key->start_time;
+					$schedule->end_time =$key->end_time;
+					$schedule->price = $key->price;
+					$schedule->day=$key->day;
+					$schedule->booking_id=$book->id;
+					$schedule->save();
+					$booking_info=Booking::where("id","=",$book->id)->first(); 
+					$arena=Arena::where("user_id",$booking_info->arena_id)->first();
+					$user_id=Input::get('user_id');
+					$user_info=User::where("id", "=", $user_id)->first();
+
+							}
+						}
+						$date = strtotime("+1 day", strtotime($from_date));
+						$from_date= date("Y-m-d", $date);
+
+											
+					}
+					die();	
 			return Redirect::route("owner-events")->with("success", "Event Successfully created.");
 		}
 		return Redirect::route("owner-event-new")->withInput()->with("danger", "Something went wrong. Please try again.");
