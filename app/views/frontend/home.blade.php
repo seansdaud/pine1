@@ -10,69 +10,9 @@
   	        <div style="margin-left: -15px !important; margin-right: -15px !important;">
               <img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; border-bottom: 7px solid rgb(244, 60, 18); box-shadow: 0px 53px 217px #000000;">
             </div>
-            <div class="search-all">
-            <div class="row">
-              <div class="col-md-2 col-sm-2 others">
-                <div>Price :</div>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div class="col-md-2 col-sm-2 others">
-                <div>Location :</div>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div class="col-md-2 col-sm-2 others">
-                <div>Distance :</div>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div class="col-md-2 col-sm-2 others">
-                <button type="button" class="btn btn-success btn-large btn-lg btn-block">Search</button>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div style="color: rgb(245, 245, 245); text-align: center; font-size: 17px;">Search Arena :</div>
-                <div class="form-group" style="margin-bottom:0px;">
-                <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
-                <div class="input-group">
-
-                  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-      
-                <select class="select-arena form-control">
-                <option value=""><option>
-
-            <?php $field=User::where('usertype', 2)->get(); ?>
-            <?php if (!$field->isEmpty()):?>
-            <?php foreach ($field as $key ): ?>
-             
-              <?php if (!empty($key->arena->name)):?>
-                <option value="<?php echo $key->arena->id;  ?>"><?php echo ucfirst($key->arena->name); ?></option>
-              <?php endif; ?>
-            <?php endforeach; ?>
-          <?php endif; ?>
-                  
-              </select>
-                </div>              
-                </div>
-            </div>
-            </div>
-            </div>
-            <!-- Here -->
+            
+            @include('frontend.layout.search_filter')
+            
           	<div class="row">
               	<div class="col-md-8 col-sm-8" style="  box-shadow: 4px 19px 16px #888888;">
                   <div class="ajax-caller">
