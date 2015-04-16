@@ -1,7 +1,8 @@
 @extends("frontend.layout.main")
 
 @section("content")
-	<?php $row_closed=null; $i=0; foreach($arena as $arena): $i++; ?>
+<?php if($has_result): ?>
+	<?php $arena_found=0; $show_arena=null; $row_closed=null; $i=0; foreach($arena as $arena): $i++; ?>
 
 		<?php foreach($arena->schedular as $schedular): ?>
 			<?php $todays_schedule = Schedule::where("price", ">", (int)Input::get("price"))->where("day", date("w"))->where("id", $schedular->id)->get(); ?>
@@ -19,7 +20,7 @@
 					<?php if($booked): ?>
 						<?php $show_arena=false; ?>
 					<?php else: ?>
-						<?php $show_arena=true; ?>
+						<?php $show_arena=true; $arena_found++; ?>
 					<?php endif; ?>
 
 				<?php endif; ?>
@@ -76,8 +77,15 @@
 		<?php endif; ?>
 
 	<?php endforeach; ?>
-	<?php if($row_closed==false || $row_closed==null): ?>
+	<?php if($row_closed==false): ?>
 		<?php echo "</div>"; ?>
 	<?php endif; ?>
+
+	<?php if($arena_found == 0): ?>
+		Empty Search Results.
+	<?php endif; ?>
+<?php else: ?>
+	No Results Found.
+<?php endif; ?>
 
 @stop

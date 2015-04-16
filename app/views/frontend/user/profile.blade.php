@@ -33,7 +33,7 @@
 				<div class="arena-wrapper">
 					<div class="arena-top">{{ $user->name }}</div>
 					<div style="color:white; font-family:'Titillium Web', sans-serif;">
-					<span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span>
+					<span style="color:#F43C12;">>>  </span>{{ $user->users_daily }}<span style="color:#F43C12;">  //</span>
 					</div>
 				</div>
 
@@ -95,6 +95,17 @@
 									<label class="col-sm-2 control-label">Change picture</label>
 									<div class="col-sm-6">
 										<input type="file" name="image" class="form-control" accept="image/gif, image/jpeg, image/png">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Yours Today</label>
+									<div class="col-sm-6">
+										<input type="text" name="users_daily" class="form-control" value="{{ Auth::user()->users_daily }}" required>
+									</div>
+									<div class="col-sm-4 help-block with-errors">
+										@if($errors->has('users_daily'))
+											{{ $errors->first('users_daily') }}
+										@endif
 									</div>
 								</div>
 								<div class="form-group">

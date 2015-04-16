@@ -1032,3 +1032,11 @@ section {
   padding: 6px 22px;
   font-size: 19px;
 }
+.loading1{
+  z-index: 1;
+  position: absolute;
+  
+margin-top: 16%;
+margin-left: 132%;
+ 
+}

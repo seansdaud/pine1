@@ -64,6 +64,8 @@
                                
                          
                     $adminid = $owner;
+                    
+                    $arena=Arena::where('user_id',$adminid)->first();
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
   ?>
                     @foreach ($schedular as $key)
@@ -84,40 +86,7 @@
                         }
                           
                       ?>
-                      <tr >
-                    <td data-th="Role">
-                      <?php echo $key->start_time; ?>--<?php echo $key->end_time; ?>
-                    </td>
-                      @if($flag==1) 
-                      <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-danger"  value="Booked" >
-                      </td>
-                      @else
-                      <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-primary"  value="Available" >
-                      </td>
-                      @endif
-
-                      
-                      @if($flag==1) 
-                        <?php $user= User::where('id',$getuser)->get();   
-                      ?>
-                      <td data-th="Configure">
-                          <input  type="button"  class="btn btn-danger"  value="<?php  echo $user[0]->name; ?>" >
-                      </td>
-                      @else
-                      <td data-th="Configure">
-                        <input  type="button"  class="btn btn-success"  value="Book" >
-                      </td>
-                      @endif
-                    <td data-th="View">
-                    @if($flag==1) 
-                    Rs.<?php echo $price; ?>
-                      @else
-                      Rs.<?php echo $key->price; ?>
-                    @endif  
-                    </td>
-                  
-              </tr>
+                     
+                        @include("frontend.arenas.scheduletemp")
                   @endforeach 
      </table>
