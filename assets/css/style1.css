@@ -470,7 +470,7 @@ html{
   color: rgb(249, 98, 63);
 }
 .logs{
-  margin-top: 15px;
+  margin-top: 15px 0;
   background: rgb(232, 232, 232);
   padding: 8px;
   font-family: 'Titillium Web', sans-serif;
@@ -485,6 +485,9 @@ html{
   padding: 6px;
   width: 33px;
   text-align: center;
+}
+.select2-container{
+  width: 100% !important;
 }
 
 /* Login Container (default to float:right) */
@@ -1032,4 +1035,55 @@ section {
   background: rgba(0, 0, 0, 0.72);
   padding: 6px 22px;
   font-size: 19px;
+}
+.CoverImagee{
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 618px;
+  max-width: 100%;
+}
+.FlexEmbed--2by11 {
+  padding-bottom: 33%;
+}
+@media (max-width: 767px){
+  body{
+    font-size: 14px;
+  }
+  .container-costum{
+    margin-top: 0 !important;
+  } 
+  .arena-banner {
+  width: 100%;
+   height: auto; 
+  }
+  .nav-costum{
+    background-color: rgba(43, 49, 54, 0.58) !important;
+    margin-bottom: 0px !important;
+  }
+  .navbar-default .navbar-nav > li > a {
+    font-size: 17px !important;
+  }
+  .navbar-nav > li > a {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #A79595 !important;
+    background: rgb(241, 86, 32) !important;
+  }
+  .FlexEmbed--2by11 {
+    padding-bottom: 45%;
+  }
+  .futsal-name{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
 }

@@ -2,10 +2,10 @@
 <div class="footer">
   <div class="container">
     <div class="row footer-wrap">
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-4">
         <img class="logo-below" src="{{ asset('assets/img/logo.png') }}">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-4">
           <div>
             <div class="footer-events">
               <span class="glyphicon glyphicon-bookmark galo"></span>
@@ -32,7 +32,7 @@
           <span>futsalnepal.com</span>
           </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-4">
         <div>
           <div class="footer-events">
             <span class="glyphicon glyphicon-bookmark galo"></span>

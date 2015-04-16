@@ -7,12 +7,18 @@
         
         
         <div class="container container-costum">
-  	        <div style="margin-left: -15px !important; margin-right: -15px !important;">
+  	        <!-- <div style="margin-left: -15px !important; margin-right: -15px !important;">
               <img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; border-bottom: 7px solid rgb(244, 60, 18); box-shadow: 0px 53px 217px #000000;">
+            </div> -->
+            <div style="  margin-left: -15px; margin-right: -15px; border-bottom: 7px solid rgb(244, 60, 18); box-shadow: 0px 53px 217px #000000;" >
+            <div class="CoverImagee FlexEmbed FlexEmbed--2by11 background"
+                 style="background-image:url(assets/css/futsal.jpg)">
+                 
+            </div>
             </div>
             <div class="search-all">
             <div class="row">
-              <div class="col-md-2 col-sm-2 others">
+              <div class="col-md-2 col-sm-2 hidden-xs others">
                 <div>Price :</div>
                 <select class="form-control">
                   <option>1</option>
@@ -22,7 +28,7 @@
                   <option>5</option>
                 </select>
               </div>
-              <div class="col-md-2 col-sm-2 others">
+              <div class="col-md-2 col-sm-2 hidden-xs others">
                 <div>Location :</div>
                 <select class="form-control">
                   <option>1</option>
@@ -32,7 +38,7 @@
                   <option>5</option>
                 </select>
               </div>
-              <div class="col-md-2 col-sm-2 others">
+              <div class="col-md-2 col-sm-2 hidden-xs others">
                 <div>Distance :</div>
                 <select class="form-control">
                   <option>1</option>
@@ -42,7 +48,7 @@
                   <option>5</option>
                 </select>
               </div>
-              <div class="col-md-2 col-sm-2 others">
+              <div class="col-md-2 col-sm-2 hidden-xs others">
                 <button type="button" class="btn btn-success btn-large btn-lg btn-block">Search</button>
               </div>
               <div class="col-md-4 col-sm-4">
@@ -94,12 +100,12 @@
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
-                      <div class="col-md-4 col-md-offset-1 col-sm-4">
+                      <div class="col-md-4">
                                              </div>
-                      <div class="col-md-2 col-sm-2">
+                      <div class="col-md-2 col-sm-4 col-sm-offset-1">
                         <div class="futsal-name"><?php echo  $date;?></div>
                       </div>
-                      <div class="col-md-2 col-sm-2">
+                      <div class="col-md-2 col-sm-3">
                         <div style="float:right;">
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
