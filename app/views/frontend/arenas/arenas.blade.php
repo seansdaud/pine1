@@ -16,7 +16,9 @@
 			</div>
 		</div>
 	</div>
+
 	<?php $row_closed=null; $i=0; foreach($arenas as $arena): $i++; ?>
+
 		<?php if($i==1): $row_closed=false; ?>
 			<div class="row" style="margin-bottom:15px;">
 		<?php endif; ?>
@@ -61,8 +63,9 @@
 		<?php if($i==2): $row_closed=true; $i=0; ?>
 			</div>
 		<?php endif; ?>
+
 	<?php endforeach; ?>
-	<?php if($row_closed==false): ?>
+	<?php if($row_closed==false || $row_closed==null): ?>
 		</div>
 	<?php endif; ?>
 

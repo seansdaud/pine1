@@ -13,6 +13,7 @@ class SiteController extends BaseController {
 	}
 
 	function arenas(){
+
 		$data = array(
 			'id' => 'arenas',
 			'title' => 'arenas',
@@ -145,4 +146,38 @@ class SiteController extends BaseController {
 			
 
 		 }
+
+	public function search(){
+		$start_time = Input::get("start_time");
+		$end_time = Input::get("end_time");
+		if(!empty($start_time)){
+			$start = explode(":", $start_time);
+			if( count($start)!=2 && !is_numeric($start[0])){
+				$has_result = false;
+			}
+			else{
+				$has_result = true;
+			}
+		}
+		if(!empty($end_time)){
+			$end = explode(":", $end_time);
+			if( count($end)!=2 && !is_numeric($end[0])){
+				$has_result = false;
+			}
+			else{
+				$has_result = true;
+			}
+		}
+		
+		$arenas = empty(Input::get("location")) ? Arena::all() : Arena::where("address", Input::get("location"))->get();
+		$data = array(
+			'id' => 'search',
+			'title' => 'search results',
+			'arena' => $arenas,
+			'has_result' => $has_result
+		);
+
+		return View::make("frontend.search", $data);
+	}
+
 }
