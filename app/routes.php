@@ -22,6 +22,11 @@ Route::get('/', array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+		Route::get("/getCurrentnow", array(
+			'as' => 'getCurrenthomenow',
+			'uses' => 'SiteController@getCurrentnow'
+		));	
+
 		// getLatestMap
 		Route::get("/getArena", array(
 			'as' => 'getArena',

@@ -51,7 +51,7 @@
                       </div>
                     </div>
     <div>
-        <div class="schedule" style="margin-left: 15%;">Distance:<?php echo intval($result[0]->distances); ?>miles</div>
+        <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo round($result[0]->distances,2); ?>miles</div>
     </div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
