@@ -3,7 +3,9 @@
                       <div class="col-md-3 col-sm-4 col-xs-8">
                         
                         <div class="cat-name">
-                        <span class="base"><a href="#" class="schedule">Schedules</a></span>
+
+                        <span class="base"><a href="#" class="schedule">Schedules</a></span>                        
+                        <div id="id"></div>
                           <?php
             date_default_timezone_set("Asia/Katmandu"); 
             $day=date('w') +1; 
@@ -12,7 +14,6 @@
             echo " <input type='hidden' id='date' value='".$date."' >";
         ?>
 
-                         <div id="id"></div>
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                       </div>
@@ -70,6 +71,7 @@
                                
                          
                     $adminid = $result[0]->admin_id;
+                    $arena=Arena::where('user_id',$adminid)->first();
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
   ?>
                     @foreach ($schedular as $key)
@@ -90,40 +92,9 @@
                         }
                           
                       ?>
-                      <tr >
-                    <td data-th="Role">
-                      <?php echo $key->start_time; ?>--<?php echo $key->end_time; ?>
-                    </td>
-                      @if($flag==1) 
-                      <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-danger"  value="Booked" >
-                      </td>
-                      @else
-                      <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-primary"  value="Available" >
-                      </td>
-                      @endif
 
-                      
-                      @if($flag==1) 
-                        <?php $user= User::where('id',$getuser)->get();   
-                      ?>
-                      <td data-th="Configure">
-                          <input  type="button"  class="btn btn-danger"  value="<?php  echo $user[0]->name; ?>" >
-                      </td>
-                      @else
-                      <td data-th="Configure">
-                        <input  type="button"  class="btn btn-success"  value="Book" >
-                      </td>
-                      @endif
-                    <td data-th="View">
-                    @if($flag==1) 
-                    Rs.<?php echo $price; ?>
-                      @else
-                      Rs.<?php echo $key->price; ?>
-                    @endif  
-                    </td>
-           
-              </tr>
+                     
+                        @include("frontend.arenas.scheduletemp")
+
                   @endforeach 
      </table>
