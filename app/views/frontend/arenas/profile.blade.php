@@ -102,73 +102,32 @@
 	    		     <div class="layer"></div>
                 </div>
 			</div>
+				<div>
+				<div class="CoverImage FlexEmbed FlexEmbed--2by1 background" style="background-image:url(assets/img/profile-02.jpg);">
+	    		     <div class="text-over">Pokhara futsal tournament</div>
+	    		     <div class="sept">Gairapatan,Pokhara</div>
+	    		     <div class="gaira">9 Sep - 12 Sep</div>
+	    		     <div class="layer"></div>
+                </div>
+			</div>
+				<div>
+				<div class="CoverImage FlexEmbed FlexEmbed--2by1 background" style="background-image:url(assets/img/profile-02.jpg);">
+	    		     <div class="text-over">Pokhara futsal tournament</div>
+	    		     <div class="sept">Gairapatan,Pokhara</div>
+	    		     <div class="gaira">9 Sep - 12 Sep</div>
+	    		     <div class="layer"></div>
+                </div>
+			</div>
 		</div>
 		<div class="col-md-8 col-sm-8">
+		
+			<div class="ajax-caller">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="cat-name">
-		                <span class="base schedule">Description</span>
-		                <span class="arrow"></span>
-	                </div>
-				</div>
-			</div>
-			<div style="margin: 11px auto; text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. </div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="cat-name">
-		                <span class="base schedule">Booking</span>
-		                <span class="arrow"></span>
-	                </div>
-				</div>
-				<div class="col-md-5 col-sm-2 col-md-offset-2 col-sm-offset-2">
-	                <div class="futsal-nam">27 Feb 2015</div>
-	            </div>
-	            <div class="col-md-2 col-sm-2">
-	                <div style="float:right;">
-	                  <nav>
-	                      <ul class="pagination" style="margin:0 !important;">
-	                        <li>
-	                          <a href="#" aria-label="Previous">
-	                            <span aria-hidden="true">«</span>
-	                          </a>
-	                        </li>
-	                        
-	                        <li>
-	                          <a href="#" aria-label="Next">
-	                            <span aria-hidden="true">»</span>
-	                          </a>
-	                        </li>
-	                      </ul>
-	                    </nav>
-	                </div>
-	            </div>
-			</div>
-			<div>
-				<table class="responsive-table responsive-table-input-matrix">
-	                <tbody>
-	                    <tr>
-	                      <th>Duration</th>
-	                      <th>Status</th>
-	                      <th>Booked By</th>
-	                      <th>Price</th>
-	                    </tr>
-	                        <input type="hidden" id="base_url">
-	      							<input type="hidden" id="today" value="1"> <input type="hidden" id="date" value="2015-04-05">   
-	      			  <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
+				  <div class="col-md-3 col-sm-4 col-xs-8">
+                        
+                        <div class="cat-name">
+                        <span class="base"><a href="#" class="schedule">Schedules</a></span>
+                    <div id="id"></div>
 
       <?php
             date_default_timezone_set("Asia/Katmandu"); 
@@ -177,8 +136,63 @@
             $date=date("Y-m-d"); 
             echo " <input type='hidden' id='date' value='".$date."' >";
         ?>
+                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-md-offset-1 col-sm-4">
+                                               <div class="futsal-name">
+                         <?php
+                          echo $arena->name; ?>
+                         </div>
+                      </div>
+                      <div class="col-md-2 col-sm-2">
+                        <div class="futsal-name">
+                        	<?php echo $date; ?>
+                        </div>
+                      </div>
+	            <div class="col-md-2 col-sm-2">
+	                <div style="float:right;">
+	                  <nav>
+	                      <ul class="pagination" style="margin:0 !important;">
+	                        <li>
+                               <div class="btn btn-warning schedul" data-type="prev">
+                                   
+                                    <span aria-hidden="true" >&laquo;</span>
+                                 </div>
+                              
+                                </li>
+                                
+                                <li>
+                                  
+                                 <div class="btn btn-warning schedul"   data-type="next">
+
+                                    <span aria-hidden="true" >&raquo;</span>
+                                  </div>
+                                </li>
+	                      </ul>
+	                    </nav>
+	                </div>
+	            </div>
+			</div>
+				<table class="responsive-table responsive-table-input-matrix">
+	                <tbody>
+	                    <tr>
+	                      <th>Duration</th>
+	                      <th>Status</th>
+	                      <th>Booked By</th>
+	                      <th>Price</th>
+	                    </tr>
+
+	      							<input type="hidden" id="today" value="1"> <input type="hidden" id="date" value="2015-04-05">   
+	      			  <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
+
+   				 <input type="hidden" id='owner_id' value="<?php echo $arena->user_id;?>">
                                 <?php
                      $adminid =$arena->user_id; 
+
+                    $arena=Arena::where('user_id',$adminid)->first();
+                     ?>
+                     <?php  
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
                     ?>
                     @foreach ($schedular as $key)
@@ -199,43 +213,38 @@
                         }
                           
                       ?>
-                                          <tr >
-                    <td data-th="Role">
-                      <?php echo $key->start_time; ?>--<?php echo $key->end_time; ?>
-                    </td>
-                      @if($flag==1) 
-                      <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-danger"  value="Booked" >
-                      </td>
-                      @else
-                      <td data-th="Add to Page">
-                        <input  type="button"  class="btn btn-primary"  value="Available" >
-                      </td>
-                      @endif
+                       
 
-                      
-                      @if($flag==1) 
-                        <?php $user= User::where('id',$getuser)->get();   
-                      ?>
-                      <td data-th="Configure">
-                          <input  type="button"  class="btn btn-danger"  value="<?php  echo $user[0]->name; ?>" >
-                      </td>
-                      @else
-                      <td data-th="Configure">
-                        <input  type="button"  class="btn btn-success"  value="Book" >
-                      </td>
-                      @endif
-                    <td data-th="View">
-                    @if($flag==1) 
-                    Rs.<?php echo $price; ?>
-                      @else
-                      Rs.<?php echo $key->price; ?>
-                    @endif  
-                    </td>
-              </tr>
+                      	@include("frontend.arenas.scheduletemp")
                   @endforeach 	            	</tbody>
 	          	</table>
+	          	</div>
+	          		<div class="row">
+							<div class="col-md-3">
+								<div class="cat-name">
+					                <span class="base schedule">Description</span>
+					                <span class="arrow"></span>
+				                </div>
+							</div>
 			</div>
+			<div style="margin: 11px auto; text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. </div>
+			
+
+
 			<div class="row">
 				<div class="col-md-3">
 					<div class="cat-name">
@@ -296,7 +305,7 @@
 			@else
 				Login to add review.
 			@endif
-			
+			</div>
 		</div>
 	</div>
 

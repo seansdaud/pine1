@@ -97,8 +97,8 @@ class ScheduleController extends BaseController {
 		$search_content=Input::get('mem');
 		$search_content2=Input::get('cont');
 			if ($search_content!=null || 	$search_content2!=null ) {
- $result = User::where('name', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',1)->get();
-			 $result_count = User::where('name', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',1)->count();
+ $result = User::where('username', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',1)->get();
+			 $result_count = User::where('username', 'LIKE', '%'.$search_content.'%')->where('contact', 'LIKE', $search_content2.'%')->where('usertype',1)->count();
 				if($result_count!=null){
 				$suffix=($result_count != 1 )?'s':'';
 				$res= array();
