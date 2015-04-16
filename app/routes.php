@@ -40,6 +40,12 @@ Route::get('/', array(
 		'uses' => 'SiteController@nxtdate'
 	));	
 
+/*Search Arenas*/
+Route::get("/search", array(
+	'as' => 'search-arenas',
+	'uses' => 'SiteController@search'
+));
+
 /*------------------------------------------------------------------------*/
 /*Arenas*/
 Route::get("/arenas", array(

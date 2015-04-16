@@ -13,6 +13,7 @@ class SiteController extends BaseController {
 	}
 
 	function arenas(){
+
 		$data = array(
 			'id' => 'arenas',
 			'title' => 'arenas',
@@ -145,4 +146,16 @@ class SiteController extends BaseController {
 			
 
 		 }
+
+	public function search(){
+		$arenas = empty(Input::get("location")) ? Arena::all() : Arena::where("address", Input::get("location"))->get();
+		$data = array(
+			'id' => 'search',
+			'title' => 'search results',
+			'arena' => $arenas
+		);
+
+		return View::make("frontend.search", $data);
+	}
+
 }
