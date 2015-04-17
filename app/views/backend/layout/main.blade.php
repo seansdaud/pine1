@@ -48,7 +48,7 @@
 	{{ HTML::script('assets/js/jquery.timepicker.js') }}
 	{{ HTML::script('assets/js/select2.min.js') }}
 	{{ HTML::script('assets/js/customs.js') }}
-	{{ HTML::script('assets/js/countries.js') }}
+	{{ HTML::script('assets/js/district.js') }}
 
 	<script language="javascript">
 		populateCountries("country", "state");

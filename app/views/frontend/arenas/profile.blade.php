@@ -44,8 +44,12 @@
 					  	<td>{{ $arena->owner->email }}</td>
 					  </tr>
 					  <tr>
-					  	<td>Address :</td>
+					  	<td>District :</td>
 					  	<td>{{ ucfirst($arena->address) }}</td>
+					  </tr>
+					  <tr>
+					  	<td>City :</td>
+					  	<td>{{ ucfirst($arena->city) }}</td>
 					  </tr>
 					  <tr>
 					  	<td>Contact No :</td>
