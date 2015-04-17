@@ -29,7 +29,7 @@
 
 		<?php endforeach; ?>
 
-		<?php if($show_arena): ?>
+		<?php if($show_arena): $show_arena=false; ?>
 			<?php if($i==1): $row_closed=false; ?>
 				<div class="row" style="margin-bottom:15px;">
 			<?php endif; ?>
