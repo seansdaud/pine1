@@ -159,6 +159,9 @@ class SiteController extends BaseController {
 				$has_result = true;
 			}
 		}
+		else{
+			$has_result = null;
+		}
 		if(!empty($end_time)){
 			$end = explode(":", $end_time);
 			if( count($end)!=2 && !is_numeric($end[0])){
@@ -167,6 +170,9 @@ class SiteController extends BaseController {
 			else{
 				$has_result = true;
 			}
+		}
+		else{
+			$has_result = null;
 		}
 		
 		$arenas = empty(Input::get("location")) ? Arena::all() : Arena::where("address", Input::get("location"))->get();
