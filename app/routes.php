@@ -357,7 +357,7 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => "owner-events-post",
 			'uses' => "EventsController@postOwnerEvents"
 		));
-
+	
 		Route::post("/o/edit-event", array(
 			'as' => 'owner-event-edit-post',
 			'uses' => 'EventsController@editOwnerEventPost'
@@ -466,7 +466,11 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'owner-event-edit',
 		'uses' => 'EventsController@editOwnerEvent'
 	));
-		
+			/* Events Delete */
+		Route::get("/o/del-events/{id}", array(
+			'as' => "owner-event-delete",
+			'uses' => "EventsController@deleteEvents"
+		));
 	//add arena	
 		Route::get("/o/add-arena-info", array(
 		'as' => 'add-arena-info',

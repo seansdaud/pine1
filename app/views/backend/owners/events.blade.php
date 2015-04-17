@@ -12,6 +12,7 @@
 				<th>Name</th>
 				<th>Manager</th>
 				<th></th>
+				<th></th>
 			</tr>
 			@foreach($events as $event)
 				<tr>
@@ -23,6 +24,10 @@
 					<td>
 						<a href="{{ URL::route('owner-event-edit', $event->id) }}" class="btn btn-info"><i class="fa fa-pencil-square-o"></i></a>
 					</td>
+					<td>
+						<a href="{{ URL::route('owner-event-delete', $event->id) }}" class="btn btn-info"><i class="fa fa-trash"></i></a>
+					</td>
+
 				</tr>
 			@endforeach
 		</table>

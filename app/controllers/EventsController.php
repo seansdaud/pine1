@@ -34,8 +34,9 @@ class EventsController extends BaseController {
 						"user_id" => Input::get("master")
 					)
 			);
+
 				if($event){
-			$user=User::where("id",Input::get("master"))->first();
+								$user=User::where("id",Input::get("master"))->first();
 		$userevent=new User;
 		$userevent->name=Input::get("name");
 		$userevent->contact=$user->contact;
@@ -50,8 +51,11 @@ $datetime2 = new DateTime($to);
 $interval = $datetime1->diff($datetime2);
 $diff=$interval->format('%a');
 	
-			$from_date=$from;
+			for ($j=0; $j < 2; $j++) {
+
+				$from_date=$from;
 				$adminid = Auth::id();
+
 				for ($i=0; $i < $diff+1; $i++) {
 						$forday = strtotime("+0 day", strtotime($from_date));
 						$ford= date("Y-m-d", $forday);
@@ -65,7 +69,7 @@ $diff=$interval->format('%a');
 
 
 						foreach ($schedule as $key) {
-							print_r($from_date);
+						
 
 										if ($key->start_time==$start) {
 								$flag=1;
@@ -75,12 +79,17 @@ $diff=$interval->format('%a');
 								$flag=0;
 							}
 							if ($flag==1) {
-								
-						// print_r($from_date);
-						 print_r($key->start_time);
-						 echo "<br/>";
-						 		print_r($key->end_time);
-								$adminid = Auth::id();
+								if ($j==0) {
+								$check=Booking::where('schedule_id',$key->id)->count();
+								if ($check>0) {
+									User::where('id',$userevent->id)->delete();
+									Events::where('id',$event->id)->delete();
+									return Redirect::route("owner-events")->with("danger", $key->start_time." to ".$key->end_time." for ".$from_date. "  is Already Booked!!");
+										
+								}
+								}
+								else{
+															$adminid = Auth::id();
 			$datename=Schedule::where('id', $key->id)->get();
 			if($datename[0]->book_status==0){
 				 $book = new Booking;
@@ -125,7 +134,7 @@ $diff=$interval->format('%a');
 					$arena=Arena::where("user_id",$booking_info->arena_id)->first();
 					$user_id=Input::get('user_id');
 					$user_info=User::where("id", "=", $user_id)->first();
-
+							}
 							}
 						}
 						$date = strtotime("+1 day", strtotime($from_date));
@@ -133,7 +142,7 @@ $diff=$interval->format('%a');
 
 											
 					}
-					die();	
+				}
 			return Redirect::route("owner-events")->with("success", "Event Successfully created.");
 		}
 		return Redirect::route("owner-event-new")->withInput()->with("danger", "Something went wrong. Please try again.");
@@ -157,6 +166,14 @@ $diff=$interval->format('%a');
 			return Redirect::route("owner-event-edit", Input::get("id"))->with("success", "Event updated.");
 		}
 		return Redirect::route("owner-event-edit", Inpute::get("id"))->with("danger", "Error. Try Again.");
+	}
+	public function deleteEvents($id){
+		$event = Events::find($id);
+		if($event->delete()){
+			return Redirect::route("owner-events")->with("success", "Event Deleted.");
+		}
+		return Redirect::route("owner-events")->with("danger", "Error. Try Again.");
+
 	}
 
 }
