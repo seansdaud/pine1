@@ -27,6 +27,35 @@
 				</select>
 			</div>
 		</div>
+		<h1>Date:</h1>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">From</label>
+			<div class="col-sm-6">
+				<input type="date" name="getdate1"class="span12 date" placeholder="Choose Date" >
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">To</label>
+			<div class="col-sm-6">
+				<input type="date" name="getdate2"  class="span12 date" placeholder="Choose Date" >
+				
+			</div>
+		</div>
+			<h1>Time:</h1>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">From</label>
+			<div class="col-sm-6">
+				<input type="text" class="start_timeon" name="start_time1" placeholder="Starting Time" class="span12" required>
+			
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">To</label>
+			<div class="col-sm-6">
+				<input type="text" class="start_timeon" name="end_time1" placeholder="Ending Time" class="span12" required>
+			</div>
+		</div>
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2">
