@@ -91,7 +91,7 @@ function myFunction(tel){
             },
             success:function(data){ 
                 if (data=="noResult") {
-                	alert("nope");
+                	$('.distance-ajax').html('');
                 }else{
                 //	alert(data);
                 $('.distance-ajax').html("<div  class='schedule' style='margin-left: 15%;'>Distance From Here:"+data["result"][0]['distances'].toFixed(2)+"miles</div>");
