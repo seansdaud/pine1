@@ -48,8 +48,11 @@
 	{{ HTML::script('assets/js/jquery.timepicker.js') }}
 	{{ HTML::script('assets/js/select2.min.js') }}
 	{{ HTML::script('assets/js/customs.js') }}
+	{{ HTML::script('assets/js/countries.js') }}
 
-
+	<script language="javascript">
+		populateCountries("country", "state");
+	 </script>
 	<script type="text/javascript">
 
 
@@ -111,7 +114,7 @@ $('.start_timeon').timepicker({
     'maxTime': '<?php echo $schedule1->end_time;?>',
 	});
 
-	</script>	
+	</script>
 	@endif
 		
 </body>
