@@ -42,6 +42,12 @@
                         </div>
                       </div>
                     </div>
+                       <div>
+       <div>
+         
+      <div class="distance-ajax"></div>
+       </div>
+
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
                           <th>Duration</th>
