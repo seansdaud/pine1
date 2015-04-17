@@ -167,7 +167,7 @@ class Admin extends BaseController {
 					'name'=>Input::get("name"),
 					'user_id'=>$owner_id
 					));
-			if(Mail::send('emails.new_owner', 
+			Mail::send('emails.new_owner', 
 					array(
 						'username' => Input::get("username"),
 						'password' => $password
@@ -176,11 +176,12 @@ class Admin extends BaseController {
 						$message->to($create->email, $create->name)
 								->subject('New account created on futsal.');
 					}
-				)) {
-					return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
+				);
+			if(count(Mail::failures()) > 0) {
+				return Redirect::route("create-new-owner")->with("warning", "Owner created but there was a problem sending email.");
 				}
 			else{
-				return Redirect::route("create-new-owner")->with("warning", "Owner created but there was a problem sendim email.");
+				return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
 			}
 		}
 		else{
