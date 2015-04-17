@@ -179,6 +179,9 @@ class Admin extends BaseController {
 				)) {
 					return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
 				}
+			else{
+				return Redirect::route("create-new-owner")->with("warning", "Owner created but there was a problem sendim email.");
+			}
 		}
 		else{
 			return Redirect::route("create-new-owner")->with("danger", "Something went wrong. Please try again.")->withInput();

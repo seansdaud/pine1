@@ -1,7 +1,7 @@
 @extends("frontend.layout.main")
 
 @section("content")
-<?php if($has_result): ?>
+<?php if($has_result==true || $has_result==null): ?>
 	<?php $arena_found=0; $show_arena=null; $row_closed=null; $i=0; foreach($arena as $arena): $i++; ?>
 
 		<?php foreach($arena->schedular as $schedular): ?>
