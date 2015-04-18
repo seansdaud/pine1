@@ -53,7 +53,7 @@
                     <?php foreach ($field as $key ): ?>
                      
                       <?php if (!empty($key->arena->name)):?>
-                        <option value="<?php echo $key->arena->id;  ?>"><?php echo ucfirst($key->arena->name); ?></option>
+                        <option value="<?php echo $key->id; ?>"><?php echo ucfirst($key->arena->name); ?></option>
                       <?php endif; ?>
                     <?php endforeach; ?>
                   <?php endif; ?>

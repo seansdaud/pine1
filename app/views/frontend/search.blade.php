@@ -5,7 +5,7 @@
 	<?php $arena_found=0; $show_arena=null; $row_closed=null; $i=0; foreach($arena as $arena): $i++; ?>
 
 		<?php foreach($arena->schedular as $schedular): ?>
-			<?php $todays_schedule = Schedule::where("price", ">", (int)Input::get("price"))->where("day", date("w"))->where("id", $schedular->id)->get(); ?>
+			<?php $todays_schedule = Schedule::where("price", ">", (int)Input::get("price"))->where("day", date("w")+1)->where("id", $schedular->id)->get(); ?>
 			<?php 
 				$start_time = (int)empty(Input::get("start_time")) ? 0 : date("H", strtotime(Input::get("start_time")));
 				$end_time = (int)empty(Input::get("end_time")) ? 23 : date("H", strtotime(Input::get("end_time")));				
@@ -16,8 +16,9 @@
 				<?php if($owner_start >= $start_time && $owner_start < $end_time): ?>
 
 					<?php $booked = Booking::where("schedule_id", $schedule->id)->where("booking_date", date("Y-m-d"))->count(); ?>
-
-					<?php if($booked): ?>
+				
+					 
+					<?php if($booked>0): ?>
 						<?php $show_arena=false; ?>
 					<?php else: ?>
 						<?php $show_arena=true; $arena_found++; ?>
@@ -28,7 +29,6 @@
 			<?php endforeach; ?>
 
 		<?php endforeach; ?>
-
 		<?php if($show_arena): $show_arena=false; ?>
 			<?php if($i==1): $row_closed=false; ?>
 				<div class="row" style="margin-bottom:15px;">

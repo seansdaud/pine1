@@ -44,8 +44,12 @@
 					  	<td>{{ $arena->owner->email }}</td>
 					  </tr>
 					  <tr>
-					  	<td>Address :</td>
+					  	<td>District :</td>
 					  	<td>{{ ucfirst($arena->address) }}</td>
+					  </tr>
+					  <tr>
+					  	<td>City :</td>
+					  	<td>{{ ucfirst($arena->city) }}</td>
 					  </tr>
 					  <tr>
 					  	<td>Contact No :</td>
@@ -186,7 +190,7 @@
 	                      <th>Price</th>
 	                    </tr>
 
-	      							<input type="hidden" id="today" value="1"> <input type="hidden" id="date" value="2015-04-05">   
+	      							
 	      			  <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
    				 <input type="hidden" id='owner_id' value="<?php echo $arena->user_id;?>">
