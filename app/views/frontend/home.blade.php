@@ -227,7 +227,6 @@
           //  alert(result);
 
                     $('.ajax-caller').html(result);
-
             // $(".ajax").html(result);
               $('#id').html("");
                             if (navigator.geolocation) {

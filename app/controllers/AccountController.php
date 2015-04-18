@@ -9,8 +9,7 @@ class AccountController extends BaseController {
 		$auth = Auth::attempt(
 				array(
 					'username' => Input::get('username'),
-					'password' => Input::get('password'),
-					'active' => 1
+					'password' => Input::get('password')
 				),
 				$remember
 			);
@@ -99,7 +98,7 @@ class AccountController extends BaseController {
 	function checkUsers(){
 		$check = Input::get("check");
 		$value = Input::get("value");
-		if(User::where($check, "=", $value)->where('usertype',3)->first()){
+		if(User::where($check, "=", $value)->first()){
 			echo "duplicate";
 		}
 	}
@@ -112,34 +111,60 @@ class AccountController extends BaseController {
 		$password = Input::get('password');
 		$data=User::where('name',Input::get('name'))->where('contact',Input::get('contact'))->where('usertype',4)->first();
 		if ($data) {
-					$data1 = array(
-						'username' => $username,
-						'email' => $email,
-						'password' => Hash::make($password),
-						'active' => 0,
-						'code' => str_random(60),
-						'usertype' => 1,
-						'name' => Input::get('name'),
-						'address'=> Input::get('address'),
-						'contact'=> Input::get('contact'),
-					);
-				
-						User::where('id', $data->id)->update($data1);
-							 $user=User::where('id', $data->id)->first();
+			$validator = Validator::make(Input::all(),
+				array(
+					'username' => 'required|unique:users',
+					'email' => 'required|email|unique:users',
+				)
+			);
+
+			if($validator->fails()){
+				return Redirect::route('register')
+						->withErrors($validator)
+						->withInput();
+			}
+			$data1 = array(
+				'username' => $username,
+				'email' => $email,
+				'password' => Hash::make($password),
+				'active' => 0,
+				'code' => str_random(60),
+				'usertype' => 1,
+				'name' => Input::get('name'),
+				'address'=> Input::get('address'),
+				'contact'=> Input::get('contact'),
+			);
+		
+			User::where('id', $data->id)->update($data1);
+			$user=User::where('id', $data->id)->first();
 					
 		}
 		else{
-				$user = User::create(array(
-			'username' => $username,
-			'email' => $email,
-			'password' => Hash::make($password),
-			'active' => 0,
-			'code' => str_random(60),
-			'usertype' => 1,
-			'name' => Input::get('name'),
-			'address'=> Input::get('address'),
-			'contact'=> Input::get('contact'),
-		));
+			$validator = Validator::make(Input::all(),
+				array(
+					'username' => 'required|unique:users',
+					'email' => 'required|email|unique:users',
+					'contact' => 'required|unique:users'
+				)
+			);
+
+			if($validator->fails()){
+				return Redirect::route('register')
+						->withErrors($validator)
+						->withInput();
+			}
+
+			$user = User::create(array(
+				'username' => $username,
+				'email' => $email,
+				'password' => Hash::make($password),
+				'active' => 0,
+				'code' => str_random(60),
+				'usertype' => 1,
+				'name' => Input::get('name'),
+				'address'=> Input::get('address'),
+				'contact'=> Input::get('contact'),
+			));
 		}
 	
 
@@ -156,7 +181,17 @@ class AccountController extends BaseController {
 					}
 				);
 
-			return Redirect::route('home')->with('global', 'Register Complete. Please check your email for activation.');
+			$creadentials = array(
+				'username' => $username,
+				'password' => $password
+			);
+
+			if(Auth::attempt($creadentials)){
+				return Redirect::route('home')->with('success', 'Register Complete. Please check your email for activation.');
+			}
+			else{
+				return Redirect::route('home')->with("danger", "Something went wrong. Please try again.");
+			}
 
 		}
 	}
@@ -181,6 +216,24 @@ class AccountController extends BaseController {
 			return Redirect::route('home')->with('warning', 'Your account is already activated or you provided the wrong activation code.');
 		}
 		return Redirect::route('home')->with('danger', 'Something went wrong. Please try again.');
+	}
+
+	public function resendEmail(){
+		Mail::send('emails.auth.activate', 
+					array(
+						'link' => URL::route('activate', Auth::user()->code),
+						'username' => Auth::user()->username,
+					),
+					function($message) {
+						$message->to(Auth::user()->email, Auth::user()->name)
+								->subject('Activate your account');
+					}
+				);
+
+		if(count(Mail::failures()) > 0){
+			return Redirect::route("home")->with("warning", "Something went wrong. Please try again.");
+		}
+		return Redirect::route("home")->with("success", "Please check your email for activation.");
 	}
 
 }
