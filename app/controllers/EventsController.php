@@ -25,17 +25,16 @@ class EventsController extends BaseController {
 
 	public function postOwnerEvents(){
 
-
-
+	
 		$event = Events::create(
 				array(
 						"name" => Input::get("name"),
 						"owner_id" => Auth::user()->id,
 						"user_id" => Input::get("master"),
 
-						"start" => Input::get("start_time1"),
+						"start" => Input::get("getdate1"),
 
-						"end" => Input::get("end_time1"),
+						"end" => Input::get("getdate2"),
 						
 					)
 			);
@@ -91,7 +90,7 @@ $diff=$interval->format('%a');
 								$check=Booking::where('schedule_id',$key->id)->where('booking_date',$from_date)->count();
 								if ($check>0) {
 									User::where('id',$userevent->id)->delete();
-									Events::where('id',$event->id)->delete();
+									Events::where('id',$event->id)->forceDelete();
 									return Redirect::route("owner-events")->with("danger", $key->start_time." to ".$key->end_time." for ".$from_date. "  is Already Booked!!");
 										
 								}
