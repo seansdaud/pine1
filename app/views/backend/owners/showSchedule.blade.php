@@ -76,7 +76,7 @@
 											</td>
 											@else
 											<td>
-												<input  type="button"  class="btn btn-success"  value="book" >
+												<input  type="button"  class="btn btn-success"  value="Not booked" >
 											</td>
 											@endif
 										<td>
