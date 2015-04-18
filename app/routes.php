@@ -466,10 +466,21 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'owner-event-edit',
 		'uses' => 'EventsController@editOwnerEvent'
 	));
-			/* Events Delete */
+			/* Events Hide */
 		Route::get("/o/del-events/{id}", array(
 			'as' => "owner-event-delete",
 			'uses' => "EventsController@deleteEvents"
+		));
+				/* Events Delete  All*/
+		Route::get("/o/del-all-events/{id}", array(
+			'as' => "owner-event-delete-all",
+			'uses' => "EventsController@deleteallEvents"
+		));
+
+				/* Events Hide */
+		Route::get("/o/show-events/{id}", array(
+			'as' => "owner-event-show",
+			'uses' => "EventsController@showEvents"
 		));
 	//add arena	
 		Route::get("/o/add-arena-info", array(
