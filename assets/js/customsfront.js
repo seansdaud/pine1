@@ -3,7 +3,9 @@ $(document).ready(function(){
 	     	var url = $('#base_url').val();
      	var day = $('#today').val();
      	var date = $('#date').val();
-       	var type=$(this).attr('data-type');
+
+      var dist = $('#dist').val();
+         	var type=$(this).attr('data-type');
      
        	if (type=="prev") {
        		var mainurl=url+'/prevdate';
@@ -18,7 +20,9 @@ $(document).ready(function(){
 				data:{
 					day:day,
 					date:date,
-					owner:owner
+					owner:owner,
+
+          dist:dist
 				},
 		success:function(data)
 				{
@@ -91,10 +95,12 @@ function myFunction(tel){
             },
             success:function(data){ 
                 if (data=="noResult") {
-                	alert("nope");
+                	$('.distance-ajax').html('');
                 }else{
                 //	alert(data);
                 $('.distance-ajax').html("<div  class='schedule' style='margin-left: 15%;'>Distance From Here:"+data["result"][0]['distances'].toFixed(2)+"miles</div>");
+            $('.distance-ajax').append(" <input type='hidden' id='dist' value='"+data["result"][0]['distances'].toFixed(2)+"'>");
+
              // x.innerHTML = "data: "+ data;
               // console.log(position.coords.latitude);
               // console.log(position.coords.longitude);
