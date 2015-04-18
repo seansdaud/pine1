@@ -54,14 +54,13 @@
                 </div>
               </div>
 
-					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
+					<a href="#" data-toggle="modal" data-target="#register"><span class="khoj">Register</span></a>
+          <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-hidden="true">
+            
+                    @include('frontend.register')
+                
+          </div>
 				@endif
-				<span id="wrap">
-				  <form action="" autocomplete="on">
-					  <input id="search" name="search" type="text" placeholder="What're we looking for ?">
-					  <span class="glyphicon glyphicon-search gly-search"></span><input id="search_submit" value="Rechercher" type="submit">
-				  </form>
-				</span>
 			</div>
 		</div>
 	</div>

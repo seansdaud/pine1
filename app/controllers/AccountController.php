@@ -99,7 +99,7 @@ class AccountController extends BaseController {
 	function checkUsers(){
 		$check = Input::get("check");
 		$value = Input::get("value");
-		if(User::where($check, "=", $value)->where('usertype',3)->first()){
+		if(User::where($check, "=", $value)->first()){
 			echo "duplicate";
 		}
 	}
