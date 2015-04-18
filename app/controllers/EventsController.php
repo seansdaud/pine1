@@ -191,9 +191,8 @@ $diff=$interval->format('%a');
 	
 		$nid=$event->event_id;
 		
-		//if(!$event->isEmpty()){
-						$event->forceDelete();
-			User::where('id',$nid)->delete();
+			$event->forceDelete();
+				User::where('id',$nid)->delete();
 
 			$books=Booking::where('user_id',$nid)->get();
 			foreach ($books as $key) {
@@ -201,8 +200,6 @@ $diff=$interval->format('%a');
 			}
 			Booking::where('user_id',$nid)->delete();
 			return Redirect::route("owner-events")->with("success", "Event Deleted Completely.");
-		//}
-		//return Redirect::route("owner-events")->with("danger", "Error. Try Again.");
-
+	
 	}
 }
