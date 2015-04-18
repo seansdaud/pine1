@@ -4,12 +4,14 @@ class UserController extends BaseController {
 
 	public function getProfile($username){
 		$user = User::where(array("username" => $username, "usertype" => "1"))->first();
+
 		if(empty($user)){
 			App::abort(404);
 		}
 		$data = array(
 			'id' => 'user-profile',
 			'title' => $user->username,
+			'events'=>Events::where(array("user_id"=>$user->id))->first(),
 			'user' => $user,
 		);
 		return View::make("frontend.user.profile", $data);

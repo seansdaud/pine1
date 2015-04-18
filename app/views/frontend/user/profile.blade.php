@@ -211,6 +211,30 @@
 		</div>
 		</div>
 		<div class="col-md-8 col-sm-8">
+			@if(!empty($events))
+				<div class="row">
+					<div class="col-md-4">
+						<div class="cat-name">
+							<span class="base schedule">Your Events</span>
+							<span class="arrow"></span>
+						</div>
+					</div>
+				</div>
+				<div class="comments">
+					<div>
+						Event Name:<?php echo $events->name; ?>
+					</div>
+					<div>
+						Detail:<?php echo $events->detail; ?>
+					</div>
+					<div>
+						Start Date:<?php echo $events->start; ?>
+					</div>
+					<div>
+						End Date:<?php echo $events->end; ?>
+					</div>
+				</div>
+			@endif
 			<div class="row">
 				<div class="col-md-3">
 					<div class="cat-name">
