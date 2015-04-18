@@ -190,7 +190,7 @@
 	                      <th>Price</th>
 	                    </tr>
 
-	      							<input type="hidden" id="today" value="1"> <input type="hidden" id="date" value="2015-04-05">   
+	      							
 	      			  <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
    				 <input type="hidden" id='owner_id' value="<?php echo $arena->user_id;?>">

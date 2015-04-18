@@ -87,8 +87,11 @@ class SiteController extends BaseController {
 	      
 		}
 		public function getArena(){
-			return "ASdsd";
-		}
+			$id=Input::get('id');
+
+				                	  $data = array('id' => $id);
+	                	  return View::make('frontend.arenas.arenachange',$data);
+	             		}
 		public function prevdate(){
 	$day=Input::get('day');
 		$date=Input::get('date');
