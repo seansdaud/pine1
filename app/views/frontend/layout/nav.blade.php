@@ -54,12 +54,7 @@
                 </div>
               </div>
 
-					<a href="#" data-toggle="modal" data-target="#register"><span class="khoj">Register</span></a>
-          <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-hidden="true">
-            
-                    @include('frontend.register')
-                
-          </div>
+					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
 				@endif
 			</div>
 		</div>
@@ -93,6 +88,12 @@
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       {{ Session::get('info') }}
     </div>
+  @endif
+
+  @if(Auth::check())
+      @if(Auth::user()->active == 0)
+          Please activate your email. <a href="{{ URL::route('resend-email') }}">Resend Email</a>.
+      @endif
   @endif
 </div>
 

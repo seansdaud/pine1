@@ -224,7 +224,7 @@
                 id:valueSelected
             },
             success:function(result){ 
-            alert(result);
+              alert(result);
             // $(".ajax").html(result);
             //  $('#id').html("");
             },

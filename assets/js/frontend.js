@@ -111,49 +111,6 @@ $(document).ready(function(){
     });
 });
 
-
-
-$(document).ready(function() {
-    $("#check-duplicate [data-check='true']").on("keyup blur", function() {
-        var value = $(this).val();
-        var image = $("#load-image").attr("url");
-        var check = $(this).attr("name");
-        var that = "input[name='"+ $(this).attr("name") +"']";
-        var url = $("#check-duplicate").attr("check-url");
-        var token = $("#check-duplicate input[name='_token']").val();
-        if(value.trim() != ""){
-            $.ajax({
-                method: "POST",
-                url: url,
-                data: {value: value, check: check, _token: token},
-                success : function(data){
-                    if(data == "duplicate"){
-                        $("#check-duplicate").find(that).closest(".form-group").addClass("has-error");
-                        $("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<ul class='list-unstyled'><li>" + check + " already exist.</li></ul>");
-                        $("#check-duplicate").find("input[type='submit']").attr("disabled", "disabled");
-                    }
-                    else{
-                        $("#check-duplicate").find(that).closest(".form-group").removeClass("has-error");
-                        $("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("");
-                        var error = $("#check-duplicate").find(".form-group").hasClass("has-error");
-                        if(!error){
-                            $("#check-duplicate").find("input[type='submit']").removeAttr("disabled");
-                        }
-                    }
-                },
-
-                beforeSend: function() {
-                    $("#check-duplicate").find(that).closest(".form-group").find(".help-block.with-errors").html("<img src='"+ image +"/assets/img/ajax_load.gif' width='20px' height='20px' style='display:block; margin:0 auto;'>");
-                }, 
-
-                error : function(jqXHR, textStatus, errorThrown) {
-                    console.log(errorThrown)
-                }
-            });
-        }
-    });
-});
-
 $(".select-arena").select2({
     placeholder: "Select a arena",
     allowClear: true

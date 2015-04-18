@@ -191,6 +191,12 @@ Route::group(array("before"=>"auth"), function() {
 
 	});
 
+	/*Resend Email*/
+	Route::get("/resend-email", array(
+		'as' => 'resend-email',
+		'uses' => 'AccountController@resendEmail'
+	));
+
 	/*Logout*/
 	Route::get("/logout", array(
 		'as' => 'logout',
