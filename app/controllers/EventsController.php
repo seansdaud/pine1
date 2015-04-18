@@ -31,7 +31,12 @@ class EventsController extends BaseController {
 				array(
 						"name" => Input::get("name"),
 						"owner_id" => Auth::user()->id,
-						"user_id" => Input::get("master")
+						"user_id" => Input::get("master"),
+
+						"start" => Input::get("start_time1"),
+
+						"end" => Input::get("end_time1"),
+						
 					)
 			);
 
