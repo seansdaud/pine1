@@ -98,7 +98,7 @@ class UserController extends BaseController {
 				$upload = Input::file('cover')->move("assets/img/profile/user/cover", $name);
 				if($upload){
 					$user = User::where("id", "=", Auth::user()->id)->first();
-					File::delete("assets/img/profile/user/cover/".$user->profile_pic);
+					File::delete("assets/img/profile/user/cover/".$user->cover_pic);
 					$user->cover_pic = $name;
 					if($user->save()){
 						return Redirect::route('user-profile',Auth::user()->username)

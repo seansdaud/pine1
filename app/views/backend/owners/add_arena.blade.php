@@ -30,9 +30,9 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Address</label>
+			<label class="col-sm-2 control-label">District</label>
 			<div class="col-sm-6">
-				<input type="text" name="address" class="form-control" value= "{{ $info->address }}" required>
+				<select id="country" name ="address" value="{{ $info->address }}" required></select>
 			</div>
 			<div class="col-sm-4 help-block with-errors">
 				@if($errors->has('address'))
@@ -40,7 +40,17 @@
 				@endif
 			</div>
 		</div>
-
+		<div class="form-group">
+			<label class="col-sm-2 control-label">City</label>
+			<div class="col-sm-6">
+				<select id="state" name ="city" value="{{ $info->city }}" required></select>
+			</div>
+			<div class="col-sm-4 help-block with-errors">
+				@if($errors->has('city'))
+					{{ $errors->first('city') }}
+				@endif
+			</div>
+		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Telephone</label>
 			<div class="col-sm-6">

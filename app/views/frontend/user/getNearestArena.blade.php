@@ -53,6 +53,8 @@
                     </div>
     <div>
         <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo round($result[0]->distances,2); ?>miles</div>
+            
+    <input type="hidden" id='dist' value="<?php echo round($result[0]->distances,2); ?>">
     </div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>

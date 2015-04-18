@@ -157,6 +157,7 @@ class Owner extends BaseController {
 			$arena->address = Input::get("address");
 			$arena->phone = Input::get("phone");
 			$arena->about = Input::get("about");
+			$arena->city=Input::get("city");
 			if($arena->save()){
 				return Redirect::route('add-arena-info')->with('success','updated successfully');
 			}

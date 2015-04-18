@@ -44,8 +44,14 @@
                     </div>
                        <div>
        <div>
-         
-      <div class="distance-ajax"></div>
+       <?php if (!empty($dist)):?>
+                <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo $dist; ?>miles</div>
+            
+    <input type="hidden" id='dist' value="<?php echo $dist; ?>">
+    
+       <?php endif; ?>
+         <!-- 
+      <div class="distance-ajax"></div> -->
        </div>
 
               	    <table class="responsive-table responsive-table-input-matrix">

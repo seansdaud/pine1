@@ -7,7 +7,7 @@ class EventsController extends BaseController {
 		$data = array(
 			"id" => "events",
 			'title' => 'events',
-			'events' => Events::where("owner_id", "=", Auth::user()->id)->get()
+			'events' => Events::where("owner_id", "=", Auth::user()->id)->withTrashed()->get()
 		);
 
 		return View::make("backend.owners.events", $data);
@@ -41,7 +41,10 @@ class EventsController extends BaseController {
 		$userevent->name=Input::get("name");
 		$userevent->contact=$user->contact;
 		$userevent->save();
-
+		$data = array(
+					'event_id'=>$userevent->id,
+				);
+		Events::where('id', $event->id)->update($data);
 			$from=Input::get('getdate1');
 				$to=Input::get('getdate2');
 			$start=Input::get('start_time1');
@@ -80,7 +83,7 @@ $diff=$interval->format('%a');
 							}
 							if ($flag==1) {
 								if ($j==0) {
-								$check=Booking::where('schedule_id',$key->id)->count();
+								$check=Booking::where('schedule_id',$key->id)->where('booking_date',$from_date)->count();
 								if ($check>0) {
 									User::where('id',$userevent->id)->delete();
 									Events::where('id',$event->id)->delete();
@@ -170,10 +173,36 @@ $diff=$interval->format('%a');
 	public function deleteEvents($id){
 		$event = Events::find($id);
 		if($event->delete()){
-			return Redirect::route("owner-events")->with("success", "Event Deleted.");
+			return Redirect::route("owner-events")->with("success", "Event Hidden.");
 		}
 		return Redirect::route("owner-events")->with("danger", "Error. Try Again.");
 
 	}
+	public function showEvents($id){
+		$event = Events::onlyTrashed()->where('id', $id)->first();
+			if($event->restore()){
+			return Redirect::route("owner-events")->with("success", "Event Showed.");
+		}
+		return Redirect::route("owner-events")->with("danger", "Error. Try Again.");
+	}
+		public function deleteallEvents($id){
+		
+		$event = Events::withTrashed()->where('id', $id)->first();
+	
+		$nid=$event->event_id;
+		
+		//if(!$event->isEmpty()){
+						$event->forceDelete();
+			User::where('id',$nid)->delete();
 
+			$books=Booking::where('user_id',$nid)->get();
+			foreach ($books as $key) {
+				Scheduleinfo::where('id',$key->scheduleinfo->id)->delete();
+			}
+			Booking::where('user_id',$nid)->delete();
+			return Redirect::route("owner-events")->with("success", "Event Deleted Completely.");
+		//}
+		//return Redirect::route("owner-events")->with("danger", "Error. Try Again.");
+
+	}
 }

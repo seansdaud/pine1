@@ -111,7 +111,11 @@ class SiteController extends BaseController {
 			}				$data = array(
 				'date'=>$datePlusFive,
 			'day' => $day,
-				'owner' => Input::get('owner')
+				'owner' => Input::get('owner'),
+
+				'dist' => Input::get('dist'),
+
+
 		);
 			return View::make("frontend.user.nextSchedulebook", $data);
 
@@ -138,7 +142,11 @@ class SiteController extends BaseController {
 				$data = array(
 				'date'=>$datePlusFive,
 			'day' => $day,
-				'owner' => Input::get('owner')
+				'owner' => Input::get('owner'),
+				
+
+				'dist' => Input::get('dist'),
+
 		);
 			return View::make("frontend.user.nextSchedulebook", $data);
 
