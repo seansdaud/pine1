@@ -188,7 +188,11 @@ Route::group(array("before"=>"auth"), function() {
 			'as'=>'change-user-cover-picture',
 			'uses'=>'UserController@changeCover'
 			));
-
+		/*event updates*/
+		Route::post("/update-event",array(
+			'as'=>'update-event-post',
+			'uses'=>'UserController@updateEvent'
+			));
 	});
 
 	/*Logout*/
