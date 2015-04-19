@@ -29,6 +29,12 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="mt">
+                    <a href="{{ URL::route('add-location') }}">
+                        <i class="fa fa-road"></i>
+                        <span>Add Location</span>
+                    </a>
+                </li>
 
                 <li class="sub-menu">
                     <a href="javascript:;" >
