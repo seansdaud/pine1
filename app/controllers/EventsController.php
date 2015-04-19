@@ -206,4 +206,36 @@ $diff=$interval->format('%a');
 			return Redirect::route("owner-events")->with("success", "Event Deleted Completely.");
 	
 	}
+
+	function events(){
+		$data = array(
+			'title' => 'events',
+			'id' => 'events',
+			'events' => Events::all()
+		);
+
+		return View::make("frontend.events.events", $data);
+	}
+
+	function singleEvent($id, $slug){
+		$event = Events::find($id);
+		if(!empty($event)){
+			if(Str::slug($event->name) == $slug){
+				$data = array(
+					'title' => $event->name,
+					'event' => $event,
+					'id' => 'event'
+				);
+
+				return View::make("frontend.events.profile", $data);
+
+			}
+			else{
+				App::abort(404);
+			}
+		}
+		else{
+			App::abort(404);
+		}
+	}
 }

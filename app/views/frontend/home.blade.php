@@ -117,39 +117,8 @@
               	</div>
               	</div>
               	<div class="col-md-4 col-sm-4">
-            		    <div class="row">
-                      <div class="col-md-5 col-sm-7 col-xs-5">
-                        
-                        <div class="cat-name" style="margin-bottom:17px;">
-                        <span class="base"><a href="#" class="schedule">Events</a></span>
-                        <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
-                        </div>
-                      </div>
-                    </div>
-                		<div class="CoverImage FlexEmbed FlexEmbed--2by1 background"
-                		     style="background-image:url(assets/css/football.jpg)">
-                		     <div class="text-over">Pokhara futsal tournament</div>
-                		     <div class="sept">Gairapatan,Pokhara</div>
-                		     <div class="gaira">9 Sep - 12 Sep</div>
-                		     <div class="layer"></div>
-                		</div>
-
-                		<div class="CoverImage FlexEmbed FlexEmbed--2by1 background"
-                		     style="background-image:url(assets/css/poster.jpg)">
-                		     <div class="text-over">Pokhara futsal tournament</div>
-                		     <div class="sept">Gairapatan,Pokhara</div>
-                		     <div class="gaira">9 Sep - 12 Sep</div>
-                		     <div class="layer"></div>
-                		     
-                		</div>
-
-                		<div class="CoverImage FlexEmbed FlexEmbed--2by1 background"
-                		     style="background-image:url(assets/css/SFL_poster_output_0.jpg)">
-                		     <div class="text-over">Pokhara futsal tournament</div>
-                		     <div class="sept">Gairapatan,Pokhara</div>
-                		     <div class="gaira">9 Sep - 12 Sep</div>
-                		     <div class="layer"></div>
-                		</div>
+            		    
+                    @include('frontend.events.event_sidebar')
                     
               	</div>
             </div>
