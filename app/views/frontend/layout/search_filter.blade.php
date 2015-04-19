@@ -1,8 +1,8 @@
 <div class="search-all">
-    <div class="row">
+    <div class="row" style="margin:6px auto;">
 
         <div class="col-md-8 col-sm-8">
-            <form method="get" action="{{ URL::route('search-arenas') }}" class="form-inline" style="margin-top: 15px;">
+            <form method="get" action="{{ URL::route('search-arenas') }}" class="form-inline">
                 <div class="form-group others">
                     <label>Price</label>
                     <select class="form-control" name="price">
@@ -38,7 +38,6 @@
         </div>
 
         <div class="col-md-4 col-sm-4">
-          <div style="color: rgb(245, 245, 245); text-align: center; font-size: 17px;">Search Arena :</div>
           <div class="form-group" style="margin-bottom:0px;">
               <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
               <div class="input-group">
