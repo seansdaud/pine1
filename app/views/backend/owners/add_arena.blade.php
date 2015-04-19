@@ -32,22 +32,49 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">District</label>
 			<div class="col-sm-6">
-				<select id="country" name ="address" value="{{ $info->address }}" required></select>
+				<select id="district" name ="district" required>
+					@foreach ($district as $row)
+						@if($row->district==$info->district)
+					 		<option value="{{ $row->district }}" selected>{{$row->district}}</option>
+					 	@else
+					 		<option value="{{ $row->district }}">{{$row->district}}</option>
+					 	@endif
+					@endforeach
+				</select>
 			</div>
 			<div class="col-sm-4 help-block with-errors">
-				@if($errors->has('address'))
-					{{ $errors->first('address') }}
+				@if($errors->has('district'))
+					{{ $errors->first('district') }}
 				@endif
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">City</label>
 			<div class="col-sm-6">
-				<select id="state" name ="city" value="{{ $info->city }}" required></select>
+				<select id="state" name ="city" required>
+					@foreach ($district as $row)
+						@if($row->city==$info->city)
+					 		<option value="{{ $row->city }}" selected>{{$row->city}}</option>
+					 	@else
+					 		<option value="{{ $row->city }}">{{$row->city}}</option>
+					 	@endif
+					@endforeach
+				</select>
 			</div>
 			<div class="col-sm-4 help-block with-errors">
 				@if($errors->has('city'))
 					{{ $errors->first('city') }}
+				@endif
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Location</label>
+			<div class="col-sm-6">
+				<input type="text" id="address" name="address" class="form-control" value="{{ $info->address }}">
+			</div>
+			<div class="col-sm-4 help-block with-errors">
+				@if($errors->has('address'))
+					{{ $errors->first('address') }}
 				@endif
 			</div>
 		</div>
@@ -78,5 +105,4 @@
 		</div>
 		{{ Form::token() }}
 	</form>
-
 @stop

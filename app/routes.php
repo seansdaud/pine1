@@ -277,6 +277,11 @@ Route::group(array("before"=>"admin"), function() {
 			'as' => 'remove-owner',
 			'uses' => 'admin@removeOwner'
 		));
+		/*add location post*/
+		Route::post("/a/adding-location",array(
+			'as'=>'add-location-post',
+			'uses'=>'admin@addingLocation'
+			));
 
 	});
 
@@ -318,7 +323,11 @@ Route::group(array("before"=>"admin"), function() {
 		'as' => 'add-new-arena',
 		'uses' => 'admin@getAddNewArena'
 	));
-
+	/*add location*/
+	Route::get("/a/add-location",array(
+		'as'=>'add-location',
+		'uses'=>'admin@addLocation'
+		));
 	/*Admin Profile. Put this route at the end of this group (important!!!!!!) */
 	Route::get("/a/profile", array(
 		'as' => 'admin-profile',

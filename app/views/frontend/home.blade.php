@@ -7,14 +7,19 @@
         
         
         <div class="container container-costum">
-  	        <div style="margin-left: -15px !important; margin-right: -15px !important;">
+  	        <!-- <div style="margin-left: -15px !important; margin-right: -15px !important;">
               <img src="{{ asset('assets/img/futsal.jpg') }}" style="width: 100%; border-bottom: 7px solid rgb(244, 60, 18); box-shadow: 0px 53px 217px #000000;">
+            </div> -->
+            <div style="  margin-left: -15px; margin-right: -15px; border-bottom: 7px solid rgb(244, 60, 18); box-shadow: 0px 53px 217px #000000;" >
+            <div class="CoverImagee FlexEmbed FlexEmbed--2by11 background"
+                 style="background-image:url(assets/css/futsal.jpg)">
+                 
+            </div>
             </div>
             
             @include('frontend.layout.search_filter')
-            
           	<div class="row">
-              	<div class="col-md-8 col-sm-8" style="  box-shadow: 4px 19px 16px #888888;">
+              	<div class="col-md-8 col-sm-8 shade">
                   <div class="ajax-caller">
                   	<div class="row">
                   		<div class="col-md-3 col-sm-4 col-xs-8">
@@ -35,19 +40,18 @@
                                    <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                   		</div>
-                      <div class="col-md-4 col-md-offset-1 col-sm-4">
-
+                      <div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
                         <div class="futsal-name"><?php echo  $user[0]->name;?></div>
                                              </div>
-                      <div class="col-md-2 col-sm-2">
+                      <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="futsal-name"><?php echo  $date;?></div>
                       </div>
-                      <div class="col-md-2 col-sm-2">
+                      <div class="col-md-2 col-sm-3">
                         <div style="float:right;">
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
                                 <li>
-<div class="btn btn-warning schedul" data-type="prev">
+<div class="btn btn-warning schedul" data-type="prev" style="background-color:#F15620 !important;">
                                    
                                     <span aria-hidden="true" >&laquo;</span>
                                  </div>
@@ -56,7 +60,7 @@
                                 
                                 <li>
                                   
-                                 <div class="btn btn-warning schedul"   data-type="next">
+                                 <div class="btn btn-warning schedul"   data-type="next" style="background-color:#F15620 !important;">
 
 
                                     <span aria-hidden="true" >&raquo;</span>

@@ -16,7 +16,7 @@
 				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; top: 148px;"></span>
 				<div class="arena-wrapper">
 					<div class="arena-top">{{ $arena->name }}</div>
-					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span></div>
+					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span><span class="lose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span><span style="color:#F43C12;">  //</span></div>
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col-md-4 col-sm-4" style="  box-shadow: 4px 19px 16px #888888;">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-7 col-sm-7 col-xs-9">
 					<div class="cat-name">
 		                <span class="base schedule">Arena info</span>
 		                <span class="arrow"></span>
@@ -83,7 +83,7 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-7 col-sm-7 col-xs-9">
 					<div class="cat-name" style="margin-bottom:15px;">
 		                <span class="base schedule">Events</span>
 		                <span class="arrow"></span>

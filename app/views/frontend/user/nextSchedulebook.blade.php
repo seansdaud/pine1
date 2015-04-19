@@ -42,8 +42,7 @@
                         </div>
                       </div>
                     </div>
-                       <div>
-       <div>
+                         <div>
        <?php if (!empty($dist)):?>
                 <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo $dist; ?>miles</div>
             
