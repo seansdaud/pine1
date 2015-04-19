@@ -16,7 +16,7 @@
 				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; top: 148px;"></span>
 				<div class="arena-wrapper">
 					<div class="arena-top">{{ $arena->name }}</div>
-					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span></div>
+					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span><span class="lose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span><span style="color:#F43C12;">  //</span></div>
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col-md-4 col-sm-4" style="  box-shadow: 4px 19px 16px #888888;">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-7 col-sm-7 col-xs-9">
 					<div class="cat-name">
 		                <span class="base schedule">Arena info</span>
 		                <span class="arrow"></span>
@@ -44,8 +44,12 @@
 					  	<td>{{ $arena->owner->email }}</td>
 					  </tr>
 					  <tr>
-					  	<td>Address :</td>
+					  	<td>District :</td>
 					  	<td>{{ ucfirst($arena->address) }}</td>
+					  </tr>
+					  <tr>
+					  	<td>City :</td>
+					  	<td>{{ ucfirst($arena->city) }}</td>
 					  </tr>
 					  <tr>
 					  	<td>Contact No :</td>
@@ -79,7 +83,7 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-7 col-sm-7 col-xs-9">
 					<div class="cat-name" style="margin-bottom:15px;">
 		                <span class="base schedule">Events</span>
 		                <span class="arrow"></span>
@@ -174,6 +178,9 @@
 	                </div>
 	            </div>
 			</div>
+			  <div>
+       <div class="distance-ajax"></div>
+    </div>
 				<table class="responsive-table responsive-table-input-matrix">
 	                <tbody>
 	                    <tr>
@@ -183,7 +190,7 @@
 	                      <th>Price</th>
 	                    </tr>
 
-	      							<input type="hidden" id="today" value="1"> <input type="hidden" id="date" value="2015-04-05">   
+	      							
 	      			  <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
    				 <input type="hidden" id='owner_id' value="<?php echo $arena->user_id;?>">
@@ -227,21 +234,9 @@
 				                </div>
 							</div>
 			</div>
-			<div style="margin: 11px auto; text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. </div>
+			<div style="margin: 11px auto; text-align: justify;">
+				<?php echo $arena->about; ?>
+			</div>
 			
 
 

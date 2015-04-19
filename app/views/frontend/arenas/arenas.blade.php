@@ -11,12 +11,14 @@
 				<span class="hidden-xs" style=" position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; top: 148px;"></span>
 				<div class="arena-wrapper">
 					<div class="arena-top">Futsal Arenas</div>
-					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<span style="color:#F43C12;">  //</span></div>
+					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span><span class="lose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span><span style="color:#F43C12;">  //</span></div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<?php $row_closed=null; $i=0; foreach($arenas as $arena): $i++; ?>
+
 		<?php if($i==1): $row_closed=false; ?>
 			<div class="row" style="margin-bottom:15px;">
 		<?php endif; ?>
@@ -61,8 +63,9 @@
 		<?php if($i==2): $row_closed=true; $i=0; ?>
 			</div>
 		<?php endif; ?>
+
 	<?php endforeach; ?>
-	<?php if($row_closed==false): ?>
+	<?php if($row_closed==false || $row_closed==null): ?>
 		</div>
 	<?php endif; ?>
 

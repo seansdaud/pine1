@@ -12,7 +12,7 @@
 	</title>
 	{{ HTML::style('assets/css/bootstrap.css') }}
 	{{ HTML::style('assets/css/style1.css') }}
-
+	{{ HTML::style('assets/css/jquery.timepicker.css') }}
 	{{ HTML::style('assets/css/select2.min.css') }}
 	{{ HTML::style('assets/css/sweet-alert.css') }}
 	{{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}

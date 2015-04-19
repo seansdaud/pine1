@@ -48,8 +48,11 @@
 	{{ HTML::script('assets/js/jquery.timepicker.js') }}
 	{{ HTML::script('assets/js/select2.min.js') }}
 	{{ HTML::script('assets/js/customs.js') }}
+	{{ HTML::script('assets/js/district.js') }}
 
-
+	<script language="javascript">
+		populateCountries("country", "state");
+	 </script>
 	<script type="text/javascript">
 
 
@@ -95,7 +98,24 @@ function showPosition(position) {
     }
 
 	</script>
+	@if($id=="events")
+
+	<?php 
+		$adminid = Auth::id();
+
+		$schedule=Schedule::where('admin_id',$adminid)->orderBy('booking', 'asc')->first();
+		$schedule1=Schedule::where('admin_id',$adminid)->orderBy('booking', 'desc')->first();
 	
+ ?>
+	<script type="text/javascript">
+
+$('.start_timeon').timepicker({
+'minTime': '<?php  echo $schedule->start_time;?>',
+    'maxTime': '<?php echo $schedule1->end_time;?>',
+	});
+
+	</script>
+	@endif
 		
 </body>
 </html>

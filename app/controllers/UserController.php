@@ -4,12 +4,14 @@ class UserController extends BaseController {
 
 	public function getProfile($username){
 		$user = User::where(array("username" => $username, "usertype" => "1"))->first();
+
 		if(empty($user)){
 			App::abort(404);
 		}
 		$data = array(
 			'id' => 'user-profile',
 			'title' => $user->username,
+			'events'=>Events::where(array("user_id"=>$user->id))->first(),
 			'user' => $user,
 		);
 		return View::make("frontend.user.profile", $data);
@@ -55,6 +57,7 @@ class UserController extends BaseController {
 					$user->email = Input::get("email");
 					$user->contact = Input::get("contact");
 					$user->address = Input::get("address");
+					$user->users_daily = Input::get("users_daily");
 					if($user->save()){
 						return Redirect::route('user-profile',Auth::user()->username)
 							->with('success','updated successfully');
@@ -75,6 +78,7 @@ class UserController extends BaseController {
 			$user->email = Input::get("email");
 			$user->contact = Input::get("contact");
 			$user->address = Input::get("address");
+			$user->users_daily = Input::get("users_daily");
 			if($user->save()){
 				return Redirect::route('user-profile',Auth::user()->username)
 			->with('success','updated successfully');
@@ -96,7 +100,7 @@ class UserController extends BaseController {
 				$upload = Input::file('cover')->move("assets/img/profile/user/cover", $name);
 				if($upload){
 					$user = User::where("id", "=", Auth::user()->id)->first();
-					File::delete("assets/img/profile/user/cover".$user->profile_pic);
+					File::delete("assets/img/profile/user/cover/".$user->cover_pic);
 					$user->cover_pic = $name;
 					if($user->save()){
 						return Redirect::route('user-profile',Auth::user()->username)
@@ -111,5 +115,48 @@ class UserController extends BaseController {
 				else{
 					return Redirect::route("user-profile", Auth::user()->username)->with("danger", "Error uploading your file. Please try again.");
 				}
+	}
+
+	function updateEvent(){
+		$event_id=Input::get('event_id');
+		if(Input::hasfile('image')){
+				$file = Input::file('image');
+				$ext = Input::file('image')->getClientOriginalExtension();
+				$name = uniqid().".".$ext;
+				$upload = Input::file('image')->move("assets/img/", $name);
+
+				if($upload){
+					$event = Events::where("id", "=", $event_id)->first();
+					File::delete("assets/img/".$event->image);
+					$event->image = $name;
+					$event->name = Input::get("name");
+					$event->detail = Input::get("detail");
+					if($event->save()){
+						return Redirect::route('user-profile',Auth::user()->username)
+							->with('success','updated successfully');
+					}
+					else{
+						return Redirect::route('user-profile',Auth::user()->username)
+							->with('warning','Error!! Try again');
+					}
+				}
+
+				else{
+					return Redirect::route("user-profile", Auth::user()->username)->with("danger", "Error uploading your file. Please try again.");
+				}
+			}
+		else{
+			$event = Events::where("id", "=", $event_id)->first();
+			$event->name = Input::get("name");
+			$event->detail = Input::get("detail");
+			if($event->save()){
+				return Redirect::route('user-profile',Auth::user()->username)
+			->with('success','updated successfully');
+			}
+			else{
+				return Redirect::route('user-profile',Auth::user()->username)
+			->with('warning','Error!! Try again');
+			}
+		}
 	}
 }

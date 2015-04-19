@@ -167,7 +167,22 @@ class Admin extends BaseController {
 					'name'=>Input::get("name"),
 					'user_id'=>$owner_id
 					));
-			return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
+			Mail::send('emails.new_owner', 
+					array(
+						'username' => Input::get("username"),
+						'password' => $password
+					),
+					function($message) use ($create) {
+						$message->to($create->email, $create->name)
+								->subject('New account created on futsal.');
+					}
+				);
+			if(count(Mail::failures()) > 0) {
+				return Redirect::route("create-new-owner")->with("warning", "Owner created but there was a problem sending email.");
+				}
+			else{
+				return Redirect::route("create-new-owner")->with("success", "Owner <a href=".URL::route('admin-owner-profile', Input::get("username")).">".Input::get("username")."</a> successfully created.");
+			}
 		}
 		else{
 			return Redirect::route("create-new-owner")->with("danger", "Something went wrong. Please try again.")->withInput();

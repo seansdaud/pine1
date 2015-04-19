@@ -3,6 +3,7 @@
                       <div class="col-md-3 col-sm-4 col-xs-8">
                         
                         <div class="cat-name">
+
                         <span class="base"><a href="#" class="schedule">Schedules</a></span>                        
                         <div id="id"></div>
                           <?php
@@ -51,7 +52,9 @@
                       </div>
                     </div>
     <div>
-        <div class="schedule" style="margin-left: 15%;">Distance:<?php echo intval($result[0]->distances); ?>miles</div>
+        <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo round($result[0]->distances,2); ?>miles</div>
+            
+    <input type="hidden" id='dist' value="<?php echo round($result[0]->distances,2); ?>">
     </div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
@@ -91,7 +94,9 @@
                         }
                           
                       ?>
+
                      
                         @include("frontend.arenas.scheduletemp")
+
                   @endforeach 
      </table>

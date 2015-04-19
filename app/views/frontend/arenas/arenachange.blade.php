@@ -1,29 +1,39 @@
+
                     <div class="row">
                       <div class="col-md-3 col-sm-4 col-xs-8">
                         
                         <div class="cat-name">
-                        <span class="base"><a href="#" class="schedule">Schedules</a></span>
+
+                        <span class="base"><a href="#" class="schedule">Schedules</a></span>                        
                         <div id="id"></div>
+                          <?php
+            date_default_timezone_set("Asia/Katmandu"); 
+            $day=date('w') +1; 
+            echo "<input type='hidden' id='today' value='".$day."' >";
+            $date=date("Y-m-d"); 
+            echo " <input type='hidden' id='date' value='".$date."' >";
+        ?>
 
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                       </div>
                       <div class="col-md-4 col-md-offset-1 col-sm-4">
-                                               <div class="futsal-name">
+                         <div class="futsal-name">
                          <?php
-                         $arena_name=User::where('id',  $owner)->get();
+                         $arena_name=User::where('id',$id )->get();
+                         
                           echo $arena_name[0]->arena->name; ?>
                          </div>
                       </div>
                       <div class="col-md-2 col-sm-2">
-                        <div class="futsal-name"><?php echo $date; ?></div>
+                        <div class="futsal-name"><?php echo $date;?></div>
                       </div>
                       <div class="col-md-2 col-sm-2">
                         <div style="float:right;">
                           <nav>
                               <ul class="pagination" style="margin:0 !important;">
                                 <li>
-                               <div class="btn btn-warning schedul" data-type="prev">
+                                <div class="btn btn-warning schedul" data-type="prev">
                                    
                                     <span aria-hidden="true" >&laquo;</span>
                                  </div>
@@ -42,40 +52,28 @@
                         </div>
                       </div>
                     </div>
-                         <div>
-       <?php if (!empty($dist)):?>
-                <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo $dist; ?>miles</div>
-            
-    <input type="hidden" id='dist' value="<?php echo $dist; ?>">
-    
-       <?php endif; ?>
-         <!-- 
-      <div class="distance-ajax"></div> -->
-       </div>
-
+    <div>
+     <div>
+       <div class="distance-ajax"></div>
+    </div>     
+    </div>
               	    <table class="responsive-table responsive-table-input-matrix">
                         <tr>
                           <th>Duration</th>
                           <th>Status</th>
                           <th>Booked By</th>
                           <th>Price</th>
-                        <!--   <th>Phone No</th>
- -->                        </tr>
+                        <!--   <th>Phone No</th> -->
+                        </tr>
                         <input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
 
-      <?php
-          
-            echo "<input type='hidden' id='today' value='".$day."' >";
-            echo " <input type='hidden' id='date' value='".$date."' >";
-        ?>
-
-    <input type="hidden" id='owner_id' value="<?php echo $owner;?>">
+    
+    <input type="hidden" id='owner_id' value="<?php echo $id;?>">
 
                                 <?php
                                
                          
-                    $adminid = $owner;
-                    
+                    $adminid = $id;
                     $arena=Arena::where('user_id',$adminid)->first();
                     $schedular=Schedule::where('admin_id', $adminid )->where('day', $day )->orderBy('booking', 'asc')->get();
   ?>
@@ -97,7 +95,9 @@
                         }
                           
                       ?>
+
                      
                         @include("frontend.arenas.scheduletemp")
+
                   @endforeach 
      </table>

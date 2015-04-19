@@ -890,8 +890,8 @@ section {
 .others{
   font-family: 'Titillium Web', sans-serif;
   text-align: center;
-  font-size: 18px;
-  color: white;
+  padding-right: 12px;
+  color: rgb(21, 33, 47);
 }
 .futsal-name{
   padding: 9px;
@@ -916,7 +916,6 @@ section {
     padding: 6px 16px !important;
     background-color: #F15620 !important;
     border-color: #F15620 !important;
-    margin-top: 23px; 
 }
 .btn-large:hover{
     background-color: #15212F !important;
@@ -1061,6 +1060,9 @@ section {
   margin-left: 132%;
  
 }
+.lose{
+  font-size: 14px;
+}
 @media (max-width: 767px){
   body{
     font-size: 14px;
@@ -1068,6 +1070,16 @@ section {
   .container-costum{
     margin-top: 0 !important;
   } 
+  .arena-top {
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+    text-transform: uppercase;
+    font-weight: normal; 
+    font-size: 19px;
+  }
+  .lose{
+    font-size: 12px;
+  }
   .shade{
     box-shadow: 4px 19px 16px rgba(136, 136, 136, 0);
   }
@@ -1122,7 +1134,7 @@ section {
     width: 0 !important;
     height: 0 !important;
     border-bottom: 202px solid rgba(19, 29, 41, 0) !important;
-    border-left: 144px solid transparent !important;
+    border-left: 0px solid rgba(0, 0, 0, 0.76) !important;
     right: 14px;
     top: 0;
   }

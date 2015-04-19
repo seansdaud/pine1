@@ -43,12 +43,12 @@
 				<td name='time' class="tdbig" style="width:17%;">
 					<?php echo $key->start_time; ?> to <?php echo $key->end_time; ?>
 				</td>
-				<td ><input type='number' step='any' class="span12 copy" name='<?php echo $i; echo $j; ?>' value='<?php echo $key->price; ?>' ></td>
+				<td ><input type='number' step='any' class="form-control copy" name='<?php echo $i; echo $j; ?>' value='<?php echo $key->price; ?>' ></td>
 				<input type='hidden' name='id<?php echo $c; ?>' value='<?php echo $key->id; ?>'>
 				<input type='hidden' name='start_time<?php echo $c; ?>' value='<?php echo $key->start_time; ?>'>
 				<input type='hidden' name='end_time<?php echo $c; ?>' value='<?php echo $key->end_time; ?>'>
 			<?php elseif ($i==7): ?>
-					<td ><span><input type='number' step='any' class="span12 copy" name='<?php echo $i; echo $j; ?>' value='<?php echo $key->price; ?>' ></span></td>
+					<td ><span><input type='number' step='any' class="form-control copy" name='<?php echo $i; echo $j; ?>' value='<?php echo $key->price; ?>' ></span></td>
 					<input type='hidden' name='id<?php echo $c; ?>' value='<?php echo $key->id; ?>'>
 					<input type='hidden' name='start_time<?php echo $c; ?>' value='<?php echo $key->start_time; ?>'>
 					<input type='hidden' name='end_time<?php echo $c; ?>' value='<?php echo $key->end_time; ?>'>
@@ -57,7 +57,7 @@
 					<?php $i=0; ?>
 					<?php $j++;?>
 			<?php elseif ($i<8) : ?>
-				<td ><span><input type='number' step='any' class="span12 copy" name='<?php echo $i; echo $j; ?>' value='<?php echo $key->price; ?>' ></span></td>
+				<td ><span><input type='number' step='any' class="form-control copy" name='<?php echo $i; echo $j; ?>' value='<?php echo $key->price; ?>' ></span></td>
 				<input type='hidden' name='id<?php echo $c; ?>' value='<?php echo $key->id; ?>'>
 				<input type='hidden' name='start_time<?php echo $c; ?>' value='<?php echo $key->start_time; ?>'>
 				<input type='hidden' name='end_time<?php echo $c; ?>' value='<?php echo $key->end_time; ?>'>

@@ -22,6 +22,11 @@ Route::get('/', array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+		Route::get("/getCurrentnow", array(
+			'as' => 'getCurrenthomenow',
+			'uses' => 'SiteController@getCurrentnow'
+		));	
+
 		// getLatestMap
 		Route::get("/getArena", array(
 			'as' => 'getArena',
@@ -39,6 +44,12 @@ Route::get('/', array(
 		'as' => 'nxtdate',
 		'uses' => 'SiteController@nxtdate'
 	));	
+
+/*Search Arenas*/
+Route::get("/search", array(
+	'as' => 'search-arenas',
+	'uses' => 'SiteController@search'
+));
 
 /*------------------------------------------------------------------------*/
 /*Arenas*/
@@ -177,8 +188,18 @@ Route::group(array("before"=>"auth"), function() {
 			'as'=>'change-user-cover-picture',
 			'uses'=>'UserController@changeCover'
 			));
-
+		/*event updates*/
+		Route::post("/update-event",array(
+			'as'=>'update-event-post',
+			'uses'=>'UserController@updateEvent'
+			));
 	});
+
+	/*Resend Email*/
+	Route::get("/resend-email", array(
+		'as' => 'resend-email',
+		'uses' => 'AccountController@resendEmail'
+	));
 
 	/*Logout*/
 	Route::get("/logout", array(
@@ -346,7 +367,7 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => "owner-events-post",
 			'uses' => "EventsController@postOwnerEvents"
 		));
-
+	
 		Route::post("/o/edit-event", array(
 			'as' => 'owner-event-edit-post',
 			'uses' => 'EventsController@editOwnerEventPost'
@@ -455,7 +476,22 @@ Route::group(array("before"=>"owner"), function() {
 		'as' => 'owner-event-edit',
 		'uses' => 'EventsController@editOwnerEvent'
 	));
-		
+			/* Events Hide */
+		Route::get("/o/del-events/{id}", array(
+			'as' => "owner-event-delete",
+			'uses' => "EventsController@deleteEvents"
+		));
+				/* Events Delete  All*/
+		Route::get("/o/del-all-events/{id}", array(
+			'as' => "owner-event-delete-all",
+			'uses' => "EventsController@deleteallEvents"
+		));
+
+				/* Events Hide */
+		Route::get("/o/show-events/{id}", array(
+			'as' => "owner-event-show",
+			'uses' => "EventsController@showEvents"
+		));
 	//add arena	
 		Route::get("/o/add-arena-info", array(
 		'as' => 'add-arena-info',

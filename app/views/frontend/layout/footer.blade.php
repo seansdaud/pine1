@@ -75,7 +75,7 @@
 {{ HTML::script('assets/js/bootstrap.min.js') }}
 {{ HTML::script('assets/js/validator.min.js') }}
 {{ HTML::script('assets/js/select2.min.js') }}
+{{ HTML::script('assets/js/jquery.timepicker.js') }}
 {{ HTML::script('assets/js/frontend.js') }}
-
 {{ HTML::script('assets/js/sweet-alert.js') }}
 {{ HTML::script('assets/js/customsfront.js') }}

@@ -13,6 +13,7 @@ class SiteController extends BaseController {
 	}
 
 	function arenas(){
+
 		$data = array(
 			'id' => 'arenas',
 			'title' => 'arenas',
@@ -86,8 +87,11 @@ class SiteController extends BaseController {
 	      
 		}
 		public function getArena(){
-			return "ASdsd";
-		}
+			$id=Input::get('id');
+
+				                	  $data = array('id' => $id);
+	                	  return View::make('frontend.arenas.arenachange',$data);
+	             		}
 		public function prevdate(){
 	$day=Input::get('day');
 		$date=Input::get('date');
@@ -110,7 +114,11 @@ class SiteController extends BaseController {
 			}				$data = array(
 				'date'=>$datePlusFive,
 			'day' => $day,
-				'owner' => Input::get('owner')
+				'owner' => Input::get('owner'),
+
+				'dist' => Input::get('dist'),
+
+
 		);
 			return View::make("frontend.user.nextSchedulebook", $data);
 
@@ -137,7 +145,11 @@ class SiteController extends BaseController {
 				$data = array(
 				'date'=>$datePlusFive,
 			'day' => $day,
-				'owner' => Input::get('owner')
+				'owner' => Input::get('owner'),
+				
+
+				'dist' => Input::get('dist'),
+
 		);
 			return View::make("frontend.user.nextSchedulebook", $data);
 
@@ -145,4 +157,66 @@ class SiteController extends BaseController {
 			
 
 		 }
+		 public function getCurrentnow(){
+		 			$lat = $_GET["lat"];
+		 				$owner = $_GET["owner"];
+	$lng = $_GET["lng"];
+	$radius = Input::get('radius');
+	$result = Marker::where('admin_id',$owner)->select(
+	                DB::raw("*, ( 3959 * acos( cos( radians('".$lat."') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('".$lng."') ) + sin( radians('".$lat."') ) * sin( radians( lat ) ) ) ) AS distances"))
+	                ->having("distances", "<",$radius)
+	           ->orderBy("distances")
+	           
+	                ->get();
+	              
+		//print_r(json_encode($result));
+	                if ($result->isEmpty()) {
+	                	return "noResult";
+	                }
+	                else{
+	                	  $data = array('result' => $result);
+	                	  return $data;
+	                	  }	                
+	      
+		}
+
+	public function search(){
+		$start_time = Input::get("start_time");
+		$end_time = Input::get("end_time");
+		if(!empty($start_time)){
+			$start = explode(":", $start_time);
+			if( count($start)!=2 && !is_numeric($start[0])){
+				$has_result = false;
+			}
+			else{
+				$has_result = true;
+			}
+		}
+		else{
+			$has_result = null;
+		}
+		if(!empty($end_time)){
+			$end = explode(":", $end_time);
+			if( count($end)!=2 && !is_numeric($end[0])){
+				$has_result = false;
+			}
+			else{
+				$has_result = true;
+			}
+		}
+		else{
+			$has_result = null;
+		}
+		
+		$arenas = empty(Input::get("location")) ? Arena::all() : Arena::where("address", Input::get("location"))->get();
+		$data = array(
+			'id' => 'search',
+			'title' => 'search results',
+			'arena' => $arenas,
+			'has_result' => $has_result
+		);
+
+		return View::make("frontend.search", $data);
+	}
+
 }

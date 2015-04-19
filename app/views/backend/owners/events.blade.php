@@ -12,6 +12,7 @@
 				<th>Name</th>
 				<th>Manager</th>
 				<th></th>
+				<th></th>
 			</tr>
 			@foreach($events as $event)
 				<tr>
@@ -23,6 +24,19 @@
 					<td>
 						<a href="{{ URL::route('owner-event-edit', $event->id) }}" class="btn btn-info"><i class="fa fa-pencil-square-o"></i></a>
 					</td>
+					<td>
+						<?php if (($event->deleted_at)==NULL):?>
+						<a href="{{ URL::route('owner-event-delete', $event->id) }}" class="btn btn-info"><i class="fa fa">Hide</i></a>
+						<?php else: ?>
+						<a href="{{ URL::route('owner-event-show', $event->id) }}" class="btn btn-info"><i class="fa">Show</i></a>
+						
+						<?php endif; ?>
+					</td>
+					<td>
+					<a href="{{ URL::route('owner-event-delete-all', $event->id) }}" class="btn btn-info"><i class="fa">Delete Completely</i></a>
+				
+					</td>
+
 				</tr>
 			@endforeach
 		</table>
