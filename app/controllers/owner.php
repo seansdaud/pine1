@@ -103,7 +103,7 @@ class Owner extends BaseController {
 				'title' => 'add-arena-info',
 				'id' => 'add-arena-info',
 				'info'=>$arena[0],
-				'district'=>Marker::get()
+				'district'=>Location::get()
 			);
 		}
 		else{
