@@ -346,4 +346,27 @@ class Admin extends BaseController {
 		}
 	}
 
+	public function addLocation(){
+		$data = array(
+			'title' => 'add location',
+			'id' => 'add location'
+		);
+
+		return View::make("backend.admin.add_location", $data);
+	}
+	public function addingLocation(){
+		$create = Location::create(
+			array(
+				'zone' => Input::get("zone"),
+				'district' => Input::get("district"),
+				'city' => Input::get("city")
+			)
+		);
+		if($create){
+			return Redirect::route("add-location")->with("success", "Location Successfully added.");
+		}
+		else{
+			return Redirect::route("add-location")->with("danger", "Something went wrong. Please try again.")->withInput();
+		}
+	}
 }

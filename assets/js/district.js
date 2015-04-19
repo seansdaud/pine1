@@ -1,29 +1,23 @@
 //Zone
-var country_arr = new Array("Kaski", "Gorkha","Lamjung","Manang","Syanga","Tanahu", "Bhaktapur","Dhading","Kathmandu","Kavrepalanchok","Lalitpur","Nuwakot","Rasuwa","Sindhupalchok","Arghakhanchi","Gulmi","Kapilvastu","Nawalparasi","Palpa","Rupandehi");
+var country_arr = new Array("Mechi", "Koshi","Sagarmatha","Janakpur","Bagmati","Narayani", "Gandaki","Lumbini","Dhauligiri","Rapti","Karnali","Bheri","Seti","Mahakali");
 
 // District
 var s_a = new Array();
 s_a[0]="";
-s_a[1]="Pokhara|lekhnath"; //kaski
-s_a[2]="";
-s_a[3]="";
-s_a[4]="";
-s_a[5]="";
-s_a[6]="";
-s_a[7]="Nagarkot|suryabinayek"; //bhaktapur
-s_a[8]="";
-s_a[9]="Baneswor|Thamel|bhatbhateni"; //kathmandu
-s_a[10]="";
-s_a[11]="Patan|imadol|sadobato";  //lalitpur
-s_a[12]="";
-s_a[13]="";
-s_a[14]="";
-s_a[15]="";
-s_a[16]="";
-s_a[17]="";
-s_a[18]="";
-s_a[19]="";
-s_a[20]=""; //Rupendehi
+s_a[1]="Ilam|Jhapa|Panchthar|Taplejung"; //Mechi
+s_a[2]="Bhojpur|Dhankuta|Morang|Sankhuwasabha|Sunsari|Terhathum";
+s_a[3]="Khotang|Okhaldhunga|Saptari|Siraha|Solukhumbu|Udayapur";
+s_a[4]="Dhanusa|Dholkha|Mahottari|Ramechhap|Sarlahi|Sindhuli";
+s_a[5]="Bhaktapur|Dhading|Kathmandu|Kavrepalanchok|Lalitpur|Nuwakot|Rasuwa|Sindhupalchok";
+s_a[6]="Bara|Chitwan|Makwanpur|Parsa|Rautahat";
+s_a[7]="Gorkha|Kaski|Lamjung|Manang|Syangja|Tanahu"; //Gandaki
+s_a[8]="Arghakhanchi|Gulmi|Kapilvastu|Nawalparasi|Palpa|Rupandehi";
+s_a[9]="Baglung|Mustang|Myagdi|Parbat"; //Dhauligiri
+s_a[10]="Dang|Pyuthan|Rolpa|Rukum|Salyan";
+s_a[11]="Dolpa|Humla|Jumla|Kalikot|Mugu";  //Karnali
+s_a[12]="Banke|Bardiya|Dailekh|Jajarkot|Surkhet";
+s_a[13]="Achham|Bajhang|Bajura|Doti|Kailali";
+s_a[14]="Baitadi|Dadeldhura|Darchula|Kanchanpur";
 
 function populateStates( countryElementId, stateElementId ){
 	
@@ -32,7 +26,7 @@ function populateStates( countryElementId, stateElementId ){
 	var stateElement = document.getElementById( stateElementId );
 	
 	stateElement.length=0;	
-	stateElement.options[0] = new Option('Select City','');
+	stateElement.options[0] = new Option('Choose District','');
 	stateElement.selectedIndex = 0;
 	
 	var state_arr = s_a[selectedCountryIndex].split("|");
@@ -46,7 +40,7 @@ function populateCountries(countryElementId, stateElementId){
 	// given the id of the <select> tag as function argument, it inserts <option> tags
 	var countryElement = document.getElementById(countryElementId);
 	countryElement.length=0;
-	countryElement.options[0] = new Option('Select District','-1');
+	countryElement.options[0] = new Option('Select Zone','-1');
 	countryElement.selectedIndex = 0;
 	for (var i=0; i<country_arr.length; i++) {
 		countryElement.options[countryElement.length] = new Option(country_arr[i],country_arr[i]);
