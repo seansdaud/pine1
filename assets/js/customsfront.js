@@ -67,7 +67,6 @@ $(document).ready(function(){
         });
 
 function myFunction(tel){
-
    $('.modal').modal('hide');
 	swal({   title: "Call Here For Booking!", type:"success",  text: "Phone Number:"+tel,     showConfirmButton: true });
 						
