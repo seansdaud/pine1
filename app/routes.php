@@ -51,6 +51,18 @@ Route::get("/search", array(
 	'uses' => 'SiteController@search'
 ));
 
+/*Single Event*/
+Route::get("/event/{id}/{slug}", array(
+	'as' => 'event',
+	'uses' => 'EventsController@singleEvent'
+));
+
+/*Events*/
+Route::get("/events", array(
+	'as' => 'events',
+	'uses' => 'EventsController@events'
+));
+
 /*------------------------------------------------------------------------*/
 /*Arenas*/
 Route::get("/arenas", array(
