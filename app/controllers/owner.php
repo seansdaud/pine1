@@ -102,7 +102,8 @@ class Owner extends BaseController {
 				$data = array(
 				'title' => 'add-arena-info',
 				'id' => 'add-arena-info',
-				'info'=>$arena[0]
+				'info'=>$arena[0],
+				'district'=>Marker::get()
 			);
 		}
 		else{
@@ -157,6 +158,7 @@ class Owner extends BaseController {
 			$arena->address = Input::get("address");
 			$arena->phone = Input::get("phone");
 			$arena->about = Input::get("about");
+			$arena->district=Input::get("district");
 			$arena->city=Input::get("city");
 			if($arena->save()){
 				return Redirect::route('add-arena-info')->with('success','updated successfully');
