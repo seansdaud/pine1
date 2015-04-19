@@ -7,8 +7,8 @@
 			<img class="arena-banner" src="{{ asset('assets/img/4982__1753__gerrard1000_5425b91e0e98e402487932.jpg') }}">
 		</div>
 		<div class="col-md-6 col-sm-6">
-			<span style="display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
-			<span style="  display: block !important; position: absolute !important; width: 0 !important;
+			<span class="" style="position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
+			<span class="hidden-xs" style=" position: absolute !important; width: 0 !important;
   height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; bottom: -77px;"></span>
 			<div class="arena-wrapper">
 				<div class="arena-top">Futsal Registration</div>

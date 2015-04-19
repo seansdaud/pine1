@@ -23,23 +23,24 @@ $(document).ready(function(){
 		success:function(data)
 				{
 					if (data=="here") {
-						$('.id').html("");
+						$('#id').html("");
 					swal({   title: "Alert!", type:"error",  text: "You cannot view Previous Bookings",   timer: 2000,   showConfirmButton: false });
 						
 					}else{
 
 					$('.ajax-caller').html(data);
-							   $('.id').html("");
+						
+						$('#id').html("");
 							};
 				 },
 				  beforeSend : function (){
-                 $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
+                 $('#id').html("<div class='loading1' ><img src='"+url+"/assets/img/ajax_load.gif'></div>");
 
           	  },
 				error: function(jqXHR, textStatus, errorThrown){ 
-				 	 $('.id').html("");
+				 	// $('.id').html("");
 				 	if (jqXHR.responseText) {
-				 			$('.id').html("");
+				 		//	$('.id').html("");
 				 			console.log(errorThrown);
 				 								 	alert(jqXHR.responseText);
 
@@ -47,8 +48,13 @@ $(document).ready(function(){
 	 		 }
 				  });
     });
-    	// var url = $('#base_url').val();
-
-     //             $('.id').html("<div class='loading1'><img src='"+url+"/assets/img/ajax_load.gif'></div>");
-
+    	
         });
+
+function myFunction(tel){
+
+   $('.modal').modal('hide');
+	swal({   title: "Call Here For Booking!", type:"success",  text: "Phone Number:"+tel,     showConfirmButton: true });
+						
+}
+	     
