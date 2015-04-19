@@ -224,12 +224,20 @@
                 id:valueSelected
             },
             success:function(result){ 
-            alert(result);
+          //  alert(result);
+
+                    $('.ajax-caller').html(result);
             // $(".ajax").html(result);
-            //  $('#id').html("");
+              $('#id').html("");
+                            if (navigator.geolocation) {
+               navigator.geolocation.getCurrentPosition(showPosition1);
+    }
+    else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+    }
             },
             beforeSend : function (){
-            //$('#id').html("<div class='load_new'><img src='"+base_url+"assets/images/ajax_load.gif'></div>");
+            $('#id').html("<div class='loading1' ><img src='"+base_url+"/assets/img/ajax_load.gif'></div>");
 
             },
             error: function(jqXHR, textStatus, errorThrown){ 

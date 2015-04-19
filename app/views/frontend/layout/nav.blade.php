@@ -56,12 +56,6 @@
 
 					<a href="{{ URL::route('register') }}"><span class="khoj">Register</span></a>
 				@endif
-				<span id="wrap">
-				  <form action="" autocomplete="on">
-					  <input id="search" name="search" type="text" placeholder="What're we looking for ?">
-					  <span class="glyphicon glyphicon-search gly-search"></span><input id="search_submit" value="Rechercher" type="submit">
-				  </form>
-				</span>
 			</div>
 		</div>
 	</div>
@@ -94,6 +88,12 @@
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       {{ Session::get('info') }}
     </div>
+  @endif
+
+  @if(Auth::check())
+      @if(Auth::user()->active == 0)
+          Please activate your email. <a href="{{ URL::route('resend-email') }}">Resend Email</a>.
+      @endif
   @endif
 </div>
 
