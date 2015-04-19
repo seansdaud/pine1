@@ -34,15 +34,17 @@
 			<div class="col-sm-6">
 				<select id="district" name ="district" required>
 					@foreach ($district as $row)
-						@if(!empty($row))
+						@if($row->district==$info->district)
+					 		<option value="{{ $row->district }}" selected>{{$row->district}}</option>
+					 	@else
 					 		<option value="{{ $row->district }}">{{$row->district}}</option>
 					 	@endif
 					@endforeach
 				</select>
 			</div>
 			<div class="col-sm-4 help-block with-errors">
-				@if($errors->has('address'))
-					{{ $errors->first('address') }}
+				@if($errors->has('district'))
+					{{ $errors->first('district') }}
 				@endif
 			</div>
 		</div>
@@ -51,7 +53,9 @@
 			<div class="col-sm-6">
 				<select id="state" name ="city" required>
 					@foreach ($district as $row)
-						@if(!empty($row))
+						@if($row->city==$info->city)
+					 		<option value="{{ $row->city }}" selected>{{$row->city}}</option>
+					 	@else
 					 		<option value="{{ $row->city }}">{{$row->city}}</option>
 					 	@endif
 					@endforeach
