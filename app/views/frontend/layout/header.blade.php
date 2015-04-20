@@ -15,6 +15,8 @@
 	{{ HTML::style('assets/css/jquery.timepicker.css') }}
 	{{ HTML::style('assets/css/select2.min.css') }}
 	{{ HTML::style('assets/css/sweet-alert.css') }}
+
+	{{ HTML::style('assets/css/sandbox.css') }}
 	{{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
 	{{ HTML::script('assets/ckeditor/ckeditor.js') }}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
