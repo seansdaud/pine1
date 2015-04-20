@@ -98,12 +98,14 @@ class Owner extends BaseController {
 
 	public function addArena(){
 		$arena=Arena::where("user_id", "=", Auth::user()->id)->get();
+		$city=Location::where("district", "=", $arena[0]->district)->get();
 		if(!($arena->isEmpty())){
 				$data = array(
 				'title' => 'add-arena-info',
 				'id' => 'add-arena-info',
 				'info'=>$arena[0],
-				'district'=>Location::get()
+				'district'=>Location::select("district")->groupBy("district")->get(),
+				'city'=>$city
 			);
 		}
 		else{
@@ -202,6 +204,12 @@ class Owner extends BaseController {
 						Marker::where('admin_id', Auth::id())->update($data);
 		}
 		return Redirect::route('marker-update')->with('warning','Updated Map');
+	}
+
+	public function getCity(){
+		$district=Input::get("district");
+		 $city=Location::where("district", "=", $district)->get();
+		 print_r(json_encode($city));
 	}
 
 }

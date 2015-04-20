@@ -519,7 +519,11 @@ Route::group(array("before"=>"owner"), function() {
 		'uses' => 'Owner@addArena'
 	));	
 
-		
+	//get city
+		Route::get("/o/getCity", array(
+		'as' => 'get-city',
+		'uses' => 'owner@getCity'
+	));
 	// owner dashboard
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',

@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	$("#checked").hide();
 
@@ -673,3 +674,41 @@ $(".select-owner").select2({
 });
 
 $(".select-master").select2({allowClear: true});
+
+/*$(document).ready(function(){
+
+	$("#district").on("change", function() {
+		var district = $(this).val();
+		alert(district);
+		$("#state").append("<option selected='selected'>Select City</option>");
+		$("#state option").each(function() {
+			if($(this).is("#"+district)){
+				$(this).css("display", "block");
+			}
+			else{
+				$(this).css("display", "none");
+			}
+		});
+	});
+});*/
+$(document).ready(function(){
+	$("#district").on("change",function(){
+	var district=$(this).val();
+	var url=$("#base").val();
+    $.ajax({
+				type:'GET',
+				url: url+'/o/getCity',
+				dataType:'json',
+				data:{
+					district:district,
+					
+				}, success: function(result){
+					//console.log(result[0].city);
+					 $("#state").html("");
+					for (var i =0; i < result.length; i++) {
+						 $("#state").append("<option value="+result[i].city+">"+result[i].city+"</option>");
+					};
+       
+    }});
+});
+});
