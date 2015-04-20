@@ -205,6 +205,13 @@ Route::group(array("before"=>"auth"), function() {
 			'as'=>'update-event-post',
 			'uses'=>'UserController@updateEvent'
 			));
+
+		/*Event Edit Post*/
+		Route::post("/edit-event/post", array(
+			'as' => 'edit-event-post',
+			'uses' => 'EventsController@editEventPost'
+		));
+
 	});
 
 	/*Resend Email*/
@@ -219,9 +226,14 @@ Route::group(array("before"=>"auth"), function() {
 		'uses' => 'AccountController@logout'
 	));
 	Route::get("/update-profile", array(
-			'as' => 'change-profile',
-			'uses' => 'UserController@changeProfile'
-		));
+		'as' => 'change-profile',
+		'uses' => 'UserController@changeProfile'
+	));
+
+	Route::get("/edit-event/{id}", array(
+		'as' => 'edit-event',
+		'uses' => 'EventsController@editEvent'
+	));
 
 });
 

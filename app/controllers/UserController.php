@@ -11,7 +11,6 @@ class UserController extends BaseController {
 		$data = array(
 			'id' => 'user-profile',
 			'title' => $user->username,
-			'events'=>Events::where(array("user_id"=>$user->id))->first(),
 			'user' => $user,
 		);
 		return View::make("frontend.user.profile", $data);

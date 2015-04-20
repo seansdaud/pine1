@@ -18,5 +18,6 @@
 
 	{{ HTML::style('assets/css/sandbox.css') }}
 	{{ HTML::style('http://fonts.googleapis.com/css?family=Ropa+Sans') }}
+	{{ HTML::script('assets/ckeditor/ckeditor.js') }}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>

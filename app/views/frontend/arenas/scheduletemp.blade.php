@@ -1,3 +1,4 @@
+
  <tr >
                     <td data-th="Role">
                       <?php echo $key->start_time; ?>--<?php echo $key->end_time; ?>
@@ -37,7 +38,7 @@ Book
                                       <div class="row">
                                         <div class="col-md-6"> <a href="#" style="background-image:url(<?php echo asset('/assets/img/Esewalogo.jpg'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;"></a>
 </div>
-<div class="col-md-6"> <a href="#"  onclick="myFunction(<?php echo $arena->phone; ?>)"style="background-image:url(<?php echo asset('/assets/img/phoneicon.png'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;"></a>
+<div class="col-md-6"> <a href="#"  onclick="myFunction('<?php echo $arena->phone; ?>')"style="background-image:url(<?php echo asset('/assets/img/phoneicon.png'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;"></a>
 </div>
                                       </div>
                                                                             </div>
