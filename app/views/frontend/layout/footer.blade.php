@@ -79,3 +79,20 @@
 {{ HTML::script('assets/js/frontend.js') }}
 {{ HTML::script('assets/js/sweet-alert.js') }}
 {{ HTML::script('assets/js/customsfront.js') }}
+{{ HTML::script('assets/js/masonry.pkgd.js') }}
+<script type="text/javascript">
+  
+// http://masonry.desandro.com/masonry.pkgd.js added as external resource
+
+docReady( function() {
+
+  var container = document.querySelector('.masonry');
+    var msnry = new Masonry( container, {
+    columnWidth: 40,
+
+  itemSelector: '.item'
+  });
+
+});
+
+</script>

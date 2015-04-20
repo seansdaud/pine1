@@ -1060,8 +1060,43 @@ section {
   margin-left: 132%;
  
 }
+.feb-bind{
+    float: left;
+  width: 60px;
+  text-align: center;
+  margin: 6px auto;
+  display: inline;
+  background-color: white;
+  color: white;
+  height: 71px;
+  border-radius: 4px;
+  color: white;
+}
+.wrapper-eve{
+    padding-left: 73px;
+  padding-top: 18px;
+  padding-bottom: 23px;
+}
+.feb{
+    background: rgb(112, 123, 137);
+  padding: 2px 19px;
+  margin-top: 0px;
+  display: block;
+  border-radius: 4px 4px 0px 0px;
+}
+.date{
+    color: rgb(91, 106, 127);
+  font-size: 30px;
+  margin-top: -20px;
+  display: block;
+}
 .lose{
   font-size: 14px;
+}
+.event-eve{
+    text-transform: capitalize;
+    background: rgb(244, 60, 18);
+    padding: 7px;
 }
 @media (max-width: 767px){
   body{
