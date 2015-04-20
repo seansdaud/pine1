@@ -211,76 +211,32 @@
 		</div>
 		</div>
 		<div class="col-md-8 col-sm-8">
-			@if(!empty($events))
-				<div class="row">
-					<div class="col-md-4">
-						<div class="cat-name">
-							<span class="base schedule">Your Events</span>
-							<span class="arrow"></span>
-						</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="cat-name">
+						<span class="base schedule">Your Events</span>
+						<span class="arrow"></span>
 					</div>
 				</div>
-				<div class="comments">
-					<div>
-						Event Name:<?php echo $events->name; ?>
-					</div>
-					<div>
-						Detail:<?php echo $events->detail; ?>
-					</div>
-					<div>
-						Start Date:<?php echo $events->start; ?>
-					</div>
-					<div>
-						End Date:<?php echo $events->end; ?>
-					</div>
-					<div class="profile-edit">
-					<a href="#" data-toggle="modal" data-target="#eventModal">
-					  <span class="glyphicon glyphicon-edit"></span>
-					</a>
+			</div>
+			@foreach($user->events as $events)
+				Event Name:<?php echo $events->name; ?><br>
+				Detail:<?php echo $events->detail; ?><br>
+				Start Date:<?php echo $events->start; ?><br>
+				End Date:<?php echo $events->end; ?><br>
+				<?php if(Auth::check()): ?>
 
-					<!-- event edit modal -->
-					<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="color:black;">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header" style="background: #15212F; color: rgb(218, 215, 215);">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
-					      </div>
-					      <div class="modal-body" style="rgb(231, 231, 231);">
-					        <form action="{{ URL::route('update-event-post') }}" method="post" class="form-horizontal" data-toggle="validator" enctype='multipart/form-data'>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Change Image</label>
-									<div class="col-sm-6">
-										<input type="file" name="image" class="form-control" accept="image/gif, image/jpeg, image/png">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Detail</label>
-									<div class="col-sm-6">
-										<input type="text" name="detail" class="form-control" value="{{$events->detail }}">
-									</div>
-								</div>
+					<?php if(Auth::user()->id == $user->id): ?>
 
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Name</label>
-									<div class="col-sm-6">
-										<input type="text" data-minlength="9" name="name" class="form-control" value="{{ $events->name }}" required>
-									</div>
-								</div>
-								<div class="modal-footer" style="  background: rgb(21, 33, 47);">
-									<input type="hidden" name="event_id" value="{{$events->id}}" >
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							        <button type="submit" class="btn btn-primary">Save changes</button>
-							    </div>
-								{{ Form::token() }}
-							</form>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-				</div>
-				</div>
-			@endif
+						<a href="{{ URL::route('edit-event', $events->id) }}" data-toggle="tooltip" title="Edit Event">
+						  <span class="glyphicon glyphicon-edit"></span>
+						</a>
+
+					<?php endif; ?>
+
+				<?php endif; ?>
+				<hr>
+			@endforeach
 			<div class="row">
 				<div class="col-md-3">
 					<div class="cat-name">

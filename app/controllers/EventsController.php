@@ -238,4 +238,63 @@ $diff=$interval->format('%a');
 			App::abort(404);
 		}
 	}
+
+	public function editEvent($id){
+
+		$event = Events::where("id", $id)->first();
+
+		if(!empty($event)){
+			$data = array(
+				'title' => 'edit event '.$event->name,
+				'id' => 'event',
+				'event' => $event
+			);
+
+			return View::make("frontend.events.edit", $data);
+		}
+		else{
+			App::abort(404);
+		}
+
+	}
+
+	function editEventPost(){
+
+		$event = Events::where("id", Input::get("id"))->first();
+		$file = Input::file('image');
+		if(!empty($file)){
+			$ext = Input::file('image')->getClientOriginalExtension();
+			$name = uniqid().".".$ext;
+			if (!file_exists('assets/img/events')) {
+			    mkdir('assets/img/events');
+			}
+			if (!file_exists('assets/img/events/thumb')) {
+			    mkdir('assets/img/events/thumb');
+			}
+			$upload = Input::file('image')->move("assets/img/events", $name);
+			if($upload){
+				File::delete("assets/img/events/".$event->image);
+				File::delete("assets/img/events/thumb/".$event->image);
+				$img = Image::make('assets/img/events/'.$name);
+				$img->resize(300, null, function ($constraint) {
+				    $constraint->aspectRatio();
+				})->save("assets/img/events/thumb/".$name);
+				$event->image = $name;
+			}
+			else{
+				return Redirect::route("edit-event", $event->id)->with("danger", "Something went wrong. Please try again.");
+			}
+		}
+		$event->name = Input::get("name");
+		$event->detail = Input::get("details");
+
+		if($event->save()){
+			return Redirect::route("edit-event", $event->id)->with("success", "Event Updated.");
+		}
+		else{
+			return Redirect::route("edit-event", $event->id)->with("danger", "Something went wrong. Please try again.");
+		}
+
+	}
+
 }
