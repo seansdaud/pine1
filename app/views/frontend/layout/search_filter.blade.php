@@ -6,7 +6,7 @@
                 <div class="form-group others">
                     <label>Price</label>
                     <select class="form-control" name="price">
-                      <option value="0">Select Minimum Price</option>
+                      <option value="0">Minimum Price</option>
                       <?php for($i=0; $i<=5; $i++): ?>
                         <option value="<?php echo 1000 + (200*$i); ?>"><?php echo 1000 + (200*$i)."+"; ?></option>
                       <?php endfor; ?>
@@ -16,7 +16,7 @@
                 <div class="form-group others">
                     <label>Location</label>
                     <select class="form-control" name="location">
-                      <option value="">Select City</option>
+                      <option value="">City</option>
                       <?php $location = Arena::distinct("address")->get(); ?>
                       <?php foreach($location as $location): ?>
                           <?php if(!empty($location->address)): ?>
