@@ -12,8 +12,8 @@
 				<img class="arena-banner" src="{{ asset($asset) }}">
 			</div>
 			<div class="col-md-6 col-sm-6">
-				<span style="display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
-				<span style="  display: block !important; position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; top: 148px;"></span>
+				<span class="hidden-xs" style=" position: absolute !important; width: 0 !important; height: 0 !important; border-bottom: 368px solid #131D29 !important; border-left: 259px solid transparent !important; left: -273px; top: 0;"></span>
+				<span class="hidden-xs" style=" position: absolute !important; width: 0 !important;  height: 0 !important; border-bottom: 220px solid #182737 !important; border-left: 160px solid transparent !important; right: 15px; top: 148px;"></span>
 				<div class="arena-wrapper">
 					<div class="arena-top">{{ $arena->name }}</div>
 					<div style="color:white; font-family:'Titillium Web', sans-serif;"><span style="color:#F43C12;">>>  </span><span class="lose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span><span style="color:#F43C12;">  //</span></div>
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-sm-4" style="  box-shadow: 4px 19px 16px #888888;">
+		<div class="col-md-4 col-sm-4 shade">
 			<div class="row">
 				<div class="col-md-7 col-sm-7 col-xs-9">
 					<div class="cat-name">
@@ -147,18 +147,18 @@
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                       </div>
-                      <div class="col-md-4 col-md-offset-1 col-sm-4">
+                      <div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
                                                <div class="futsal-name">
                          <?php
                           echo $arena->name; ?>
                          </div>
                       </div>
-                      <div class="col-md-2 col-sm-2">
+                      <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="futsal-name">
                         	<?php echo $date; ?>
                         </div>
                       </div>
-	            <div class="col-md-2 col-sm-2">
+	            <div class="col-md-2 col-sm-3">
 	                <div style="float:right;">
 	                  <nav>
 	                      <ul class="pagination" style="margin:0 !important;">
@@ -231,7 +231,7 @@
 	          	</table>
 	          	</div>
 	          		<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-7 col-xs-9">
 								<div class="cat-name">
 					                <span class="base schedule">Description</span>
 					                <span class="arrow"></span>
@@ -245,7 +245,7 @@
 
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-7 col-xs-9">
 					<div class="cat-name">
 		                <span class="base schedule">Review</span>
 		                <span class="arrow"></span>

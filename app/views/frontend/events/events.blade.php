@@ -23,7 +23,7 @@
 		  	<div>
 		  		<img style="width:100%;" src="{{ asset('assets/img/4982__1753__gerrard1000_5425b91e0e98e402487932.jpg') }}">
 		  	</div>
-		  	<div class="event-eve">pokhara futsal</div>
+		  	<div class="event-eve"><a href="#">pokhara futsal</a></div>
 		  	<div style="  padding: 5px 6%;">
 		  		<div class="feb-bind">
 					<span class="feb">feb</span><br>
@@ -40,7 +40,7 @@
 		  </div>
 		  <div class="item">
 			  <div><img style="width:100%;" src="{{ asset('assets/img/5532297605a48.jpg') }}"></div>
-			  <div class="event-eve">pokhara futsal</div>
+			  <div class="event-eve"><a href="#">pokhara futsal</a></div>
 		  	<div style="  padding: 5px 6%;">
 		  		<div class="feb-bind">
 					<span class="feb">feb</span><br>
@@ -64,7 +64,7 @@
 		  <div>
 		  	<img style="width:100%;" src="{{ asset('assets/img/5636729113_9eff91f11a_b(1).jpg') }}">
 		  </div>
-		  <div class="event-eve">pokhara futsal</div>
+		  <div class="event-eve"><a href="#">pokhara futsal</a></div>
 		  	<div style="  padding: 5px 6%;">
 		  		<div class="feb-bind">
 					<span class="feb">feb</span><br>
@@ -80,7 +80,7 @@
 		  	quis nostrud exercitation</div>
 </div>
 		  <div class="item">
-		  <img style="width:100%;" src="{{ asset('assets/img/stadium.jpg') }}"><div class="event-eve">pokhara futsal</div>
+		  <img style="width:100%;" src="{{ asset('assets/img/stadium.jpg') }}"><div class="event-eve"><a href="#">pokhara futsal</a></div>
 		  	<div style="  padding: 5px 6%;">
 		  		<div class="feb-bind">
 					<span class="feb">feb</span><br>
@@ -105,7 +105,7 @@
 		  <div>
 		  	<img style="width:100%;" src="{{ asset('assets/img/5636729113_9eff91f11a_b(1).jpg') }}">
 		  </div>
-		  <div class="event-eve">pokhara futsal</div>
+		  <div class="event-eve"><a href="#">pokhara futsal</a></div>
 		  	<div style="  padding: 5px 6%;">
 		  		<div class="feb-bind">
 					<span class="feb">feb</span><br>
