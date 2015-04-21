@@ -33,6 +33,7 @@ Book
                                       <div class="modal-header" style="color:#F43C12;">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h1 class="modal-title">Choose Booking Type</h1>
+                                        <h5><a href="{{ URL::route('helpme') }}">Help Me?</a></h5>
                                       </div>
                                       <div class="modal-body" style="color:#F43C12;">
                                       <div class="row">

@@ -2,7 +2,7 @@
 <?php
 		
 			echo "<input type='hidden' id='today' value='".$day."' >";
-			echo "<div class='today'>Today's Date : <span class='dateto'>".$date."</div></span></br>";
+			echo "<div class='today'><span class='dateto'>Today's Date : ".$date."</div></span></br>";
 			echo " <input type='hidden' id='date' value='".$date."' >";
 	?>
 		<input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
