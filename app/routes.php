@@ -410,6 +410,11 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'add-arena-post',
 			'uses' => 'Owner@addingArena'
 		));	
+		/*update game tokens*/
+		Route::post("/o/gameTokens", array(
+			'as' => 'game-token-post',
+			'uses' => 'Owner@gameTokens'
+		));	
 
 	});
 	/*	Locator*/
