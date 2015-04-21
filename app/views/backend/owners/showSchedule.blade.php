@@ -1,13 +1,20 @@
 @extends('backend.layout.main')
 
 @section("content")
-<div class="ajax">
+<h1>
+		<?php $main = Auth::id();
+			$arena=Arena::where('user_id',$main)->first();
+			echo $arena->name;
+		 ?>
+	</h1>
+	<div class="ajax">
+	
 	<?php
 			date_default_timezone_set("Asia/Katmandu"); 
 			$day=date('w') +1; 
 			echo "<input type='hidden' id='today' value='".$day."' >";
 			$date=date("Y-m-d"); 
-			echo "<div class='today'>Today's Date : <span class='dateto'>".$date."</div></span></br>";
+			echo "<div class='today'><span class='dateto'>Today's Date : ".$date."</div></span></br>";
 			echo " <input type='hidden' id='date' value='".$date."' >";
 	?>
 	<input type="hidden" id='base_url' value="<?php echo URL::to('/'); ?>">
@@ -76,7 +83,36 @@
 											</td>
 											@else
 											<td>
-												<input  type="button"  class="btn btn-success"  value="Not booked" >
+													         <!-- Button trigger modal -->
+<button type="button"  class="btn btn-success"   data-toggle="modal" data-target="#myModal">
+Book
+</button>
+                   <div class="modal fade" role="dialog"  id="myModal" >
+                         
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header" style="color:#F43C12;">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h1 class="modal-title">Choose Booking Type</h1>
+                                      </div>
+                                      <div class="modal-body" style="color:#F43C12;">
+                                      <div class="row">
+                                        <div class="col-md-6">
+                        <div class="fa fa btn btn-default ">
+                        	<a  href="{{ URL::route('booknow',1) }}">VIA USERNAME</a>
+                        </div></div>
+										<div class="col-md-6"> 
+                        <div class="fa fa btn btn-default"><a  href="{{ URL::route('booknow', 2) }}">VIA NAME</a>
+                        </div>
+                                      </div>
+                                                                            </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close                                      </div>
+                                    </div><!-- /.modal-content -->
+                                  </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+		
+
 											</td>
 											@endif
 										<td>

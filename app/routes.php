@@ -17,6 +17,11 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
+// helpme
+		Route::get("/helpme", array(
+			'as' => 'helpme',
+			'uses' => 'SiteController@getHelp'
+		));
 	// getLatestMap
 		Route::get("/getCurrent", array(
 			'as' => 'getCurrenthome',
