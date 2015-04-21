@@ -909,6 +909,25 @@ section {
   /* left: -157px; */
   top: 0;
 }
+.navs>li{
+  margin-left: 0 !important;
+}
+.navs>li>a{
+  
+  color: white !important;
+}
+.navs > li.active > a, .navs > li.active > a:hover, .navs > li.active > a:focus{
+  background-color: #1E2835 !important;
+}
+.navs > li > a:hover, .navs > li > a:focus {
+  text-decoration: none;
+  background-color: #C83E1E;
+}
+.navs{
+  background: rgb(244, 60, 18);
+  padding: 9px;
+  margin-bottom: 10px;
+}
 .pagination > li > a, .pagination > li > span {
   padding: 6px 12px;
   margin-left: -1px;
