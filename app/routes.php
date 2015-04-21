@@ -22,6 +22,11 @@ Route::get('/', array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+		Route::get("/error",function(){
+
+		return View::make("frontend.layout.404");
+		}
+		);	
 		Route::get("/getCurrentnow", array(
 			'as' => 'getCurrenthomenow',
 			'uses' => 'SiteController@getCurrentnow'

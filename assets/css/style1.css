@@ -247,6 +247,43 @@ html{
   border-bottom: 1px solid #BBB;
   cursor: text;
 }
+.error-page{
+  background: url(error.jpg) no-repeat center center fixed !important;
+  background-color: gray;
+}
+#main-container {
+    float:left;
+    width:100%;
+    margin:0;
+    padding:0;
+    text-align: center;
+}
+
+.chapter{
+    position: relative;
+    height: 1200px;
+    z-index: 1;
+}
+.gly-calendar{
+    font-size: 25px;
+  color: rgb(244, 60, 18);
+}
+#chapter1{
+  background-image: url(error.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
+}
+#chapter2{
+  background-image: url(http://download.ultradownloads.com.br/wallpaper/94781_Papel-de-Parede-Homer-Simpson--94781_1680x1050.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+
 #wrap > form> input[type="submit"] {
   height: 35px;
   width: 43px;
@@ -903,6 +940,10 @@ section {
   /*border-radius: 45px 5px 42px 2px;*/
   font-size: 14px;
 }
+.names{
+  font-size: 18px;
+  color: rgb(30, 40, 53);
+}
 .parae{
   border: 1px solid rgb(84, 100, 119);
   padding: 5px 10px;
@@ -911,6 +952,34 @@ section {
   border-radius: 4px;
   margin-top: 1px;
   display: block;
+}
+.manager-wrap{
+    background: rgb(30, 40, 53);
+  padding: 12px;
+  margin: 10px auto;
+}
+.disc-wrap{
+  background: rgb(236, 236, 236);
+  padding: 10px;
+  margin: 10px auto;
+  color: rgb(63, 63, 82);
+}
+.par{
+    color: rgb(241, 86, 32);
+  text-align: center;
+  font-size: 18px;
+}
+.img-profilee{
+    width: 175px;
+  height: 175px;
+  display: block;
+  margin: 10px auto;
+  border: 4px solid rgb(221, 221, 221);
+}
+.detail-wrap{
+    background: rgb(236, 236, 236);
+  padding: 15px;
+  margin-bottom: 20px;
 }
 .btn-large{
     padding: 6px 16px !important;
@@ -1097,6 +1166,9 @@ section {
     text-transform: capitalize;
     background: rgb(244, 60, 18);
     padding: 7px;
+}
+.event-eve>a{
+  color: white;
 }
 @media (max-width: 767px){
   body{
