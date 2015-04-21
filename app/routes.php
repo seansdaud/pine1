@@ -17,6 +17,11 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
+// helpme
+		Route::get("/helpme", array(
+			'as' => 'helpme',
+			'uses' => 'SiteController@getHelp'
+		));
 	// getLatestMap
 		Route::get("/getCurrent", array(
 			'as' => 'getCurrenthome',
@@ -415,6 +420,11 @@ Route::group(array("before"=>"owner"), function() {
 			'as' => 'add-arena-post',
 			'uses' => 'Owner@addingArena'
 		));	
+		/*update game tokens*/
+		Route::post("/o/gameTokens", array(
+			'as' => 'game-token-post',
+			'uses' => 'Owner@gameTokens'
+		));	
 
 	});
 	/*	Locator*/
@@ -536,7 +546,11 @@ Route::group(array("before"=>"owner"), function() {
 		'uses' => 'Owner@addArena'
 	));	
 
-		
+	//get city
+		Route::get("/o/getCity", array(
+		'as' => 'get-city',
+		'uses' => 'owner@getCity'
+	));
 	// owner dashboard
 	Route::get("/o/dashboard", array(
 		'as' => 'owner-dashboard',

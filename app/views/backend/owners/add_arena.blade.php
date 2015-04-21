@@ -42,6 +42,7 @@
 					@endforeach
 				</select>
 			</div>
+				<input type="hidden" id="base" value="{{URL::to("/")}}">
 			<div class="col-sm-4 help-block with-errors">
 				@if($errors->has('district'))
 					{{ $errors->first('district') }}
@@ -52,11 +53,11 @@
 			<label class="col-sm-2 control-label">City</label>
 			<div class="col-sm-6">
 				<select id="state" name ="city" required>
-					@foreach ($district as $row)
+					@foreach ($city as $row)
 						@if($row->city==$info->city)
 					 		<option value="{{ $row->city }}" selected>{{$row->city}}</option>
 					 	@else
-					 		<option value="{{ $row->city }}">{{$row->city}}</option>
+					 		<option value="{{ $row->city }}" id="cities">{{$row->city}}</option>
 					 	@endif
 					@endforeach
 				</select>
@@ -68,7 +69,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Location</label>
+			<label class="col-sm-2 control-label">Road</label>
 			<div class="col-sm-6">
 				<input type="text" id="address" name="address" class="form-control" value="{{ $info->address }}">
 			</div>
@@ -105,4 +106,27 @@
 		</div>
 		{{ Form::token() }}
 	</form>
+	<div>
+		<div>
+			enter game token
+		</div>
+		<form action="{{ URL::route('game-token-post') }}" method="post" class="form-horizontal" data-toggle="validator" id="game-token-form">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Number of games</label>
+				<div class="col-sm-6">
+					<input type="number" min="0" id="token" name="token" class="form-control" value="{{$token->booking_points}}">
+				</div>
+				<div class="col-sm-4 help-block with-errors">
+					@if($errors->has('token'))
+						{{ $errors->first('token') }}
+					@endif
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="hidden" value="{{$token->id}}" name="token_id">
+				<input type="submit" value="update" class="col-sm-offset-2 btn btn-default">
+			</div>
+		{{ Form::token() }}
+		</form>
+	</div>
 @stop

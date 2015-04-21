@@ -44,12 +44,16 @@
 					  	<td>{{ $arena->owner->email }}</td>
 					  </tr>
 					  <tr>
-					  	<td>District :</td>
+					  	<td>Location :</td>
 					  	<td>{{ ucfirst($arena->address) }}</td>
 					  </tr>
 					  <tr>
 					  	<td>City :</td>
 					  	<td>{{ ucfirst($arena->city) }}</td>
+					  </tr>
+					  <tr>
+					  	<td>District :</td>
+					  	<td>{{ ucfirst($arena->district) }}</td>
 					  </tr>
 					  <tr>
 					  	<td>Contact No :</td>
@@ -159,7 +163,7 @@
 	                  <nav>
 	                      <ul class="pagination" style="margin:0 !important;">
 	                        <li>
-                               <div class="btn btn-warning schedul" data-type="prev">
+                               <div class="btn btn-warning schedul" data-type="prev" style="background-color:#F15620 !important;">
                                    
                                     <span aria-hidden="true" >&laquo;</span>
                                  </div>
@@ -168,7 +172,7 @@
                                 
                                 <li>
                                   
-                                 <div class="btn btn-warning schedul"   data-type="next">
+                                 <div class="btn btn-warning schedul"   data-type="next" style="background-color:#F15620 !important;">
 
                                     <span aria-hidden="true" >&raquo;</span>
                                   </div>
