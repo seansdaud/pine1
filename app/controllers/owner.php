@@ -99,13 +99,15 @@ class Owner extends BaseController {
 	public function addArena(){
 		$arena=Arena::where("user_id", "=", Auth::user()->id)->get();
 		$city=Location::where("district", "=", $arena[0]->district)->get();
+		$token=Token::where("user_id","=",Auth::user()->id)->first();
 		if(!($arena->isEmpty())){
 				$data = array(
 				'title' => 'add-arena-info',
 				'id' => 'add-arena-info',
 				'info'=>$arena[0],
 				'district'=>Location::select("district")->groupBy("district")->get(),
-				'city'=>$city
+				'city'=>$city,
+				'token'=>$token
 			);
 		}
 		else{
@@ -211,5 +213,25 @@ class Owner extends BaseController {
 		 $city=Location::where("district", "=", $district)->get();
 		 print_r(json_encode($city));
 	}
-
+	public function gameTokens(){
+		$validator=Validator::make(Input::all(),
+			array(
+				'token'=>'required',
+				)
+			);
+		if($validator->fails()){
+			return Redirect::route('add-arena-info')
+				->withErrors($validator);
+		}
+		else{
+			$token = Token::where("id", "=", Input::get('token_id'))->first();
+			$token->booking_points=Input::get("token");
+			if($token->save()){
+				return Redirect::route('add-arena-info')->with('success','updated successfully');
+			}
+			else{
+				return Redirect::route('add-arena-info')->with('warning','Error!! Try again');
+			}
+		}
+	}
 }
