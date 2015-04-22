@@ -181,7 +181,7 @@
 			<div class="logs">
 				@foreach($token as $row)
 					<div style="  border-bottom: 1px solid white; padding: 2px;">
-						<?php $arena=Arena::where("user_id", "=", $row->arena_id)->first(); ?>
+						<?php $arena=Arena::where("id", "=", $row->arena_id)->first(); ?>
 						<div style="  padding-top: 3px; color: rgb(21, 33, 47);">{{$arena->name}}</div>
 						<!-- <span class="times">19</span> -->
 						<div class="badges">
@@ -190,9 +190,10 @@
 								Booked: {{$row->booking_points}}
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<?php $owner=Token::where("user_id","=",$row->arena_id)->first();
-								$badge=intval($row->booking_points/$owner->booking_points); ?>
-								Free Booking: {{$badge}}
+								<?php if(!$arena->booking_points==null): ?>
+									<?php $badge=intval($row->booking_points/$arena->booking_points); ?>
+									 Free Booking: {{$badge}}
+								<?php endif; ?>
 							</div>
 						</div>
 						</div>
