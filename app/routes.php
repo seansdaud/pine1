@@ -17,11 +17,21 @@ Route::get('/', array(
 	'uses' => 'SiteController@index'
 
 ));
+// helpme
+		Route::get("/helpme", array(
+			'as' => 'helpme',
+			'uses' => 'SiteController@getHelp'
+		));
 	// getLatestMap
 		Route::get("/getCurrent", array(
 			'as' => 'getCurrenthome',
 			'uses' => 'SiteController@getCurrent'
 		));	
+		Route::get("/error",function(){
+
+		return View::make("frontend.layout.404");
+		}
+		);	
 		Route::get("/getCurrentnow", array(
 			'as' => 'getCurrenthomenow',
 			'uses' => 'SiteController@getCurrentnow'
@@ -409,6 +419,11 @@ Route::group(array("before"=>"owner"), function() {
 		Route::post("/o/addingArena", array(
 			'as' => 'add-arena-post',
 			'uses' => 'Owner@addingArena'
+		));	
+		/*update game tokens*/
+		Route::post("/o/gameTokens", array(
+			'as' => 'game-token-post',
+			'uses' => 'Owner@gameTokens'
 		));	
 
 	});

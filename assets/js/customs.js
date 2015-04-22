@@ -707,8 +707,7 @@ $(document).ready(function(){
 					 $("#state").html("");
 					for (var i =0; i < result.length; i++) {
 						 $("#state").append("<option value="+result[i].city+">"+result[i].city+"</option>");
-					};
-       
-    }});
-});
-});
+					}; 
+	    }});
+	});
+	});

@@ -169,7 +169,6 @@ class AccountController extends BaseController {
 	
 
 		if($user){
-
 			Mail::send('emails.auth.activate', 
 					array(
 						'link' => URL::route('activate', $user->code),

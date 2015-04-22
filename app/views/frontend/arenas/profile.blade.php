@@ -2,7 +2,7 @@
 
 @section("content")
 	<div class="row">
-		<div class="col-md-4 col-sm-4" style="  box-shadow: 4px 19px 16px #888888;">
+		<div class="col-md-4 col-sm-4 shade">
 			<div class="row">
 				<div class="col-md-7 col-sm-7 col-xs-9">
 					<div class="cat-name">
@@ -88,23 +88,23 @@
                         <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
                         </div>
                       </div>
-                      <div class="col-md-4 col-md-offset-1 col-sm-4">
+                      <div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
                                                <div class="futsal-name">
                          <?php
                           echo $arena->name; ?>
                          </div>
                       </div>
-                      <div class="col-md-2 col-sm-2">
+                      <div class="col-md-2 col-sm-4 col-xs-6">
                         <div class="futsal-name">
                         	<?php echo $date; ?>
                         </div>
                       </div>
-	            <div class="col-md-2 col-sm-2">
+	            <div class="col-md-2 col-sm-3">
 	                <div style="float:right;">
 	                  <nav>
 	                      <ul class="pagination" style="margin:0 !important;">
 	                        <li>
-                               <div class="btn btn-warning schedul" data-type="prev">
+                               <div class="btn btn-warning schedul" data-type="prev" style="background-color:#F15620 !important;">
                                    
                                     <span aria-hidden="true" >&laquo;</span>
                                  </div>
@@ -113,7 +113,7 @@
                                 
                                 <li>
                                   
-                                 <div class="btn btn-warning schedul"   data-type="next">
+                                 <div class="btn btn-warning schedul"   data-type="next" style="background-color:#F15620 !important;">
 
                                     <span aria-hidden="true" >&raquo;</span>
                                   </div>
@@ -172,7 +172,7 @@
 	          	</table>
 	          	</div>
 	          		<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-7 col-xs-9">
 								<div class="cat-name">
 					                <span class="base schedule">Description</span>
 					                <span class="arrow"></span>
@@ -186,7 +186,7 @@
 
 
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-7 col-xs-9">
 					<div class="cat-name">
 		                <span class="base schedule">Review</span>
 		                <span class="arrow"></span>

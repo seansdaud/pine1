@@ -167,6 +167,10 @@ class Admin extends BaseController {
 					'name'=>Input::get("name"),
 					'user_id'=>$owner_id
 					));
+			$token=Token::create(array(
+				'user_id'=>$owner_id,
+				'booking_points'=>null
+				));
 			Mail::send('emails.new_owner', 
 					array(
 						'username' => Input::get("username"),

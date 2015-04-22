@@ -40,7 +40,7 @@ class EventsController extends BaseController {
 			);
 
 				if($event){
-								$user=User::where("id",Input::get("master"))->first();
+		$user=User::where("id",Input::get("master"))->first();
 		$userevent=new User;
 		$userevent->name=Input::get("name");
 		$userevent->contact=$user->contact;
@@ -150,7 +150,16 @@ $diff=$interval->format('%a');
 											
 					}
 				}
-			return Redirect::route("owner-events")->with("success", "Event Successfully created.");
+				$user=User::where("id",Input::get("master"))->first();
+				Mail::send('emails.event_created',array(
+											'username'=>$user->name,
+											'event_name'=>Input::get("name"),
+											'start_date'=>Input::get("getdate1"),
+											'end_date'=>Input::get("getdate2")
+									), function($message) use ($user){
+									$message->to($user->email, $user->name)->subject('Event Master');
+								});
+					return Redirect::route("owner-events")->with("success", "Event Successfully created.");
 		}
 		return Redirect::route("owner-event-new")->withInput()->with("danger", "Something went wrong. Please try again.");
 	}
@@ -224,7 +233,9 @@ $diff=$interval->format('%a');
 				$data = array(
 					'title' => $event->name,
 					'event' => $event,
-					'id' => 'event'
+					'id' => 'event',
+					'image' => $event->image,
+					'folder' => 'events'
 				);
 
 				return View::make("frontend.events.profile", $data);

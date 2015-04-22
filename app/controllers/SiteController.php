@@ -220,5 +220,11 @@ class SiteController extends BaseController {
 
 		return View::make("frontend.search", $data);
 	}
-
+	public function getHelp(){
+			$data = array(
+			'id' => 'help',
+			'title' => 'Help Me'
+		);
+		return View::make('frontend.helpme', $data);
+	}
 }
