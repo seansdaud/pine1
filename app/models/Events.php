@@ -5,4 +5,9 @@ class Events extends \Eloquent {
 	protected $fillable = ['name', 'owner_id', 'start', 'end', 'image', 'detail', 'user_id','event_id'];
 	  use SoftDeletingTrait;
 	//protected $dates = ['deleted_at'];
+
+	public function manager(){
+		return $this->belongsTo("User", "user_id", "id");
+	}
+
 }
