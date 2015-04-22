@@ -30,7 +30,9 @@ class SiteController extends BaseController {
 		$data = array(
 			'id' => 'arenas',
 			'title' => $arena->first()->name,
-			'arena' => $arena->first()
+			'arena' => $arena->first(),
+			'image' => $arena->first()->banner,
+			'folder' => 'arena'
 		);
 
 		return View::make("frontend.arenas.profile", $data);

@@ -169,11 +169,6 @@ class AccountController extends BaseController {
 	
 
 		if($user){
-			$player_id=DB::getPdo()->lastInsertId();
-			$token=Token::create(array(
-				'user_id'=>$player_id,
-				'booking_points'=>null
-				));
 			Mail::send('emails.auth.activate', 
 					array(
 						'link' => URL::route('activate', $user->code),

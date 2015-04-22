@@ -179,34 +179,25 @@
 				</div>
 			</div>
 			<div class="logs">
-				<div style="  border-bottom: 1px solid white; padding: 2px;">
-					<div style="  padding-top: 3px; color: rgb(21, 33, 47);">pokhara futsal arena</div>
-					<!-- <span class="times">19</span> -->
-					<div class="badges">
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							Booked: 10
+				@foreach($token as $row)
+					<div style="  border-bottom: 1px solid white; padding: 2px;">
+						<?php $arena=Arena::where("user_id", "=", $row->arena_id)->first(); ?>
+						<div style="  padding-top: 3px; color: rgb(21, 33, 47);">{{$arena->name}}</div>
+						<!-- <span class="times">19</span> -->
+						<div class="badges">
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								Booked: {{$row->booking_points}}
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<?php $owner=Token::where("user_id","=",$row->arena_id)->first();
+								$badge=intval($row->booking_points/$owner->booking_points); ?>
+								Free Booking: {{$badge}}
+							</div>
 						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							Badges: 6
-						</div>
-					</div>
-					</div>
-				</div>
-				<div style="  border-bottom: 1px solid white; padding: 2px;">
-					<div style="  padding-top: 3px; color: rgb(21, 33, 47);">pokhara futsal arena</div>
-					<!-- <span class="times">19</span> -->
-					<div class="badges">
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							Booked: 10
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							Badges: 6
 						</div>
 					</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 		</div>

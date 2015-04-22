@@ -18,7 +18,7 @@
                     <div class="form-group others" style="width:100% !important;">
                     <select class="form-control" style="width:100%;" name="location">
                       <option value="">City</option>
-                      <?php $location = Arena::distinct("address")->get(); ?>
+                      <?php $location = Arena::select("address")->groupBy("address")->get(); ?>
                       <?php foreach($location as $location): ?>
                           <?php if(!empty($location->address)): ?>
                             <option><?php echo $location->address; ?></option>
