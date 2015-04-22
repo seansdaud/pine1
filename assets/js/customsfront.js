@@ -1,12 +1,5 @@
 $(document).ready(function(){ 
-$(".modal").on("hidden.bs.modal",function(e){
-  $(".first-dai").show();
-  $(".second-dai").hide();
-});
-// $(".second-dai").ajaxStart(function () {
-//   alert("As");
-//     $(this).hide(); //shows a spinner
-// });
+
   $(document).on('click', "#agree", function(e) {
 
             if($(this).prop('checked')== true){
@@ -18,8 +11,6 @@ $(".modal").on("hidden.bs.modal",function(e){
                $("#submitId").prop('disabled',true);
             }
           });
-
-  $(".second-dai").hide();
 	$(document).on('click', ".schedul", function(e) {
 	     	var url = $('#base_url').val();
      	var day = $('#today').val();
@@ -151,8 +142,3 @@ function myerror(){
     else { 
             x.innerHTML = "Geolocation is not supported by this browser.";
     }
-
-function mychange(var1){
-  $(".first-dai").hide();
-  $("."+var1).show();
-}

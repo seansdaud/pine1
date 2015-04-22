@@ -188,6 +188,7 @@ class UserController extends BaseController {
 			);
 
 			$context  = stream_context_create($opts);
+			
 			$result = file_get_contents('https://esewa.com.np/epay/transrec', false, $context);
 			$xml=simplexml_load_string($result);
 			$response = get_object_vars($xml);
@@ -195,10 +196,12 @@ class UserController extends BaseController {
 			$response = trim(preg_replace('/\s+/', '', $response));
 			
 			if($response == 'Success'){
-				echo "here i am";
+
+				print_r($response);
+				die();
 			}
 			else{
-				echo"not here";
+				print_r($postdata);
 				print_r($response);
 			}
 	}
