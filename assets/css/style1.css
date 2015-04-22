@@ -914,19 +914,24 @@ section {
 }
 .navs>li>a{
   
-  color: white !important;
+  color: rgb(60, 64, 92) !important;
 }
 .navs > li.active > a, .navs > li.active > a:hover, .navs > li.active > a:focus{
-  background-color: #1E2835 !important;
+  background-color: #A9B0BA !important;
 }
 .navs > li > a:hover, .navs > li > a:focus {
   text-decoration: none;
-  background-color: #C83E1E;
+  background-color: #C4C4C5;
 }
 .navs{
-  background: rgb(244, 60, 18);
-  padding: 9px;
+  background: rgb(228, 228, 228);
+  padding: 9px 0px 10px 10px;
   margin-bottom: 10px;
+}
+.tab-cost{
+    background: rgb(169, 176, 186);
+  padding: 10px;
+  color: rgb(255, 255, 255);  
 }
 .pagination > li > a, .pagination > li > span {
   padding: 6px 12px;
@@ -1203,6 +1208,12 @@ section {
     font-weight: normal; 
     font-size: 19px;
   }
+  .btn-large {
+  padding: 6px 16px !important;
+  background-color: #F15620 !important;
+  border-color: #F15620 !important;
+  margin-bottom: 10px;
+}
   .lose{
     font-size: 12px;
   }

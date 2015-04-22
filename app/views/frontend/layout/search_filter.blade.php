@@ -3,19 +3,20 @@
 
         <div class="col-md-8 col-sm-8">
             <form method="get" action="{{ URL::route('search-arenas') }}" class="form-inline">
-                <div class="form-group others">
-                    <label>Price</label>
-                    <select class="form-control" name="price">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group others" style="width:100% !important;">
+                    <select class="form-control" style="width:100%;" name="price">
                       <option value="0">Minimum Price</option>
                       <?php for($i=0; $i<=5; $i++): ?>
                         <option value="<?php echo 1000 + (200*$i); ?>"><?php echo 1000 + (200*$i)."+"; ?></option>
                       <?php endfor; ?>
                     </select>
                 </div>
-
-                <div class="form-group others">
-                    <label>Location</label>
-                    <select class="form-control" name="location">
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group others" style="width:100% !important;">
+                    <select class="form-control" style="width:100%;" name="location">
                       <option value="">City</option>
                       <?php $location = Arena::distinct("address")->get(); ?>
                       <?php foreach($location as $location): ?>
@@ -25,14 +26,30 @@
                       <?php endforeach; ?>
                     </select>
                 </div>
-
-                <div class="form-group others">
-                    <label>Time</label>
-                    <input type="text" id="start_time" name="start_time" placeholder="From" class="form-control" style="width:90px;">
-                    <input type="text" id="end_time" name="end_time" placeholder="To" class="form-control" style="width:90px;">
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group others">
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <input type="text" style="width:100%;" id="start_time" name="start_time" placeholder="From" class="form-control" >
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <input type="text" style="width:100%;" id="end_time" name="end_time" placeholder="To" class="form-control">
+                      </div>
+                    </div>
                 </div>
+                  </div>
+                  <div class="col-md-2">
 
-                <button type="submit" class="btn btn-success btn-large">Search</button>
+                <button type="submit" style="width:100% !important;" class="btn btn-success btn-large">Search</button>                    
+                  </div>
+                </div>
+                
+
+                
+
+                
+
 
             </form>
         </div>
