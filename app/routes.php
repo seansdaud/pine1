@@ -198,7 +198,7 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'update-profile-post',
 			'uses' => 'UserController@profileUpdated'
 		));	
-		
+				
 		/*Add Review For Arenas*/
 		Route::post("/review", array(
 			'as' => 'add-review',
@@ -223,7 +223,17 @@ Route::group(array("before"=>"auth"), function() {
 		));
 
 	});
+	/*Success Condition*/
+		Route::get("/success", array(
+			'as' => 'success',
+			'uses' => 'UserController@success'
+		));
 
+	/*Booking  For Arenas  via  EPay*/
+		Route::get("/book", array(
+			'as' => 'book',
+			'uses' => 'UserController@book'
+		));
 	/*Resend Email*/
 	Route::get("/resend-email", array(
 		'as' => 'resend-email',

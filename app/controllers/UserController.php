@@ -159,4 +159,47 @@ class UserController extends BaseController {
 			}
 		}
 	}
+	public function book(){
+
+		$data=array(
+			'id'=>'book',
+			'title'=>'Book'
+			);
+		return View::make("frontend.user.book", $data);
+	}
+	public function success(){
+		if(isset($_GET['refId'])){
+			//Verify the transaction from ESewa
+			$postdata = http_build_query(
+			    array(
+			        'amt' => $_GET['amt'],
+			        'pid' => $_GET['oid'],
+			        'rid' => $_GET['refId'],
+			        'scd' => 'futsal'
+			    )
+			);
+			$opts = array('http' =>
+			    array(
+			        'method'  => 'POST',
+			        'header'  => 'Content-type: application/x-www-form-urlencoded',
+			        'content' => $postdata
+			    )
+			);
+
+			$context  = stream_context_create($opts);
+			$result = file_get_contents('http://dev.esewa.com.np/epay/transrec', false, $context);
+			$xml=simplexml_load_string($result);
+			$response = get_object_vars($xml);
+			$response=($response['response_code']);
+			$response = trim(preg_replace('/\s+/', '', $response));
+			
+			if($response == 'Success'){
+				echo "here i am";
+			}
+	}
+	
+	else{
+		echo "not Done";
+	}
+		}
 }

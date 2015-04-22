@@ -162,6 +162,9 @@
              // x.innerHTML = "data: "+ data;
               // console.log(position.coords.latitude);
               // console.log(position.coords.longitude);
+              
+  $(".second-dai").hide();
+
                  console.log(data);
                 };
            
@@ -202,6 +205,9 @@
                     $('.ajax-caller').html(result);
             // $(".ajax").html(result);
               $('#id').html("");
+              
+  $(".second-dai").hide();
+
                             if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(showPosition1);
     }

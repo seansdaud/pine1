@@ -1,4 +1,25 @@
 $(document).ready(function(){ 
+$(".modal").on("hidden.bs.modal",function(e){
+  $(".first-dai").show();
+  $(".second-dai").hide();
+});
+// $(".second-dai").ajaxStart(function () {
+//   alert("As");
+//     $(this).hide(); //shows a spinner
+// });
+  $(document).on('click', "#agree", function(e) {
+
+            if($(this).prop('checked')== true){
+              
+               $("#submitId").prop('disabled',false);
+            }
+            else{
+
+               $("#submitId").prop('disabled',true);
+            }
+          });
+
+  $(".second-dai").hide();
 	$(document).on('click', ".schedul", function(e) {
 	     	var url = $('#base_url').val();
      	var day = $('#today').val();
@@ -26,6 +47,8 @@ $(document).ready(function(){
 				},
 		success:function(data)
 				{
+
+  $(".second-dai").hide();
 					if (data=="here") {
 
 						$('#id').html("");
@@ -71,7 +94,12 @@ function myFunction(tel){
 	swal({   title: "Call Here For Booking!", type:"success",  text: "Phone Number:"+tel,     showConfirmButton: true });
 						
 }
-
+function myerror(){
+   $('.modal').modal('hide');
+      var url = $('#base_url').val();
+  swal({   title: "Log In First !!!", type:"error",  text: "Don't Have an Account? <a href='"+url+"/register'>Register here!</a>", html:true,    showConfirmButton: true });
+            
+}
 
     function showPosition1(position) {
       var base_url= $('#base_url').val();
@@ -99,7 +127,7 @@ function myFunction(tel){
                 //	alert(data);
                 $('.distance-ajax').html("<div  class='schedule' style='margin-left: 15%;'>Distance From Here:"+data["result"][0]['distances'].toFixed(2)+"miles</div>");
             $('.distance-ajax').append(" <input type='hidden' id='dist' value='"+data["result"][0]['distances'].toFixed(2)+"'>");
-
+    $(".second-dai").hide();
              // x.innerHTML = "data: "+ data;
               // console.log(position.coords.latitude);
               // console.log(position.coords.longitude);
@@ -123,3 +151,8 @@ function myFunction(tel){
     else { 
             x.innerHTML = "Geolocation is not supported by this browser.";
     }
+
+function mychange(var1){
+  $(".first-dai").hide();
+  $("."+var1).show();
+}
