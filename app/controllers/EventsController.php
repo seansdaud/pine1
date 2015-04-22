@@ -233,7 +233,9 @@ $diff=$interval->format('%a');
 				$data = array(
 					'title' => $event->name,
 					'event' => $event,
-					'id' => 'event'
+					'id' => 'event',
+					'image' => $event->image,
+					'folder' => 'events'
 				);
 
 				return View::make("frontend.events.profile", $data);
