@@ -18,25 +18,30 @@
 		</div>
 	</div>
 	</div>
-	<div>
-		<div class="col-md-4">
-			<div role="tabpanel">
-
-			  <!-- Nav tabs -->
-			  <ul class="nav navs nav-pills nav-stacked" role="tablist">
-			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Booking</a></li>
-			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Payment</a></li>
-			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Badges</a></li>
-			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">App</a></li>
-			  </ul>
-
-			  <!-- Tab panes -->
-			  
-
-			</div>
-		</div>
+	<div class="row">
 		<div class="col-md-8">
-			<div class="tab-content">
+			<div class="row">
+			  <div class="col-md-3 col-sm-4 col-xs-8">
+			    
+			    <div class="cat-name" style="margin-bottom:17px;">
+			    <span class="base"><a href="http://localhost/pine1/events" class="schedule">Catagories</a></span>
+			    <span class="arrow" style=" display: block !important; position: absolute !important; width: 0 !important; height: 0 !important; border-top: 40px solid #F15620 !important; border-right: 40px solid transparent !important; right: -25px; top: 0"></span>
+			    </div>
+			  </div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div role="tabpanel">
+					  <ul class="nav navs nav-pills nav-stacked" role="tablist">
+					    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Booking</a></li>
+					    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Payment</a></li>
+					    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Badges</a></li>
+					    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">App</a></li>
+					  </ul>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="tab-content tab-cost">
 			    <div role="tabpanel" class="tab-pane active" id="home">occaecat cupidatat non
 			    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -67,6 +72,16 @@
 			    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 			    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 			  </div>
+				</div>
+			</div>
+			
+
+			 
+
+			
+		</div>
+		<div class="col-md-4">
+			
 		</div>
 	</div>
 
