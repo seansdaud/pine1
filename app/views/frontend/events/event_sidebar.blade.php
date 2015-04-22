@@ -7,11 +7,14 @@
     </div>
   </div>
 </div>
-<?php $events = Events::take(3)->get(); ?>
+<?php if(!empty($owner_id)): ?>
+    <?php $events = Events::where("owner_id", $owner_id)->take(3)->get(); ?>
+<?php else: ?>
+    <?php $events = Events::take(3)->get(); ?>
+<?php endif; ?>
 @foreach($events as $event)
     <?php $address = User::find($event->owner_id)->arena()->first(); ?>
-	<div class="CoverImage FlexEmbed FlexEmbed--2by1 background"
-	     style="background-image:url(assets/css/football.jpg)">
+	<div class="CoverImage FlexEmbed FlexEmbed--2by1 background" <?php if(!empty($event->image)): ?>style="background-image:url({{ URL::asset('assets/img/events/thumb/'.$event->image) }})"<?php endif; ?>>
          <?php $slug = Str::slug($event->name); ?>
 	     <a href="{{ URL::route('event', array($event->id, $slug)) }}"><div class="text-over">{{ $event->name }}</div></a>
 	     <div class="sept">{{ $address->address }}</div>

@@ -14,10 +14,10 @@
                 </div>
 
                 <div class="form-group others">
-                    <label>Location</label>
+                    <label>City</label>
                     <select class="form-control" name="location">
-                      <option value="">City</option>
-                      <?php $location = Arena::distinct("address")->get(); ?>
+                      <option value="">All</option>
+                      <?php $location = Arena::select("address")->groupBy("address")->get(); ?>
                       <?php foreach($location as $location): ?>
                           <?php if(!empty($location->address)): ?>
                             <option><?php echo $location->address; ?></option>
