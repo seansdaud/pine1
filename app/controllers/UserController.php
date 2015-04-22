@@ -172,6 +172,7 @@ class UserController extends BaseController {
 			//Verify the transaction from ESewa
 			$postdata = http_build_query(
 			    array(
+			    	'm'=>'ver',
 			        'amt' => $_GET['amt'],
 			        'pid' => $_GET['oid'],
 			        'rid' => $_GET['refId'],
@@ -187,7 +188,7 @@ class UserController extends BaseController {
 			);
 
 			$context  = stream_context_create($opts);
-			$result = file_get_contents('http://dev.esewa.com.np/epay/transrec', false, $context);
+			$result = file_get_contents('https://esewa.com.np/epay/transrec', false, $context);
 			$xml=simplexml_load_string($result);
 			$response = get_object_vars($xml);
 			$response=($response['response_code']);
@@ -196,10 +197,27 @@ class UserController extends BaseController {
 			if($response == 'Success'){
 				echo "here i am";
 			}
+			else{
+				echo"not here";
+				print_r($response);
+			}
 	}
 	
 	else{
 		echo "not Done";
 	}
 		}
+
+		public function failure(){
+			
+			echo "i am fail";
+
+
+
+		}
+
+
+
+
+
 }

@@ -114,7 +114,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Number of games</label>
 				<div class="col-sm-6">
-					<input type="number" min="0" id="token" name="token" class="form-control" value="{{$token->booking_points}}">
+					<input type="number" min="0" id="token" name="token" class="form-control" value="{{$info->booking_points}}">
 				</div>
 				<div class="col-sm-4 help-block with-errors">
 					@if($errors->has('token'))
@@ -123,7 +123,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="hidden" value="{{$token->id}}" name="token_id">
+				<input type="hidden" value="{{$info->id}}" name="token_id">
 				<input type="submit" value="update" class="col-sm-offset-2 btn btn-default">
 			</div>
 		{{ Form::token() }}

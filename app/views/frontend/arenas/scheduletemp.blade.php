@@ -92,7 +92,7 @@ Book
                                                           <input value="futsal" name="scd" type="hidden">
                                                           <input name="pid" value="newasd"   type="hidden" >
                                                           <input value="<?php echo URL::to('/success/'); ?>?q=su" type="hidden" name="su">
-                                                          <input value="<?php echo URL::to('/success/'); ?>?q=fu" type="hidden" name="fu">
+                                                          <input value="<?php echo URL::to('/failure/'); ?>?q=fu" type="hidden" name="fu">
                                                                                                             <div class="form-group">
                                                           <input type="submit" id="submitId" class="btn btn-primary" disabled="disabled" value="Accept & Book" />
                                                         </div>

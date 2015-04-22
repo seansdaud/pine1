@@ -173,7 +173,7 @@
 			<div class="row">
 				<div class="col-md-7">
 					<div class="cat-name">
-		                <span class="base schedule">Book logs</span>
+		                <span class="base schedule" style="margin-bottom:10px;">Book logs</span>
 		                <span class="arrow"></span>
 	                </div>
 				</div>
@@ -181,7 +181,7 @@
 			<div class="logs">
 				@foreach($token as $row)
 					<div style="  border-bottom: 1px solid white; padding: 2px;">
-						<?php $arena=Arena::where("user_id", "=", $row->arena_id)->first(); ?>
+						<?php $arena=Arena::where("id", "=", $row->arena_id)->first(); ?>
 						<div style="  padding-top: 3px; color: rgb(21, 33, 47);">{{$arena->name}}</div>
 						<!-- <span class="times">19</span> -->
 						<div class="badges">
@@ -190,9 +190,10 @@
 								Booked: {{$row->booking_points}}
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<?php $owner=Token::where("user_id","=",$row->arena_id)->first();
-								$badge=intval($row->booking_points/$owner->booking_points); ?>
-								Free Booking: {{$badge}}
+								<?php if(!$arena->booking_points==null): ?>
+									<?php $badge=intval($row->booking_points/$arena->booking_points); ?>
+									 Free Booking: {{$badge}}
+								<?php endif; ?>
 							</div>
 						</div>
 						</div>
@@ -202,7 +203,7 @@
 		</div>
 		</div>
 		<div class="col-md-8 col-sm-8">
-			<div class="row">
+			<div class="row" style="margin-bottom:10px;">
 				<div class="col-md-4">
 					<div class="cat-name">
 						<span class="base schedule">Your Events</span>
@@ -210,6 +211,78 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<div class="item2">
+					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<div style="  padding: 5px 6%;">
+					  		<div class="feb-bind">
+								<span class="feb">Feb</span><br>
+								<span class="date">8</span>
+							</div>
+							<div class="wrapper-eve">
+								<div><span class="glyphicon glyphicon-time"></span>
+									5:00 Am - 3:00 Pm
+								</div>
+								<div><span class="glyphicon glyphicon-map-marker"></span>
+									Gairapatan
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+								</div>
+							</div>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="item2">
+					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<div style="  padding: 5px 6%;">
+					  		<div class="feb-bind">
+								<span class="feb">Feb</span><br>
+								<span class="date">8</span>
+							</div>
+							<div class="wrapper-eve">
+								<div><span class="glyphicon glyphicon-time"></span>
+									5:00 Am - 3:00 Pm
+								</div>
+								<div><span class="glyphicon glyphicon-map-marker"></span>
+									Gairapatan
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+								</div>
+							</div>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="item2">
+					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<div style="  padding: 5px 6%;">
+					  		<div class="feb-bind">
+								<span class="feb">Feb</span><br>
+								<span class="date">8</span>
+							</div>
+							<div class="wrapper-eve">
+								<div><span class="glyphicon glyphicon-time"></span>
+									5:00 Am - 3:00 Pm
+								</div>
+								<div><span class="glyphicon glyphicon-map-marker"></span>
+									Gairapatan
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+								</div>
+							</div>
+					  	</div>
+
+					  	
+					</div>
+
+				</div>
+			</div>
+
 			@foreach($user->events as $events)
 				Event Name:<?php echo $events->name; ?><br>
 				Detail:<?php echo $events->detail; ?><br>

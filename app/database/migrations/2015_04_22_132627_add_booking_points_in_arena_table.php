@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOwnerIdInTokenTable extends Migration {
+class AddBookingPointsInArenaTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class AddOwnerIdInTokenTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('tokens', function(Blueprint $table)
+		Schema::table('arenas', function(Blueprint $table)
 		{
-				$table->integer('arena_id')->nullable();
+				$table->integer('booking_points')->nullable();
 		});
 	}
 

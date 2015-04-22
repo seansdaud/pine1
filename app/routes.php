@@ -228,6 +228,11 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'success',
 			'uses' => 'UserController@success'
 		));
+		/*Failure Condition*/
+		Route::get("/failure", array(
+			'as' => 'failure',
+			'uses' => 'UserController@failure'
+		));
 
 	/*Booking  For Arenas  via  EPay*/
 		Route::get("/book", array(
