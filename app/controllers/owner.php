@@ -99,15 +99,13 @@ class Owner extends BaseController {
 	public function addArena(){
 		$arena=Arena::where("user_id", "=", Auth::user()->id)->get();
 		$city=Location::where("district", "=", $arena[0]->district)->get();
-		$token=Token::where("user_id","=",Auth::user()->id)->first();
 		if(!($arena->isEmpty())){
 				$data = array(
 				'title' => 'add-arena-info',
 				'id' => 'add-arena-info',
 				'info'=>$arena[0],
 				'district'=>Location::select("district")->groupBy("district")->get(),
-				'city'=>$city,
-				'token'=>$token
+				'city'=>$city
 			);
 		}
 		else{
@@ -224,7 +222,7 @@ class Owner extends BaseController {
 				->withErrors($validator);
 		}
 		else{
-			$token = Token::where("id", "=", Input::get('token_id'))->first();
+			$token = Arena::where("id", "=", Input::get('token_id'))->first();
 			$token->booking_points=Input::get("token");
 			if($token->save()){
 				return Redirect::route('add-arena-info')->with('success','updated successfully');
