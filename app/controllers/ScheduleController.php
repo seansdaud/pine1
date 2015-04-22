@@ -313,6 +313,28 @@ class ScheduleController extends BaseController {
 					$arena=Arena::where("user_id",$booking_info->arena_id)->first();
 					$user_id=Input::get('user_id');
 					$user_info=User::where("id", "=", $user_id)->first();
+					$token=Token::where(array("user_id"=>$user_id,"arena_id"=>$arena->id))->get();
+					if($token->isEmpty()){
+						// Token::create(
+						// 		array(
+						// 			'user_id' => $user_id,
+						// 			'arena_id' => $arena->id,
+						// 			'booking_points' => 1
+						// 		)
+						// 	);
+						$tok= new Token;
+						$tok->user_id=$user_id;
+						$tok->arena_id=$arena->id;
+						$tok->booking_points=1;
+						$tok->save();
+					}
+					else{
+						$data=array(
+							'booking_points'=>$token[0]->booking_points + 1
+							);
+						Token::where('id', $token[0]->id)->update($data);
+					}
+
 					if (!empty($user_info->email)){
 								Mail::send('emails.booked',array(
 									'username'=>$user_info->name,
