@@ -1191,7 +1191,17 @@ section {
     background: rgb(244, 60, 18);
     padding: 7px;
 }
-.event-eve>a{
+.btn-events{
+    margin-top: 8px;
+  background: rgb(21, 33, 47);
+  color: rgb(242, 242, 242);
+  border: 1px solid black;
+}
+.item2{
+  margin-bottom: 15px;
+  background: rgb(236, 236, 236);
+}
+.event-eve{
   color: white;
 }
 @media (max-width: 767px){
@@ -1212,7 +1222,7 @@ section {
   padding: 6px 16px !important;
   background-color: #F15620 !important;
   border-color: #F15620 !important;
-  margin-bottom: 10px;
+  margin-bottom: 10px  !important;
 }
   .lose{
     font-size: 12px;

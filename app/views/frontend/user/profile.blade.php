@@ -173,7 +173,7 @@
 			<div class="row">
 				<div class="col-md-7">
 					<div class="cat-name">
-		                <span class="base schedule">Book logs</span>
+		                <span class="base schedule" style="margin-bottom:10px;">Book logs</span>
 		                <span class="arrow"></span>
 	                </div>
 				</div>
@@ -202,7 +202,7 @@
 		</div>
 		</div>
 		<div class="col-md-8 col-sm-8">
-			<div class="row">
+			<div class="row" style="margin-bottom:10px;">
 				<div class="col-md-4">
 					<div class="cat-name">
 						<span class="base schedule">Your Events</span>
@@ -210,6 +210,78 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<div class="item2">
+					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<div style="  padding: 5px 6%;">
+					  		<div class="feb-bind">
+								<span class="feb">Feb</span><br>
+								<span class="date">8</span>
+							</div>
+							<div class="wrapper-eve">
+								<div><span class="glyphicon glyphicon-time"></span>
+									5:00 Am - 3:00 Pm
+								</div>
+								<div><span class="glyphicon glyphicon-map-marker"></span>
+									Gairapatan
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+								</div>
+							</div>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="item2">
+					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<div style="  padding: 5px 6%;">
+					  		<div class="feb-bind">
+								<span class="feb">Feb</span><br>
+								<span class="date">8</span>
+							</div>
+							<div class="wrapper-eve">
+								<div><span class="glyphicon glyphicon-time"></span>
+									5:00 Am - 3:00 Pm
+								</div>
+								<div><span class="glyphicon glyphicon-map-marker"></span>
+									Gairapatan
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+								</div>
+							</div>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="item2">
+					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<div style="  padding: 5px 6%;">
+					  		<div class="feb-bind">
+								<span class="feb">Feb</span><br>
+								<span class="date">8</span>
+							</div>
+							<div class="wrapper-eve">
+								<div><span class="glyphicon glyphicon-time"></span>
+									5:00 Am - 3:00 Pm
+								</div>
+								<div><span class="glyphicon glyphicon-map-marker"></span>
+									Gairapatan
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+								</div>
+							</div>
+					  	</div>
+
+					  	
+					</div>
+
+				</div>
+			</div>
+
 			@foreach($user->events as $events)
 				Event Name:<?php echo $events->name; ?><br>
 				Detail:<?php echo $events->detail; ?><br>
