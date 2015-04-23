@@ -160,10 +160,24 @@ class UserController extends BaseController {
 		}
 	}
 	public function book(){
+		Session::put('owner', Input::get("admin"));
+		Session::put('date', Input::get("date"));
 
+		Session::put('schedule', Input::get("schedule"));
+		Session::put('price', Input::get("amt"));
 		$data=array(
 			'id'=>'book',
-			'title'=>'Book'
+			'title'=>'Book',
+			'admin'=>Input::get("admin"),
+
+			'name'=>Input::get("admin_name"),
+			'schedule'=>Input::get("schedule"),
+
+			'time'=>Input::get("time"),
+
+			'date'=>Input::get("date"),
+			'price'=>Input::get("amt"),
+
 			);
 		return View::make("frontend.user.book", $data);
 	}
@@ -197,13 +211,14 @@ class UserController extends BaseController {
 			
 			if($response == 'Success'){
 
+				print_r($postdata);
 				print_r($response);
 				die();
 			}
 			else{
-				print_r($postdata);
-				print_r($response);
-			}
+					$value = Session::get('key');
+
+				}
 	}
 	
 	else{

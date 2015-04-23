@@ -221,6 +221,11 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'edit-event-post',
 			'uses' => 'EventsController@editEventPost'
 		));
+			/*Booking  For Arenas  via  EPay*/
+		Route::post("/book", array(
+			'as' => 'book',
+			'uses' => 'UserController@book'
+		));
 
 	});
 	/*Success Condition*/
@@ -234,11 +239,7 @@ Route::group(array("before"=>"auth"), function() {
 			'uses' => 'UserController@failure'
 		));
 
-	/*Booking  For Arenas  via  EPay*/
-		Route::get("/book", array(
-			'as' => 'book',
-			'uses' => 'UserController@book'
-		));
+
 	/*Resend Email*/
 	Route::get("/resend-email", array(
 		'as' => 'resend-email',

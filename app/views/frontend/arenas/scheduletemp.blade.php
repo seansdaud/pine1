@@ -42,9 +42,20 @@ Book
                                       <div class="col-md-6"> <a href="#"  onclick="myFunction('<?php echo $arena->phone; ?>')"style="background-image:url(<?php echo asset('/assets/img/phoneicon.png'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;"></a></div>
                      <?php if(Auth::check()):?>
                                        <div class="col-md-6"> 
-                                        <div class="getdata" schedule="<?php echo $key->id; ?>" admin="<?php echo $adminid; ?>" price="<?php echo $key->price; ?>" style="cursor:pointer; background-image:url(<?php echo asset('/assets/img/Esewalogo.jpg'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;">
-                                              
-                                          </div>
+                                       <form action="{{ URL::route('book') }}" method="post" class="form-horizontal" enctype='multipart/form-data'>
+
+                                         <input value="<?php echo $key->price; ?>" name="amt" type="hidden">
+
+                                     <input value="<?php echo $key->id; ?>" name="schedule" type="hidden">
+                                      <input value=" <?php echo $key->start_time; ?> To <?php echo $key->end_time; ?>" name="time" type="hidden">
+
+                                      <input value=" <?php echo $adminid; ?>" name="admin" type="hidden">
+                                      <input value=" <?php echo $date; ?>" name="date" type="hidden">
+                                      
+                                      <input value=" <?php echo $arena->name; ?>" name="admin_name" type="hidden">
+                                        <input type="submit" value="" style="width:100%;cursor:pointer; background-image:url(<?php echo asset('/assets/img/Esewalogo.jpg'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;">
+                                         {{ Form::token() }}
+                                          </form>     
                                           </div>
                                           <div class="col-md-6"> <a href="#" style="background-image:url(<?php echo asset('/assets/img/gpoints.jpg'); ?>); background-position:center 20%; display:block; height:131px; max-width:100%; margin:0 auto; background-repeat: no-repeat;"></a></div>
                       <?php else: ?>
