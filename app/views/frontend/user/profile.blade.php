@@ -211,14 +211,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				@foreach($user->events as $events)
+			<?php $row_closed=null; $i=0; foreach($user->events as $events): $i++; ?>
+
+				<?php if($i==1): $row_closed=false; ?>
+					<div class="row">
+				<?php endif; ?>
 				<div class="col-md-4 col-sm-4">
 					<div class="item2">
-					  	<a href="#"><div class="event-eve">{{ $events->name }}</div></a>
+					  	<a href="{{ URL::route('edit-event', $events->id) }}"><div class="event-eve">{{$events->name}}</div></a>
 					  	<div style="  padding: 5px 6%;">
 					  		<div class="feb-bind">
-								<span class="feb">{{ }}</span><br>
+								<span class="feb">Feb</span><br>
 								<span class="date">8</span>
 							</div>
 							<div class="wrapper-eve">
@@ -226,35 +229,28 @@
 									5:00 Am - 3:00 Pm
 								</div>
 								<div><span class="glyphicon glyphicon-map-marker"></span>
-									Gairapatan
+									<?php $arena=Arena::where('id','=',$events->owner_id)->first(); ?>
+									{{$arena->address,$arena->city}}
 								</div>
-								<div>
-									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-								</div>
+								<?php if(Auth::check()): ?>
+									<?php if(Auth::user()->id == $user->id): ?>
+									<div>
+										<a href="{{ URL::route('edit-event', $events->id) }}" data-toggle="tooltip" title="Edit Event"><button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span>Edit</button></a>
+									</div>
+									<?php endif; ?>
+								<?php endif; ?>
 							</div>
 					  	</div>
 					</div>
 				</div>
-			</div>
-
-			@foreach($user->events as $events)
-				Event Name:<?php echo $events->name; ?><br>
-				Detail:<?php echo $events->detail; ?><br>
-				Start Date:<?php echo $events->start; ?><br>
-				End Date:<?php echo $events->end; ?><br>
-				<?php if(Auth::check()): ?>
-
-					<?php if(Auth::user()->id == $user->id): ?>
-
-						<a href="{{ URL::route('edit-event', $events->id) }}" data-toggle="tooltip" title="Edit Event">
-						  <span class="glyphicon glyphicon-edit"></span>
-						</a>
-
+				<?php if($i==3): $row_closed=true; $i=0; ?>
+						</div>
 					<?php endif; ?>
 
+				<?php endforeach; ?>
+				<?php if($row_closed==false || $row_closed==null): ?>
+					</div>
 				<?php endif; ?>
-				<hr>
-			@endforeach
 			<div class="row">
 				<div class="col-md-3">
 					<div class="cat-name">
