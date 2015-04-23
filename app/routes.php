@@ -226,6 +226,12 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'book',
 			'uses' => 'UserController@book'
 		));
+					/*Booking  For Arenas  via  gamepoints*/
+		Route::post("/bookviapoints", array(
+			'as' => 'bookviapoints',
+			'uses' => 'UserController@bookviapoints'
+		));
+		
 
 	});
 	/*Success Condition*/

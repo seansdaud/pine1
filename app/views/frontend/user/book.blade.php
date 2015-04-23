@@ -33,12 +33,13 @@
                                                  <br/>
                                                   <span class="">Arena </span>:
                                                  <?php echo $name; ?>
-                                               
+                                                 <div class="form-group">
+                                                         <div class="checkbox"> <label><input type="checkbox" name="agree" id="agree" value="agree">I agree with these Terms and Conditions</label></div> <br/>
+                                                  </div>
+                                                       
+                                               <?php if ($type=="esewa") : ?>
                                                 <form action="http://dev.esewa.com.np/epay/main" method="post" class="form-horizontal" >
     
-                                                       <div class="form-group">
-                                                         <div class="checkbox"> <label><input type="checkbox" name="agree" id="agree" value="agree">I agree with these Terms and Conditions</label></div> <br/>
-                                                       </div>
                                                        
                                                         <input value="<?php echo $price; ?>" name="tAmt" type="hidden">
                                                           <input value="<?php echo $price; ?>" name="amt" type="hidden">
@@ -49,12 +50,22 @@
                                                           <input name="pid" value="newasd"   type="hidden" >
                                                           <input value="<?php echo URL::to('/success/'); ?>?q=su" type="hidden" name="su">
                                                           <input value="<?php echo URL::to('/failure/'); ?>?q=fu" type="hidden" name="fu">
-                                                                                                            <div class="form-group">
+                                                           <div class="form-group">                                                 <div class="form-group">
                                                           <input type="submit" id="submitId" class="btn btn-primary" disabled="disabled" value="Accept & Book" />
+                                                      		</div>
                                                         </div>
                                                           {{ Form::token() }}
                                                      </form>
-
+                                                 <?php else: ?>
+                                                 	<form action="{{ URL::route('bookviapoints') }}" method="post" class="form-horizontal" enctype='multipart/form-data'>
+                                       				
+                                                 		 <div class="form-group">                                                 <div class="form-group">
+                                                          <input type="submit" id="submitId" class="btn btn-primary" disabled="disabled" value="Accept & Book" />
+                                                      		</div>
+                                       					{{ Form::token() }}
+                                                   
+                                                     </form>
+                                                 <?php endif; ?>
                                                 </div>
                                                 </div>
                                             
