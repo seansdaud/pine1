@@ -212,12 +212,13 @@
 				</div>
 			</div>
 			<div class="row">
+				@foreach($user->events as $events)
 				<div class="col-md-4 col-sm-4">
 					<div class="item2">
-					  	<a href="#"><div class="event-eve">Hello World</div></a>
+					  	<a href="#"><div class="event-eve">{{ $events->name }}</div></a>
 					  	<div style="  padding: 5px 6%;">
 					  		<div class="feb-bind">
-								<span class="feb">Feb</span><br>
+								<span class="feb">{{ }}</span><br>
 								<span class="date">8</span>
 							</div>
 							<div class="wrapper-eve">
@@ -233,53 +234,6 @@
 							</div>
 					  	</div>
 					</div>
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class="item2">
-					  	<a href="#"><div class="event-eve">Hello World</div></a>
-					  	<div style="  padding: 5px 6%;">
-					  		<div class="feb-bind">
-								<span class="feb">Feb</span><br>
-								<span class="date">8</span>
-							</div>
-							<div class="wrapper-eve">
-								<div><span class="glyphicon glyphicon-time"></span>
-									5:00 Am - 3:00 Pm
-								</div>
-								<div><span class="glyphicon glyphicon-map-marker"></span>
-									Gairapatan
-								</div>
-								<div>
-									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-								</div>
-							</div>
-					  	</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class="item2">
-					  	<a href="#"><div class="event-eve">Hello World</div></a>
-					  	<div style="  padding: 5px 6%;">
-					  		<div class="feb-bind">
-								<span class="feb">Feb</span><br>
-								<span class="date">8</span>
-							</div>
-							<div class="wrapper-eve">
-								<div><span class="glyphicon glyphicon-time"></span>
-									5:00 Am - 3:00 Pm
-								</div>
-								<div><span class="glyphicon glyphicon-map-marker"></span>
-									Gairapatan
-								</div>
-								<div>
-									<button type="button" class="btn btn-primary btn-events"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-								</div>
-							</div>
-					  	</div>
-
-					  	
-					</div>
-
 				</div>
 			</div>
 
