@@ -166,6 +166,8 @@
              // x.innerHTML = "data: "+ data;
               // console.log(position.coords.latitude);
               // console.log(position.coords.longitude);
+              
+
                  console.log(data);
                 };
            
@@ -206,6 +208,8 @@
                     $('.ajax-caller').html(result);
             // $(".ajax").html(result);
               $('#id').html("");
+              
+
                             if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(showPosition1);
     }

@@ -17,16 +17,7 @@
 					</div>
 					<div class="wrapper-eve">
 						<div><span class="glyphicon glyphicon-time"></span>
-							<?php if((int)date("H", strtotime($event->start)) > 12): ?>
-								<?php echo date("h:m", strtotime($event->start))." pm"; ?>
-							<?php else: ?>
-								<?php echo date("h:m", strtotime($event->start))." am"; ?>
-							<?php endif; ?> - 
-							<?php if((int)date("H", strtotime($event->end)) > 12): ?>
-								<?php echo date("h:m", strtotime($event->end))." pm"; ?>
-							<?php else: ?>
-								<?php echo date("h:m", strtotime($event->end))." am"; ?>
-							<?php endif; ?>
+							<?php echo $event->start_time;  ?>  to  <?php echo $event->end_time;  ?>
 						</div>
 						<div><span class="glyphicon glyphicon-map-marker"></span>
 							<?php $address = User::find($event->owner_id)->arena()->first(); ?>

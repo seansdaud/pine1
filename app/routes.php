@@ -198,7 +198,7 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'update-profile-post',
 			'uses' => 'UserController@profileUpdated'
 		));	
-		
+				
 		/*Add Review For Arenas*/
 		Route::post("/review", array(
 			'as' => 'add-review',
@@ -221,8 +221,30 @@ Route::group(array("before"=>"auth"), function() {
 			'as' => 'edit-event-post',
 			'uses' => 'EventsController@editEventPost'
 		));
+			/*Booking  For Arenas  via  EPay*/
+		Route::post("/book", array(
+			'as' => 'book',
+			'uses' => 'UserController@book'
+		));
+					/*Booking  For Arenas  via  gamepoints*/
+		Route::post("/bookviapoints", array(
+			'as' => 'bookviapoints',
+			'uses' => 'UserController@bookviapoints'
+		));
+		
 
 	});
+	/*Success Condition*/
+		Route::get("/success", array(
+			'as' => 'success',
+			'uses' => 'UserController@success'
+		));
+		/*Failure Condition*/
+		Route::get("/failure", array(
+			'as' => 'failure',
+			'uses' => 'UserController@failure'
+		));
+
 
 	/*Resend Email*/
 	Route::get("/resend-email", array(

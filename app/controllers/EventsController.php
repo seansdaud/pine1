@@ -35,6 +35,9 @@ class EventsController extends BaseController {
 						"start" => Input::get("getdate1"),
 
 						"end" => Input::get("getdate2"),
+						"start-time" => Input::get("start_time1"),
+						
+						"end-time" => Input::get("end_time1"),
 						
 					)
 			);
