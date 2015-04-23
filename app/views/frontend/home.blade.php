@@ -44,7 +44,11 @@
                         <div class="futsal-name"><?php echo  $user[0]->name;?></div>
                                              </div>
                       <div class="col-md-2 col-sm-4 col-xs-6">
-                        <div class="futsal-name"><?php echo  $date;?></div>
+                         <div class="futsal-name"><?php echo  $date;?></div> 
+                        <div>
+                          <span>May</span>
+                          <span>26</span>
+                        </div>
                       </div>
                       <div class="col-md-2 col-sm-3">
                         <div style="float:right;">
