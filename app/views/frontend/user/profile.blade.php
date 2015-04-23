@@ -221,16 +221,16 @@
 					  	<a href="{{ URL::route('edit-event', $events->id) }}"><div class="event-eve">{{$events->name}}</div></a>
 					  	<div style="  padding: 5px 6%;">
 					  		<div class="feb-bind">
-								<span class="feb">Feb</span><br>
-								<span class="date">8</span>
+								<span class="feb">{{date("M",strtotime($events->start))}}</span><br>
+								<span class="date">{{date("d",strtotime($events->start))}}</span>
 							</div>
 							<div class="wrapper-eve">
 								<div><span class="glyphicon glyphicon-time"></span>
 									5:00 Am - 3:00 Pm
 								</div>
 								<div><span class="glyphicon glyphicon-map-marker"></span>
-									<?php $arena=Arena::where('id','=',$events->owner_id)->first(); ?>
-									{{$arena->address,$arena->city}}
+									<?php $arena = User::find($events->owner_id)->arena()->first(); ?>
+									{{$arena->name}}
 								</div>
 								<?php if(Auth::check()): ?>
 									<?php if(Auth::user()->id == $user->id): ?>
