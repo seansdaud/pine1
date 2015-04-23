@@ -43,16 +43,8 @@
 				<div class="col-md-4 ">
 					<span class="glyphicon glyphicon-time gly-calendar"></span>
 					<span class="names">
-						<?php if((int)date("H", strtotime($event->start)) > 12): ?>
-							<?php echo date("h:m", strtotime($event->start))." pm"; ?>
-						<?php else: ?>
-							<?php echo date("h:m", strtotime($event->start))." am"; ?>
-						<?php endif; ?> - 
-						<?php if((int)date("H", strtotime($event->end)) > 12): ?>
-							<?php echo date("h:m", strtotime($event->end))." pm"; ?>
-						<?php else: ?>
-							<?php echo date("h:m", strtotime($event->end))." am"; ?>
-						<?php endif; ?>
+						<?php echo $event->start_time;  ?>  to  <?php echo $event->end_time;  ?>
+					
 					</span>
 				</div>
 			</div>
