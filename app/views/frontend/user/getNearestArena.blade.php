@@ -25,7 +25,6 @@
                          </div>
                       </div>
                       <div class="col-md-2 col-sm-2">
-                        <div class="futsal-name"><?php echo $date;?></div>
                       </div>
                       <div class="col-md-2 col-sm-2">
                         <div style="float:right;">
@@ -52,7 +51,17 @@
                       </div>
                     </div>
     <div>
-        <div class="schedule" style="margin-left: 15%;">Distance From Here:<?php echo round($result[0]->distances,2); ?>miles</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="length"><span class="glyphicon glyphicon-adjust" style="  left: -10px;
+  color:rgb(229, 226, 226); font-size:12px;"></span>
+          <span><?php echo round($result[0]->distances,2); ?> miles</span></div>
+        </div>
+        <div class="col-md-6">
+          
+        </div>
+      </div>
+        
             
     <input type="hidden" id='dist' value="<?php echo round($result[0]->distances,2); ?>">
     </div>

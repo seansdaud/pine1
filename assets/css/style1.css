@@ -56,6 +56,7 @@
   border-right: 1px dashed rgb(98, 92, 92);
   color: white;
 }
+
 .schedule{
 	color:#fff; 
   text-decoration:none; 
@@ -70,6 +71,22 @@
 }
 .time-side{
 	background: rgb(186, 191, 194);
+}
+.length{
+    background: rgb(218, 105, 66);
+  padding: 6px;
+  margin-top: 56px;
+  color: white;
+  font-size: 18px;
+  padding-left: 20px;
+  border-radius: 6px 6px 0px 0px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  position: absolute;
+  left: -20%;
 }
 .days{
 	  background: rgb(20, 24, 32);
